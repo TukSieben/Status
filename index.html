@@ -3,178 +3,352 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BadgeStatus — Twitch Badge Database & Live Tracker</title>
-  <meta name="description" content="Minimal, real-time Twitch global badge database, update tracker, and channel badge lookup.">
+  <title>BadgeStatus — Twitch Badge Database</title>
+  <meta name="description" content="The minimal Twitch global and channel badge database with live tracking and owner counts.">
   <meta property="og:title" content="BadgeStatus — Twitch Badge Database">
-  <meta property="og:description" content="Browse, search, and track Twitch global and channel chat badges in real time.">
+  <meta property="og:description" content="Browse, filter, and track Twitch global badges, owner counts, and channel badges in real time.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://badgestatus.net/">
   <link rel="icon" type="image/png" href="logo.png?v=2">
   <link rel="apple-touch-icon" href="logo.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="#global" class="brand" id="brandHome">
-        <img src="logo.png?v=2" alt="BadgeStatus Logo" class="brand-logo" width="28" height="28">
-        <span class="brand-name">badgestatus<span class="brand-tld">.net</span></span>
-      </a>
-
-      <nav class="nav-tabs" aria-label="Primary navigation">
-        <button type="button" class="nav-tab is-active" data-view="global">Global Badges</button>
-        <button type="button" class="nav-tab" data-view="updates">Updates</button>
-        <button type="button" class="nav-tab" data-view="channel">Channel Lookup</button>
-      </nav>
-
-      <div class="sync-pill" id="syncPill" title="Synchronization status with Twitch">
-        <span class="sync-dot" id="syncDot"></span>
-        <span id="syncText">Loading...</span>
-      </div>
+  <!-- MOBILE TOP BAR -->
+  <header class="mobile-topbar">
+    <button type="button" class="icon-btn" id="menuToggleBtn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    <a href="#home" class="brand-compact" data-nav="home">
+      <img src="logo.png?v=2" alt="BadgeStatus" width="28" height="28">
+      <span>BADGE<br>STATUS</span>
+    </a>
+    <div class="sync-badge" id="mobileSyncBadge">
+      <span class="sync-dot"></span>
     </div>
   </header>
 
-  <main class="container main-content">
-    <!-- GLOBAL BADGES VIEW -->
-    <section id="view-global" class="view is-active">
-      <div class="page-head">
-        <div>
-          <h1>Twitch Global Badges</h1>
-          <p class="subtitle">Official chat badges tracked live from Twitch.</p>
-        </div>
-        <div class="head-stats" id="globalStats"></div>
-      </div>
+  <div class="sidebar-overlay hidden" id="sidebarOverlay"></div>
 
-      <div class="toolbar">
-        <div class="search-wrap">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
+  <div class="app-shell">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigation">
+      <div class="sidebar-top">
+        <a href="#home" class="brand-lockup" data-nav="home">
+          <img src="logo.png?v=2" alt="BadgeStatus Logo" width="34" height="34">
+          <span class="brand-stack">BADGE<br>STATUS</span>
+        </a>
+        <button type="button" class="icon-btn mobile-only" id="menuCloseBtn" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"></path>
           </svg>
-          <input
-            type="search"
-            id="searchInput"
-            class="search-input"
-            placeholder="Search by badge name, description, or set ID..."
-            autocomplete="off"
-            spellcheck="false"
-          >
-          <kbd class="kbd-hint" id="kbdHint">/</kbd>
-        </div>
-
-        <div class="toolbar-actions">
-          <label class="toggle-chip" title="Group multi-tier sets like Bits or Subscribers into a single card">
-            <input type="checkbox" id="groupToggle" checked>
-            <span>Group tiers</span>
-          </label>
-
-          <select id="sortSelect" class="select-input" aria-label="Sort badges">
-            <option value="recent">Recent first</option>
-            <option value="az">Name A → Z</option>
-            <option value="za">Name Z → A</option>
-            <option value="tiers">Most tiers</option>
-          </select>
-        </div>
+        </button>
       </div>
 
-      <div class="filter-bar" id="categoryFilters" role="tablist" aria-label="Badge categories"></div>
-
-      <div class="results-meta" id="resultsMeta"></div>
-
-      <div class="badge-grid" id="badgeGrid"></div>
-
-      <div class="empty-state hidden" id="globalEmpty">
-        <p class="empty-title">No matching badges</p>
-        <p class="empty-sub">Try adjusting your search query or category filter.</p>
-        <button type="button" class="btn btn-secondary" id="resetFiltersBtn">Reset filters</button>
-      </div>
-    </section>
-
-    <!-- UPDATES / CHANGELOG VIEW -->
-    <section id="view-updates" class="view">
-      <div class="page-head">
-        <div>
-          <h1>Badge Updates</h1>
-          <p class="subtitle">Automatic snapshot history &amp; live diff against Twitch.</p>
-        </div>
-        <button type="button" class="btn btn-secondary" id="recheckLiveBtn">Check live now</button>
-      </div>
-
-      <div class="summary-strip" id="updatesSummary"></div>
-
-      <div id="liveDiffBanner" class="live-diff-banner hidden"></div>
-
-      <div class="updates-section">
-        <div class="section-header">
-          <h2>Tracked Changes</h2>
-          <span class="muted-meta" id="changelogMeta"></span>
-        </div>
-        <div id="changelogList" class="changelog-list"></div>
-      </div>
-
-      <div class="updates-section">
-        <div class="section-header">
-          <h2>2026 Releases</h2>
-          <span class="muted-meta" id="recentYearMeta"></span>
-        </div>
-        <div id="recentYearGrid" class="badge-grid"></div>
-      </div>
-    </section>
-
-    <!-- CHANNEL LOOKUP VIEW -->
-    <section id="view-channel" class="view">
-      <div class="page-head">
-        <div>
-          <h1>Channel Badge Lookup</h1>
-          <p class="subtitle">Inspect live subscriber and custom bit badges for any Twitch channel.</p>
-        </div>
-      </div>
-
-      <form class="channel-search-form" id="channelForm">
-        <div class="search-wrap channel-input-wrap">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-link is-active" data-view="home">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path>
           </svg>
-          <input
-            type="text"
-            id="channelInput"
-            class="search-input"
-            placeholder="Enter Twitch channel login (e.g. shroud)..."
-            autocomplete="off"
-            spellcheck="false"
-          >
+          <span>Home</span>
+        </button>
+
+        <div class="nav-section-label">TWITCH</div>
+
+        <button type="button" class="nav-link" data-view="global">
+          <img src="https://static-cdn.jtvnw.net/badges/v1/bd444ec6-8f34-4bf9-91f4-af1e3428d80f/3" alt="" class="nav-badge-img" width="20" height="20">
+          <span>Global Badges</span>
+        </button>
+
+        <button type="button" class="nav-link" data-view="channel">
+          <img src="https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/3" alt="" class="nav-badge-img" width="20" height="20">
+          <span>Channel Badges</span>
+        </button>
+
+        <button type="button" class="nav-link" data-view="updates">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 8v4l3 3"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+          </svg>
+          <span>Updates</span>
+          <span class="nav-pill" id="updatesNavPill">2026</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-box">
+          <div class="status-row">
+            <span class="sync-dot" id="syncDot"></span>
+            <span class="status-title" id="syncText">Connecting...</span>
+          </div>
+          <div class="status-sub" id="syncSub">Loading snapshot...</div>
         </div>
-        <button type="submit" class="btn btn-primary" id="channelSubmitBtn">Lookup</button>
-      </form>
-
-      <div class="quick-channels">
-        <span class="quick-label">Examples:</span>
-        <button type="button" class="quick-chip" data-channel="twitch">twitch</button>
-        <button type="button" class="quick-chip" data-channel="shroud">shroud</button>
-        <button type="button" class="quick-chip" data-channel="caedrel">caedrel</button>
-        <button type="button" class="quick-chip" data-channel="summit1g">summit1g</button>
       </div>
+    </aside>
 
-      <div id="channelOutput"></div>
-    </section>
-  </main>
+    <!-- MAIN CONTENT -->
+    <main class="main-area">
+      <!-- HOME VIEW -->
+      <section id="view-home" class="view is-active">
+        <div class="home-hero">
+          <div class="hero-brand">
+            <img src="logo.png?v=2" alt="BadgeStatus" width="60" height="60">
+            <div class="hero-title">BADGE<br>STATUS</div>
+          </div>
+          <p class="hero-tagline">THE MINIMAL TWITCH BADGE REPOSITORY &amp; LIVE TRACKER</p>
+          <div class="hero-actions">
+            <button type="button" class="btn-cta" data-goto="global">Browse Global Badges</button>
+            <button type="button" class="btn-dark" data-goto="channel">Channel Lookup</button>
+          </div>
+        </div>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>badgestatus.net</span>
-      <span class="footer-sep">·</span>
-      <span>Live data via Twitch</span>
-    </div>
-  </footer>
+        <div class="stats-strip" id="homeStatsStrip"></div>
 
-  <!-- BADGE INSPECTOR MODAL -->
+        <div class="home-cards-grid">
+          <button type="button" class="hub-card" data-goto="global">
+            <div class="hub-card-top">
+              <h3>Twitch Global Badges</h3>
+              <p>Complete repository of all official Twitch chat badges, user counts &amp; unlock details.</p>
+            </div>
+            <div class="hub-card-bottom">
+              <div class="hub-preview-icons" id="homeGlobalIcons"></div>
+              <span class="hub-arrow">→</span>
+            </div>
+          </button>
+
+          <button type="button" class="hub-card" data-goto="channel">
+            <div class="hub-card-top">
+              <h3>Channel Badges</h3>
+              <p>Look up any Twitch broadcaster’s custom subscriber tiers and bit cheer badges live.</p>
+            </div>
+            <div class="hub-card-bottom">
+              <div class="hub-preview-icons">
+                <img src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3" alt="" width="34" height="34">
+                <img src="https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/3" alt="" width="34" height="34">
+                <img src="https://static-cdn.jtvnw.net/badges/v1/b817aba4-fad8-49e2-b88a-7cc744dfa6ec/3" alt="" width="34" height="34">
+              </div>
+              <span class="hub-arrow">→</span>
+            </div>
+          </button>
+
+          <button type="button" class="hub-card" data-goto="updates">
+            <div class="hub-card-top">
+              <h3>Updates &amp; 2026 Releases</h3>
+              <p>Track newly added, updated, or removed badges with automated snapshot diffs.</p>
+            </div>
+            <div class="hub-card-bottom">
+              <div class="hub-preview-icons" id="homeRecentIcons"></div>
+              <span class="hub-arrow">→</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="section-block">
+          <div class="section-head">
+            <h2>Most Owned &amp; Recent Highlights</h2>
+            <button type="button" class="link-btn" data-goto="global">View all →</button>
+          </div>
+          <div class="badge-list" id="homeFeaturedList"></div>
+        </div>
+      </section>
+
+      <!-- GLOBAL BADGES VIEW -->
+      <section id="view-global" class="view">
+        <div class="page-header">
+          <div>
+            <h1>TWITCH GLOBAL BADGES</h1>
+            <p class="page-sub">List of all official Twitch global badges, owner counts, and unlock requirements.</p>
+          </div>
+        </div>
+
+        <details class="qa-panel">
+          <summary class="qa-summary">
+            <span>Questions and Answers</span>
+            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </summary>
+          <div class="qa-body">
+            <div class="qa-item">
+              <h4>What are Twitch global badges?</h4>
+              <p>Twitch global badges are chat icons displayed next to usernames across Twitch. Unlike channel subscriber or bit badges, global badges use the same official artwork everywhere.</p>
+            </div>
+            <div class="qa-item">
+              <h4>Where do the user counts come from?</h4>
+              <p>Ownership counts and percentages are synced from the public PotatBotat badge dataset and Twitch’s live GraphQL API.</p>
+            </div>
+            <div class="qa-item">
+              <h4>How often are new badges tracked?</h4>
+              <p>Automated snapshots sync every 2 hours via GitHub Actions, and your browser also compares live against Twitch on load.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="panel-box">
+          <div class="panel-header-row">
+            <div class="panel-title-group">
+              <span class="panel-title">LIST</span>
+              <span class="panel-count" id="globalCountBadge"></span>
+            </div>
+            <div class="layout-controls">
+              <label class="group-check">
+                <input type="checkbox" id="groupToggle" checked>
+                <span>Group tiers</span>
+              </label>
+              <div class="layout-switch" role="group" aria-label="Layout">
+                <button type="button" class="layout-btn is-active" data-layout="list">List</button>
+                <button type="button" class="layout-btn" data-layout="grid">Grid</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filters-grid">
+            <div class="filter-field">
+              <label for="sortSelect">Sort by</label>
+              <select id="sortSelect">
+                <option value="users">User Count</option>
+                <option value="recent">Recent / Year</option>
+                <option value="name">Name</option>
+                <option value="setID">Set ID</option>
+              </select>
+            </div>
+
+            <div class="filter-field">
+              <label for="dirSelect">Sort Direction</label>
+              <select id="dirSelect">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+              </select>
+            </div>
+
+            <div class="filter-field">
+              <label for="costSelect">Cost</label>
+              <select id="costSelect">
+                <option value="any">Any</option>
+                <option value="free">Free</option>
+                <option value="paid">Paid</option>
+                <option value="role">Role / System</option>
+              </select>
+            </div>
+
+            <div class="filter-field">
+              <label for="catSelect">Category</label>
+              <select id="catSelect">
+                <option value="any">Any</option>
+                <option value="2026">2026 Releases</option>
+                <option value="Event">Event</option>
+                <option value="Free / Watch">Free / Watch</option>
+                <option value="Paid / Sub">Paid / Sub</option>
+                <option value="Action">Action</option>
+                <option value="Platform">Platform</option>
+                <option value="Role">Role</option>
+                <option value="Legacy">Legacy</option>
+              </select>
+            </div>
+
+            <div class="filter-field filter-search">
+              <label for="searchInput">Search</label>
+              <div class="input-wrap">
+                <input
+                  type="search"
+                  id="searchInput"
+                  placeholder="Title, description, set ID..."
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+                <kbd class="kbd-hint" id="kbdHint">/</kbd>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagination-bar" id="topPagination"></div>
+        </div>
+
+        <div id="globalCollection" class="badge-list"></div>
+
+        <div class="empty-box hidden" id="globalEmpty">
+          <p class="empty-title">No badges matched your filters</p>
+          <button type="button" class="btn-dark" id="resetFiltersBtn">Reset Filters</button>
+        </div>
+
+        <div class="pagination-bar bottom-pag" id="bottomPagination"></div>
+      </section>
+
+      <!-- CHANNEL BADGES VIEW -->
+      <section id="view-channel" class="view">
+        <div class="page-header">
+          <div>
+            <h1>TWITCH CHANNEL BADGES</h1>
+            <p class="page-sub">Search any Twitch channel to inspect its live subscriber and custom bit badges.</p>
+          </div>
+        </div>
+
+        <div class="panel-box">
+          <form class="channel-form" id="channelForm">
+            <input
+              type="text"
+              id="channelInput"
+              class="channel-input"
+              placeholder="Enter channel name (e.g. shroud, caedrel, twitch)..."
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <button type="submit" class="btn-cta">Search Channel</button>
+          </form>
+          <div class="quick-row">
+            <span class="quick-label">QUICK:</span>
+            <button type="button" class="quick-chip" data-channel="twitch">twitch</button>
+            <button type="button" class="quick-chip" data-channel="shroud">shroud</button>
+            <button type="button" class="quick-chip" data-channel="caedrel">caedrel</button>
+            <button type="button" class="quick-chip" data-channel="summit1g">summit1g</button>
+            <button type="button" class="quick-chip" data-channel="lirik">lirik</button>
+          </div>
+        </div>
+
+        <div id="channelOutput"></div>
+      </section>
+
+      <!-- UPDATES / CHANGELOG VIEW -->
+      <section id="view-updates" class="view">
+        <div class="page-header page-header-split">
+          <div>
+            <h1>BADGE UPDATES</h1>
+            <p class="page-sub">Live Twitch diff and automated repository snapshot log.</p>
+          </div>
+          <button type="button" class="btn-dark" id="recheckLiveBtn">Check Live Now</button>
+        </div>
+
+        <div class="stats-strip" id="updatesStatsStrip"></div>
+        <div class="live-diff-alert hidden" id="liveDiffBanner"></div>
+
+        <div class="section-block">
+          <div class="section-head">
+            <h2>Tracked Changes</h2>
+            <span class="mono-muted" id="changelogMeta"></span>
+          </div>
+          <div id="changelogList" class="badge-list"></div>
+        </div>
+
+        <div class="section-block">
+          <div class="section-head">
+            <h2>2026 Releases</h2>
+            <span class="mono-muted" id="recentYearMeta"></span>
+          </div>
+          <div id="recentYearList" class="badge-list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- BADGE DETAIL MODAL -->
   <div class="modal-backdrop hidden" id="badgeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card">
-      <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close modal">
+      <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M18 6 6 18M6 6l12 12"></path>
         </svg>
@@ -185,18 +359,18 @@
           <div class="preview-sizes">
             <div class="size-tile">
               <img id="modalImg4x" alt="" width="72" height="72">
-              <span>72px</span>
+              <span>4x (72px)</span>
             </div>
             <div class="size-tile">
               <img id="modalImg2x" alt="" width="36" height="36">
-              <span>36px</span>
+              <span>2x (36px)</span>
             </div>
             <div class="size-tile">
               <img id="modalImg1x" alt="" width="18" height="18">
-              <span>18px</span>
+              <span>1x (18px)</span>
             </div>
           </div>
-          <button type="button" class="mini-toggle" id="checkerToggle">Grid bg</button>
+          <button type="button" class="mini-btn" id="checkerToggle">Toggle checkerboard</button>
         </div>
 
         <div class="modal-info">
@@ -205,54 +379,56 @@
           <p class="modal-desc" id="modalDesc"></p>
 
           <div class="meta-grid">
-            <button type="button" class="meta-item copyable" id="copySetIdBtn" title="Copy Set ID">
+            <div class="meta-box">
+              <span class="meta-label">Users</span>
+              <span class="meta-value" id="modalUsers">N/A</span>
+            </div>
+            <button type="button" class="meta-box is-copy" id="copySetIdBtn" title="Copy Set ID">
               <span class="meta-label">Set ID</span>
               <span class="meta-value" id="modalSetId"></span>
             </button>
-            <button type="button" class="meta-item copyable" id="copyVersionBtn" title="Copy Version">
+            <button type="button" class="meta-box is-copy" id="copyVersionBtn" title="Copy Version">
               <span class="meta-label">Version</span>
               <span class="meta-value" id="modalVersion"></span>
             </button>
-            <div class="meta-item" id="modalTrackedWrap">
-              <span class="meta-label">Tracked</span>
+            <div class="meta-box" id="modalTrackedWrap">
+              <span class="meta-label">First Seen</span>
               <span class="meta-value" id="modalTracked"></span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- LIVE CHAT PREVIEW -->
-      <div class="chat-preview-section">
+      <div class="chat-preview-box">
         <div class="chat-preview-head">
-          <span>Chat Preview</span>
-          <button type="button" class="mini-toggle" id="chatThemeToggle">Light chat</button>
+          <span>TWITCH CHAT PREVIEW</span>
+          <button type="button" class="mini-btn" id="chatThemeToggle">Light chat</button>
         </div>
-        <div class="chat-box" id="chatBox">
-          <img id="chatBadgeImg" alt="" width="18" height="18" class="chat-badge-icon">
-          <span class="chat-user">badgestatus</span><span class="chat-colon">:</span>
-          <span class="chat-msg">Testing how this badge looks in Twitch chat!</span>
+        <div class="chat-line" id="chatBox">
+          <img id="chatBadgeImg" alt="" width="18" height="18">
+          <span class="chat-user">badgestatus</span><span>:</span>
+          <span class="chat-msg">Showing this badge live in chat!</span>
         </div>
       </div>
 
-      <!-- MULTI-VERSION TIER STRIP -->
-      <div class="versions-section hidden" id="versionsSection">
+      <div class="versions-box hidden" id="versionsSection">
         <div class="versions-head">
-          <span>All Versions</span>
-          <span class="muted-meta" id="versionsCount"></span>
+          <span>ALL TIERS / VERSIONS</span>
+          <span class="mono-muted" id="versionsCount"></span>
         </div>
         <div class="versions-strip" id="versionsStrip"></div>
       </div>
 
       <div class="modal-actions">
-        <button type="button" class="btn btn-primary" id="downloadPngBtn">Download 4× PNG</button>
-        <button type="button" class="btn btn-secondary" id="copyUrlBtn">Copy Image URL</button>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary hidden" id="externalLinkBtn">Open Link</a>
+        <button type="button" class="btn-cta" id="downloadPngBtn">Download 4x PNG</button>
+        <button type="button" class="btn-dark" id="copyUrlBtn">Copy Image URL</button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-dark hidden" id="externalLinkBtn">Open Twitch Link</a>
       </div>
     </div>
   </div>
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-  <script type="module" src="app.js?v=1"></script>
+  <script type="module" src="app.js?v=2"></script>
 </body>
 </html>

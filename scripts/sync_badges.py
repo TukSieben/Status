@@ -1,7 +1,7 @@
-"""Sync Twitch global badges from Twitch GQL into local JSON snapshots.
+"""Sync Twitch global badges and user counts into local JSON snapshots.
 
-Generates `data/badges.json` and maintains `data/changelog.json` for
-added, updated, and removed global badges.
+Fetches global badge metadata from Twitch GQL and ownership counts from the
+public PotatBotat badge API, writing `data/badges.json` and `data/changelog.json`.
 """
 
 from __future__ import annotations
@@ -15,6 +15,8 @@ from typing import Any
 
 GQL_URL = "https://gql.twitch.tv/gql"
 TWITCH_WEB_CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko"
+POTAT_BADGES_URL = "https://api.potat.app/twitch/badges"
+
 GQL_QUERY = """
 query GlobalBadges {
   badges {
@@ -71,6 +73,20 @@ PLATFORM_SET_IDS = {
     "turbo",
 }
 
+PAID_PLATFORM_IDS = {
+    "anonymous-cheerer",
+    "bits",
+    "bits-leader",
+    "founder",
+    "hype-train",
+    "mod-founder",
+    "premium",
+    "sub-gift-leader",
+    "sub-gifter",
+    "subscriber",
+    "turbo",
+}
+
 PAID_RE = re.compile(
     r"\b(sub|subbed|subbing|subscribe|subscribed|subscribing|gift|gifted|gifting|"
     r"bits|cheer|cheered|cheering|support|supported|supporting|purchas\w*|turbo|tier)\b",
@@ -89,7 +105,7 @@ YEAR_RE = re.compile(r"\b(20\d{2})\b")
 
 
 def classify_badge(badge: dict[str, Any]) -> str:
-    """Assign a clean display category based on official Twitch metadata."""
+    """Assign a display category based on official Twitch metadata."""
     sid = (badge.get("setID") or "").lower()
     desc = (badge.get("description") or "").strip()
     click_url = badge.get("clickURL") or ""
@@ -107,6 +123,24 @@ def classify_badge(badge: dict[str, Any]) -> str:
     if "/directory/game/" in click_url:
         return "Legacy"
     return "Event"
+
+
+def classify_cost(badge: dict[str, Any], category: str) -> str:
+    """Determine cost classification: 'free', 'paid', or 'role'."""
+    sid = (badge.get("setID") or "").lower()
+    desc = (badge.get("description") or "").strip()
+    click_action = (badge.get("clickAction") or "").upper()
+
+    if category == "Role":
+        return "role"
+    if (
+        sid in PAID_PLATFORM_IDS
+        or category == "Paid / Sub"
+        or click_action in {"SUBSCRIBE", "GET_TURBO"}
+        or PAID_RE.search(desc)
+    ):
+        return "paid"
+    return "free"
 
 
 def extract_year(badge: dict[str, Any]) -> int | None:
@@ -145,6 +179,27 @@ def fetch_live_badges() -> list[dict[str, Any]]:
     return raw_badges
 
 
+def fetch_user_counts() -> dict[str, tuple[int, float]]:
+    """Fetch public Twitch badge ownership counts from PotatBotat API."""
+    counts: dict[str, tuple[int, float]] = {}
+    try:
+        req = urllib.request.Request(
+            POTAT_BADGES_URL,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; badgestatus-sync/1.0)"},
+        )
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+        for item in payload.get("data", []):
+            key = f"{item['badge']}::{item['version']}"
+            uc = item.get("user_count")
+            pct = item.get("percentage")
+            if isinstance(uc, int):
+                counts[key] = (uc, round(float(pct), 4) if pct is not None else 0.0)
+    except Exception as exc:
+        print(f"Warning: could not fetch user counts from PotatBotat: {exc}")
+    return counts
+
+
 def load_json(path: Path, default: Any) -> Any:
     """Load JSON file if it exists, otherwise return default."""
     if not path.exists():
@@ -154,17 +209,30 @@ def load_json(path: Path, default: Any) -> Any:
 
 
 def normalize_badge(
-    raw: dict[str, Any], prev: dict[str, Any] | None, now_iso: str, is_seed: bool
+    raw: dict[str, Any],
+    prev: dict[str, Any] | None,
+    count_info: tuple[int, float] | None,
+    now_iso: str,
+    is_seed: bool,
 ) -> dict[str, Any]:
-    """Build normalized badge record preserving existing firstSeen metadata."""
+    """Build normalized badge record preserving existing tracking metadata."""
     description = (raw.get("description") or "").strip()
+    category = classify_badge(raw)
+    cost = classify_cost(raw, category)
+
+    user_count = count_info[0] if count_info else (prev.get("userCount") if prev else None)
+    percentage = count_info[1] if count_info else (prev.get("percentage") if prev else None)
+
     return {
         "setID": raw["setID"],
         "version": str(raw["version"]),
         "title": (raw.get("title") or raw["setID"]).strip(),
         "description": description,
-        "category": classify_badge(raw),
+        "category": category,
+        "cost": cost,
         "year": extract_year(raw),
+        "userCount": user_count,
+        "percentage": percentage,
         "image1x": raw["image1x"],
         "image2x": raw["image2x"],
         "image4x": raw["image4x"],
@@ -183,12 +251,14 @@ def main() -> None:
     prev_doc = load_json(BADGES_PATH, {})
     prev_list = prev_doc.get("badges", []) if isinstance(prev_doc, dict) else []
     prev_map = {badge_key(b): b for b in prev_list}
+    # Treat legacy snapshots without userCount/cost fields smoothly without noisy changelog spam
     is_seed = len(prev_map) == 0
 
     changelog_doc = load_json(CHANGELOG_PATH, {"events": []})
     events: list[dict[str, Any]] = changelog_doc.get("events", [])
 
     live_raw = fetch_live_badges()
+    user_counts = fetch_user_counts()
     live_sorted = sorted(live_raw, key=lambda b: (b["setID"].lower(), str(b["version"])))
 
     next_badges: list[dict[str, Any]] = []
@@ -201,7 +271,7 @@ def main() -> None:
         key = badge_key(raw)
         live_keys.add(key)
         prev = prev_map.get(key)
-        norm = normalize_badge(raw, prev, now_iso, is_seed)
+        norm = normalize_badge(raw, prev, user_counts.get(key), now_iso, is_seed)
 
         if not is_seed and prev is None:
             new_changes.append(
@@ -213,6 +283,7 @@ def main() -> None:
                     "title": norm["title"],
                     "description": norm["description"],
                     "category": norm["category"],
+                    "cost": norm["cost"],
                     "image2x": norm["image2x"],
                 }
             )
@@ -256,6 +327,7 @@ def main() -> None:
             "syncedAt": now_iso,
             "totalBadges": len(next_badges),
             "uniqueSets": unique_sets,
+            "trackedOwners": sum(1 for b in next_badges if b.get("userCount") is not None),
             "badges": next_badges,
         }
         with BADGES_PATH.open("w", encoding="utf-8", newline="\n") as fh:
@@ -274,7 +346,8 @@ def main() -> None:
             fh.write("\n")
 
     print(
-        f"Synced {len(next_badges)} badges ({unique_sets} sets). "
+        f"Synced {len(next_badges)} badges ({unique_sets} sets), "
+        f"{sum(1 for b in next_badges if b.get('userCount') is not None)} with owner counts. "
         f"Changes recorded: {len(new_changes)}."
     )
 
