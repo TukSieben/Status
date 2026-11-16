@@ -3,90 +3,256 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>badgestatus.net</title>
+  <title>BadgeStatus — Twitch Badge Database & Live Tracker</title>
+  <meta name="description" content="Minimal, real-time Twitch global badge database, update tracker, and channel badge lookup.">
+  <meta property="og:title" content="BadgeStatus — Twitch Badge Database">
+  <meta property="og:description" content="Browse, search, and track Twitch global and channel chat badges in real time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://badgestatus.net/">
   <link rel="icon" type="image/png" href="logo.png?v=1">
   <link rel="apple-touch-icon" href="logo.png?v=1">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0b0d12;
-      --card: #131722;
-      --border: #23293a;
-      --text: #f3f5f9;
-      --muted: #9aa3b2;
-      --accent: #38bdf8;
-      --ok: #22c55e;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at top, #151b2b 0%, var(--bg) 60%);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 24px;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 480px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.35);
-      color: #86efac;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 18px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--ok);
-    }
-
-    h1 {
-      font-size: 1.75rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1">
 </head>
 <body>
-  <main class="card">
-    <div class="badge">
-      <span class="dot"></span>
-      <span>GitHub Pages Connected</span>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#global" class="brand" id="brandHome">
+        <img src="logo.png?v=1" alt="BadgeStatus Logo" class="brand-logo" width="28" height="28">
+        <span class="brand-name">badgestatus<span class="brand-tld">.net</span></span>
+      </a>
+
+      <nav class="nav-tabs" aria-label="Primary navigation">
+        <button type="button" class="nav-tab is-active" data-view="global">Global Badges</button>
+        <button type="button" class="nav-tab" data-view="updates">Updates</button>
+        <button type="button" class="nav-tab" data-view="channel">Channel Lookup</button>
+      </nav>
+
+      <div class="sync-pill" id="syncPill" title="Synchronization status with Twitch">
+        <span class="sync-dot" id="syncDot"></span>
+        <span id="syncText">Loading...</span>
+      </div>
     </div>
-    <h1>badgestatus.net</h1>
-    <p>Site setup is ready. Content coming soon.</p>
+  </header>
+
+  <main class="container main-content">
+    <!-- GLOBAL BADGES VIEW -->
+    <section id="view-global" class="view is-active">
+      <div class="page-head">
+        <div>
+          <h1>Twitch Global Badges</h1>
+          <p class="subtitle">Official chat badges tracked live from Twitch.</p>
+        </div>
+        <div class="head-stats" id="globalStats"></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search by badge name, description, or set ID..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <kbd class="kbd-hint" id="kbdHint">/</kbd>
+        </div>
+
+        <div class="toolbar-actions">
+          <label class="toggle-chip" title="Group multi-tier sets like Bits or Subscribers into a single card">
+            <input type="checkbox" id="groupToggle" checked>
+            <span>Group tiers</span>
+          </label>
+
+          <select id="sortSelect" class="select-input" aria-label="Sort badges">
+            <option value="recent">Recent first</option>
+            <option value="az">Name A → Z</option>
+            <option value="za">Name Z → A</option>
+            <option value="tiers">Most tiers</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar" id="categoryFilters" role="tablist" aria-label="Badge categories"></div>
+
+      <div class="results-meta" id="resultsMeta"></div>
+
+      <div class="badge-grid" id="badgeGrid"></div>
+
+      <div class="empty-state hidden" id="globalEmpty">
+        <p class="empty-title">No matching badges</p>
+        <p class="empty-sub">Try adjusting your search query or category filter.</p>
+        <button type="button" class="btn btn-secondary" id="resetFiltersBtn">Reset filters</button>
+      </div>
+    </section>
+
+    <!-- UPDATES / CHANGELOG VIEW -->
+    <section id="view-updates" class="view">
+      <div class="page-head">
+        <div>
+          <h1>Badge Updates</h1>
+          <p class="subtitle">Automatic snapshot history &amp; live diff against Twitch.</p>
+        </div>
+        <button type="button" class="btn btn-secondary" id="recheckLiveBtn">Check live now</button>
+      </div>
+
+      <div class="summary-strip" id="updatesSummary"></div>
+
+      <div id="liveDiffBanner" class="live-diff-banner hidden"></div>
+
+      <div class="updates-section">
+        <div class="section-header">
+          <h2>Tracked Changes</h2>
+          <span class="muted-meta" id="changelogMeta"></span>
+        </div>
+        <div id="changelogList" class="changelog-list"></div>
+      </div>
+
+      <div class="updates-section">
+        <div class="section-header">
+          <h2>2026 Releases</h2>
+          <span class="muted-meta" id="recentYearMeta"></span>
+        </div>
+        <div id="recentYearGrid" class="badge-grid"></div>
+      </div>
+    </section>
+
+    <!-- CHANNEL LOOKUP VIEW -->
+    <section id="view-channel" class="view">
+      <div class="page-head">
+        <div>
+          <h1>Channel Badge Lookup</h1>
+          <p class="subtitle">Inspect live subscriber and custom bit badges for any Twitch channel.</p>
+        </div>
+      </div>
+
+      <form class="channel-search-form" id="channelForm">
+        <div class="search-wrap channel-input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <input
+            type="text"
+            id="channelInput"
+            class="search-input"
+            placeholder="Enter Twitch channel login (e.g. shroud)..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+        <button type="submit" class="btn btn-primary" id="channelSubmitBtn">Lookup</button>
+      </form>
+
+      <div class="quick-channels">
+        <span class="quick-label">Examples:</span>
+        <button type="button" class="quick-chip" data-channel="twitch">twitch</button>
+        <button type="button" class="quick-chip" data-channel="shroud">shroud</button>
+        <button type="button" class="quick-chip" data-channel="caedrel">caedrel</button>
+        <button type="button" class="quick-chip" data-channel="summit1g">summit1g</button>
+      </div>
+
+      <div id="channelOutput"></div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>badgestatus.net</span>
+      <span class="footer-sep">·</span>
+      <span>Live data via Twitch</span>
+    </div>
+  </footer>
+
+  <!-- BADGE INSPECTOR MODAL -->
+  <div class="modal-backdrop hidden" id="badgeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="modal-top">
+        <div class="modal-previews" id="modalPreviewBox">
+          <div class="preview-sizes">
+            <div class="size-tile">
+              <img id="modalImg4x" alt="" width="72" height="72">
+              <span>72px</span>
+            </div>
+            <div class="size-tile">
+              <img id="modalImg2x" alt="" width="36" height="36">
+              <span>36px</span>
+            </div>
+            <div class="size-tile">
+              <img id="modalImg1x" alt="" width="18" height="18">
+              <span>18px</span>
+            </div>
+          </div>
+          <button type="button" class="mini-toggle" id="checkerToggle">Grid bg</button>
+        </div>
+
+        <div class="modal-info">
+          <div class="modal-tags" id="modalTags"></div>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-desc" id="modalDesc"></p>
+
+          <div class="meta-grid">
+            <button type="button" class="meta-item copyable" id="copySetIdBtn" title="Copy Set ID">
+              <span class="meta-label">Set ID</span>
+              <span class="meta-value" id="modalSetId"></span>
+            </button>
+            <button type="button" class="meta-item copyable" id="copyVersionBtn" title="Copy Version">
+              <span class="meta-label">Version</span>
+              <span class="meta-value" id="modalVersion"></span>
+            </button>
+            <div class="meta-item" id="modalTrackedWrap">
+              <span class="meta-label">Tracked</span>
+              <span class="meta-value" id="modalTracked"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE CHAT PREVIEW -->
+      <div class="chat-preview-section">
+        <div class="chat-preview-head">
+          <span>Chat Preview</span>
+          <button type="button" class="mini-toggle" id="chatThemeToggle">Light chat</button>
+        </div>
+        <div class="chat-box" id="chatBox">
+          <img id="chatBadgeImg" alt="" width="18" height="18" class="chat-badge-icon">
+          <span class="chat-user">badgestatus</span><span class="chat-colon">:</span>
+          <span class="chat-msg">Testing how this badge looks in Twitch chat!</span>
+        </div>
+      </div>
+
+      <!-- MULTI-VERSION TIER STRIP -->
+      <div class="versions-section hidden" id="versionsSection">
+        <div class="versions-head">
+          <span>All Versions</span>
+          <span class="muted-meta" id="versionsCount"></span>
+        </div>
+        <div class="versions-strip" id="versionsStrip"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" id="downloadPngBtn">Download 4× PNG</button>
+        <button type="button" class="btn btn-secondary" id="copyUrlBtn">Copy Image URL</button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary hidden" id="externalLinkBtn">Open Link</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js?v=1"></script>
 </body>
 </html>
