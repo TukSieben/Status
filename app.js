@@ -546,7 +546,7 @@ function renderUpdatesView() {
       });
 
       const img = document.createElement("img");
-      img.src = ev.image2x || "logo.png?v=1";
+      img.src = ev.image2x || "logo.png?v=2";
       img.alt = ev.title || ev.setID;
 
       const body = document.createElement("div");
