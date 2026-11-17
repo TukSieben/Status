@@ -1,0 +1,74 @@
+{
+ "qsmp2": {
+  "availability": {
+   "_id": "69bb7879588cb0d6d5bd6a99",
+   "categories": [
+    {
+     "game": {
+      "id": "1422023940",
+      "name": "QSMP",
+      "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/1422023940-{width}x{height}.jpg",
+      "igdb_id": ""
+     },
+     "slug": null
+    }
+   ],
+   "doc": "69b34fc25e4594fc8c367eaf",
+   "docModel": "TwitchGlobalBadge",
+   "end_at_date": "2026-07-01",
+   "end_at_time": "14:59",
+   "hidden": false,
+   "start_at_date": "2026-03-14",
+   "start_at_time": "18:00",
+   "time_limited": true,
+   "user": {
+    "_id": "663c6851ce47a7668ed57059",
+    "twitch": {
+     "user": {
+      "display_name": "Ravenbtw",
+      "login": "ravenbtw",
+      "profile_image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/68fad17e-c7b0-4b84-8c8a-f09f446b4762-profile_image-300x300.png"
+     }
+    }
+   },
+   "objectives": [
+    [
+     {
+      "type": "twitch_watch",
+      "minutes": 60,
+      "days": null
+     }
+    ]
+   ],
+   "scope": "global",
+   "slot": "global_vanity_badges",
+   "revocable": false,
+   "verified_at": "2026-10-17T10:11:05.809Z",
+   "channels": null,
+   "channel_count": 3,
+   "cost": "free",
+   "upvote_count": 0,
+   "downvote_count": 0,
+   "subscription": false,
+   "subscription_gift": false,
+   "bits": false,
+   "watch": true,
+   "watch_minutes": 60,
+   "watch_days": null,
+   "stream": false,
+   "clip": false,
+   "twitchcon": false,
+   "turbo": false,
+   "prime": false,
+   "dj_program": false,
+   "moderators_club": false,
+   "affiliate": false,
+   "partner": false
+  },
+  "badge_keys": [
+   "_id",
+   "availability",
+   "current"
+  ]
+ }
+}
