@@ -6,7 +6,12 @@ const params = new URLSearchParams(location.search);
 const ROTATE_MS = Math.max(5, Number(params.get("rotate")) || 15) * 1000;
 const PER_PAGE = 12; // 4 × 3 cards
 
-if (params.get("transparent") === "1") document.body.classList.add("is-transparent");
+if (params.get("transparent") === "1") {
+  document.body.classList.add("is-transparent");
+  // A dark color-scheme makes browsers/OBS paint an opaque canvas — switch it off for transparency
+  document.documentElement.style.colorScheme = "normal";
+  document.documentElement.style.background = "transparent";
+}
 
 let badges = [];
 let page = 0;

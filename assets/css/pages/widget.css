@@ -1,4 +1,7 @@
 /* Corner widget for gameplay streams (transparent page, fixed 460px card) */
+/* color-scheme "normal" + transparent html: otherwise browsers/OBS paint a dark canvas behind the page */
+:root { color-scheme: normal; }
+html { background: transparent; }
 .wg-body { margin: 0; background: transparent; min-height: 0; display: block; overflow: hidden; }
 .wg {
   width: 440px; margin: 10px; box-sizing: border-box; color: var(--text);
@@ -21,7 +24,9 @@
 .wg-title { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
 .wg-icons { display: flex; gap: 6px; flex-wrap: wrap; }
 .wg-icons img { width: 30px; height: 30px; object-fit: contain; }
-.wg-count { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 700; }
+.wg-count { display: flex; align-items: baseline; gap: 8px; }
+.wg-count-label { font-size: 12.5px; color: var(--text-2); }
+.wg-count .wg-timer { font-size: 26px; font-weight: 700; color: var(--text); min-width: 0; text-align: left; }
 .wg-count:empty { display: none; }
 
 .wg-list-wrap { display: flex; flex-direction: column; gap: 6px; }

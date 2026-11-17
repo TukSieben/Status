@@ -21,14 +21,14 @@ function timer(ms, urgent) {
   return s;
 }
 
-function row(b, ms) {
+function row(b, ms, canBeUrgent = true) {
   const r = el("div", "wg-row");
   const paid = b.cost === "paid";
   r.append(
     badgeImg(b, "", 2),
     el("span", "wg-row-title", b.title),
     el("span", `wg-tag ${paid ? "is-paid" : "is-free"}`, paid ? "Paid" : "Free"),
-    timer(ms, ms - Date.now() < URGENT_MS)
+    timer(ms, canBeUrgent && ms - Date.now() < URGENT_MS)
   );
   return r;
 }
@@ -50,13 +50,13 @@ function render() {
     $("wgIcons").replaceChildren(...[...here, ...soon].slice(0, 10).map((b) => badgeImg(b, "", 4)));
     const first = here[0] || soon[0];
     $("wgCount").replaceChildren(
-      ...(first ? [el("span", "", here.length ? "Ends in " : "Starts in "), timer(Date.parse(here.length ? first.endAt : first.startAt))] : [])
+      ...(first ? [el("span", "wg-count-label", here.length ? "Ends in" : "Starts in"), timer(Date.parse(here.length ? first.endAt : first.startAt))] : [])
     );
     $("wgListLabel").textContent = here.length ? `${here.length} available now` : "Coming soon";
     const list = here.length ? here : soon;
     $("wgList").replaceChildren(
       ...(list.length
-        ? list.slice(0, 4).map((b) => row(b, Date.parse(here.length ? b.endAt : b.startAt)))
+        ? list.slice(0, 4).map((b) => row(b, Date.parse(here.length ? b.endAt : b.startAt), here.length > 0))
         : [el("div", "wg-empty", "No badges for this game right now.")])
     );
     return;
@@ -70,7 +70,7 @@ function render() {
   $("wgLabel").textContent = "Next drop";
   $("wgTitle").textContent = next ? base(next.name) : "Nothing announced yet";
   $("wgIcons").replaceChildren(...together.flatMap((e) => e.badges).slice(0, 10).map((b) => badgeImg(b, "", 4)));
-  $("wgCount").replaceChildren(...(next ? [timer(next.start)] : []));
+  $("wgCount").replaceChildren(...(next ? [el("span", "wg-count-label", "Starts in"), timer(next.start)] : []));
   $("wgListLabel").textContent = "Ending soon";
   const ending = active.slice().sort((a, b) => Date.parse(a.endAt) - Date.parse(b.endAt)).slice(0, 4);
   $("wgList").replaceChildren(...ending.map((b) => row(b, Date.parse(b.endAt))));
