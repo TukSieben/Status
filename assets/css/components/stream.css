@@ -12,12 +12,3 @@
 .footer-links { display: inline-flex; align-items: center; gap: 14px; }
 .footer-stream { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); transition: color .15s; }
 .footer-stream:hover { color: var(--text); }
-
-
-.btn-twitch {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  font-size: 12px; font-weight: 600; border-radius: 6px; padding: 7px 14px;
-  background: var(--twitch); color: #fff; transition: background .15s;
-}
-.btn-twitch:hover { background: #a970ff; }
-.btn-sm { font-size: 11px; padding: 4px 10px; }

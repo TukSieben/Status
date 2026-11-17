@@ -4,7 +4,6 @@ import { gql } from "./utils.js";
 export const CHANNEL = "badgestatus";
 export const CHANNEL_URL = `https://www.twitch.tv/${CHANNEL}`;
 
-
 export async function fetchChannel() {
   try {
     const data = await gql(
@@ -43,19 +42,7 @@ export function earnableOnStream(badge, channel) {
   return text.includes(channel.game.toLowerCase());
 }
 
-function parentParams() {
-  const parents = new Set([location.hostname || "badgestatus.net", "badgestatus.net", "www.badgestatus.net"]);
-  return [...parents].map((p) => `parent=${encodeURIComponent(p)}`).join("&");
-}
 
-export function playerSrc() {
-  const params = new URLSearchParams({ channel: CHANNEL, muted: "true", autoplay: "true" });
-  return `https://player.twitch.tv/?${params}&${parentParams()}`;
-}
-
-export function chatSrc() {
-  return `https://www.twitch.tv/embed/${CHANNEL}/chat?darkpopout&${parentParams()}`;
-}
 
 /** Updates every [data-live-indicator] element (nav link + footer) with live state. */
 export function paintLiveIndicators(channel) {

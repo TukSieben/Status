@@ -13,12 +13,7 @@ import {
   normalizeLogin,
   URGENT_MS,
 } from "../lib/utils.js";
-import {
-  fetchChannel,
-  earnableOnStream,
-  chatSrc,
-  paintLiveIndicators,
-} from "../lib/twitch.js";
+import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 import { renderSchedule } from "../lib/schedule.js";
 
 let badges = [];
@@ -124,22 +119,6 @@ function render() {
 
 }
 
-function renderStream() {
-  paintLiveIndicators(channel);
-  const live = Boolean(channel?.live);
-  $("chatStatus").classList.toggle("is-live", live);
-  $("chatStatusText").textContent = live
-    ? `Live${channel.game ? ` · ${channel.game}` : ""} · ${channel.viewers.toLocaleString("en-US")}`
-    : "Offline";
-}
-
-function embedChat() {
-  const chat = document.createElement("iframe");
-  chat.src = chatSrc();
-  chat.title = "BadgeStatus Twitch chat";
-  $("chatFrame").replaceChildren(chat);
-}
-
 function drawSchedule() {
   renderSchedule($("scheduleRoot"), badges, {
     href: (ev) => badgeHref(ev.badges[0]),
@@ -149,7 +128,7 @@ function drawSchedule() {
 async function refreshChannel() {
   const next = await fetchChannel();
   if (next) channel = next;
-  renderStream();
+  paintLiveIndicators(channel);
   render();
 }
 
@@ -178,10 +157,8 @@ async function init() {
   $("footerSync").textContent = data.syncedAt
     ? `Synced ${formatDate(data.syncedAt)}`
     : "";
-  embedChat();
   render();
   drawSchedule();
-  renderStream();
   setInterval(tick, 1000);
   refreshChannel();
   setInterval(refreshChannel, 60_000);

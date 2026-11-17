@@ -8,7 +8,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 
 | URL | File | What it does |
 | --- | --- | --- |
-| `/` | `index.html` | Homepage: username check, schedule, ending soon / starting next, stream chat sidebar |
+| `/` | `index.html` | Homepage: username check, schedule, ending soon / starting next |
 | `/badges/` | `badges/index.html` | Badge tracker with username check (owned / missing), filters, upcoming list |
 | `/badge/?id=<setID>` | `badge/index.html` | Detail page for a single badge |
 | — | `404.html` | Not-found page (also redirects old `badges.html` / `badge.html` links) |
@@ -29,7 +29,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 │   ├── js/
 │   │   ├── lib/
 │   │   │   ├── utils.js       # Shared helpers (DOM, dates, badge data, Twitch GQL)
-│   │   │   ├── twitch.js      # twitch.tv/badgestatus live status + chat embed
+│   │   │   ├── twitch.js      # twitch.tv/badgestatus live status
 │   │   │   ├── schedule.js    # Draggable schedule timeline
 │   │   │   ├── dark-veil.js   # WebGL2 background renderer (port of React Bits' DarkVeil)
 │   │   │   └── background.js  # Mounts the animated site background
@@ -60,7 +60,6 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-The Twitch chat embed only loads on `badgestatus.net` (Twitch requires a matching `parent` domain).
 
 ## Conventions
 
