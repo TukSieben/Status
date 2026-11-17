@@ -39,9 +39,9 @@
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
   color: var(--text); text-align: center;
   background: radial-gradient(320px 180px at 50% 40%, rgba(145, 70, 255, 0.16), transparent 70%), #0e0e10;
-  transition: background .2s;
 }
-.hero-stream-offline:hover { background: radial-gradient(320px 180px at 50% 40%, rgba(145, 70, 255, 0.26), transparent 70%), #0e0e10; }
+/* Hover: no glow, just a quiet hint on the link text */
+.hero-stream-offline:hover .hero-stream-cta { text-decoration: underline; text-underline-offset: 2px; }
 .hero-stream-offline img { border-radius: 8px; margin-bottom: 4px; }
 .hero-stream-state { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); }
 .hero-stream-name { font-size: 14px; font-weight: 600; }
