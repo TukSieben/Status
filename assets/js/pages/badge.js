@@ -1,40 +1,12 @@
-import { fetchChannel, earnableOnStream, paintLiveIndicators } from "./twitch.js";
+import { $, el, img, onImgError, extractUuid, badgeHref, showToast, loadBadges, gql, savedLogin } from "../lib/utils.js";
+import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 
-const GQL_URL = "https://gql.twitch.tv/gql";
-const TWITCH_CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko";
-const STORAGE_KEY = "badgestatus_user";
-const $ = (id) => document.getElementById(id);
 
 let badge = null;
 let all = [];
 let channel = null;
 
 /* ---------- helpers ---------- */
-
-function el(tag, className, text) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
-}
-
-function img(b, size = 4) {
-  if (size === 1) return b.image1x || b.image2x || b.image4x || "";
-  if (size === 2) return b.image2x || b.image4x || b.image1x || "";
-  return b.image4x || b.image2x || b.image1x || "";
-}
-
-function onImgError(e) {
-  const node = e.currentTarget;
-  const src = node.src;
-  if (src.endsWith("/3")) node.src = src.slice(0, -2) + "/2";
-  else if (src.endsWith("/2")) node.src = src.slice(0, -2) + "/1";
-}
-
-function extractUuid(url) {
-  const m = (url || "").match(/\/v1\/([a-f0-9-]{36})\//i);
-  return m ? m[1].toLowerCase() : "";
-}
 
 function statusOf(b, now = Date.now()) {
   if (b.alwaysAvailable) return "permanent";
@@ -80,21 +52,9 @@ function shortRange(iso) {
   return new Date(t).toLocaleString("en-US", { month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
 }
 
-function showToast(msg) {
-  const t = $("toast");
-  t.textContent = msg;
-  t.classList.remove("hidden");
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => t.classList.add("hidden"), 1800);
-}
-
 /** "Grand Theft Auto VI (Subscribe)" and "... (Watch)" belong to the same campaign. */
 function campaignOf(b) {
   return (b.eventName || "").trim().replace(/\s*\((subscribe|sub|watch)\)$/i, "");
-}
-
-function badgeLink(b) {
-  return `badge.html?id=${encodeURIComponent(b.setID)}`;
 }
 
 /** "Watch 1h in QSMP (3 eligible channels)" -> "3 eligible channels" */
@@ -178,7 +138,7 @@ function contextBlock() {
       for (const b of siblings) {
         const li = el("li");
         const a = el("a", "", b.title);
-        a.href = badgeLink(b);
+        a.href = badgeHref(b);
         const icon = el("img");
         icon.src = img(b, 1);
         icon.alt = "";
@@ -219,7 +179,7 @@ function renderOther() {
   grid.replaceChildren(
     ...pick.slice(0, 12).map((b) => {
       const a = el("a", "bd-other-item");
-      a.href = badgeLink(b);
+      a.href = badgeHref(b);
       a.title = b.title;
       const i = el("img");
       i.src = img(b);
@@ -246,24 +206,16 @@ function renderLive() {
 }
 
 async function renderUser() {
-  let login = "";
-  try {
-    login = localStorage.getItem(STORAGE_KEY) || "";
-  } catch {}
+  const login = savedLogin();
   if (!login) return;
   try {
-    const res = await fetch(GQL_URL, {
-      method: "POST",
-      headers: { "Client-ID": TWITCH_CLIENT_ID, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `query($login: String!) {
-          user(login: $login) { login displayName }
-          channelViewer(channelLogin: $login, userLogin: $login) { earnedBadges { setID imageURL(size: QUADRUPLE) } }
-        }`,
-        variables: { login },
-      }),
-    });
-    const data = (await res.json())?.data;
+    const data = await gql(
+      `query($login: String!) {
+        user(login: $login) { login displayName }
+        channelViewer(channelLogin: $login, userLogin: $login) { earnedBadges { setID imageURL(size: QUADRUPLE) } }
+      }`,
+      { login }
+    );
     if (!data?.user) return;
     const earned = data.channelViewer?.earnedBadges || [];
     const uuid = extractUuid(img(badge));
@@ -349,14 +301,9 @@ $("bdCopy").addEventListener("click", async () => {
 
 async function init() {
   const id = new URLSearchParams(location.search).get("id") || "";
-  try {
-    const res = await fetch("./data/badges.json", { cache: "no-cache" });
-    if (res.ok) {
-      const doc = await res.json();
-      all = doc.badges || [];
-      if (doc.syncedAt) $("footerSync").textContent = `Schedule synced ${localDate(doc.syncedAt).replace(" (Local)", "")}`;
-    }
-  } catch {}
+  const data = await loadBadges();
+  all = data.badges;
+  if (data.syncedAt) $("footerSync").textContent = `Schedule synced ${localDate(data.syncedAt).replace(" (Local)", "")}`;
 
   $("bdLoading").classList.add("hidden");
   const matches = all.filter((b) => b.setID === id);

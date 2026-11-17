@@ -8,7 +8,7 @@
     // Old share links (badgestatus.net/?user=name) now live on the badges page
     (function () {
       var u = new URLSearchParams(location.search).get("user");
-      if (u) location.replace("badges.html?user=" + encodeURIComponent(u));
+      if (u) location.replace("/badges/?user=" + encodeURIComponent(u));
     })();
   </script>
   <meta name="description" content="Track every Twitch global badge: what you can earn right now, what's ending soon, what's coming next, and which ones you're still missing.">
@@ -16,34 +16,39 @@
   <meta property="og:description" content="Active and upcoming Twitch global badges with a personal missing/owned checker.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://badgestatus.net/">
-  <link rel="icon" type="image/png" href="logo.png?v=2">
-  <link rel="apple-touch-icon" href="logo.png?v=2">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=10">
+  <link rel="stylesheet" href="/assets/css/components/cards.css?v=10">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=11">
+  <link rel="stylesheet" href="/assets/css/components/schedule.css?v=10">
+  <link rel="stylesheet" href="/assets/css/pages/home.css?v=11">
 </head>
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
       <div class="nav-left">
-        <a href="./" class="brand">
-          <img src="logo.png?v=2" alt="" width="20" height="20">
+        <a href="/" class="brand">
+          <img src="/assets/img/logo.png" alt="" width="20" height="20">
           <span>BadgeStatus</span>
         </a>
         <span class="nav-sep">/</span>
         <nav class="nav-links">
-          <a href="./" class="nav-link is-active">Home</a>
-          <a href="badges.html" class="nav-link">Badges</a>
+          <a href="/" class="nav-link is-active">Home</a>
+          <a href="/badges/" class="nav-link">Badges</a>
           <a href="#schedule" class="nav-link">Schedule</a>
           <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
         </nav>
       </div>
-      <a href="badges.html" class="btn-white">Open Tracker</a>
+      <a href="/badges/" class="btn-white">Open Tracker</a>
     </div>
   </header>
 
-  <main class="wrap main">
+  <div class="wrap home-layout">
+  <main class="main home-content">
     <!-- HERO -->
     <section class="panel hero">
       <div class="hero-text">
@@ -64,63 +69,22 @@
       <div class="hero-showcase" id="heroShowcase" aria-hidden="true"></div>
     </section>
 
-    <!-- 24/7 STREAM -->
-    <section class="panel stream-panel" id="stream">
-      <div class="stream-main">
-        <div class="stream-player">
-          <div class="player-frame" id="playerFrame"></div>
-        </div>
-        <div class="stream-info">
-          <div class="stream-status">
-            <span class="live-pill" id="liveBadge">Offline</span>
-            <span class="mono muted small" id="streamViewers"></span>
-          </div>
-          <h2 class="stream-heading">Earn badges on our 24/7 stream</h2>
-          <p class="head-sub" id="streamTitle">BadgeStatus streams around the clock in the categories of the current badge drops. Watch along, keep the tab open and collect the badges while you do something else.</p>
-          <div class="stream-game hidden" id="streamGameWrap">
-            <span class="block-label">Streaming now</span>
-            <span class="stream-game-name" id="streamGame"></span>
-          </div>
-          <div class="stream-earn hidden" id="streamEarnWrap">
-            <span class="block-label">Earnable on stream right now</span>
-            <div class="earn-list" id="streamEarnList"></div>
-          </div>
-          <div class="stream-actions">
-            <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="btn-twitch">Watch on Twitch ↗</a>
-            <a href="https://www.twitch.tv/badgestatus/chat" target="_blank" rel="noopener noreferrer" class="btn-dark">Open chat</a>
-          </div>
-          <ul class="stream-tips">
-            <li>Make sure you're <b>logged in</b> on Twitch and keep the stream playing.</li>
-            <li>Watch time counts only while the stream is live in the right category.</li>
-            <li>Paid badges need a sub or gift sub in that category &mdash; any channel works.</li>
-          </ul>
-        </div>
-      </div>
-      <aside class="stream-chat">
-        <div class="chat-head">
-          <span class="chat-head-title">Stream Chat</span>
-          <a href="https://www.twitch.tv/popout/badgestatus/chat?popout=" target="_blank" rel="noopener noreferrer" class="box-link">Pop out ↗</a>
-        </div>
-        <div class="chat-frame" id="chatFrame"></div>
-      </aside>
-    </section>
-
     <!-- SCHEDULE -->
     <section class="section" id="schedule">
       <div class="section-head">
         <h2>Schedule <span class="section-count" id="schedCount"></span></h2>
-        <a href="badges.html" class="box-link">Open tracker →</a>
+        <a href="/badges/" class="box-link">Open tracker →</a>
       </div>
       <div class="panel sched" id="scheduleRoot"></div>
     </section>
 
     <!-- STATS -->
     <div class="stats">
-      <a href="badges.html" class="stat">
+      <a href="/badges/" class="stat">
         <span class="stat-label">Available now</span>
         <span class="stat-value green" id="hsActive">—</span>
       </a>
-      <a href="badges.html#upcoming" class="stat stat-upcoming">
+      <a href="/badges/#upcoming" class="stat stat-upcoming">
         <span class="stat-label">Upcoming</span>
         <span class="stat-value" id="hsUpcoming">—</span>
       </a>
@@ -139,7 +103,7 @@
       <section class="panel home-box">
         <div class="box-head">
           <h2><span class="dot dot-amber"></span>Ending Soon</h2>
-          <a href="badges.html" class="box-link">All available →</a>
+          <a href="/badges/" class="box-link">All available →</a>
         </div>
         <div class="mini-list" id="endingList"></div>
       </section>
@@ -147,7 +111,7 @@
       <section class="panel home-box">
         <div class="box-head">
           <h2><span class="dot dot-sky"></span>Starting Next</h2>
-          <a href="badges.html#upcoming" class="box-link">All upcoming →</a>
+          <a href="/badges/#upcoming" class="box-link">All upcoming →</a>
         </div>
         <div class="mini-list" id="startingList"></div>
       </section>
@@ -157,7 +121,7 @@
     <section class="section">
       <div class="section-head">
         <h2>Newest Badge Drops <span class="section-count" id="newestCount"></span></h2>
-        <a href="badges.html" class="box-link">Open tracker →</a>
+        <a href="/badges/" class="box-link">Open tracker →</a>
       </div>
       <div class="grid" id="newestGrid"></div>
     </section>
@@ -185,6 +149,19 @@
     </section>
   </main>
 
+  <!-- Low-key stream chat (right sidebar, like StreamDatabase) -->
+  <aside class="home-chat" aria-label="Stream chat">
+    <div class="home-chat-head">
+      <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="home-chat-title" data-live-indicator>
+        <span class="stream-dot"></span>24/7 Stream
+      </a>
+      <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="btn-twitch btn-sm">Watch ↗</a>
+    </div>
+    <div class="home-chat-status" id="chatStatus">Offline · twitch.tv/badgestatus</div>
+    <div class="chat-frame" id="chatFrame"></div>
+  </aside>
+  </div>
+
   <footer class="footer">
     <div class="wrap footer-inner">
       <span class="footer-links">badgestatus.net <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="footer-stream" data-live-indicator><span class="stream-dot"></span>twitch.tv/badgestatus</a></span>
@@ -192,6 +169,6 @@
     </div>
   </footer>
 
-  <script type="module" src="home.js?v=4"></script>
+  <script type="module" src="/assets/js/pages/home.js?v=11"></script>
 </body>
 </html>

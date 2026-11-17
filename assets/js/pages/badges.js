@@ -1,10 +1,11 @@
-import { fetchChannel, earnableOnStream, paintLiveIndicators } from "./twitch.js";
-import { renderSchedule, buildEvents } from "./schedule.js";
+import {
+  $, el, badgeImg, badgeHref, extractUuid, img, statusOf, splitBadges, objectiveText, pill, costPill,
+  timerSpan, refreshTimers, formatDate, shortDate, compactNumber, loadBadges, gql, normalizeLogin,
+  savedLogin, STORAGE_KEY, URGENT_MS,
+} from "../lib/utils.js";
+import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
+import { renderSchedule, buildEvents } from "../lib/schedule.js";
 
-const GQL_URL = "https://gql.twitch.tv/gql";
-const TWITCH_CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko";
-const STORAGE_KEY = "badgestatus_user";
-const URGENT_MS = 48 * 60 * 60 * 1000;
 
 const state = {
   badges: [],
@@ -18,7 +19,6 @@ const state = {
   toastTimer: null,
 };
 
-const $ = (id) => document.getElementById(id);
 const els = {
   userForm: $("userForm"),
   userInput: $("userInput"),
@@ -56,34 +56,6 @@ const els = {
 
 /* ---------- helpers ---------- */
 
-function extractUuid(url) {
-  const m = (url || "").match(/\/v1\/([a-f0-9-]{36})\//i);
-  return m ? m[1].toLowerCase() : "";
-}
-
-function badgeHref(badge) {
-  return `badge.html?id=${encodeURIComponent(badge.setID)}`;
-}
-
-function img(badge) {
-  return badge.image4x || badge.image2x || badge.image1x || "";
-}
-
-function onImgError(e) {
-  const node = e.currentTarget;
-  const src = node.src;
-  if (src.endsWith("/3")) node.src = src.slice(0, -2) + "/2";
-  else if (src.endsWith("/2")) node.src = src.slice(0, -2) + "/1";
-}
-
-function statusOf(badge, now = Date.now()) {
-  const end = Date.parse(badge.endAt || "");
-  if (Number.isNaN(end) || end <= now) return "ended";
-  const start = Date.parse(badge.startAt || "");
-  if (!Number.isNaN(start) && start > now) return "upcoming";
-  return "active";
-}
-
 function isOwned(badge) {
   if (!state.user) return false;
   if (state.ownedSetIDs.has(badge.setID)) return true;
@@ -91,113 +63,7 @@ function isOwned(badge) {
   return Boolean(uuid && state.ownedUuids.has(uuid));
 }
 
-function countdown(targetMs) {
-  const diff = targetMs - Date.now();
-  if (diff <= 0) return "0h 00m 00s";
-  const d = Math.floor(diff / 86_400_000);
-  const h = Math.floor((diff / 3_600_000) % 24);
-  const m = Math.floor((diff / 60_000) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-  const pad = (n) => String(n).padStart(2, "0");
-  return d > 0 ? `${d}d ${pad(h)}h ${pad(m)}m` : `${pad(h)}h ${pad(m)}m ${pad(s)}s`;
-}
-
-function formatDate(iso) {
-  const t = Date.parse(iso || "");
-  if (Number.isNaN(t)) return "—";
-  return new Date(t).toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-}
-
-function shortDate(iso) {
-  const t = Date.parse(iso || "");
-  if (Number.isNaN(t)) return "—";
-  return new Date(t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
-}
-
-function compactNumber(n) {
-  if (typeof n !== "number") return "";
-  return new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(n);
-}
-
-function objectiveText(badge) {
-  return badge.objective?.trim() || badge.description?.trim() || "Unlock details not announced yet.";
-}
-
-function el(tag, className, text) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
-}
-
-function pill(text, kind, upper = false) {
-  return el("span", `pill pill-${kind}${upper ? " pill-upper" : ""}`, text);
-}
-
-function costPill(badge) {
-  return badge.cost === "paid" ? pill("Paid", "paid") : pill("Free", "free");
-}
-
-function timerSpan(targetMs, extraClass = "") {
-  const span = el("span", `timer ${extraClass}`.trim(), countdown(targetMs));
-  span.dataset.target = String(targetMs);
-  return span;
-}
-
-function badgeImg(badge, className) {
-  const image = el("img", className);
-  image.src = img(badge);
-  image.alt = badge.title;
-  image.loading = "lazy";
-  image.addEventListener("error", onImgError);
-  return image;
-}
-
-function showToast(msg) {
-  els.toast.textContent = msg;
-  els.toast.classList.remove("hidden");
-  clearTimeout(state.toastTimer);
-  state.toastTimer = setTimeout(() => els.toast.classList.add("hidden"), 1800);
-}
-
-async function gql(query, variables = {}) {
-  const res = await fetch(GQL_URL, {
-    method: "POST",
-    headers: { "Client-ID": TWITCH_CLIENT_ID, "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables }),
-  });
-  if (!res.ok) throw new Error(`Twitch returned HTTP ${res.status}`);
-  const payload = await res.json();
-  if (payload.errors?.length) throw new Error(payload.errors[0].message || "Twitch error");
-  return payload.data;
-}
-
 /* ---------- data ---------- */
-
-function getLists() {
-  const now = Date.now();
-  const active = [];
-  const upcoming = [];
-  const seen = new Set();
-
-  for (const b of state.badges) {
-    if (seen.has(b.setID)) continue;
-    const s = statusOf(b, now);
-    if (s === "ended") continue;
-    seen.add(b.setID);
-    (s === "active" ? active : upcoming).push(b);
-  }
-
-  upcoming.sort((a, b) => Date.parse(a.startAt) - Date.parse(b.startAt));
-  return { active, upcoming };
-}
 
 /* ---------- rendering ---------- */
 
@@ -260,7 +126,7 @@ function renderRow(badge) {
 }
 
 function render() {
-  const { active, upcoming } = getLists();
+  const { active, upcoming } = splitBadges(state.badges);
   const ownedActive = active.filter(isOwned);
   const missingActive = active.filter((b) => !isOwned(b));
 
@@ -283,7 +149,7 @@ function render() {
   if (state.user) {
     const pct = active.length ? Math.round((ownedActive.length / active.length) * 100) : 0;
     els.userBar.classList.remove("hidden");
-    els.userAvatar.src = state.user.profileImageURL || "logo.png?v=2";
+    els.userAvatar.src = state.user.profileImageURL || "/assets/img/logo.png";
     els.userName.textContent = `@${state.user.displayName || state.user.login}`;
     els.userMissing.textContent = String(missingActive.length);
     els.userTotal.textContent = String(active.length);
@@ -322,10 +188,8 @@ function render() {
 }
 
 function tickTimers() {
-  for (const node of document.querySelectorAll("[data-target]")) {
-    node.textContent = countdown(Number(node.dataset.target));
-  }
-  const { active, upcoming } = getLists();
+  refreshTimers();
+  const { active, upcoming } = splitBadges(state.badges);
   if (
     active.length !== Number(els.statAvailable.textContent) ||
     upcoming.length !== Number(els.statUpcoming.textContent)
@@ -346,7 +210,7 @@ function setLoading(on, login = "") {
 }
 
 async function checkUser(raw, { updateUrl = true } = {}) {
-  const login = raw.trim().toLowerCase().replace(/^@/, "").replace(/^.*twitch\.tv\//, "").replace(/[/?#].*$/, "");
+  const login = normalizeLogin(raw);
   if (!login) return;
 
   els.userInput.value = login;
@@ -415,14 +279,9 @@ function clearUser() {
 /* ---------- init ---------- */
 
 async function init() {
-  try {
-    const res = await fetch("./data/badges.json", { cache: "no-cache" });
-    if (res.ok) {
-      const doc = await res.json();
-      state.badges = doc.badges || [];
-      state.syncedAt = doc.syncedAt || null;
-    }
-  } catch {}
+  const data = await loadBadges();
+  state.badges = data.badges;
+  state.syncedAt = data.syncedAt;
 
   els.footerSync.textContent = state.syncedAt ? `Schedule synced ${formatDate(state.syncedAt)}` : "Schedule unavailable";
 
@@ -433,10 +292,7 @@ async function init() {
   document.getElementById("schedCount").textContent = `(${buildEvents(state.badges).length})`;
 
   const urlUser = new URLSearchParams(location.search).get("user");
-  let saved = "";
-  try {
-    saved = localStorage.getItem(STORAGE_KEY) || "";
-  } catch {}
+  const saved = savedLogin();
   if (urlUser || saved) await checkUser(urlUser || saved, { updateUrl: Boolean(urlUser) });
 
   setInterval(tickTimers, 1000);
@@ -448,7 +304,7 @@ async function init() {
     const c = state.channel;
     const stripText = document.getElementById("streamStripText");
     if (c?.live) {
-      const { active } = getLists();
+      const { active } = splitBadges(state.badges);
       const n = active.filter((b) => earnableOnStream(b, c)).length;
       stripText.innerHTML = "";
       stripText.append(

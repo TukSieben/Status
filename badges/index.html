@@ -8,25 +8,29 @@
   <meta property="og:title" content="BadgeStatus — Global Badge Drops">
   <meta property="og:description" content="Active and upcoming Twitch badges with a personal missing/owned checker.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://badgestatus.net/badges.html">
-  <link rel="icon" type="image/png" href="logo.png?v=2">
-  <link rel="apple-touch-icon" href="logo.png?v=2">
+  <meta property="og:url" content="https://badgestatus.net/badges/">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=10">
+  <link rel="stylesheet" href="/assets/css/components/cards.css?v=10">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=10">
+  <link rel="stylesheet" href="/assets/css/components/schedule.css?v=10">
+  <link rel="stylesheet" href="/assets/css/pages/badges.css?v=10">
 </head>
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
       <div class="nav-left">
-        <a href="./" class="brand">
-          <img src="logo.png?v=2" alt="" width="20" height="20">
+        <a href="/" class="brand">
+          <img src="/assets/img/logo.png" alt="" width="20" height="20">
           <span>BadgeStatus</span>
         </a>
         <span class="nav-sep">/</span>
         <nav class="nav-links">
-          <a href="./" class="nav-link">Home</a>
+          <a href="/" class="nav-link">Home</a>
           <a href="#available" class="nav-link is-active">Badges</a>
           <a href="#schedule" class="nav-link">Schedule</a>
           <a href="#upcoming" class="nav-link">Upcoming</a>
@@ -144,6 +148,6 @@
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-  <script type="module" src="app.js?v=9"></script>
+  <script type="module" src="/assets/js/pages/badges.js?v=10"></script>
 </body>
 </html>

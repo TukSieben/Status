@@ -1,28 +1,23 @@
 // Shared helpers for the BadgeStatus Twitch channel (twitch.tv/badgestatus)
+import { gql } from "./utils.js";
+
 export const CHANNEL = "badgestatus";
 export const CHANNEL_URL = `https://www.twitch.tv/${CHANNEL}`;
 
-const GQL_URL = "https://gql.twitch.tv/gql";
-const TWITCH_CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko";
 
 export async function fetchChannel() {
   try {
-    const res = await fetch(GQL_URL, {
-      method: "POST",
-      headers: { "Client-ID": TWITCH_CLIENT_ID, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `query Channel($login: String!) {
-          user(login: $login) {
-            login displayName profileImageURL(width: 70)
-            followers { totalCount }
-            stream { id title viewersCount createdAt game { name displayName } }
-          }
-        }`,
-        variables: { login: CHANNEL },
-      }),
-    });
-    if (!res.ok) return null;
-    const user = (await res.json())?.data?.user;
+    const data = await gql(
+      `query Channel($login: String!) {
+        user(login: $login) {
+          login displayName profileImageURL(width: 70)
+          followers { totalCount }
+          stream { id title viewersCount createdAt game { name displayName } }
+        }
+      }`,
+      { login: CHANNEL }
+    );
+    const user = data?.user;
     if (!user) return null;
     const s = user.stream;
     return {

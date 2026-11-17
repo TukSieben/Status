@@ -1,19 +1,9 @@
 // Draggable timeline ("Schedule") of active + upcoming badge events.
+import { el, img } from "./utils.js";
 const DAY_MS = 86_400_000;
 const DAY_PX = 84;
 const MIN_DAYS = 21;
 const MAX_DAYS = 90;
-
-function img(b) {
-  return b.image2x || b.image1x || b.image4x || "";
-}
-
-function el(tag, className, text) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
-}
 
 function startOfLocalDay(ms) {
   const d = new Date(ms);
@@ -189,7 +179,7 @@ export function renderSchedule(root, badges, options = {}) {
     const icons = el("span", "sched-icons");
     for (const b of ev.badges.slice(0, 6)) {
       const i = el("img");
-      i.src = img(b);
+      i.src = img(b, 2);
       i.alt = "";
       i.loading = "lazy";
       icons.appendChild(i);
