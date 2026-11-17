@@ -491,6 +491,7 @@ export function mountDarkVeil(container, options = {}) {
   };
 
   const onPointerMove = event => {
+    if (!settings.mouseInteraction) return; // don't track (and re-render) when interaction is off
     const rect = container.getBoundingClientRect();
     pointer.x = event.clientX - rect.left;
     pointer.y = event.clientY - rect.top;
