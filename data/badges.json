@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-17T14:21:17Z",
+  "syncedAt": "2026-11-17T14:22:59Z",
   "totalBadges": 574,
   "uniqueSets": 454,
   "trackedOwners": 388,
@@ -9798,7 +9798,23 @@
       "eventName": "QSMP 2 Season 2",
       "game": "QSMP",
       "objective": "Watch 1h in QSMP (3 eligible channels)",
-      "channels": [],
+      "channels": [
+        {
+          "login": "quackity",
+          "displayName": "Quackity",
+          "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/4c2864d1-2739-4e10-ac60-7f74f30feef4-profile_image-300x300.png"
+        },
+        {
+          "login": "qsmp",
+          "displayName": "QSMP",
+          "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/212c97a5-91df-448e-a63f-363ba5dfdb41-profile_image-300x300.png"
+        },
+        {
+          "login": "quackitytoo",
+          "displayName": "QuackityToo",
+          "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/e4b8f0d6-91ed-4233-b923-aae2c9269992-profile_image-300x300.png"
+        }
+      ],
       "image1x": "https://static-cdn.jtvnw.net/badges/v1/2fa68fb9-fcdd-4795-bfab-f408e10efaef/1",
       "image2x": "https://static-cdn.jtvnw.net/badges/v1/2fa68fb9-fcdd-4795-bfab-f408e10efaef/2",
       "image4x": "https://static-cdn.jtvnw.net/badges/v1/2fa68fb9-fcdd-4795-bfab-f408e10efaef/3",
