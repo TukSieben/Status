@@ -256,6 +256,55 @@ def format_objective(av: dict[str, Any], event_title: str | None) -> tuple[str |
     return objective, game_name
 
 
+LOGIN_RE = re.compile(r"^[a-z0-9_]{2,25}$")
+
+
+SKIP_KEYS = {"categories", "game", "objectives", "submitted_by", "submitter", "author", "created_by", "user", "votes", "likes"}
+
+
+def extract_channels(av: dict[str, Any]) -> list[dict[str, str]]:
+    """Find the channels a badge is restricted to (if any) in a StreamDatabase availability block.
+
+    StreamDatabase nests channel objects in different shapes, so walk the structure and pick up
+    every dict that carries a Twitch login. Categories, objectives and the person who submitted
+    the entry are skipped. Returns [] for badges that can be earned on any channel.
+    """
+    count = av.get("channel_count")
+    if not isinstance(count, int) or count <= 0:
+        return []
+    found: dict[str, dict[str, str]] = {}
+
+    def walk(node: Any, key: str = "") -> None:
+        if key in SKIP_KEYS:
+            return
+        if isinstance(node, dict):
+            login = node.get("login") or node.get("user_login") or node.get("broadcaster_login")
+            if isinstance(login, str) and LOGIN_RE.match(login.lower()):
+                login = login.lower()
+                found.setdefault(
+                    login,
+                    {
+                        "login": login,
+                        "displayName": str(node.get("display_name") or node.get("displayName") or login),
+                        "avatar": str(
+                            node.get("profile_image_url") or node.get("profileImageURL") or node.get("avatar") or ""
+                        ),
+                    },
+                )
+            for k, v in node.items():
+                walk(v, k)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v, key)
+
+    preferred = [k for k in ("channels", "twitch_channels", "allowed_channels") if k in av]
+    for k in preferred:
+        walk(av[k], "")
+    if not found:
+        walk(av)
+    return list(found.values())[:count]
+
+
 def fetch_json(url: str, data: bytes | None = None, headers: dict[str, str] | None = None, timeout: int = 20) -> Any:
     """Perform HTTP request and decode JSON response."""
     req = urllib.request.Request(
@@ -375,6 +424,9 @@ def fetch_event_schedules() -> dict[str, dict[str, Any]]:
                 av = av_list[0] if av_list else {}
                 objective, game_name = format_objective(av, ev_title)
                 entry = schedules.setdefault(sid, {})
+                channels = extract_channels(av)
+                if channels:
+                    entry["channels"] = channels
                 if ev_start and not entry.get("startAt"):
                     entry["startAt"] = ev_start
                 if ev_end and not entry.get("endAt"):
@@ -422,6 +474,7 @@ def normalize_badge(
     objective = (sched or {}).get("objective")
     event_name = (sched or {}).get("eventName")
     game_name = (sched or {}).get("game")
+    channels = (sched or {}).get("channels") or []
 
     if not end_at and prev and prev.get("endAt"):
         try:
@@ -431,6 +484,7 @@ def normalize_badge(
                 objective = objective or prev.get("objective")
                 event_name = event_name or prev.get("eventName")
                 game_name = game_name or prev.get("game")
+                channels = channels or prev.get("channels") or []
         except ValueError:
             pass
 
@@ -453,6 +507,7 @@ def normalize_badge(
         "eventName": event_name,
         "game": game_name,
         "objective": objective,
+        "channels": channels,
         "image1x": raw["image1x"],
         "image2x": raw["image2x"],
         "image4x": raw["image4x"],

@@ -37,6 +37,8 @@ export async function fetchChannel() {
 /** True if the badge objective can be completed by watching the channel in its current category. */
 export function earnableOnStream(badge, channel) {
   if (!channel?.live || !channel.game) return false;
+  if (Array.isArray(badge.channels) && badge.channels.length && !badge.channels.some((c) => c.login === CHANNEL)) return false;
+  if (/eligible\s+channels?/i.test(badge.objective || "")) return false;
   const text = `${badge.objective || ""}`.toLowerCase();
   if (!text.includes("watch")) return false;
   return text.includes(channel.game.toLowerCase());

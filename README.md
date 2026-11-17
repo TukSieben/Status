@@ -53,7 +53,8 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 
 1. `sync-badges.yml` runs `scripts/sync_badges.py` every two hours (or manually via *Run workflow*).
 2. The script writes `data/badges.json` and commits it if anything changed.
-3. Every page loads `/data/badges.json` in the browser. The username check and the stream status call Twitch directly from the browser — there is no backend.
+3. For channel-restricted drops the sync also stores the eligible channels (`channels: [{login, displayName, avatar}]`), which the badge page shows with live status.
+4. Every page loads `/data/badges.json` in the browser. The username check and the stream status call Twitch directly from the browser — there is no backend.
 
 ## Stream overlay
 

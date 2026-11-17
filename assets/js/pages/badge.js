@@ -203,7 +203,7 @@ function renderHow() {
     value.appendChild(el("span", "bd-cat-go", "Drops ↗"));
     facts.push(fact("Category", value));
   }
-  facts.push(fact("Channels", channelsText(badge)));
+  facts.push(fact("Channels", channelsValue()));
   if (typeof badge.userCount === "number") facts.push(fact("Owned by", `${compactNumber(badge.userCount)} users`));
   const nodes = facts;
 
@@ -215,6 +215,151 @@ function renderHow() {
     nodes.push(fact("Live", live));
   }
   $("bdFacts").replaceChildren(...nodes);
+}
+
+/* ---------- Channels + eligible live streams ---------- */
+
+let liveInfo = new Map(); // login -> { displayName, avatar, stream }
+
+function restrictedChannels() {
+  return Array.isArray(badge.channels) ? badge.channels.filter((c) => c && c.login) : [];
+}
+
+/** "Any", "3 eligible channels", or clickable channel chips with avatars. */
+function channelsValue() {
+  const list = restrictedChannels();
+  if (!list.length) return channelsText(badge);
+  const wrap = el("span", "bd-fact-v bd-channels");
+  for (const c of list) {
+    const info = liveInfo.get(c.login);
+    const a = el("a", "bd-channel");
+    a.href = `https://www.twitch.tv/${encodeURIComponent(c.login)}`;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    const avatar = info?.avatar || c.avatar;
+    if (avatar) {
+      const i = el("img");
+      i.src = avatar;
+      i.alt = "";
+      i.width = 20;
+      i.height = 20;
+      a.appendChild(i);
+    }
+    a.appendChild(el("span", "", info?.displayName || c.displayName || c.login));
+    if (info?.stream) {
+      a.classList.add("is-live");
+      a.appendChild(el("span", "bd-channel-live", "Live"));
+    }
+    wrap.appendChild(a);
+  }
+  return wrap;
+}
+
+function liveCard({ login, displayName, avatar, stream }) {
+  const a = el("a", "bd-stream");
+  a.href = `https://www.twitch.tv/${encodeURIComponent(login)}`;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.title = stream.title || displayName;
+
+  const thumb = el("div", "bd-stream-thumb");
+  const img = el("img");
+  img.src = stream.preview || `https://static-cdn.jtvnw.net/previews-ttv/live_user_${login}-440x248.jpg`;
+  img.alt = "";
+  img.loading = "lazy";
+  thumb.append(img, el("span", "bd-stream-live", "Live"), el("span", "bd-stream-viewers", `${compactNumber(stream.viewers)} viewers`));
+
+  const info = el("div", "bd-stream-info");
+  if (avatar) {
+    const av = el("img", "bd-stream-avatar");
+    av.src = avatar;
+    av.alt = "";
+    info.appendChild(av);
+  }
+  const text = el("div", "bd-stream-text");
+  text.append(el("span", "bd-stream-name", displayName), el("span", "bd-stream-title", stream.title || stream.game || ""));
+  info.appendChild(text);
+
+  a.append(thumb, info);
+  return a;
+}
+
+function renderLive(streams, note) {
+  const show = statusOf(badge) === "active";
+  $("bdLiveWrap").classList.toggle("hidden", !show);
+  if (!show) return;
+  $("bdLiveNote").textContent = note || "";
+  $("bdLive").replaceChildren(
+    ...(streams.length ? streams.map(liveCard) : [el("div", "bd-live-empty", "Nothing here at the moment.")])
+  );
+}
+
+/**
+ * Restricted badges: live status of the listed channels.
+ * Everything else: live streams with drops enabled in the badge's category.
+ */
+async function loadLive() {
+  if (statusOf(badge) !== "active") return renderLive([]);
+  const channels = restrictedChannels();
+  try {
+    if (channels.length) {
+      const data = await gql(
+        `query($logins: [String!]) {
+          users(logins: $logins) {
+            login displayName profileImageURL(width: 50)
+            stream { id title viewersCount previewImageURL(width: 440, height: 248) game { displayName } }
+          }
+        }`,
+        { logins: channels.map((c) => c.login) }
+      );
+      liveInfo = new Map();
+      for (const u of data?.users || []) {
+        if (!u) continue;
+        liveInfo.set(u.login.toLowerCase(), {
+          displayName: u.displayName,
+          avatar: u.profileImageURL,
+          stream: u.stream?.id
+            ? { title: u.stream.title, viewers: u.stream.viewersCount, preview: u.stream.previewImageURL, game: u.stream.game?.displayName }
+            : null,
+        });
+      }
+      const live = [...liveInfo.entries()]
+        .filter(([, v]) => v.stream)
+        .map(([login, v]) => ({ login, ...v }))
+        .sort((a, b) => b.stream.viewers - a.stream.viewers);
+      renderHow(); // refresh channel chips (avatars, live dots)
+      return renderLive(live, `${live.length} of ${channels.length} live`);
+    }
+
+    const category = firstCategory(badge);
+    if (!category) return renderLive([]);
+    const query = (filtered) => `query($name: String!) {
+      game(name: $name) {
+        streams(first: 8${filtered ? ", options: { systemFilters: [DROPS_ENABLED] }" : ""}) {
+          edges { node { title viewersCount previewImageURL(width: 440, height: 248)
+            broadcaster { login displayName profileImageURL(width: 50) } } }
+        }
+      }
+    }`;
+    let data;
+    try {
+      data = await gql(query(true), { name: category });
+    } catch {
+      data = await gql(query(false), { name: category }); // filter not supported → plain category streams
+    }
+    const live = (data?.game?.streams?.edges || [])
+      .map((e) => e.node)
+      .filter((n) => n?.broadcaster)
+      .map((n) => ({
+        login: n.broadcaster.login,
+        displayName: n.broadcaster.displayName,
+        avatar: n.broadcaster.profileImageURL,
+        stream: { title: n.title, viewers: n.viewersCount, preview: n.previewImageURL },
+      }));
+    renderLive(live, live.length ? `Drops enabled · ${category}` : "");
+  } catch {
+    renderLive([]);
+  }
 }
 
 /* ---------- 4. Details ---------- */
@@ -357,7 +502,9 @@ async function init() {
   renderCampaign();
   renderOther();
   loadGame();
+  loadLive();
   setInterval(renderWhen, 1000);
+  setInterval(loadLive, 120_000);
 
   const refresh = async () => {
     const next = await fetchChannel();
