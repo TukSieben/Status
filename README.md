@@ -72,6 +72,7 @@ Options (append to the URL):
 | Option | Effect |
 | --- | --- |
 | `?transparent=1` | No background, to layer the overlay over your own scene |
+| `?lite=1` | Ticker shows one line at a time instead of scrolling — far less CPU (used by the server stream) |
 | `?free=1` | Only free badges (no sub/gift needed) — also works on `/overlay/widget/` and `/overlay/sidebar/` |
 | `?rotate=20` | Seconds per page of available badges (default 15) |
 

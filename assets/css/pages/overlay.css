@@ -95,3 +95,8 @@
 .ov-ticker-track { display: inline-flex; animation: ov-marquee 60s linear infinite; }
 .ov-ticker-track span { padding-right: 80px; }
 @keyframes ov-marquee { to { transform: translateX(-50%); } }
+/* ?lite=1: static ticker, one line at a time */
+.is-lite .ov-ticker { -webkit-mask-image: none; mask-image: none; }
+.is-lite .ov-ticker-track { animation: none; }
+.is-lite .ov-ticker-item { padding-right: 0; animation: ov-fade .4s ease both; }
+@keyframes ov-fade { from { opacity: 0; } }

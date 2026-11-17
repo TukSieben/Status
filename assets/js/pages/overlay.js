@@ -14,6 +14,11 @@ if (params.get("transparent") === "1") {
 }
 
 let badges = [];
+// ?lite=1 → no moving ticker (one line at a time): the page only repaints once per second, much less CPU for server streams
+const LITE = params.get("lite") === "1";
+if (LITE) document.body.classList.add("is-lite");
+let tickerItems = [];
+let tickerIdx = 0;
 let page = 0;
 
 /* ---------- scale the fixed 1920×1080 stage to the window ---------- */
@@ -138,10 +143,27 @@ function renderTicker(active, upcoming) {
     ...upcoming.slice(0, 6).map((b) => `${b.title} starts in ${words(Date.parse(b.startAt))}`),
   ];
   const text = items.join("   ·   ");
-  // Two copies so the marquee loops seamlessly
   const track = $("oTicker");
+  if (LITE) {
+    tickerItems = items;
+    showTickerItem();
+    return;
+  }
+  // Two copies so the marquee loops seamlessly
   track.replaceChildren(el("span", "", text), el("span", "", text));
   track.style.animationDuration = `${Math.max(30, text.length * 0.22)}s`;
+}
+
+function showTickerItem() {
+  if (!tickerItems.length) return $("oTicker").replaceChildren();
+  tickerIdx %= tickerItems.length;
+  $("oTicker").replaceChildren(el("span", "ov-ticker-item", tickerItems[tickerIdx]));
+}
+if (LITE) {
+  setInterval(() => {
+    tickerIdx += 1;
+    showTickerItem();
+  }, 6000);
 }
 
 function renderAll() {
