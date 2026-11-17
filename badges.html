@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badges — BadgeStatus</title>
+  <meta name="description" content="Every Twitch global badge you can earn right now and what's coming next. Enter your username to see which ones you still need and which you already own.">
+  <meta property="og:title" content="BadgeStatus — Global Badge Drops">
+  <meta property="og:description" content="Active and upcoming Twitch badges with a personal missing/owned checker.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://badgestatus.net/badges.html">
+  <link rel="icon" type="image/png" href="logo.png?v=2">
+  <link rel="apple-touch-icon" href="logo.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=9">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="nav-left">
+        <a href="./" class="brand">
+          <img src="logo.png?v=2" alt="" width="20" height="20">
+          <span>BadgeStatus</span>
+        </a>
+        <span class="nav-sep">/</span>
+        <nav class="nav-links">
+          <a href="./" class="nav-link">Home</a>
+          <a href="#available" class="nav-link is-active">Badges</a>
+          <a href="#schedule" class="nav-link">Schedule</a>
+          <a href="#upcoming" class="nav-link">Upcoming</a>
+          <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
+        </nav>
+      </div>
+
+      <form class="search" id="userForm" autocomplete="off">
+        <label class="search-field">
+          <span class="search-prefix">twitch.tv/</span>
+          <input type="text" id="userInput" placeholder="username..." spellcheck="false" aria-label="Twitch username">
+          <button type="button" class="search-clear hidden" id="clearUserBtn" aria-label="Clear username">×</button>
+        </label>
+        <button type="submit" class="btn-white" id="checkBtn"><span id="checkLabel">Check</span><span class="spinner hidden" id="checkSpin"></span></button>
+      </form>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <!-- Header panel -->
+    <section class="panel head-panel">
+      <div class="head-title">
+        <h1>Global Badge Drops</h1>
+        <span class="count-chip" id="totalChip">0</span>
+      </div>
+      <p class="head-sub">Every Twitch global badge you can earn right now and what's coming next. Enter your username to see which ones you still need.</p>
+
+      <div class="stats" id="statsRow">
+        <button type="button" class="stat" data-filter="all">
+          <span class="stat-label">Available</span>
+          <span class="stat-value" id="statAvailable">0</span>
+        </button>
+        <button type="button" class="stat stat-missing" data-filter="missing" disabled>
+          <span class="stat-label">Missing</span>
+          <span class="stat-value" id="statMissing">—</span>
+        </button>
+        <button type="button" class="stat stat-owned" data-filter="owned" disabled>
+          <span class="stat-label">Owned</span>
+          <span class="stat-value" id="statOwned">—</span>
+        </button>
+        <a href="#upcoming" class="stat stat-upcoming">
+          <span class="stat-label">Upcoming</span>
+          <span class="stat-value" id="statUpcoming">0</span>
+        </a>
+      </div>
+    </section>
+
+    <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="stream-strip" id="streamStrip" data-live-indicator>
+      <span class="stream-dot"></span>
+      <span class="stream-strip-text" id="streamStripText">Collect badges on our 24/7 stream at <b>twitch.tv/badgestatus</b></span>
+      <span class="stream-strip-cta">Watch ↗</span>
+    </a>
+
+    <div class="error-box hidden" id="errorBox"></div>
+
+    <div class="info-bar hidden" id="loadingBar">
+      <span class="spinner"></span>
+      <span>Checking badge ownership for <b id="loadingUser"></b>...</span>
+    </div>
+
+    <!-- User summary -->
+    <div class="panel user-bar hidden" id="userBar">
+      <img class="user-avatar" id="userAvatar" alt="" width="36" height="36">
+      <div class="user-info">
+        <div class="user-line"><span class="mono red" id="userMissing">0</span> of <span class="mono" id="userTotal">0</span> active badges missing for <b id="userName"></b></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="user-side">
+        <span class="mono green" id="userOwned">0 Owned</span>
+        <span class="mono muted" id="userPct">0%</span>
+      </div>
+    </div>
+
+    <!-- AVAILABLE NOW -->
+    <section class="section" id="available">
+      <div class="section-head">
+        <h2><span class="live-dot"></span>Available Now <span class="section-count" id="activeCount"></span></h2>
+        <div class="chips" id="filterChips" role="group" aria-label="Filter">
+          <button type="button" class="chip is-active" data-filter="all">All</button>
+          <button type="button" class="chip" data-filter="missing" disabled>Missing</button>
+          <button type="button" class="chip" data-filter="owned" disabled>Owned</button>
+          <button type="button" class="chip" data-filter="free">Free</button>
+          <button type="button" class="chip" data-filter="paid">Paid</button>
+        </div>
+      </div>
+
+      <div class="grid" id="activeGrid"></div>
+      <div class="empty hidden" id="activeEmpty">No badges match this filter.</div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="section section-border" id="schedule">
+      <div class="section-head">
+        <h2>Schedule <span class="section-count" id="schedCount"></span></h2>
+      </div>
+      <div class="panel sched" id="scheduleRoot"></div>
+    </section>
+
+    <!-- UPCOMING -->
+    <section class="section section-border" id="upcoming">
+      <div class="section-head">
+        <h2>Upcoming Badge Drops <span class="section-count" id="upcomingCount"></span></h2>
+      </div>
+      <div class="list" id="upcomingList"></div>
+      <div class="empty hidden" id="upcomingEmpty">No upcoming badges announced yet.</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-links">badgestatus.net <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="footer-stream" data-live-indicator><span class="stream-dot"></span>twitch.tv/badgestatus</a></span>
+      <span class="muted" id="footerSync"></span>
+    </div>
+  </footer>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js?v=9"></script>
+</body>
+</html>

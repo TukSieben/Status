@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badge — BadgeStatus</title>
+  <meta name="description" content="Everything you need to know about this Twitch global badge: how to get it, when it's available, and who has it.">
+  <link rel="icon" type="image/png" href="logo.png?v=2">
+  <link rel="apple-touch-icon" href="logo.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=9">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="nav-left">
+        <a href="./" class="brand">
+          <img src="logo.png?v=2" alt="" width="20" height="20">
+          <span>BadgeStatus</span>
+        </a>
+        <span class="nav-sep">/</span>
+        <nav class="nav-links">
+          <a href="./" class="nav-link">Home</a>
+          <a href="badges.html" class="nav-link is-active">Badges</a>
+          <a href="./#schedule" class="nav-link">Schedule</a>
+          <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
+        </nav>
+      </div>
+      <a href="badges.html" class="btn-white">Open Tracker</a>
+    </div>
+  </header>
+
+  <main class="wrap main bd-main">
+    <div class="bd-loading" id="bdLoading"><span class="spinner"></span> Loading badge...</div>
+
+    <div class="bd-missing hidden" id="bdNotFound">
+      <h1>Badge not found</h1>
+      <p class="head-sub">We couldn't find this badge. It may have been removed or the link is wrong.</p>
+      <a href="badges.html" class="btn-white">Back to all badges</a>
+    </div>
+
+    <article class="bd hidden" id="bd">
+      <nav class="crumbs"><a href="badges.html">Badges</a><span>/</span><span id="bdCrumb"></span></nav>
+
+      <header class="bd-head">
+        <h1 id="bdTitle"></h1>
+        <p class="bd-sub">Everything you need to know about this Twitch global badge.</p>
+      </header>
+
+      <div class="bd-user hidden" id="bdUser"></div>
+
+      <!-- Preview + data -->
+      <section class="panel bd-top">
+        <div class="bd-preview" id="bdPreview">
+          <div class="bd-theme" role="group" aria-label="Preview background">
+            <button type="button" class="is-active" data-theme="dark">Dark</button>
+            <span>/</span>
+            <button type="button" data-theme="light">Light</button>
+          </div>
+          <div class="bd-sizes">
+            <figure><img id="bdImg1" alt="" width="18" height="18"><figcaption>1X</figcaption></figure>
+            <figure><img id="bdImg2" alt="" width="36" height="36"><figcaption>2X</figcaption></figure>
+            <figure><img id="bdImg4" alt="" width="72" height="72"><figcaption>4X</figcaption></figure>
+          </div>
+          <div class="bd-chat">
+            <img id="bdChatImg" alt="" width="18" height="18">
+            <span class="bd-chat-user" id="bdChatUser">badgestatus</span><span class="bd-chat-msg">: when's the next drop?</span>
+          </div>
+        </div>
+
+        <dl class="bd-data">
+          <div><dt>Title</dt><dd id="bdDataTitle"></dd></div>
+          <div><dt>Description</dt><dd id="bdDataDesc"></dd></div>
+          <div><dt>Set ID</dt><dd class="mono-dd" id="bdDataSet"></dd></div>
+          <div><dt>Version ID</dt><dd class="mono-dd" id="bdDataVersion"></dd></div>
+          <div><dt>Click Action</dt><dd id="bdDataAction"></dd></div>
+          <div><dt>Click URL</dt><dd id="bdDataUrl"></dd></div>
+        </dl>
+      </section>
+
+      <div class="bd-cols">
+        <!-- Availability -->
+        <section class="bd-section">
+          <h2>Availability</h2>
+          <div class="panel bd-panel">
+            <div class="bd-status-row">
+              <span class="bd-status" id="bdStatus"></span>
+              <span class="bd-tag" id="bdCost"></span>
+            </div>
+            <dl class="bd-data bd-data-tight">
+              <div><dt>Objective</dt><dd id="bdObjective"></dd></div>
+              <div><dt>Category</dt><dd id="bdCategory"></dd></div>
+              <div><dt>Channels</dt><dd id="bdChannels"></dd></div>
+              <div class="bd-dates">
+                <div><dt>Starts</dt><dd id="bdStart"></dd></div>
+                <div><dt>Ends</dt><dd id="bdEnd"></dd></div>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <!-- Context -->
+        <section class="bd-section">
+          <h2>Context</h2>
+          <div class="panel bd-panel bd-context" id="bdContext"></div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="bd-section">
+          <h2>Statistics</h2>
+          <div class="panel bd-panel">
+            <div class="bd-stat-big"><span class="mono" id="bdUsers">—</span><span class="muted">users seen with this badge</span></div>
+            <a class="box-link" id="bdSdb" target="_blank" rel="noopener noreferrer">View on StreamDatabase ↗</a>
+          </div>
+        </section>
+
+        <!-- History -->
+        <section class="bd-section">
+          <h2>History</h2>
+          <div class="panel bd-panel">
+            <dl class="bd-data bd-data-tight">
+              <div><dt>Added</dt><dd id="bdAdded"></dd></div>
+              <div><dt>Last updated</dt><dd id="bdUpdated"></dd></div>
+            </dl>
+          </div>
+        </section>
+      </div>
+
+      <!-- See it live -->
+      <section class="panel bd-live">
+        <div class="bd-live-text">
+          <span class="live-pill" id="bdLivePill">Offline</span>
+          <h2>See it live!</h2>
+          <p id="bdLiveText">24/7 badge countdowns and drops on our Twitch stream. Watch along and collect badges while you do something else.</p>
+        </div>
+        <div class="bd-live-actions">
+          <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="btn-twitch">View on Twitch ↗</a>
+          <button type="button" class="btn-dark" id="bdCopy">Copy image URL</button>
+        </div>
+      </section>
+
+      <!-- Other badges -->
+      <section class="bd-other">
+        <div class="bd-other-head">
+          <h2>Other <span class="accent">Badges</span></h2>
+          <a href="badges.html" class="btn-white">See All</a>
+        </div>
+        <div class="bd-other-grid" id="bdOther"></div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-links">badgestatus.net <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="footer-stream" data-live-indicator><span class="stream-dot"></span>twitch.tv/badgestatus</a></span>
+      <span class="muted" id="footerSync"></span>
+    </div>
+  </footer>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="badge.js?v=1"></script>
+</body>
+</html>
