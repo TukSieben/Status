@@ -13,6 +13,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 | `/badge/?id=<setID>` | `badge/index.html` | Detail page for a single badge |
 | `/archive/` | `archive/index.html` | Every badge ever released: search, status / category / cost filters, sorting (filters are kept in the URL) |
 | `/overlay/` | `overlay/index.html` | 1920×1080 overlay for the 24/7 stream (OBS browser source) |
+| `/overlay/widget/` | `overlay/widget/index.html` | Small corner widget for live gameplay streams (460×400, transparent; `?game=<category>`) |
 | — | `404.html` | Not-found page (also redirects old `badges.html` / `badge.html` links) |
 
 ## Project structure

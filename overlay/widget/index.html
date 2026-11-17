@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Widget — BadgeStatus</title>
+  <!--
+    Small corner widget for live gameplay streams (OBS Browser Source: width 460, height 400).
+    Transparent background. Options:
+      ?game=Grand Theft Auto VI   → show the badges you can earn in that game right now
+      (default)                   → next badge drop + badges ending soon
+  -->
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=22">
+  <link rel="stylesheet" href="/assets/css/pages/widget.css?v=1">
+</head>
+<body class="wg-body">
+  <div class="wg" id="widget">
+    <header class="wg-head">
+      <img src="/assets/img/logo.png" alt="" width="22" height="22">
+      <span class="wg-brand">BadgeStatus</span>
+      <span class="wg-url">badgestatus.net</span>
+    </header>
+
+    <section class="wg-main" id="wgMain">
+      <span class="wg-label" id="wgLabel">Next drop</span>
+      <div class="wg-title" id="wgTitle">—</div>
+      <div class="wg-icons" id="wgIcons"></div>
+      <div class="wg-count" id="wgCount"></div>
+    </section>
+
+    <section class="wg-list-wrap">
+      <span class="wg-label" id="wgListLabel">Ending soon</span>
+      <div class="wg-list" id="wgList"></div>
+    </section>
+  </div>
+  <script type="module" src="/assets/js/pages/widget.js?v=1"></script>
+</body>
+</html>
