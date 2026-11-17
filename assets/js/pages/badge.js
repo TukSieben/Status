@@ -1,10 +1,11 @@
 import "../lib/background.js";
-import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, compactNumber } from "../lib/utils.js";
+import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, compactNumber, gql } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 
 let badge = null;
 let all = [];
 let channel = null;
+let game = null; // { name, slug, boxArt } from Twitch, once loaded
 
 /* ---------- helpers ---------- */
 
@@ -53,7 +54,7 @@ function campaignOf(b) {
 /** "Watch 1h in QSMP (3 eligible channels)" -> "3 eligible channels" */
 function channelsText(b) {
   const m = (b.objective || "").match(/\((\d+\s+eligible\s+channels?)\)/i);
-  return m ? m[1].replace(/^./, (c) => c.toUpperCase()) : "Any channel";
+  return m ? m[1].replace(/^./, (c) => c.toUpperCase()) : "Any";
 }
 
 function categoryText(b) {
@@ -77,12 +78,40 @@ function twitchSlug(name) {
 
 /** Where to earn the badge on Twitch: the category's drops directory, or the drops campaigns page. */
 function dropsLink(b) {
-  const restricted = /eligible\s+channels?/i.test(b.objective || "");
-  const first = categoryText(b).replace(/\s*\(.*?\)\s*/g, "").split(",")[0].trim();
-  if (!restricted && first) {
-    return { href: `https://www.twitch.tv/directory/category/${twitchSlug(first)}?filter=drops`, label: `Get it on Twitch · ${first}` };
+  const first = firstCategory(b);
+  if (first) {
+    const slug = game?.slug || twitchSlug(first);
+    return { href: `https://www.twitch.tv/directory/category/${slug}?filter=drops`, label: `Get it on Twitch · ${game?.name || first}` };
   }
   return { href: "https://www.twitch.tv/drops/campaigns", label: "Get it on Twitch" };
+}
+
+/** First category of a badge, without "(+18 categories)" and extra names. */
+function firstCategory(b) {
+  if (/eligible\s+channels?/i.test(b.objective || "")) return "";
+  return categoryText(b).replace(/\s*\(.*?\)\s*/g, "").split(",")[0].trim();
+}
+
+function fact(label, value) {
+  const f = el("div", "bd-fact");
+  const v = value instanceof Node ? value : el("span", "bd-fact-v", value);
+  f.append(el("span", "bd-fact-k", label), v);
+  return f;
+}
+
+/** Looks up the category on Twitch for its box art and exact slug. */
+async function loadGame() {
+  const name = firstCategory(badge);
+  if (!name) return;
+  try {
+    const data = await gql(
+      `query($name: String!) { game(name: $name) { displayName slug boxArtURL(width: 40, height: 54) } }`,
+      { name }
+    );
+    const g = data?.game;
+    if (g) game = { name: g.displayName || name, slug: g.slug || "", boxArt: g.boxArtURL || "" };
+  } catch {}
+  renderHow();
 }
 
 function costTag(b) {
@@ -154,24 +183,30 @@ function renderHow() {
   $("bdHow").textContent = badge.objective?.trim() || badge.description?.trim() || "Not announced yet.";
 
   const facts = [];
-  const category = categoryText(badge);
-  if (category) facts.push(["Category", category]);
-  facts.push(["Channels", channelsText(badge)]);
-  if (typeof badge.userCount === "number") facts.push(["Owned by", `${compactNumber(badge.userCount)} users`]);
-
-  const nodes = facts.map(([k, v]) => {
-    const f = el("span", "bd-fact");
-    f.append(el("span", "bd-fact-k", k), el("span", "bd-fact-v", v));
-    return f;
-  });
+  const category = firstCategory(badge);
+  if (category) {
+    const value = el("span", "bd-fact-v bd-cat");
+    if (game?.boxArt) {
+      const art = el("img", "bd-cat-art");
+      art.src = game.boxArt;
+      art.alt = "";
+      art.width = 20;
+      art.height = 27;
+      value.appendChild(art);
+    }
+    value.appendChild(el("span", "", game?.name || category));
+    facts.push(fact("Category", value));
+  }
+  facts.push(fact("Channels", channelsText(badge)));
+  if (typeof badge.userCount === "number") facts.push(fact("Owned by", `${compactNumber(badge.userCount)} users`));
+  const nodes = facts;
 
   if (earnableOnStream(badge, channel)) {
-    const live = el("a", "bd-fact is-live");
+    const live = el("a", "bd-fact-v is-live", "Earnable on our stream ↗");
     live.href = "https://www.twitch.tv/badgestatus";
     live.target = "_blank";
     live.rel = "noopener noreferrer";
-    live.append(el("span", "bd-fact-k", "Live"), el("span", "bd-fact-v", "Earnable on our stream ↗"));
-    nodes.push(live);
+    nodes.push(fact("Live", live));
   }
   $("bdFacts").replaceChildren(...nodes);
 
@@ -322,6 +357,7 @@ async function init() {
   renderDetails();
   renderCampaign();
   renderOther();
+  loadGame();
   setInterval(renderWhen, 1000);
 
   const refresh = async () => {

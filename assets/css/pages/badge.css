@@ -50,12 +50,15 @@
 .bd-how { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
 .bd-how-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 .bd-how-text { font-size: 16px; font-weight: 500; line-height: 1.45; color: var(--text); }
-.bd-facts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
-.bd-fact { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 10px; border-radius: 6px; background: rgba(9, 9, 11, 0.6); border: 1px solid var(--line); }
-.bd-fact-k { color: var(--text-3); }
-.bd-fact-v { color: var(--text); }
-.bd-fact.is-live { border-color: rgba(145, 70, 255, 0.5); }
-.bd-fact.is-live .bd-fact-k, .bd-fact.is-live .bd-fact-v { color: #c4b5fd; }
+.bd-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px 20px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.bd-fact { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.bd-fact-k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+.bd-fact-v { font-size: 13.5px; color: var(--text); }
+.bd-cat { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.bd-cat span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bd-cat-art { width: 20px; height: 27px; object-fit: cover; border-radius: 2px; flex-shrink: 0; }
+.bd-fact-v.is-live { color: #c4b5fd; }
+.bd-fact-v.is-live:hover { text-decoration: underline; }
 
 /* ---------- 4. Details (collapsed) ---------- */
 .bd-details { overflow: hidden; }
