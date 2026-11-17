@@ -1,5 +1,5 @@
 // Draggable timeline ("Schedule") of active + upcoming badge events.
-import { el, img } from "./utils.js";
+import { el, img, badgeHref } from "./utils.js";
 const DAY_MS = 86_400_000;
 const DAY_PX = 84;
 const MIN_DAYS = 21;
@@ -67,12 +67,15 @@ function enableDragScroll(scroller) {
     moved = false;
     startX = e.clientX;
     startLeft = scroller.scrollLeft;
-    scroller.classList.add("is-dragging");
   });
   window.addEventListener("pointermove", (e) => {
     if (!down) return;
     const dx = e.clientX - startX;
-    if (Math.abs(dx) > 3) moved = true;
+    if (!moved && Math.abs(dx) > 3) {
+      moved = true;
+      // Only now treat it as a drag (this disables clicks on bars/icons)
+      scroller.classList.add("is-dragging");
+    }
     scroller.scrollLeft = startLeft - dx;
   });
   window.addEventListener("pointerup", () => {
@@ -106,7 +109,8 @@ function enableDragScroll(scroller) {
 
 /**
  * Renders the schedule into `root`.
- * options.onSelect(event) is called when a bar is clicked.
+ * Clicking a badge icon opens that badge; clicking elsewhere on the bar opens
+ * options.href(event) (defaults to the event's first badge).
  */
 export function renderSchedule(root, badges, options = {}) {
   const now = Date.now();
@@ -167,22 +171,35 @@ export function renderSchedule(root, badges, options = {}) {
     const barW = Math.max(6, x(ev.end) - left);
     const clippedLeft = ev.start < rangeStart;
 
-    const bar = el(options.href ? "a" : "button", `sched-bar ${ev.upcoming ? "is-upcoming" : "is-active"}${clippedLeft ? " is-clipped" : ""}`);
-    if (options.href) bar.href = options.href(ev);
-    else bar.type = "button";
+    // A <div> (not <a>) so each badge icon inside can be its own link
+    const bar = el("div", `sched-bar ${ev.upcoming ? "is-upcoming" : "is-active"}${clippedLeft ? " is-clipped" : ""}`);
+    const barHref = options.href ? options.href(ev) : badgeHref(ev.badges[0]);
+    bar.setAttribute("role", "link");
+    bar.tabIndex = 0;
     bar.style.left = `${left}px`;
     bar.style.width = `${barW}px`;
     bar.title = `${ev.name}\n${fmt(ev.start)} → ${fmt(ev.end)}\n${ev.badges.length} badge${ev.badges.length === 1 ? "" : "s"} · ${ev.free} free · ${ev.paid} paid`;
-    if (options.onSelect) bar.addEventListener("click", () => options.onSelect(ev));
+    bar.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return; // icon link handles itself
+      if (e.ctrlKey || e.metaKey) window.open(barHref, "_blank");
+      else location.href = barHref;
+    });
+    bar.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") location.href = barHref;
+    });
 
     const label = el("span", "sched-label");
     const icons = el("span", "sched-icons");
     for (const b of ev.badges.slice(0, 6)) {
+      const link = el("a", "sched-icon");
+      link.href = badgeHref(b);
+      link.title = b.title;
       const i = el("img");
       i.src = img(b, 2);
-      i.alt = "";
+      i.alt = b.title;
       i.loading = "lazy";
-      icons.appendChild(i);
+      link.appendChild(i);
+      icons.appendChild(link);
     }
     label.append(icons, el("span", "sched-name", ev.name.toUpperCase()));
 
