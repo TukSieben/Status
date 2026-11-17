@@ -40,18 +40,20 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 │   │   └── pages/             # One entry script per page: home, badges, badge, archive, overlay
 │   └── img/
 │       └── logo.png
+├── bot/                       # Twitch chat bot (Cloudflare Worker) — see bot/README.md
 ├── data/
 │   ├── badges.json            # Badge snapshot (generated — do not edit by hand)
 │   └── changelog.json
 ├── scripts/
 │   └── sync_badges.py         # Builds data/*.json from Twitch, StreamDatabase, CatQuery, PotatBotat
 └── .github/workflows/
-    └── sync-badges.yml        # Runs the sync every 2 hours and commits changes
+    ├── sync-badges.yml        # Runs the sync every 15 minutes and commits changes
+    └── deploy-bot.yml         # Tests + deploys the Twitch bot to Cloudflare
 ```
 
 ## Data flow
 
-1. `sync-badges.yml` runs `scripts/sync_badges.py` every two hours (or manually via *Run workflow*).
+1. `sync-badges.yml` runs `scripts/sync_badges.py` every 15 minutes (or manually via *Run workflow*).
 2. The script writes `data/badges.json` and commits it if anything changed.
 3. For channel-restricted drops the sync also stores the eligible channels (`channels: [{login, displayName, avatar}]`), which the badge page shows with live status.
 4. Every page loads `/data/badges.json` in the browser. The username check and the stream status call Twitch directly from the browser — there is no backend.
@@ -71,6 +73,12 @@ Options (append to the URL):
 | `?rotate=20` | Seconds per page of available badges (default 15) |
 
 The overlay reloads the badge data every 5 minutes and updates all countdowns every second; it never needs a manual refresh.
+
+## Twitch bot
+
+`bot/` contains the chat bot for the 24/7 stream (`!gallica`, `!badges`, `!next`, `!missing <user>` …).
+Commands are generated from the badge data, so new badges get a command and ended ones stop answering.
+Setup and details: [bot/README.md](bot/README.md).
 
 ## Local development
 

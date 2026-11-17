@@ -1,0 +1,13 @@
+# Cloudflare Worker for the BadgeStatus Twitch chat bot.
+# Deployed automatically by .github/workflows/deploy-bot.yml on every push to bot/.
+name = "badgestatus-bot"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+[vars]
+# Channel the bot listens in, and the account it speaks as (can be the same account)
+CHANNEL_LOGIN = "badgestatus"
+BOT_LOGIN = "badgestatus"
+
+# Secrets (set as GitHub secrets, pushed by the deploy workflow):
+#   TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, EVENTSUB_SECRET

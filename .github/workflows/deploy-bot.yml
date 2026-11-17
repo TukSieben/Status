@@ -1,0 +1,43 @@
+name: Deploy Twitch bot
+
+on:
+  push:
+    branches: [main]
+    paths: ["bot/**", ".github/workflows/deploy-bot.yml"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HAS_CLOUDFLARE: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test
+        working-directory: bot
+        run: npm test
+
+      - name: Skip deploy (Cloudflare not set up yet)
+        if: env.HAS_CLOUDFLARE != 'true'
+        run: echo "Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as repository secrets to deploy the bot."
+
+      - name: Deploy to Cloudflare Workers
+        if: env.HAS_CLOUDFLARE == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: bot
+          secrets: |
+            TWITCH_CLIENT_ID
+            TWITCH_CLIENT_SECRET
+            EVENTSUB_SECRET
+        env:
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          EVENTSUB_SECRET: ${{ secrets.EVENTSUB_SECRET }}

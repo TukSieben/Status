@@ -1,0 +1,10 @@
+{
+  "name": "badgestatus-bot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/commands.test.mjs test/worker.test.mjs",
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy"
+  }
+}
