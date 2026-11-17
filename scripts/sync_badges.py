@@ -459,8 +459,9 @@ def fetch_event_schedules() -> dict[str, dict[str, Any]]:
                 count = av.get("channel_count")
                 if not channels and isinstance(count, int) and count > 0:
                     # The events page only has the count — the list lives on the badge's own page
-                    version = (b.get("current") or {}).get("id") or (b.get("current") or {}).get("version") or "1"
-                    channels = fetch_badge_channels(sid, str(version), count)
+                    ver = (b.get("current") or {}).get("version")
+                    version = ver.get("id") if isinstance(ver, dict) else ver
+                    channels = fetch_badge_channels(sid, str(version or "1"), count)
                 if channels:
                     entry["channels"] = channels
                 if ev_start and not entry.get("startAt"):
