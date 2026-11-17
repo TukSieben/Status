@@ -46,6 +46,13 @@ export function earnableOnStream(badge, channel) {
 
 
 
+/** Twitch embed player URL. Twitch only plays it on the listed parent domain(s). */
+export function playerSrc() {
+  const parents = new Set([location.hostname || "badgestatus.net", "badgestatus.net", "www.badgestatus.net"]);
+  const params = new URLSearchParams({ channel: CHANNEL, muted: "true", autoplay: "true" });
+  return `https://player.twitch.tv/?${params}&${[...parents].map((p) => `parent=${encodeURIComponent(p)}`).join("&")}`;
+}
+
 /** Updates every [data-live-indicator] element (nav link + footer) with live state. */
 export function paintLiveIndicators(channel) {
   for (const node of document.querySelectorAll("[data-live-indicator]")) {

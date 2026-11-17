@@ -15,7 +15,7 @@ import {
   normalizeLogin,
   URGENT_MS,
 } from "../lib/utils.js";
-import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
+import { fetchChannel, earnableOnStream, paintLiveIndicators, playerSrc } from "../lib/twitch.js";
 import { renderSchedule } from "../lib/schedule.js";
 
 let badges = [];
@@ -128,10 +128,28 @@ function drawSchedule() {
   });
 }
 
+/** Player while live (embedded once, never reloaded), offline card otherwise. */
+function renderStream() {
+  const live = Boolean(channel?.live);
+  const frame = $("heroStreamFrame");
+  $("heroStream").classList.toggle("is-live", live);
+  if (live && !frame.querySelector("iframe")) {
+    const iframe = document.createElement("iframe");
+    iframe.src = playerSrc();
+    iframe.title = "BadgeStatus 24/7 stream";
+    iframe.allowFullscreen = true;
+    iframe.setAttribute("allow", "autoplay; fullscreen");
+    frame.replaceChildren(iframe);
+  } else if (!live && frame.firstChild) {
+    frame.replaceChildren();
+  }
+}
+
 async function refreshChannel() {
   const next = await fetchChannel();
   if (next) channel = next;
   paintLiveIndicators(channel);
+  renderStream();
   render();
 }
 
