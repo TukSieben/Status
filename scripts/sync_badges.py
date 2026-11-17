@@ -256,7 +256,6 @@ def format_objective(av: dict[str, Any], event_title: str | None) -> tuple[str |
     return objective, game_name
 
 
-DEBUG_DUMP: dict[str, Any] = {}  # TEMP DEBUG
 LOGIN_RE = re.compile(r"^[a-z0-9_]{2,25}$")
 
 
@@ -275,8 +274,8 @@ def extract_channels(av: dict[str, Any]) -> list[dict[str, str]]:
         return []
     found: dict[str, dict[str, str]] = {}
 
-    def walk(node: Any, key: str = "") -> None:
-        if key in SKIP_KEYS:
+    def walk(node: Any, key: str = "", skip: frozenset[str] = frozenset(SKIP_KEYS)) -> None:
+        if key in skip:
             return
         if isinstance(node, dict):
             login = node.get("login") or node.get("user_login") or node.get("broadcaster_login")
@@ -293,14 +292,16 @@ def extract_channels(av: dict[str, Any]) -> list[dict[str, str]]:
                     },
                 )
             for k, v in node.items():
-                walk(v, k)
+                walk(v, k, skip)
         elif isinstance(node, list):
             for v in node:
-                walk(v, key)
+                walk(v, key, skip)
 
+    # Inside an explicit channel list, entries look like {"user": {"login": ...}} — allow "user" there
+    in_list = frozenset(SKIP_KEYS - {"user"})
     preferred = [k for k in ("channels", "twitch_channels", "allowed_channels") if k in av]
     for k in preferred:
-        walk(av[k], "")
+        walk(av[k], "", in_list)
     if not found:
         walk(av)
     return list(found.values())[:count]
@@ -332,7 +333,6 @@ def fetch_badge_channels(set_id: str, version: str, count: int) -> list[dict[str
         found = extract_channels(block)
         if found:
             return found
-    DEBUG_DUMP[f"page:{set_id}"] = {"url": url, "top_keys": sorted(props.keys()), "blocks": blocks[:2]}  # TEMP DEBUG
     return []
 
 
@@ -695,5 +695,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    if DEBUG_DUMP:  # TEMP DEBUG
-        (DATA_DIR / "_debug_sdb.json").write_text(json.dumps(DEBUG_DUMP, indent=1, ensure_ascii=False), encoding="utf-8")
