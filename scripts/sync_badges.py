@@ -256,6 +256,7 @@ def format_objective(av: dict[str, Any], event_title: str | None) -> tuple[str |
     return objective, game_name
 
 
+DEBUG_DUMP: dict[str, Any] = {}  # TEMP DEBUG
 LOGIN_RE = re.compile(r"^[a-z0-9_]{2,25}$")
 
 
@@ -427,6 +428,9 @@ def fetch_event_schedules() -> dict[str, dict[str, Any]]:
                 channels = extract_channels(av)
                 if channels:
                     entry["channels"] = channels
+                # TEMP DEBUG: dump raw availability of channel-restricted badges to inspect the shape
+                if isinstance(av.get("channel_count"), int) and av["channel_count"] > 0:
+                    DEBUG_DUMP[sid] = {"availability": av, "badge_keys": sorted(b.keys())}
                 if ev_start and not entry.get("startAt"):
                     entry["startAt"] = ev_start
                 if ev_end and not entry.get("endAt"):
@@ -658,3 +662,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    if DEBUG_DUMP:  # TEMP DEBUG
+        (DATA_DIR / "_debug_sdb.json").write_text(json.dumps(DEBUG_DUMP, indent=1, ensure_ascii=False), encoding="utf-8")
