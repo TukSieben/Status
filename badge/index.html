@@ -10,11 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/base.css?v=10">
+  <link rel="stylesheet" href="/assets/css/base.css?v=12">
   <link rel="stylesheet" href="/assets/css/components/stream.css?v=10">
   <link rel="stylesheet" href="/assets/css/pages/badge.css?v=10">
 </head>
 <body>
+  <div class="bg-waves" id="bgWaves" aria-hidden="true"></div>
   <header class="nav">
     <div class="wrap nav-inner">
       <div class="nav-left">
@@ -30,7 +31,6 @@
           <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
         </nav>
       </div>
-      <a href="/badges/" class="btn-white">Open Tracker</a>
     </div>
   </header>
 
@@ -50,8 +50,6 @@
         <h1 id="bdTitle"></h1>
         <p class="bd-sub">Everything you need to know about this Twitch global badge.</p>
       </header>
-
-      <div class="bd-user hidden" id="bdUser"></div>
 
       <!-- Preview + data -->
       <section class="panel bd-top">
@@ -163,6 +161,6 @@
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-  <script type="module" src="/assets/js/pages/badge.js?v=10"></script>
+  <script type="module" src="/assets/js/pages/badge.js?v=13"></script>
 </body>
 </html>

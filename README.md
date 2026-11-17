@@ -30,7 +30,9 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 │   │   ├── lib/
 │   │   │   ├── utils.js       # Shared helpers (DOM, dates, badge data, Twitch GQL)
 │   │   │   ├── twitch.js      # twitch.tv/badgestatus live status + chat embed
-│   │   │   └── schedule.js    # Draggable schedule timeline
+│   │   │   ├── schedule.js    # Draggable schedule timeline
+│   │   │   ├── gradient-waves.js  # WebGL2 wave renderer (port of React Bits' GradientWaves)
+│   │   │   └── background.js  # Mounts the animated site background
 │   │   └── pages/             # One entry script per page: home, badges, badge
 │   └── img/
 │       └── logo.png
@@ -63,5 +65,6 @@ The Twitch chat embed only loads on `badgestatus.net` (Twitch requires a matchin
 ## Conventions
 
 - All site text is in **English**.
+- Usernames are never stored: the tracker only checks a user from the search box or a `?user=` link.
 - No build step and no dependencies: plain HTML, CSS and ES modules.
 - Bump the `?v=` query on CSS/JS links in the HTML files when changing assets, so browsers pick up the new version.

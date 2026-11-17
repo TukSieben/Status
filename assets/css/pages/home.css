@@ -25,15 +25,15 @@
 .hero-form .btn-white { padding: 8px 16px; font-size: 12.5px; }
 .hero-hint { font-size: 11.5px; color: var(--text-3); min-height: 16px; }
 
-.hero-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; justify-self: end; width: 100%; max-width: 380px; }
-.show-tile {
-  aspect-ratio: 1; display: grid; place-items: center;
-  background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
-  animation: float 4s ease-in-out infinite;
+/* Floating badges (no tiles) */
+.hero-showcase { position: relative; justify-self: end; width: 100%; max-width: 420px; aspect-ratio: 4 / 3; }
+.show-tile { position: absolute; display: block; animation: float 6s ease-in-out infinite; will-change: transform; }
+.show-tile img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45)); }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+  50% { transform: translate(var(--dx, 0px), var(--dy, -12px)) rotate(calc(var(--rot, 0deg) * -1)); }
 }
-.show-tile img { width: 60%; height: 60%; object-fit: contain; }
-.show-tile:nth-child(odd) { transform: translateY(6px); }
-@keyframes float { 50% { translate: 0 -6px; } }
+@media (prefers-reduced-motion: reduce) { .show-tile { animation: none; } }
 
 a.stat:hover { border-color: var(--line-2); }
 

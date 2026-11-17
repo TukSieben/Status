@@ -1,4 +1,5 @@
-import { $, el, img, onImgError, extractUuid, badgeHref, showToast, loadBadges, gql, savedLogin } from "../lib/utils.js";
+import "../lib/background.js";
+import { $, el, img, onImgError, badgeHref, showToast, loadBadges } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 
 
@@ -205,32 +206,6 @@ function renderLive() {
   }
 }
 
-async function renderUser() {
-  const login = savedLogin();
-  if (!login) return;
-  try {
-    const data = await gql(
-      `query($login: String!) {
-        user(login: $login) { login displayName }
-        channelViewer(channelLogin: $login, userLogin: $login) { earnedBadges { setID imageURL(size: QUADRUPLE) } }
-      }`,
-      { login }
-    );
-    if (!data?.user) return;
-    const earned = data.channelViewer?.earnedBadges || [];
-    const uuid = extractUuid(img(badge));
-    const owned = earned.some((b) => b.setID === badge.setID || (uuid && extractUuid(b.imageURL) === uuid));
-    const name = data.user.displayName || data.user.login;
-    const box = $("bdUser");
-    box.className = `bd-user ${owned ? "is-owned" : "is-missing"}`;
-    box.replaceChildren(
-      el("span", `pill pill-upper ${owned ? "pill-owned" : "pill-missing"}`, owned ? "Owned" : "Missing"),
-      el("span", "", owned ? `@${name} already has this badge.` : `@${name} doesn't have this badge yet.`)
-    );
-    $("bdChatUser").textContent = name;
-  } catch {}
-}
-
 function render() {
   document.title = `${badge.title} — BadgeStatus`;
   $("bdCrumb").textContent = badge.title;
@@ -317,7 +292,6 @@ async function init() {
 
   $("bd").classList.remove("hidden");
   render();
-  renderUser();
   setInterval(renderStatus, 1000);
 
   const refresh = async () => {

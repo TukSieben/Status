@@ -1,6 +1,7 @@
+import "../lib/background.js";
 import {
   $, el, badgeImg, badgeHref, objectiveText, pill, costPill, timerSpan, refreshTimers, splitBadges,
-  formatDate, compactNumber, loadBadges, normalizeLogin, savedLogin, URGENT_MS,
+  formatDate, compactNumber, loadBadges, normalizeLogin, URGENT_MS,
 } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, chatSrc, paintLiveIndicators } from "../lib/twitch.js";
 import { renderSchedule, buildEvents } from "../lib/schedule.js";
@@ -65,13 +66,29 @@ function render() {
   $("hsTotal").textContent = String(new Set(badges.map((b) => b.setID)).size);
   $("heroLive").textContent = `${active.length} badges available right now`;
 
-  // Hero showcase: a floating wall of current badge images
+  // Hero showcase: current badges floating freely (no tiles), scattered on a loose grid
   const showcase = $("heroShowcase");
-  const wall = [...active, ...upcoming].slice(0, 12);
+  const wall = [...active, ...upcoming].slice(0, 11);
+  const spots = [
+    [6, 8, 64], [34, 2, 54], [62, 10, 70], [86, 4, 48],
+    [16, 40, 52], [44, 34, 78], [74, 42, 56],
+    [4, 72, 58], [30, 70, 46], [56, 74, 62], [84, 70, 50],
+  ];
   showcase.replaceChildren(
     ...wall.map((b, i) => {
-      const tile = el("div", "show-tile");
-      tile.style.animationDelay = `${(i % 6) * 0.35}s`;
+      const [x, y, size] = spots[i];
+      const tile = el("a", "show-tile");
+      tile.href = badgeHref(b);
+      tile.title = b.title;
+      tile.style.left = `${x}%`;
+      tile.style.top = `${y}%`;
+      tile.style.width = `${size}px`;
+      tile.style.height = `${size}px`;
+      tile.style.animationDelay = `${-(i * 0.9) % 6}s`;
+      tile.style.animationDuration = `${5 + (i % 4)}s`;
+      tile.style.setProperty("--rot", `${(i % 2 ? -1 : 1) * (3 + (i % 3) * 2)}deg`);
+      tile.style.setProperty("--dx", `${((i % 3) - 1) * 6}px`);
+      tile.style.setProperty("--dy", `${-8 - (i % 4) * 3}px`);
       tile.appendChild(badgeImg(b, ""));
       return tile;
     })
@@ -134,11 +151,7 @@ $("homeForm").addEventListener("submit", (e) => {
   location.href = login ? `/badges/?user=${encodeURIComponent(login)}` : "/badges/";
 });
 
-const saved = savedLogin();
-if (saved) {
-  $("homeInput").value = saved;
-  $("homeHint").textContent = `Welcome back, ${saved}.`;
-}
+
 
 async function init() {
   const data = await loadBadges();

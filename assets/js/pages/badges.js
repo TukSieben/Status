@@ -1,7 +1,8 @@
+import "../lib/background.js";
 import {
   $, el, badgeImg, badgeHref, extractUuid, img, statusOf, splitBadges, objectiveText, pill, costPill,
   timerSpan, refreshTimers, formatDate, shortDate, compactNumber, loadBadges, gql, normalizeLogin,
-  savedLogin, STORAGE_KEY, URGENT_MS,
+  URGENT_MS,
 } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 import { renderSchedule, buildEvents } from "../lib/schedule.js";
@@ -239,10 +240,6 @@ async function checkUser(raw, { updateUrl = true } = {}) {
       if (uuid) state.ownedUuids.add(uuid);
     }
 
-    try {
-      localStorage.setItem(STORAGE_KEY, data.user.login);
-    } catch {}
-
     if (updateUrl) {
       const url = new URL(location.href);
       url.searchParams.set("user", data.user.login);
@@ -267,9 +264,6 @@ function clearUser() {
   els.userInput.value = "";
   els.clearUserBtn.classList.add("hidden");
   els.errorBox.classList.add("hidden");
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch {}
   const url = new URL(location.href);
   url.searchParams.delete("user");
   history.replaceState(null, "", url);
@@ -292,8 +286,8 @@ async function init() {
   document.getElementById("schedCount").textContent = `(${buildEvents(state.badges).length})`;
 
   const urlUser = new URLSearchParams(location.search).get("user");
-  const saved = savedLogin();
-  if (urlUser || saved) await checkUser(urlUser || saved, { updateUrl: Boolean(urlUser) });
+  // Only a ?user= link triggers a check — the username is never stored
+  if (urlUser) await checkUser(urlUser, { updateUrl: true });
 
   setInterval(tickTimers, 1000);
 

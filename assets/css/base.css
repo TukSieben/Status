@@ -3,7 +3,7 @@
 :root {
   color-scheme: dark;
   --bg: #09090b;
-  --panel: #111113;
+  --panel: rgba(17, 17, 19, 0.86);
   --panel-2: #18181b;
   --line: rgba(39, 39, 42, 0.8);   /* zinc-800/80 */
   --line-2: #3f3f46;               /* zinc-700 */
@@ -201,3 +201,12 @@ b { font-weight: 600; color: var(--text); }
 
 /* ---------- Small labels ---------- */
 .block-label { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+
+/* ---------- Animated background (assets/js/lib/background.js) ---------- */
+.bg-waves { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.bg-waves canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+/* Darken towards the bottom so content stays readable */
+.bg-waves::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(9, 9, 11, 0) 0%, rgba(9, 9, 11, 0.25) 50%, rgba(9, 9, 11, 0.6) 100%);
+}

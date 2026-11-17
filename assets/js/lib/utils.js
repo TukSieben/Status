@@ -2,7 +2,6 @@
 
 export const GQL_URL = "https://gql.twitch.tv/gql";
 export const TWITCH_CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko";
-export const STORAGE_KEY = "badgestatus_user";
 export const URGENT_MS = 48 * 60 * 60 * 1000;
 export const DATA_URL = "/data/badges.json";
 
@@ -184,10 +183,7 @@ export function normalizeLogin(raw) {
     .replace(/[/?#].*$/, "");
 }
 
-export function savedLogin() {
-  try {
-    return localStorage.getItem(STORAGE_KEY) || "";
-  } catch {
-    return "";
-  }
-}
+// Older versions stored the last searched username — remove it.
+try {
+  localStorage.removeItem("badgestatus_user");
+} catch {}
