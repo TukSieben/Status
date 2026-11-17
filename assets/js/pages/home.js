@@ -5,13 +5,10 @@ import {
   badgeImg,
   badgeHref,
   objectiveText,
-  pill,
-  costPill,
   timerSpan,
   refreshTimers,
   splitBadges,
   formatDate,
-  compactNumber,
   loadBadges,
   normalizeLogin,
   URGENT_MS,
@@ -22,7 +19,7 @@ import {
   chatSrc,
   paintLiveIndicators,
 } from "../lib/twitch.js";
-import { renderSchedule, buildEvents } from "../lib/schedule.js";
+import { renderSchedule } from "../lib/schedule.js";
 
 let badges = [];
 let channel = null;
@@ -33,53 +30,18 @@ function miniRow(b, mode) {
 
   const row = el("a", "mini-row");
   row.href = badgeHref(b);
+  row.title = objectiveText(b);
 
-  const text = el("div", "row-text");
-  text.append(
-    el("div", "row-title", b.title),
-    el("div", "row-objective", objectiveText(b)),
+  const title = el("span", "mini-title", b.title);
+  const side = el("span", "mini-side");
+  if (mode === "ending" && earnableOnStream(b, channel)) side.appendChild(el("span", "tag is-live", "On stream"));
+  side.append(
+    el("span", `tag ${b.cost === "paid" ? "is-paid" : "is-free"}`, b.cost === "paid" ? "Paid" : "Free"),
+    timerSpan(target, urgent ? "is-urgent" : "")
   );
 
-  const side = el("div", "mini-side");
-  if (mode === "ending" && earnableOnStream(b, channel))
-    side.appendChild(el("span", "pill pill-live", "On stream"));
-  side.append(costPill(b), timerSpan(target, urgent ? "is-urgent" : ""));
-
-  row.append(badgeImg(b, "row-img"), text, side);
+  row.append(badgeImg(b, "mini-img", 2), title, side);
   return row;
-}
-
-function newestCard(b) {
-  const endMs = Date.parse(b.endAt);
-  const urgent = endMs - Date.now() < URGENT_MS;
-
-  const card = el("a", "card");
-  card.href = badgeHref(b);
-
-  const status = el("div", "card-status pills");
-  status.appendChild(el("span", "pill pill-soon pill-upper", "New"));
-
-  const title = el("div", "card-title", b.title);
-  const objective = el("p", "card-objective", objectiveText(b));
-
-  const foot = el("div", "card-foot");
-  const tags = el("div", "pills");
-  tags.appendChild(costPill(b));
-  if (earnableOnStream(b, channel))
-    tags.appendChild(el("span", "pill pill-live", "On stream"));
-  const meta = el("div", "card-meta");
-  meta.append(
-    el("span", "", "Ends in"),
-    el(
-      "span",
-      "users",
-      b.userCount != null ? `${compactNumber(b.userCount)} users` : "",
-    ),
-  );
-  foot.append(tags, meta, timerSpan(endMs, urgent ? "is-urgent" : ""));
-
-  card.append(status, badgeImg(b, "card-img"), title, objective, foot);
-  return card;
 }
 
 function emptyNote(text) {
@@ -89,12 +51,6 @@ function emptyNote(text) {
 function render() {
   const { active, upcoming } = splitBadges(badges);
 
-  $("hsActive").textContent = String(active.length);
-  $("hsUpcoming").textContent = String(upcoming.length);
-  $("hsFree").textContent = String(
-    active.filter((b) => b.cost !== "paid").length,
-  );
-  $("hsTotal").textContent = String(new Set(badges.map((b) => b.setID)).size);
   $("heroActive").textContent = String(active.length);
   $("heroUpcoming").textContent = String(upcoming.length);
   const next = upcoming[0];
@@ -149,7 +105,7 @@ function render() {
   const ending = active
     .slice()
     .sort((a, b) => Date.parse(a.endAt) - Date.parse(b.endAt))
-    .slice(0, 5);
+    .slice(0, 6);
   $("endingList").replaceChildren(
     ...(ending.length
       ? ending.map((b) => miniRow(b, "ending"))
@@ -159,19 +115,13 @@ function render() {
   const starting = upcoming
     .slice()
     .sort((a, b) => Date.parse(a.startAt) - Date.parse(b.startAt))
-    .slice(0, 5);
+    .slice(0, 6);
   $("startingList").replaceChildren(
     ...(starting.length
       ? starting.map((b) => miniRow(b, "starting"))
       : [emptyNote("No upcoming badges announced yet.")]),
   );
 
-  const newest = active
-    .slice()
-    .sort((a, b) => Date.parse(b.startAt) - Date.parse(a.startAt))
-    .slice(0, 6);
-  $("newestCount").textContent = `(${newest.length})`;
-  $("newestGrid").replaceChildren(...newest.map(newestCard));
 }
 
 function renderStream() {
@@ -197,7 +147,6 @@ function drawSchedule() {
   renderSchedule($("scheduleRoot"), badges, {
     href: (ev) => badgeHref(ev.badges[0]),
   });
-  $("schedCount").textContent = `(${buildEvents(badges).length})`;
 }
 
 async function refreshChannel() {
@@ -211,8 +160,8 @@ function tick() {
   refreshTimers();
   const { active, upcoming } = splitBadges(badges);
   if (
-    active.length !== Number($("hsActive").textContent) ||
-    upcoming.length !== Number($("hsUpcoming").textContent)
+    active.length !== Number($("heroActive").textContent) ||
+    upcoming.length !== Number($("heroUpcoming").textContent)
   ) {
     render();
   }
@@ -230,7 +179,7 @@ async function init() {
   const data = await loadBadges();
   badges = data.badges;
   $("footerSync").textContent = data.syncedAt
-    ? `Schedule synced ${formatDate(data.syncedAt)}`
+    ? `Synced ${formatDate(data.syncedAt)}`
     : "";
   embedChat();
   render();

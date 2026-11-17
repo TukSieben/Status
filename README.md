@@ -8,8 +8,8 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 
 | URL | File | What it does |
 | --- | --- | --- |
-| `/` | `index.html` | Homepage: schedule, ending soon / starting next, newest drops, stream chat sidebar |
-| `/badges/` | `badges/index.html` | Badge tracker with username check (owned / missing), filters, schedule, upcoming list |
+| `/` | `index.html` | Homepage: username check, schedule, ending soon / starting next, stream chat sidebar |
+| `/badges/` | `badges/index.html` | Badge tracker with username check (owned / missing), filters, upcoming list |
 | `/badge/?id=<setID>` | `badge/index.html` | Detail page for a single badge |
 | — | `404.html` | Not-found page (also redirects old `badges.html` / `badge.html` links) |
 
@@ -24,7 +24,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 ├── assets/
 │   ├── css/
 │   │   ├── base.css           # Design tokens, reset, nav, buttons, layout, pills, footer
-│   │   ├── components/        # Reusable blocks: cards, stream, schedule
+│   │   ├── components/        # Reusable blocks: cards + lists, stream, schedule
 │   │   └── pages/             # Page-specific styles: home, badges, badge
 │   ├── js/
 │   │   ├── lib/

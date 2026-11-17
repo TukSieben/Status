@@ -1,7 +1,6 @@
 import "../lib/background.js";
-import { $, el, img, onImgError, badgeHref, showToast, loadBadges } from "../lib/utils.js";
+import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, timerSpan, refreshTimers, compactNumber } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
-
 
 let badge = null;
 let all = [];
@@ -19,38 +18,17 @@ function statusOf(b, now = Date.now()) {
   return "active";
 }
 
-function longRel(ms) {
-  const diff = Math.max(0, ms - Date.now());
-  const d = Math.floor(diff / 86_400_000);
-  const h = Math.floor((diff / 3_600_000) % 24);
-  const m = Math.floor((diff / 60_000) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-  const part = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
-  if (d > 0) return `${part(d, "day")} ${part(h, "hour")}`;
-  if (h > 0) return `${part(h, "hour")} ${part(m, "minute")}`;
-  return `${part(m, "minute")} ${part(s, "second")}`;
-}
-
-function localDate(iso, withSeconds = false) {
+function localDate(iso) {
   const t = Date.parse(iso || "");
-  if (Number.isNaN(t)) return "N/A";
-  return (
-    new Date(t).toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      ...(withSeconds ? { second: "2-digit" } : {}),
-      hour12: false,
-    }) + " (Local)"
-  );
-}
-
-function shortRange(iso) {
-  const t = Date.parse(iso || "");
-  if (Number.isNaN(t)) return "TBA";
-  return new Date(t).toLocaleString("en-US", { month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+  if (Number.isNaN(t)) return "—";
+  return new Date(t).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 }
 
 /** "Grand Theft Auto VI (Subscribe)" and "... (Watch)" belong to the same campaign. */
@@ -64,99 +42,133 @@ function channelsText(b) {
   return m ? m[1].replace(/^./, (c) => c.toUpperCase()) : "Any";
 }
 
-/** Category without the "(+18 categories)" suffix kept separately. */
 function categoryText(b) {
   const g = (b.game || "").trim();
   if (g) return g;
   const m = (b.objective || "").match(/\bin\s+(.+?)(?:\s*\(|$)/i);
-  return m ? m[1].trim() : "N/A";
+  return m ? m[1].trim() : "—";
+}
+
+function costTag(b) {
+  const paid = b.cost === "paid";
+  return el("span", `tag ${paid ? "is-paid" : "is-free"}`, paid ? "Paid" : "Free");
 }
 
 /* ---------- rendering ---------- */
 
-function renderStatus() {
+function renderMeta() {
+  const meta = $("bdMeta");
   const s = statusOf(badge);
-  const node = $("bdStatus");
-  node.className = "bd-status";
-  if (s === "upcoming") {
-    node.classList.add("is-upcoming");
-    node.textContent = `Starts in ${longRel(Date.parse(badge.startAt))}`;
-  } else if (s === "active") {
-    node.classList.add("is-active");
-    node.textContent = `Ends in ${longRel(Date.parse(badge.endAt))}`;
-  } else if (s === "ended") {
-    node.classList.add("is-ended");
-    node.textContent = "No longer available";
-  } else if (s === "permanent") {
-    node.classList.add("is-active");
-    node.textContent = "Always available";
+  const items = [];
+
+  const status = el("span");
+  if (s === "active" || s === "upcoming") {
+    const b = el("b", s === "active" ? "amber" : "");
+    b.appendChild(timerSpan(Date.parse(s === "active" ? badge.endAt : badge.startAt)));
+    status.append(s === "active" ? "Ends in " : "Starts in ", b);
   } else {
-    node.classList.add("is-ended");
-    node.textContent = "Availability unknown";
+    const label = s === "permanent" ? "Always available" : s === "ended" ? "Ended" : "Unknown";
+    status.appendChild(el("b", s === "permanent" ? "green" : "", label));
   }
+  items.push(status);
+
+  const cost = el("span");
+  cost.appendChild(el("b", badge.cost === "paid" ? "amber" : "green", badge.cost === "paid" ? "Paid" : "Free"));
+  items.push(cost);
+
+  if (typeof badge.userCount === "number") {
+    const users = el("span");
+    users.append(el("b", "", compactNumber(badge.userCount)), " users");
+    items.push(users);
+  }
+
+  if (earnableOnStream(badge, channel)) {
+    const live = el("a");
+    live.href = "https://www.twitch.tv/badgestatus";
+    live.target = "_blank";
+    live.rel = "noopener noreferrer";
+    live.appendChild(el("b", "is-live-text", "Earnable on our stream ↗"));
+    items.push(live);
+  }
+
+  meta.replaceChildren(...items);
 }
 
-function contextBlock() {
-  const box = $("bdContext");
-  box.replaceChildren();
-  const s = statusOf(badge);
-  const event = campaignOf(badge);
-  const free = badge.cost !== "paid";
+function row(label, value) {
+  const wrap = el("div");
+  const dd = el("dd");
+  if (value instanceof Node) dd.appendChild(value);
+  else dd.textContent = value || "—";
+  wrap.append(el("dt", "", label), dd);
+  return wrap;
+}
 
-  const intro = el("p");
-  const strong = el("b", "", badge.title);
-  intro.append(strong);
-  if (s === "permanent") intro.append(" is a permanent Twitch global chat badge.");
-  else if (event) intro.append(` is a limited-time global chat badge from the `, el("b", "", event), " campaign.");
-  else intro.append(" is a Twitch global chat badge.");
-  box.appendChild(intro);
-
-  if (badge.objective) {
-    const how = el("p");
-    how.append("To earn it: ", el("span", "bd-em", badge.objective.replace(/\.$/, "")), ".");
-    if (!free) how.append(" Prime Gaming subs usually don't count.");
-    box.appendChild(how);
+function renderData() {
+  const rows = [];
+  rows.push(row("How to get it", badge.objective?.trim() || "Not announced yet."));
+  rows.push(row("Category", categoryText(badge)));
+  rows.push(row("Channels", channelsText(badge)));
+  if (badge.alwaysAvailable) rows.push(row("Available", "Always"));
+  else {
+    rows.push(row("Starts", localDate(badge.startAt)));
+    rows.push(row("Ends", localDate(badge.endAt)));
   }
+  rows.push(row("Description", badge.description?.trim()));
 
-  if (badge.startAt || badge.endAt) {
-    const dur = el("p", "bd-duration");
-    dur.append(s === "ended" ? "Was available: " : "Event duration: ", el("span", "bd-chip", shortRange(badge.startAt)), " – ", el("span", "bd-chip", shortRange(badge.endAt)));
-    box.appendChild(dur);
-  }
+  const ids = el("span", "mono-dd", `${badge.setID} · v${badge.version || "1"}`);
+  rows.push(row("Set ID", ids));
+  rows.push(row("Added", localDate(badge.firstSeen)));
 
-  if (s === "active" || s === "upcoming") {
-    box.appendChild(el("p", "", "The badge is granted automatically once you meet the requirement while the event is running."));
-  }
-
-  if (event) {
-    const seen = new Set([badge.setID]);
-    const siblings = all
-      .filter((b) => campaignOf(b) === event && !seen.has(b.setID) && seen.add(b.setID))
-      .sort((a, b) => (a.cost === "paid") - (b.cost === "paid") || Date.parse(a.startAt) - Date.parse(b.startAt));
-    if (siblings.length) {
-      box.appendChild(el("p", "bd-list-title", "Other badges from this campaign:"));
-      const ul = el("ul", "bd-list");
-      for (const b of siblings) {
-        const li = el("li");
-        const a = el("a", "", b.title);
-        a.href = badgeHref(b);
-        const icon = el("img");
-        icon.src = img(b, 1);
-        icon.alt = "";
-        icon.addEventListener("error", onImgError);
-        const note = b.objective ? `${b.cost === "paid" ? "paid" : "free"} · ${b.objective}` : b.cost === "paid" ? "paid" : "free";
-        li.append(icon, a, el("span", "muted", ` (${note})`));
-        ul.appendChild(li);
-      }
-      box.appendChild(ul);
+  const links = el("span", "bd-links");
+  const sdb = el("a", "", "StreamDatabase ↗");
+  sdb.href = `https://www.streamdatabase.com/twitch/global-badges/${encodeURIComponent(badge.setID)}/${encodeURIComponent(badge.version || "1")}`;
+  sdb.target = "_blank";
+  sdb.rel = "noopener noreferrer";
+  const copy = el("button", "", "Copy image URL");
+  copy.type = "button";
+  copy.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(img(badge));
+      showToast("Image URL copied");
+    } catch {
+      showToast("Copy failed");
     }
-  }
+  });
+  links.append(sdb, copy);
+  rows.push(row("Links", links));
+
+  $("bdData").replaceChildren(...rows);
+}
+
+function renderCampaign() {
+  const campaign = campaignOf(badge);
+  const seen = new Set([badge.setID]);
+  const siblings = campaign
+    ? all
+        .filter((b) => campaignOf(b) === campaign && !seen.has(b.setID) && seen.add(b.setID))
+        .sort((a, b) => (a.cost === "paid") - (b.cost === "paid") || Date.parse(a.startAt) - Date.parse(b.startAt))
+    : [];
+  $("bdCampaignWrap").classList.toggle("hidden", siblings.length === 0);
+  if (!siblings.length) return;
+
+  $("bdCampaignTitle").textContent = `More from ${campaign}`;
+  $("bdCampaign").replaceChildren(
+    ...siblings.map((b) => {
+      const r = el("a", "mini-row");
+      r.href = badgeHref(b);
+      const title = el("span", "mini-title", b.title);
+      if (b.objective) title.appendChild(el("span", "mini-sub", b.objective));
+      const side = el("span", "mini-side");
+      side.appendChild(costTag(b));
+      r.append(badgeImg(b, "mini-img", 2), title, side);
+      return r;
+    })
+  );
 }
 
 function renderOther() {
-  const grid = $("bdOther");
   const now = Date.now();
-  const event = campaignOf(badge);
+  const campaign = campaignOf(badge);
   const seen = new Set([badge.setID]);
   const pick = [];
   const push = (b) => {
@@ -164,12 +176,8 @@ function renderOther() {
     seen.add(b.setID);
     pick.push(b);
   };
-  if (event) all.filter((b) => campaignOf(b) === event).forEach(push);
   all
-    .filter((b) => {
-      const s = statusOf(b, now);
-      return s === "active" || s === "upcoming";
-    })
+    .filter((b) => campaignOf(b) !== campaign && ["active", "upcoming"].includes(statusOf(b, now)))
     .sort((a, b) => Date.parse(b.startAt) - Date.parse(a.startAt))
     .forEach(push);
   all
@@ -177,33 +185,15 @@ function renderOther() {
     .sort((a, b) => Date.parse(b.firstSeen || 0) - Date.parse(a.firstSeen || 0))
     .forEach(push);
 
-  grid.replaceChildren(
-    ...pick.slice(0, 12).map((b) => {
+  $("bdOther").replaceChildren(
+    ...pick.slice(0, 16).map((b) => {
       const a = el("a", "bd-other-item");
       a.href = badgeHref(b);
       a.title = b.title;
-      const i = el("img");
-      i.src = img(b);
-      i.alt = b.title;
-      i.loading = "lazy";
-      i.addEventListener("error", onImgError);
-      a.appendChild(i);
+      a.appendChild(badgeImg(b, "", 4));
       return a;
     })
   );
-}
-
-function renderLive() {
-  paintLiveIndicators(channel);
-  const pill = $("bdLivePill");
-  const live = Boolean(channel?.live);
-  pill.textContent = live ? "Live" : "Offline";
-  pill.classList.toggle("is-live", live);
-  if (earnableOnStream(badge, channel)) {
-    $("bdLiveText").textContent = `We're live in ${channel.game} right now — watch on our stream to earn ${badge.title}.`;
-  } else if (live) {
-    $("bdLiveText").textContent = `We're live${channel.game ? ` in ${channel.game}` : ""} with 24/7 badge countdowns and drops.`;
-  }
 }
 
 function render() {
@@ -211,7 +201,16 @@ function render() {
   $("bdCrumb").textContent = badge.title;
   $("bdTitle").textContent = badge.title;
 
-  for (const [id, size] of [["bdImg1", 1], ["bdImg2", 2], ["bdImg4", 4]]) {
+  const head = $("bdHeadImg");
+  head.src = img(badge, 4);
+  head.alt = badge.title;
+  head.addEventListener("error", onImgError);
+
+  for (const [id, size] of [
+    ["bdImg1", 1],
+    ["bdImg2", 2],
+    ["bdImg4", 4],
+  ]) {
     const node = $(id);
     node.src = img(badge, size);
     node.alt = `${badge.title} ${size}x`;
@@ -219,40 +218,10 @@ function render() {
   }
   $("bdChatImg").src = img(badge, 1);
 
-  $("bdDataTitle").textContent = badge.title;
-  $("bdDataDesc").textContent = badge.description?.trim() || "N/A";
-  $("bdDataSet").textContent = badge.setID;
-  $("bdDataVersion").textContent = badge.version || "1";
-  $("bdDataAction").textContent = badge.clickAction || "N/A";
-  const url = $("bdDataUrl");
-  if (badge.clickURL) {
-    const a = el("a", "bd-link", badge.clickURL);
-    a.href = badge.clickURL;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    url.replaceChildren(a);
-  } else url.textContent = "N/A";
-
-  renderStatus();
-  const cost = $("bdCost");
-  cost.textContent = badge.cost === "paid" ? "Paid" : "Free";
-  cost.className = `bd-tag ${badge.cost === "paid" ? "is-paid" : "is-free"}`;
-  $("bdObjective").textContent = badge.objective?.trim() || "Not announced yet.";
-  $("bdCategory").textContent = categoryText(badge);
-  $("bdChannels").textContent = channelsText(badge);
-  $("bdStart").textContent = badge.alwaysAvailable ? "Always" : localDate(badge.startAt);
-  $("bdEnd").textContent = badge.alwaysAvailable ? "Never" : localDate(badge.endAt);
-
-  contextBlock();
-
-  $("bdUsers").textContent = typeof badge.userCount === "number" ? badge.userCount.toLocaleString("en-US") : "N/A";
-  $("bdSdb").href = `https://www.streamdatabase.com/twitch/global-badges/${encodeURIComponent(badge.setID)}/${encodeURIComponent(badge.version || "1")}`;
-
-  $("bdAdded").textContent = localDate(badge.firstSeen, true);
-  $("bdUpdated").textContent = localDate(badge.lastUpdated, true);
-
+  renderMeta();
+  renderData();
+  renderCampaign();
   renderOther();
-  renderLive();
 }
 
 /* ---------- init ---------- */
@@ -264,26 +233,15 @@ for (const btn of document.querySelectorAll(".bd-theme button")) {
   });
 }
 
-$("bdCopy").addEventListener("click", async () => {
-  if (!badge) return;
-  try {
-    await navigator.clipboard.writeText(img(badge));
-    showToast("Image URL copied");
-  } catch {
-    showToast("Copy failed");
-  }
-});
-
 async function init() {
   const id = new URLSearchParams(location.search).get("id") || "";
   const data = await loadBadges();
   all = data.badges;
-  if (data.syncedAt) $("footerSync").textContent = `Schedule synced ${localDate(data.syncedAt).replace(" (Local)", "")}`;
+  if (data.syncedAt) $("footerSync").textContent = `Synced ${localDate(data.syncedAt)}`;
 
   $("bdLoading").classList.add("hidden");
-  const matches = all.filter((b) => b.setID === id);
   // Prefer the newest version of a set
-  badge = matches.sort((a, b) => Number(b.version) - Number(a.version))[0] || null;
+  badge = all.filter((b) => b.setID === id).sort((a, b) => Number(b.version) - Number(a.version))[0] || null;
 
   if (!badge) {
     $("bdNotFound").classList.remove("hidden");
@@ -292,12 +250,13 @@ async function init() {
 
   $("bd").classList.remove("hidden");
   render();
-  setInterval(renderStatus, 1000);
+  setInterval(refreshTimers, 1000);
 
   const refresh = async () => {
     const next = await fetchChannel();
     if (next) channel = next;
-    renderLive();
+    paintLiveIndicators(channel);
+    renderMeta();
   };
   refresh();
   setInterval(refresh, 60_000);

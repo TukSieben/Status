@@ -21,11 +21,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/base.css?v=13">
-  <link rel="stylesheet" href="/assets/css/components/cards.css?v=10">
-  <link rel="stylesheet" href="/assets/css/components/stream.css?v=11">
-  <link rel="stylesheet" href="/assets/css/components/schedule.css?v=11">
-  <link rel="stylesheet" href="/assets/css/pages/home.css?v=15">
+  <link rel="stylesheet" href="/assets/css/base.css?v=21">
+    <link rel="stylesheet" href="/assets/css/components/cards.css?v=21">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=21">
+  <link rel="stylesheet" href="/assets/css/components/schedule.css?v=21">
+  <link rel="stylesheet" href="/assets/css/pages/home.css?v=21">
 </head>
 <body>
   <div class="bg-waves" id="bgWaves" aria-hidden="true"></div>
@@ -52,7 +52,7 @@
     <!-- HERO -->
     <section class="panel hero">
       <div class="hero-text">
-        <div class="hero-meta" id="heroMeta">
+        <div class="meta-line hero-meta" id="heroMeta">
           <span><b id="heroActive">—</b> available</span>
           <span><b id="heroUpcoming">—</b> upcoming</span>
           <span id="heroNextWrap">next drop <b id="heroNext">—</b></span>
@@ -64,7 +64,7 @@
             <span class="search-prefix">twitch.tv/</span>
             <input type="text" id="homeInput" placeholder="your username..." spellcheck="false" aria-label="Twitch username">
           </label>
-          <button type="submit" class="btn-white">Check my badges</button>
+          <button type="submit" class="btn-white">Check</button>
         </form>
       </div>
 
@@ -74,81 +74,28 @@
     <!-- SCHEDULE -->
     <section class="section" id="schedule">
       <div class="section-head">
-        <h2>Schedule <span class="section-count" id="schedCount"></span></h2>
-        <a href="/badges/" class="box-link">All badges →</a>
+        <h2>Schedule</h2>
       </div>
       <div class="panel sched" id="scheduleRoot"></div>
     </section>
 
-    <!-- STATS -->
-    <div class="stats">
-      <a href="/badges/" class="stat">
-        <span class="stat-label">Available now</span>
-        <span class="stat-value green" id="hsActive">—</span>
-      </a>
-      <a href="/badges/#upcoming" class="stat stat-upcoming">
-        <span class="stat-label">Upcoming</span>
-        <span class="stat-value" id="hsUpcoming">—</span>
-      </a>
-      <div class="stat">
-        <span class="stat-label">Free right now</span>
-        <span class="stat-value" id="hsFree">—</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Badges tracked</span>
-        <span class="stat-value" id="hsTotal">—</span>
-      </div>
-    </div>
-
     <!-- ENDING / STARTING -->
     <div class="home-cols">
-      <section class="panel home-box">
-        <div class="box-head">
-          <h2><span class="dot dot-amber"></span>Ending Soon</h2>
-          <a href="/badges/" class="box-link">All available →</a>
+      <section class="section">
+        <div class="section-head">
+          <h2>Ending soon</h2>
+          <a href="/badges/" class="box-link">All →</a>
         </div>
         <div class="mini-list" id="endingList"></div>
       </section>
-
-      <section class="panel home-box">
-        <div class="box-head">
-          <h2><span class="dot dot-sky"></span>Starting Next</h2>
-          <a href="/badges/#upcoming" class="box-link">All upcoming →</a>
+      <section class="section">
+        <div class="section-head">
+          <h2>Starting next</h2>
+          <a href="/badges/#upcoming" class="box-link">All →</a>
         </div>
         <div class="mini-list" id="startingList"></div>
       </section>
     </div>
-
-    <!-- NEWEST -->
-    <section class="section">
-      <div class="section-head">
-        <h2>Newest Badge Drops <span class="section-count" id="newestCount"></span></h2>
-        <a href="/badges/" class="box-link">All badges →</a>
-      </div>
-      <div class="grid" id="newestGrid"></div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section section-border">
-      <div class="section-head"><h2>How it works</h2></div>
-      <div class="steps">
-        <div class="panel step">
-          <span class="step-num">01</span>
-          <h3>Enter your username</h3>
-          <p>No login needed. BadgeStatus reads your public badge collection straight from Twitch.</p>
-        </div>
-        <div class="panel step">
-          <span class="step-num">02</span>
-          <h3>See what's missing</h3>
-          <p>Every badge you can earn right now is marked <span class="pill pill-missing">Missing</span> or <span class="pill pill-owned">Owned</span>, with how to unlock it.</p>
-        </div>
-        <div class="panel step">
-          <span class="step-num">03</span>
-          <h3>Don't miss the next one</h3>
-          <p>Live countdowns show when badges end and when new ones drop. The schedule syncs automatically every two hours.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- Low-key stream chat (right sidebar, like StreamDatabase) -->
@@ -171,6 +118,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/assets/js/pages/home.js?v=18"></script>
+  <script type="module" src="/assets/js/pages/home.js?v=21"></script>
 </body>
 </html>

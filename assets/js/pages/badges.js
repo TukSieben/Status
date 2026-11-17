@@ -1,58 +1,31 @@
 import "../lib/background.js";
 import {
-  $, el, badgeImg, badgeHref, extractUuid, img, statusOf, splitBadges, objectiveText, pill, costPill,
-  timerSpan, refreshTimers, formatDate, shortDate, compactNumber, loadBadges, gql, normalizeLogin,
+  $,
+  el,
+  badgeImg,
+  badgeHref,
+  extractUuid,
+  img,
+  splitBadges,
+  objectiveText,
+  timerSpan,
+  refreshTimers,
+  formatDate,
+  shortDate,
+  loadBadges,
+  gql,
+  normalizeLogin,
   URGENT_MS,
 } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
-import { renderSchedule, buildEvents } from "../lib/schedule.js";
-
 
 const state = {
   badges: [],
-  syncedAt: null,
   filter: "all",
   user: null,
-  loading: false,
   ownedSetIDs: new Set(),
   ownedUuids: new Set(),
   channel: null,
-  toastTimer: null,
-};
-
-const els = {
-  userForm: $("userForm"),
-  userInput: $("userInput"),
-  clearUserBtn: $("clearUserBtn"),
-  checkBtn: $("checkBtn"),
-  checkLabel: $("checkLabel"),
-  checkSpin: $("checkSpin"),
-  errorBox: $("errorBox"),
-  loadingBar: $("loadingBar"),
-  loadingUser: $("loadingUser"),
-  totalChip: $("totalChip"),
-  userBar: $("userBar"),
-  userAvatar: $("userAvatar"),
-  userName: $("userName"),
-  userMissing: $("userMissing"),
-  userTotal: $("userTotal"),
-  userOwned: $("userOwned"),
-  userPct: $("userPct"),
-  progressFill: $("progressFill"),
-  statsRow: $("statsRow"),
-  statAvailable: $("statAvailable"),
-  statMissing: $("statMissing"),
-  statOwned: $("statOwned"),
-  statUpcoming: $("statUpcoming"),
-  filterChips: $("filterChips"),
-  activeCount: $("activeCount"),
-  activeGrid: $("activeGrid"),
-  activeEmpty: $("activeEmpty"),
-  upcomingCount: $("upcomingCount"),
-  upcomingList: $("upcomingList"),
-  upcomingEmpty: $("upcomingEmpty"),
-  footerSync: $("footerSync"),
-  toast: $("toast"),
 };
 
 /* ---------- helpers ---------- */
@@ -64,111 +37,91 @@ function isOwned(badge) {
   return Boolean(uuid && state.ownedUuids.has(uuid));
 }
 
-/* ---------- data ---------- */
+function costTag(badge) {
+  const paid = badge.cost === "paid";
+  return el("span", `tag ${paid ? "is-paid" : "is-free"}`, paid ? "Paid" : "Free");
+}
 
 /* ---------- rendering ---------- */
 
 function renderCard(badge) {
   const owned = isOwned(badge);
-  const checked = Boolean(state.user);
   const endMs = Date.parse(badge.endAt);
   const urgent = endMs - Date.now() < URGENT_MS;
 
   const card = el("a", "card");
   card.href = badgeHref(badge);
-  if (checked) card.classList.add(owned ? "is-owned" : "is-missing");
-
-  const status = el("div", "card-status pills");
-  if (checked) status.appendChild(owned ? pill("Owned", "owned", true) : pill("Missing", "missing", true));
-  else if (urgent) status.appendChild(pill("Ending soon", "urgent", true));
-
-  const title = el("div", "card-title", badge.title);
-  title.title = badge.title;
-
-  const objective = el("p", "card-objective", objectiveText(badge));
-
-  const foot = el("div", "card-foot");
-  const tags = el("div", "pills");
-  tags.appendChild(costPill(badge));
-  if (earnableOnStream(badge, state.channel)) tags.appendChild(pill("On our stream", "live"));
-  if (checked && urgent && !owned) tags.appendChild(pill("Ending soon", "urgent"));
+  card.title = objectiveText(badge);
+  if (state.user) {
+    card.classList.add(owned ? "is-owned" : "is-missing");
+    card.appendChild(el("span", "card-flag", owned ? "Owned" : "Missing"));
+  }
 
   const meta = el("div", "card-meta");
-  meta.append(el("span", "", "Ends in"), el("span", "users", badge.userCount != null ? `${compactNumber(badge.userCount)} users` : ""));
+  meta.appendChild(costTag(badge));
+  if (earnableOnStream(badge, state.channel)) meta.appendChild(el("span", "tag is-live", "Stream"));
+  meta.appendChild(timerSpan(endMs, urgent ? "is-urgent" : ""));
 
-  foot.append(tags, meta, timerSpan(endMs, urgent ? "is-urgent" : ""));
-  card.append(status, badgeImg(badge, "card-img"), title, objective, foot);
+  card.append(badgeImg(badge, "card-img"), el("div", "card-title", badge.title), meta);
   return card;
 }
 
 function renderRow(badge) {
-  const startMs = Date.parse(badge.startAt);
-  const owned = isOwned(badge);
-
-  const row = el("a", "row");
+  const row = el("a", "mini-row");
   row.href = badgeHref(badge);
+  row.title = objectiveText(badge);
 
-  const main = el("div", "row-main");
-  const text = el("div", "row-text");
-  text.append(el("div", "row-title", badge.title), el("div", "row-objective", objectiveText(badge)));
-  main.append(badgeImg(badge, "row-img"), text);
+  const title = el("span", "mini-title", badge.title);
+  title.appendChild(el("span", "mini-sub", shortDate(badge.startAt)));
 
-  const side = el("div", "row-side");
-  const pills = el("div", "pills");
-  if (state.user && owned) pills.appendChild(pill("Owned", "owned"));
-  pills.appendChild(costPill(badge));
+  const side = el("span", "mini-side");
+  if (isOwned(badge)) side.appendChild(el("span", "tag is-owned", "Owned"));
+  side.append(costTag(badge), timerSpan(Date.parse(badge.startAt)));
 
-  const timer = el("div", "row-timer");
-  timer.append(el("span", "row-timer-label", "Starts in"), timerSpan(startMs), el("span", "row-date", shortDate(badge.startAt)));
-
-  side.append(pills, timer);
-  row.append(main, side);
+  row.append(badgeImg(badge, "mini-img", 2), title, side);
   return row;
 }
 
 function render() {
   const { active, upcoming } = splitBadges(state.badges);
-  const ownedActive = active.filter(isOwned);
-  const missingActive = active.filter((b) => !isOwned(b));
+  const owned = active.filter(isOwned);
+  const missing = active.filter((b) => !isOwned(b));
+  const checked = Boolean(state.user);
 
-  els.totalChip.textContent = String(active.length + upcoming.length);
-  els.statAvailable.textContent = String(active.length);
-  els.statUpcoming.textContent = String(upcoming.length);
-  els.statMissing.textContent = state.user ? String(missingActive.length) : "—";
-  els.statOwned.textContent = state.user ? String(ownedActive.length) : "—";
+  // Meta line
+  $("mAvailable").textContent = String(active.length);
+  $("mUpcoming").textContent = String(upcoming.length);
+  $("mMissing").textContent = String(missing.length);
+  $("mOwned").textContent = String(owned.length);
+  $("mMissingWrap").classList.toggle("hidden", !checked);
+  $("mOwnedWrap").classList.toggle("hidden", !checked);
 
-  for (const node of els.statsRow.querySelectorAll("[data-filter]")) {
-    if (node.dataset.filter !== "all") node.disabled = !state.user;
-    node.classList.toggle("is-active", node.dataset.filter === state.filter);
-  }
-  for (const chip of els.filterChips.querySelectorAll(".chip")) {
+  // Filter chips (missing/owned only exist after a check)
+  for (const chip of $("filterChips").querySelectorAll(".chip")) {
     const needsUser = chip.dataset.filter === "missing" || chip.dataset.filter === "owned";
-    chip.disabled = needsUser && !state.user;
+    chip.classList.toggle("hidden", needsUser && !checked);
     chip.classList.toggle("is-active", chip.dataset.filter === state.filter);
   }
 
-  if (state.user) {
-    const pct = active.length ? Math.round((ownedActive.length / active.length) * 100) : 0;
-    els.userBar.classList.remove("hidden");
-    els.userAvatar.src = state.user.profileImageURL || "/assets/img/logo.png";
-    els.userName.textContent = `@${state.user.displayName || state.user.login}`;
-    els.userMissing.textContent = String(missingActive.length);
-    els.userTotal.textContent = String(active.length);
-    els.userOwned.textContent = `${ownedActive.length} Owned`;
-    els.userPct.textContent = `${pct}%`;
-    els.progressFill.style.width = `${pct}%`;
-  } else {
-    els.userBar.classList.add("hidden");
+  // User summary
+  $("userBar").classList.toggle("hidden", !checked);
+  if (checked) {
+    const pct = active.length ? Math.round((owned.length / active.length) * 100) : 0;
+    $("userAvatar").src = state.user.profileImageURL || "/assets/img/logo.png";
+    $("userName").textContent = state.user.displayName || state.user.login;
+    $("userCount").textContent = `${owned.length}/${active.length}`;
+    $("progressFill").style.width = `${pct}%`;
   }
 
+  // Grid
   let list = active;
-  if (state.filter === "missing") list = missingActive;
-  else if (state.filter === "owned") list = ownedActive;
+  if (state.filter === "missing") list = missing;
+  else if (state.filter === "owned") list = owned;
   else if (state.filter === "free") list = active.filter((b) => b.cost !== "paid");
   else if (state.filter === "paid") list = active.filter((b) => b.cost === "paid");
 
   list = list.slice().sort((a, b) => {
-    if (state.user) {
+    if (checked) {
       const oa = isOwned(a);
       const ob = isOwned(b);
       if (oa !== ob) return oa ? 1 : -1;
@@ -177,46 +130,39 @@ function render() {
     return Date.parse(a.endAt) - Date.parse(b.endAt);
   });
 
-  els.activeCount.textContent = `(${list.length})`;
-  els.activeGrid.replaceChildren(...list.map(renderCard));
-  els.activeEmpty.classList.toggle("hidden", list.length > 0);
-  els.activeEmpty.textContent =
-    active.length === 0 ? "There are currently no active Twitch badge drops." : "No badges match this filter.";
+  $("activeGrid").replaceChildren(...list.map(renderCard));
+  $("activeEmpty").classList.toggle("hidden", list.length > 0);
+  $("activeEmpty").textContent = active.length === 0 ? "No active badge drops right now." : "No badges match this filter.";
 
-  els.upcomingCount.textContent = `(${upcoming.length})`;
-  els.upcomingList.replaceChildren(...upcoming.map(renderRow));
-  els.upcomingEmpty.classList.toggle("hidden", upcoming.length > 0);
+  // Upcoming
+  $("upcomingList").replaceChildren(
+    ...(upcoming.length ? upcoming.map(renderRow) : [el("div", "mini-empty", "No upcoming badges announced yet.")])
+  );
 }
 
-function tickTimers() {
+function tick() {
   refreshTimers();
   const { active, upcoming } = splitBadges(state.badges);
-  if (
-    active.length !== Number(els.statAvailable.textContent) ||
-    upcoming.length !== Number(els.statUpcoming.textContent)
-  ) {
+  if (active.length !== Number($("mAvailable").textContent) || upcoming.length !== Number($("mUpcoming").textContent)) {
     render();
   }
 }
 
 /* ---------- user check ---------- */
 
-function setLoading(on, login = "") {
-  state.loading = on;
-  els.checkBtn.disabled = on;
-  els.checkLabel.classList.toggle("hidden", on);
-  els.checkSpin.classList.toggle("hidden", !on);
-  els.loadingBar.classList.toggle("hidden", !on);
-  els.loadingUser.textContent = login ? `@${login}` : "";
+function setLoading(on) {
+  $("checkBtn").disabled = on;
+  $("checkLabel").classList.toggle("hidden", on);
+  $("checkSpin").classList.toggle("hidden", !on);
 }
 
-async function checkUser(raw, { updateUrl = true } = {}) {
+async function checkUser(raw) {
   const login = normalizeLogin(raw);
   if (!login) return;
 
-  els.userInput.value = login;
-  els.errorBox.classList.add("hidden");
-  setLoading(true, login);
+  $("userInput").value = login;
+  $("errorBox").classList.add("hidden");
+  setLoading(true);
 
   try {
     const data = await gql(
@@ -228,7 +174,6 @@ async function checkUser(raw, { updateUrl = true } = {}) {
       }`,
       { login }
     );
-
     if (!data?.user?.id) throw new Error(`Twitch user "${login}" was not found.`);
 
     state.user = data.user;
@@ -240,17 +185,16 @@ async function checkUser(raw, { updateUrl = true } = {}) {
       if (uuid) state.ownedUuids.add(uuid);
     }
 
-    if (updateUrl) {
-      const url = new URL(location.href);
-      url.searchParams.set("user", data.user.login);
-      history.replaceState(null, "", url);
-    }
+    // Shareable link for this session only — the username is never stored
+    const url = new URL(location.href);
+    url.searchParams.set("user", data.user.login);
+    history.replaceState(null, "", url);
 
-    els.clearUserBtn.classList.remove("hidden");
+    $("clearUserBtn").classList.remove("hidden");
     render();
   } catch (err) {
-    els.errorBox.textContent = err?.message || "Could not check this user.";
-    els.errorBox.classList.remove("hidden");
+    $("errorBox").textContent = err?.message || "Could not check this user.";
+    $("errorBox").classList.remove("hidden");
   } finally {
     setLoading(false);
   }
@@ -261,95 +205,53 @@ function clearUser() {
   state.ownedSetIDs = new Set();
   state.ownedUuids = new Set();
   if (state.filter === "missing" || state.filter === "owned") state.filter = "all";
-  els.userInput.value = "";
-  els.clearUserBtn.classList.add("hidden");
-  els.errorBox.classList.add("hidden");
+  $("userInput").value = "";
+  $("clearUserBtn").classList.add("hidden");
+  $("errorBox").classList.add("hidden");
   const url = new URL(location.href);
   url.searchParams.delete("user");
   history.replaceState(null, "", url);
   render();
 }
 
+/* ---------- events ---------- */
+
+$("userForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  checkUser($("userInput").value);
+});
+$("userInput").addEventListener("input", () => {
+  $("clearUserBtn").classList.toggle("hidden", !$("userInput").value && !state.user);
+});
+$("clearUserBtn").addEventListener("click", clearUser);
+for (const chip of $("filterChips").querySelectorAll(".chip")) {
+  chip.addEventListener("click", () => {
+    state.filter = chip.dataset.filter;
+    render();
+  });
+}
+
 /* ---------- init ---------- */
+
+async function refreshChannel() {
+  const next = await fetchChannel();
+  if (next) state.channel = next;
+  paintLiveIndicators(state.channel);
+  render();
+}
 
 async function init() {
   const data = await loadBadges();
   state.badges = data.badges;
-  state.syncedAt = data.syncedAt;
-
-  els.footerSync.textContent = state.syncedAt ? `Schedule synced ${formatDate(state.syncedAt)}` : "Schedule unavailable";
-
+  $("footerSync").textContent = data.syncedAt ? `Synced ${formatDate(data.syncedAt)}` : "";
   render();
-  renderSchedule(document.getElementById("scheduleRoot"), state.badges, {
-    href: (ev) => badgeHref(ev.badges[0]),
-  });
-  document.getElementById("schedCount").textContent = `(${buildEvents(state.badges).length})`;
 
   const urlUser = new URLSearchParams(location.search).get("user");
-  // Only a ?user= link triggers a check — the username is never stored
-  if (urlUser) await checkUser(urlUser, { updateUrl: true });
+  if (urlUser) await checkUser(urlUser);
 
-  setInterval(tickTimers, 1000);
-
-  const refreshChannel = async () => {
-    const next = await fetchChannel();
-    if (next) state.channel = next;
-    paintLiveIndicators(state.channel);
-    const c = state.channel;
-    const stripText = document.getElementById("streamStripText");
-    if (c?.live) {
-      const { active } = splitBadges(state.badges);
-      const n = active.filter((b) => earnableOnStream(b, c)).length;
-      stripText.innerHTML = "";
-      stripText.append(
-        "Live now on ",
-        Object.assign(document.createElement("b"), { textContent: "twitch.tv/badgestatus" }),
-        c.game ? ` in ${c.game}` : "",
-        n ? ` — ${n} badge${n === 1 ? "" : "s"} earnable on stream right now` : ""
-      );
-    }
-    render();
-  };
+  setInterval(tick, 1000);
   refreshChannel();
   setInterval(refreshChannel, 60_000);
 }
-
-els.userForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  checkUser(els.userInput.value);
-});
-els.userInput.addEventListener("input", () => {
-  els.clearUserBtn.classList.toggle("hidden", !els.userInput.value && !state.user);
-});
-els.clearUserBtn.addEventListener("click", clearUser);
-
-function setFilter(f) {
-  state.filter = f;
-  render();
-}
-for (const chip of els.filterChips.querySelectorAll(".chip")) {
-  chip.addEventListener("click", () => setFilter(chip.dataset.filter));
-}
-for (const stat of els.statsRow.querySelectorAll("button[data-filter]")) {
-  stat.addEventListener("click", () => {
-    setFilter(stat.dataset.filter);
-    document.getElementById("available").scrollIntoView({ behavior: "smooth" });
-  });
-}
-
-// Highlight nav link for the section in view
-const sectionLinks = [...document.querySelectorAll('.nav-link[href^="#"]')];
-function updateNavHighlight() {
-  let current = "available";
-  for (const id of ["available", "schedule", "upcoming"]) {
-    const node = document.getElementById(id);
-    if (node && node.getBoundingClientRect().top < window.innerHeight * 0.4) current = id;
-  }
-  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = "upcoming";
-  if (window.scrollY < 40) current = "available";
-  for (const link of sectionLinks) link.classList.toggle("is-active", link.getAttribute("href") === `#${current}`);
-}
-window.addEventListener("scroll", updateNavHighlight, { passive: true });
-updateNavHighlight();
 
 init();

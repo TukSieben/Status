@@ -1,7 +1,7 @@
 // Draggable timeline ("Schedule") of active + upcoming badge events.
 import { el, img, badgeHref } from "./utils.js";
 const DAY_MS = 86_400_000;
-const DAY_PX = 84;
+const DAY_PX = 72;
 const MIN_DAYS = 21;
 const MAX_DAYS = 90;
 
@@ -136,8 +136,8 @@ export function renderSchedule(root, badges, options = {}) {
     item.append(el("span", `sched-swatch ${cls}`), document.createTextNode(text));
     return item;
   };
-  legend.append(lg("sw-now", "Current time"), lg("sw-active", "Available now"), lg("sw-upcoming", "Upcoming"));
-  const hint = el("span", "sched-hint", "Drag to scroll →");
+  legend.append(lg("sw-now", "Current time"), lg("sw-active", "Available"), lg("sw-upcoming", "Upcoming"));
+  const hint = el("span", "sched-hint", "Drag →");
   legend.appendChild(hint);
 
   const scroller = el("div", "sched-scroll");
@@ -201,11 +201,11 @@ export function renderSchedule(root, badges, options = {}) {
       link.appendChild(i);
       icons.appendChild(link);
     }
-    label.append(icons, el("span", "sched-name", ev.name.toUpperCase()));
+    label.append(icons, el("span", "sched-name", ev.name));
 
     const rel = el("span", "sched-rel", ev.upcoming ? `starts in ${shortRel(ev.start)}` : `ends in ${shortRel(ev.end)}`);
     // Rough width of icons + name; if the bar can't fit label + countdown, put the countdown outside
-    const labelW = 16 + Math.min(ev.badges.length, 6) * 23 + ev.name.length * 8.6;
+    const labelW = 16 + Math.min(ev.badges.length, 6) * 23 + ev.name.length * 7;
     if (barW < labelW + 110 + (clippedLeft ? DAY_PX * 1.3 : 0)) {
       bar.classList.add("is-narrow");
       rel.style.left = `${Math.max(barW, labelW) + 10}px`;
