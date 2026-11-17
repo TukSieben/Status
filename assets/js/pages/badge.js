@@ -1,5 +1,5 @@
 import "../lib/background.js";
-import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, timerSpan, refreshTimers, compactNumber } from "../lib/utils.js";
+import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, compactNumber } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 
 let badge = null;
@@ -18,10 +18,11 @@ function statusOf(b, now = Date.now()) {
   return "active";
 }
 
-function localDate(iso) {
+function localDate(iso, opts = {}) {
   const t = Date.parse(iso || "");
   if (Number.isNaN(t)) return "—";
   return new Date(t).toLocaleString("en-US", {
+    weekday: opts.weekday ? "short" : undefined,
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -29,6 +30,19 @@ function localDate(iso) {
     minute: "2-digit",
     hour12: false,
   });
+}
+
+/** "3 days 4 hours", "5 hours 12 minutes", "12 minutes 30 seconds" */
+function longRel(ms) {
+  const diff = Math.max(0, ms - Date.now());
+  const d = Math.floor(diff / 86_400_000);
+  const h = Math.floor((diff / 3_600_000) % 24);
+  const m = Math.floor((diff / 60_000) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+  const part = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+  if (d > 0) return `${part(d, "day")} ${part(h, "hour")}`;
+  if (h > 0) return `${part(h, "hour")} ${part(m, "minute")}`;
+  return `${part(m, "minute")} ${part(s, "second")}`;
 }
 
 /** "Grand Theft Auto VI (Subscribe)" and "... (Watch)" belong to the same campaign. */
@@ -39,14 +53,14 @@ function campaignOf(b) {
 /** "Watch 1h in QSMP (3 eligible channels)" -> "3 eligible channels" */
 function channelsText(b) {
   const m = (b.objective || "").match(/\((\d+\s+eligible\s+channels?)\)/i);
-  return m ? m[1].replace(/^./, (c) => c.toUpperCase()) : "Any";
+  return m ? m[1].replace(/^./, (c) => c.toUpperCase()) : "Any channel";
 }
 
 function categoryText(b) {
   const g = (b.game || "").trim();
   if (g) return g;
   const m = (b.objective || "").match(/\bin\s+(.+?)(?:\s*\(|$)/i);
-  return m ? m[1].trim() : "—";
+  return m ? m[1].trim() : "";
 }
 
 function costTag(b) {
@@ -54,45 +68,93 @@ function costTag(b) {
   return el("span", `tag ${paid ? "is-paid" : "is-free"}`, paid ? "Paid" : "Free");
 }
 
-/* ---------- rendering ---------- */
+/* ---------- 1. Hero ---------- */
 
-function renderMeta() {
-  const meta = $("bdMeta");
+const STATE_LABEL = {
+  active: "Available now",
+  upcoming: "Upcoming",
+  ended: "Ended",
+  permanent: "Always available",
+  unknown: "Unknown",
+};
+
+function renderHero() {
+  document.title = `${badge.title} — BadgeStatus`;
+  $("bdCrumb").textContent = badge.title;
+  $("bdTitle").textContent = badge.title;
+
+  const hero = $("bdHeroImg");
+  hero.src = img(badge, 4);
+  hero.alt = badge.title;
+  hero.addEventListener("error", onImgError);
+
+  const paid = badge.cost === "paid";
+  const cost = $("bdCost");
+  cost.textContent = paid ? "Paid" : "Free";
+  cost.className = `bd-cost ${paid ? "is-paid" : "is-free"}`;
+}
+
+/* ---------- 2. When (updates every second) ---------- */
+
+function renderWhen() {
   const s = statusOf(badge);
-  const items = [];
+  const state = $("bdState");
+  state.textContent = STATE_LABEL[s];
+  state.className = `bd-state is-${s}`;
 
-  const status = el("span");
-  if (s === "active" || s === "upcoming") {
-    const b = el("b", s === "active" ? "amber" : "");
-    b.appendChild(timerSpan(Date.parse(s === "active" ? badge.endAt : badge.startAt)));
-    status.append(s === "active" ? "Ends in " : "Starts in ", b);
-  } else {
-    const label = s === "permanent" ? "Always available" : s === "ended" ? "Ended" : "Unknown";
-    status.appendChild(el("b", s === "permanent" ? "green" : "", label));
+  if (s === "permanent" || s === "unknown") {
+    $("bdWhen").classList.add("hidden");
+    return;
   }
-  items.push(status);
 
-  const cost = el("span");
-  cost.appendChild(el("b", badge.cost === "paid" ? "amber" : "green", badge.cost === "paid" ? "Paid" : "Free"));
-  items.push(cost);
+  $("bdStart").textContent = localDate(badge.startAt, { weekday: true });
+  $("bdEnd").textContent = localDate(badge.endAt, { weekday: true });
 
-  if (typeof badge.userCount === "number") {
-    const users = el("span");
-    users.append(el("b", "", compactNumber(badge.userCount)), " users");
-    items.push(users);
-  }
+  const start = Date.parse(badge.startAt);
+  const end = Date.parse(badge.endAt);
+  const total = end - start;
+  let pct = 0;
+  if (s === "ended") pct = 100;
+  else if (s === "active" && total > 0) pct = ((Date.now() - start) / total) * 100;
+  $("bdProgress").style.width = `${Math.min(100, Math.max(0, pct))}%`;
+  $("bdProgressWrap").className = `bd-progress is-${s}`;
+
+  const cd = $("bdCountdown");
+  cd.className = `bd-countdown is-${s}`;
+  if (s === "active") cd.replaceChildren(el("span", "", "Ends in "), el("b", "", longRel(end)));
+  else if (s === "upcoming") cd.replaceChildren(el("span", "", "Starts in "), el("b", "", longRel(start)));
+  else cd.replaceChildren(el("span", "", "This badge can no longer be earned."));
+}
+
+/* ---------- 3. How to get it ---------- */
+
+function renderHow() {
+  $("bdHow").textContent = badge.objective?.trim() || badge.description?.trim() || "Not announced yet.";
+
+  const facts = [];
+  const category = categoryText(badge);
+  if (category) facts.push(["Category", category]);
+  facts.push(["Channels", channelsText(badge)]);
+  if (typeof badge.userCount === "number") facts.push(["Owned by", `${compactNumber(badge.userCount)} users`]);
+
+  const nodes = facts.map(([k, v]) => {
+    const f = el("span", "bd-fact");
+    f.append(el("span", "bd-fact-k", k), el("span", "bd-fact-v", v));
+    return f;
+  });
 
   if (earnableOnStream(badge, channel)) {
-    const live = el("a");
+    const live = el("a", "bd-fact is-live");
     live.href = "https://www.twitch.tv/badgestatus";
     live.target = "_blank";
     live.rel = "noopener noreferrer";
-    live.appendChild(el("b", "is-live-text", "Earnable on our stream ↗"));
-    items.push(live);
+    live.append(el("span", "bd-fact-k", "Live"), el("span", "bd-fact-v", "Earnable on our stream ↗"));
+    nodes.push(live);
   }
-
-  meta.replaceChildren(...items);
+  $("bdFacts").replaceChildren(...nodes);
 }
+
+/* ---------- 4. Details ---------- */
 
 function row(label, value) {
   const wrap = el("div");
@@ -103,21 +165,18 @@ function row(label, value) {
   return wrap;
 }
 
-function renderData() {
-  const rows = [];
-  rows.push(row("How to get it", badge.objective?.trim() || "Not announced yet."));
-  rows.push(row("Category", categoryText(badge)));
-  rows.push(row("Channels", channelsText(badge)));
-  if (badge.alwaysAvailable) rows.push(row("Available", "Always"));
-  else {
-    rows.push(row("Starts", localDate(badge.startAt)));
-    rows.push(row("Ends", localDate(badge.endAt)));
+function renderDetails() {
+  for (const [id, size] of [
+    ["bdImg1", 1],
+    ["bdImg2", 2],
+    ["bdImg4", 4],
+  ]) {
+    const node = $(id);
+    node.src = img(badge, size);
+    node.alt = `${badge.title} ${size}x`;
+    node.addEventListener("error", onImgError);
   }
-  rows.push(row("Description", badge.description?.trim()));
-
-  const ids = el("span", "mono-dd", `${badge.setID} · v${badge.version || "1"}`);
-  rows.push(row("Set ID", ids));
-  rows.push(row("Added", localDate(badge.firstSeen)));
+  $("bdChatImg").src = img(badge, 1);
 
   const links = el("span", "bd-links");
   const sdb = el("a", "", "StreamDatabase ↗");
@@ -135,10 +194,17 @@ function renderData() {
     }
   });
   links.append(sdb, copy);
-  rows.push(row("Links", links));
 
-  $("bdData").replaceChildren(...rows);
+  $("bdData").replaceChildren(
+    row("Description", badge.description?.trim()),
+    row("Set ID", el("span", "mono-dd", badge.setID)),
+    row("Version", el("span", "mono-dd", badge.version || "1")),
+    row("Added", localDate(badge.firstSeen)),
+    row("Links", links)
+  );
 }
+
+/* ---------- 5. Related ---------- */
 
 function renderCampaign() {
   const campaign = campaignOf(badge);
@@ -196,34 +262,6 @@ function renderOther() {
   );
 }
 
-function render() {
-  document.title = `${badge.title} — BadgeStatus`;
-  $("bdCrumb").textContent = badge.title;
-  $("bdTitle").textContent = badge.title;
-
-  const head = $("bdHeadImg");
-  head.src = img(badge, 4);
-  head.alt = badge.title;
-  head.addEventListener("error", onImgError);
-
-  for (const [id, size] of [
-    ["bdImg1", 1],
-    ["bdImg2", 2],
-    ["bdImg4", 4],
-  ]) {
-    const node = $(id);
-    node.src = img(badge, size);
-    node.alt = `${badge.title} ${size}x`;
-    node.addEventListener("error", onImgError);
-  }
-  $("bdChatImg").src = img(badge, 1);
-
-  renderMeta();
-  renderData();
-  renderCampaign();
-  renderOther();
-}
-
 /* ---------- init ---------- */
 
 for (const btn of document.querySelectorAll(".bd-theme button")) {
@@ -249,14 +287,19 @@ async function init() {
   }
 
   $("bd").classList.remove("hidden");
-  render();
-  setInterval(refreshTimers, 1000);
+  renderHero();
+  renderWhen();
+  renderHow();
+  renderDetails();
+  renderCampaign();
+  renderOther();
+  setInterval(renderWhen, 1000);
 
   const refresh = async () => {
     const next = await fetchChannel();
     if (next) channel = next;
     paintLiveIndicators(channel);
-    renderMeta();
+    renderHow();
   };
   refresh();
   setInterval(refresh, 60_000);
