@@ -5,11 +5,11 @@
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px) minmax(0, 320px); gap: 28px; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr) minmax(0, 320px); gap: 28px; align-items: center;
   padding: 28px 28px;
 }
-@media (max-width: 1240px) { .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); } .hero-showcase { display: none !important; } }
-@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); padding: 22px 18px; } }
+@media (max-width: 1240px) { .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); } .hero-showcase { display: none !important; } .hero-stream { justify-self: end; } }
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); padding: 22px 18px; } .hero-stream { justify-self: stretch; max-width: none; } }
 .hero-text { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
 .hero-meta #heroActive { color: var(--green); }
 .hero h1 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12; max-width: 14ch; }
@@ -32,7 +32,7 @@
 .home-cols .section { min-width: 0; gap: 8px; }
 
 /* ---------- 24/7 stream in the hero ---------- */
-.hero-stream { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #0e0e10; border: 1px solid var(--line); }
+.hero-stream { position: relative; width: 100%; max-width: 440px; justify-self: center; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #0e0e10; border: 1px solid var(--line); }
 .hero-stream-frame { position: absolute; inset: 0; }
 .hero-stream-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 .hero-stream-offline {
