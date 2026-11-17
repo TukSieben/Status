@@ -44,6 +44,10 @@ Twitch chat ◄── Helix "Send Chat Message" ◄─────────�
    - `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
    - `TWITCH_CLIENT_ID`, `TWITCH_CLIENT_SECRET`
    - `EVENTSUB_SECRET` — any random string, 10–100 characters
+   - `GH_DISPATCH_TOKEN` *(recommended)* — keeps the website data fresh: GitHub's own schedule for the
+     badge sync is unreliable, so the Worker triggers it every 15 minutes. Create a fine-grained token at
+     *GitHub → Settings → Developer settings → Fine-grained tokens*: repository **TukSieben/Status**,
+     permission **Actions: Read and write**.
 4. **Deploy** — *Actions → Deploy Twitch bot → Run workflow* (later pushes to `bot/` deploy automatically)
 5. **Connect** — open `https://badgestatus-bot.<your-subdomain>.workers.dev/auth` while logged in to Twitch as
    **badgestatus** and allow access. The page confirms "BadgeStatus bot is connected ✓". Type `!badges` in chat.

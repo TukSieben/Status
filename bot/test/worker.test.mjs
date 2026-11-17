@@ -100,3 +100,19 @@ test("cooldown: same command twice in a row answers once", async () => {
   await run(signed("notification", chat("!ending")));
   assert.equal(sent.length, 1);
 });
+
+test("cron triggers the GitHub sync workflow when a token is set", async () => {
+  const calls = [];
+  const prev = globalThis.fetch;
+  globalThis.fetch = async (input, init) => {
+    calls.push({ url: String(input), init });
+    return new Response(null, { status: 204 });
+  };
+  const pending = [];
+  await worker.scheduled({}, { ...env, GITHUB_REPO: "TukSieben/Status", GH_DISPATCH_TOKEN: "ghtoken" }, { waitUntil: (p) => pending.push(p) });
+  await Promise.all(pending);
+  globalThis.fetch = prev;
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "https://api.github.com/repos/TukSieben/Status/actions/workflows/sync-badges.yml/dispatches");
+  assert.equal(JSON.parse(calls[0].init.body).ref, "main");
+});

@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HAS_CLOUDFLARE: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+      HAS_GH_TOKEN: ${{ secrets.GH_DISPATCH_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -41,3 +42,16 @@ jobs:
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
           EVENTSUB_SECRET: ${{ secrets.EVENTSUB_SECRET }}
+
+      - name: Upload GitHub token for the sync trigger (optional)
+        if: env.HAS_CLOUDFLARE == 'true' && env.HAS_GH_TOKEN == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: bot
+          command: whoami
+          secrets: |
+            GH_DISPATCH_TOKEN
+        env:
+          GH_DISPATCH_TOKEN: ${{ secrets.GH_DISPATCH_TOKEN }}

@@ -8,6 +8,12 @@ compatibility_date = "2025-06-01"
 # Channel the bot listens in, and the account it speaks as (can be the same account)
 CHANNEL_LOGIN = "badgestatus"
 BOT_LOGIN = "badgestatus"
+# Repository whose badge sync the Worker triggers every 15 minutes (see [triggers])
+GITHUB_REPO = "TukSieben/Status"
+
+[triggers]
+crons = ["*/15 * * * *"]
 
 # Secrets (set as GitHub secrets, pushed by the deploy workflow):
 #   TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, EVENTSUB_SECRET
+#   GH_DISPATCH_TOKEN (optional) — fine-grained GitHub token for this repo with "Actions: Read and write"

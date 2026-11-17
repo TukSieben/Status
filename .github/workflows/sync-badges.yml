@@ -2,8 +2,9 @@ name: Sync Twitch Badges
 
 on:
   schedule:
-    # Every 15 minutes (GitHub may delay scheduled runs by a few minutes under load)
-    - cron: "*/15 * * * *"
+    # Every 15 minutes, off the busy :00/:15/:30/:45 slots (GitHub drops scheduled runs under load).
+    # The Cloudflare bot also triggers this workflow every 15 minutes as a reliable backup.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 
 permissions:

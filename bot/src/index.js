@@ -11,8 +11,11 @@
 //   GET  /callback    OAuth redirect target — then creates the EventSub subscription
 //   POST /eventsub    Twitch webhook
 //
-// Config (wrangler.toml [vars]): CHANNEL_LOGIN, BOT_LOGIN
-// Secrets: TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, EVENTSUB_SECRET
+// Cron (wrangler.toml [triggers]): every 15 minutes the Worker starts the website's badge sync
+// workflow on GitHub — GitHub's own schedule is unreliable, Cloudflare's is not.
+//
+// Config (wrangler.toml [vars]): CHANNEL_LOGIN, BOT_LOGIN, GITHUB_REPO
+// Secrets: TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, EVENTSUB_SECRET, GH_DISPATCH_TOKEN (optional)
 
 import { handleMessage, missingMessage } from "./commands.js";
 
@@ -223,9 +226,30 @@ function page(title, body) {
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
+/* ---------- cron: keep the website's badge data fresh ---------- */
+
+async function triggerSync(env) {
+  if (!env.GH_DISPATCH_TOKEN || !env.GITHUB_REPO) return;
+  const res = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO}/actions/workflows/sync-badges.yml/dispatches`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.GH_DISPATCH_TOKEN}`,
+      Accept: "application/vnd.github+json",
+      "User-Agent": "badgestatus-bot",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    body: JSON.stringify({ ref: "main" }),
+  });
+  if (!res.ok) console.log("sync dispatch failed", res.status, await res.text());
+}
+
 /* ---------- router ---------- */
 
 export default {
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(triggerSync(env));
+  },
+
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
