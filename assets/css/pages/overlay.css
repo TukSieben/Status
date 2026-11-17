@@ -74,9 +74,10 @@
 .ov-next-date { font-size: 17px; color: var(--text-2); }
 .ov-next.is-empty .ov-next-name { font-size: 24px; color: var(--text-3); }
 
-.ov-soon { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
-.ov-list { display: flex; flex-direction: column; background: rgba(17, 17, 19, 0.82); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; overflow: hidden; }
-.ov-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; }
+/* "Ending soon" fills the rest of the column so its bottom lines up with the badge grid */
+.ov-soon { display: flex; flex-direction: column; gap: 14px; min-height: 0; flex: 1; }
+.ov-list { flex: 1; display: flex; flex-direction: column; background: rgba(17, 17, 19, 0.82); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; overflow: hidden; }
+.ov-row { flex: 1; display: flex; align-items: center; gap: 14px; padding: 14px 18px; }
 .ov-row + .ov-row { border-top: 1px solid rgba(255, 255, 255, 0.06); }
 .ov-row-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
 .ov-row-title { flex: 1; min-width: 0; font-size: 19px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
