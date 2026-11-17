@@ -185,7 +185,12 @@ function renderHow() {
   const facts = [];
   const category = firstCategory(badge);
   if (category) {
-    const value = el("span", "bd-fact-v bd-cat");
+    // Category name + box art link to the category's Twitch drops page
+    const value = el("a", "bd-fact-v bd-cat");
+    value.href = dropsLink(badge).href;
+    value.target = "_blank";
+    value.rel = "noopener noreferrer";
+    value.title = "Open drops for this category on Twitch";
     if (game?.boxArt) {
       const art = el("img", "bd-cat-art");
       art.src = game.boxArt;
@@ -209,13 +214,6 @@ function renderHow() {
     nodes.push(fact("Live", live));
   }
   $("bdFacts").replaceChildren(...nodes);
-
-  const s = statusOf(badge);
-  const btn = $("bdGet");
-  const link = dropsLink(badge);
-  btn.href = link.href;
-  btn.querySelector("span").textContent = link.label;
-  btn.classList.toggle("hidden", !(s === "active" || s === "upcoming"));
 }
 
 /* ---------- 4. Details ---------- */
