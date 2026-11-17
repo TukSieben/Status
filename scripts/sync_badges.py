@@ -306,6 +306,36 @@ def extract_channels(av: dict[str, Any]) -> list[dict[str, str]]:
     return list(found.values())[:count]
 
 
+def fetch_badge_channels(set_id: str, version: str, count: int) -> list[dict[str, str]]:
+    """Read the eligible channels from a badge's StreamDatabase page."""
+    url = f"https://streamdatabase.com/twitch/global-badges/{set_id}/{version}"
+    try:
+        props = fetch_next_page_props(url, timeout=20)
+    except Exception as exc:
+        print(f"Warning: could not load channels for {set_id}: {exc}")
+        return []
+    blocks: list[dict[str, Any]] = []
+
+    def collect(node: Any) -> None:
+        if isinstance(node, dict):
+            if "channel_count" in node or isinstance(node.get("channels"), list):
+                blocks.append(node)
+            for v in node.values():
+                collect(v)
+        elif isinstance(node, list):
+            for v in node:
+                collect(v)
+
+    collect(props)
+    for block in blocks:
+        block = {**block, "channel_count": block.get("channel_count") or count}
+        found = extract_channels(block)
+        if found:
+            return found
+    DEBUG_DUMP[f"page:{set_id}"] = {"url": url, "top_keys": sorted(props.keys()), "blocks": blocks[:2]}  # TEMP DEBUG
+    return []
+
+
 def fetch_json(url: str, data: bytes | None = None, headers: dict[str, str] | None = None, timeout: int = 20) -> Any:
     """Perform HTTP request and decode JSON response."""
     req = urllib.request.Request(
@@ -426,11 +456,13 @@ def fetch_event_schedules() -> dict[str, dict[str, Any]]:
                 objective, game_name = format_objective(av, ev_title)
                 entry = schedules.setdefault(sid, {})
                 channels = extract_channels(av)
+                count = av.get("channel_count")
+                if not channels and isinstance(count, int) and count > 0:
+                    # The events page only has the count — the list lives on the badge's own page
+                    version = (b.get("current") or {}).get("id") or (b.get("current") or {}).get("version") or "1"
+                    channels = fetch_badge_channels(sid, str(version), count)
                 if channels:
                     entry["channels"] = channels
-                # TEMP DEBUG: dump raw availability of channel-restricted badges to inspect the shape
-                if isinstance(av.get("channel_count"), int) and av["channel_count"] > 0:
-                    DEBUG_DUMP[sid] = {"availability": av, "badge_keys": sorted(b.keys())}
                 if ev_start and not entry.get("startAt"):
                     entry["startAt"] = ev_start
                 if ev_end and not entry.get("endAt"):
