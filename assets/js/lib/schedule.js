@@ -207,10 +207,8 @@ export function renderSchedule(root, badges, options = {}) {
   root.append(legend, scroller);
   enableDragScroll(scroller);
 
-  // Start with "now" near the left edge (one day of history visible)
-  requestAnimationFrame(() => {
-    scroller.scrollLeft = Math.max(0, x(now) - DAY_PX * 1.1);
-  });
+  // Always start at the left edge (yesterday + today visible), never mid-day
+  scroller.scrollLeft = 0;
 
   // Keep the now-line moving
   clearInterval(root._schedTimer);
