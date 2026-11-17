@@ -553,7 +553,61 @@ def normalize_badge(
         "firstSeen": (sched or {}).get("addedAt") or (prev["firstSeen"] if prev and prev.get("firstSeen") else now_iso),
         "lastUpdated": prev.get("lastUpdated", now_iso) if prev else now_iso,
         "isInitialSeed": prev.get("isInitialSeed", is_seed) if prev else is_seed,
+        # Dominant color of the badge image (filled in by add_colors); kept while the image stays the same
+        "color": prev.get("color") if prev and prev.get("image4x") == raw["image4x"] else None,
     }
+
+
+def badge_color(url: str) -> str | None:
+    """Dominant color of a badge image as "#rrggbb" (vivid hues win over grey/black/white outlines)."""
+    try:
+        import colorsys
+        import io
+
+        from PIL import Image
+    except ImportError:
+        return None
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "badgestatus-sync"})
+        with urllib.request.urlopen(req, timeout=15) as res:
+            img = Image.open(io.BytesIO(res.read())).convert("RGBA").resize((36, 36))
+    except Exception:
+        return None
+
+    bins = [[0.0, 0.0, 0.0, 0.0] for _ in range(12)]  # weight, r, g, b per 30° hue slice
+    neutral = [0.0, 0.0, 0.0, 0.0]
+    for r, g, b, a in img.getdata():
+        if a < 160:
+            continue
+        h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+        if s < 0.25 or l < 0.12 or l > 0.92:
+            target, w = neutral, 1.0
+        else:
+            target, w = bins[int(h * 12) % 12], s * (1 - abs(l - 0.5))
+        target[0] += w
+        target[1] += r * w
+        target[2] += g * w
+        target[3] += b * w
+
+    colored = sum(x[0] for x in bins)
+    best = max(bins, key=lambda x: x[0])
+    pick = best if best[0] > 0 and colored >= 0.15 * neutral[0] else neutral
+    if pick[0] <= 0:
+        return None
+    return "#{:02x}{:02x}{:02x}".format(*(round(pick[i] / pick[0]) for i in (1, 2, 3)))
+
+
+def add_colors(badges: list[dict[str, Any]]) -> None:
+    """Fill in missing colors for time-limited badges (those are the ones the bot features)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    todo = [b for b in badges if b.get("endAt") and not b.get("color")]
+    if not todo:
+        return
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        for badge, color in zip(todo, pool.map(lambda b: badge_color(b["image4x"]), todo)):
+            badge["color"] = color
+    print(f"Colors: {sum(1 for b in todo if b.get('color'))}/{len(todo)} new")
 
 
 def main() -> None:
@@ -640,6 +694,7 @@ def main() -> None:
                     }
                 )
 
+    add_colors(next_badges)
     badges_changed = prev_list != next_badges
     unique_sets = len({b["setID"] for b in next_badges})
     active_now_count = 0
