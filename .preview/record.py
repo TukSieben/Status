@@ -8,7 +8,7 @@ async def main():
         ctx = await b.new_context(viewport={"width": 1920, "height": 1080},
                                   record_video_dir="out", record_video_size={"width": 1920, "height": 1080})
         pg = await ctx.new_page()
-        await pg.goto("https://badgestatus.net/overlay/?rotate=8", wait_until="networkidle")
+        await pg.goto("https://badgestatus.net/overlay/?rotate=8&v=3", wait_until="networkidle")
         await pg.wait_for_timeout(30000)  # ~4 page rotations + ticker
         await pg.screenshot(path="out/overlay.png")
         await ctx.close()
