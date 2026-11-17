@@ -126,14 +126,11 @@ function render() {
 
 function renderStream() {
   paintLiveIndicators(channel);
-  const status = $("chatStatus");
-  if (channel?.live) {
-    status.textContent = `Live${channel.game ? ` in ${channel.game}` : ""} · ${channel.viewers.toLocaleString("en-US")} watching`;
-    status.classList.add("is-live");
-  } else {
-    status.textContent = "Offline · twitch.tv/badgestatus";
-    status.classList.remove("is-live");
-  }
+  const live = Boolean(channel?.live);
+  $("chatStatus").classList.toggle("is-live", live);
+  $("chatStatusText").textContent = live
+    ? `Live${channel.game ? ` · ${channel.game}` : ""} · ${channel.viewers.toLocaleString("en-US")}`
+    : "Offline";
 }
 
 function embedChat() {

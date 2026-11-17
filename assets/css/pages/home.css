@@ -39,13 +39,23 @@
 /* ---------- Chat sidebar ---------- */
 .home-chat {
   position: sticky; top: 64px; margin-top: 20px;
-  height: calc(100vh - 84px); min-height: 420px;
+  height: min(680px, calc(100vh - 84px)); min-height: 420px;
   display: flex; flex-direction: column;
-  background: #0e0e10; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  background: #18181b; /* same as Twitch's dark chat */
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
 }
-.home-chat-head { height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 8px 0 12px; border-bottom: 1px solid var(--line); }
-.home-chat-title { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
-.home-chat-status { font-size: 11px; color: var(--text-3); padding: 6px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-chat-head { height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.home-chat-channel { display: flex; align-items: center; gap: 9px; min-width: 0; color: var(--text); }
+.home-chat-channel img { border-radius: 5px; flex-shrink: 0; }
+.home-chat-meta { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+.home-chat-name { font-size: 12.5px; font-weight: 600; }
+.home-chat-status { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-chat-status .stream-dot { width: 6px; height: 6px; }
 .home-chat-status.is-live { color: #fca5a5; }
-.home-chat .chat-frame { position: relative; flex: 1; }
-.home-chat .chat-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.home-chat-status.is-live .stream-dot { background: var(--live); }
+.home-chat-watch { flex-shrink: 0; font-size: 11.5px; font-weight: 500; color: var(--text-2); padding: 4px 8px; border-radius: 6px; transition: color .15s, background .15s; }
+.home-chat-watch:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+
+/* Twitch's embed has its own "Stream Chat" title bar — crop it off, ours replaces it */
+.home-chat .chat-frame { position: relative; flex: 1; overflow: hidden; }
+.home-chat .chat-frame iframe { position: absolute; left: 0; right: 0; bottom: 0; top: -41px; width: 100%; height: calc(100% + 41px); border: 0; }
