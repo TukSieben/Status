@@ -93,6 +93,15 @@ export function pill(text, kind, upper = false) {
   return el("span", `pill pill-${kind}${upper ? " pill-upper" : ""}`, text);
 }
 
+/** Free badge: no sub, gift or bits needed (what a non-affiliate channel can offer) */
+export function isFreeBadge(badge) {
+  return badge.cost !== "paid" && !/subscri|gift|cheer|\bbits\b/i.test(badge.objective || "");
+}
+
+/** Pages with ?free=1 show only free badges */
+export const FREE_ONLY = new URLSearchParams(location.search).get("free") === "1";
+export const onlyFree = (list) => (FREE_ONLY ? list.filter(isFreeBadge) : list);
+
 export function costPill(badge) {
   return badge.cost === "paid" ? pill("Paid", "paid") : pill("Free", "free");
 }

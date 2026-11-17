@@ -1,5 +1,5 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
-import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, URGENT_MS } from "../lib/utils.js";
+import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 
 const params = new URLSearchParams(location.search);
@@ -171,12 +171,12 @@ function tick() {
 
 async function start() {
   const data = await loadBadges();
-  badges = data.badges;
+  badges = onlyFree(data.badges);
   renderAll();
   // New snapshot from the sync → redraw (checks every minute; OBS keeps the page open for days)
   watchBadges(
     (next) => {
-      badges = next.badges;
+      badges = onlyFree(next.badges);
       renderAll();
     },
     { syncedAt: data.syncedAt, intervalMs: 60_000 }

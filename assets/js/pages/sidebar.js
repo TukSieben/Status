@@ -1,5 +1,5 @@
 // Gameplay overlay: floating badge panel — spotlight + paged list with bot commands. Updates itself.
-import { $, el, badgeImg, loadBadges, watchBadges } from "../lib/utils.js";
+import { $, el, badgeImg, loadBadges, watchBadges, onlyFree } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
 const EXPIRED_DAYS = params.has("expired") ? Number(params.get("expired")) || 0 : 3;
@@ -248,7 +248,7 @@ function render(force = false) {
 }
 
 const data = await loadBadges();
-badges = data.badges;
+badges = onlyFree(data.badges);
 render(true);
 
 setInterval(() => { paintSpot(); paintRows(); }, 1000);
@@ -256,6 +256,6 @@ setInterval(() => render(), 20_000); // regroup when a badge starts or ends
 setInterval(() => { if (spot.length > 1) { spotIdx++; showSpot(); } }, SPOT_MS);
 setInterval(() => { if (pages.length > 1) { pageIdx++; showPage(); } }, PAGE_MS);
 watchBadges(
-  (next) => { badges = next.badges; render(true); },
+  (next) => { badges = onlyFree(next.badges); render(true); },
   { syncedAt: data.syncedAt, intervalMs: 60_000 }
 );

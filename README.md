@@ -72,6 +72,7 @@ Options (append to the URL):
 | Option | Effect |
 | --- | --- |
 | `?transparent=1` | No background, to layer the overlay over your own scene |
+| `?free=1` | Only free badges (no sub/gift needed) — also works on `/overlay/widget/` and `/overlay/sidebar/` |
 | `?rotate=20` | Seconds per page of available badges (default 15) |
 
 The overlay reloads the badge data every 5 minutes and updates all countdowns every second; it never needs a manual refresh.
