@@ -11,6 +11,8 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 | `/` | `index.html` | Homepage: username check, schedule, ending soon / starting next |
 | `/badges/` | `badges/index.html` | Badge tracker with username check (owned / missing), filters, upcoming list |
 | `/badge/?id=<setID>` | `badge/index.html` | Detail page for a single badge |
+| `/archive/` | `archive/index.html` | Every badge ever released: search, status / category / cost filters, sorting (filters are kept in the URL) |
+| `/overlay/` | `overlay/index.html` | 1920×1080 overlay for the 24/7 stream (OBS browser source) |
 | — | `404.html` | Not-found page (also redirects old `badges.html` / `badge.html` links) |
 
 ## Project structure
@@ -20,12 +22,14 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 ├── index.html                 # Homepage
 ├── badges/index.html          # Badge tracker
 ├── badge/index.html           # Badge detail page
+├── archive/index.html         # Full badge archive
+├── overlay/index.html         # Stream overlay (OBS)
 ├── 404.html
 ├── assets/
 │   ├── css/
 │   │   ├── base.css           # Design tokens, reset, nav, buttons, layout, pills, footer
 │   │   ├── components/        # Reusable blocks: cards + lists, stream, schedule
-│   │   └── pages/             # Page-specific styles: home, badges, badge
+│   │   └── pages/             # Page-specific styles: home, badges, badge, archive, overlay
 │   ├── js/
 │   │   ├── lib/
 │   │   │   ├── utils.js       # Shared helpers (DOM, dates, badge data, Twitch GQL)
@@ -33,7 +37,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 │   │   │   ├── schedule.js    # Draggable schedule timeline
 │   │   │   ├── dark-veil.js   # WebGL2 background renderer (port of React Bits' DarkVeil)
 │   │   │   └── background.js  # Mounts the animated site background
-│   │   └── pages/             # One entry script per page: home, badges, badge
+│   │   └── pages/             # One entry script per page: home, badges, badge, archive, overlay
 │   └── img/
 │       └── logo.png
 ├── data/
@@ -50,6 +54,22 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 1. `sync-badges.yml` runs `scripts/sync_badges.py` every two hours (or manually via *Run workflow*).
 2. The script writes `data/badges.json` and commits it if anything changed.
 3. Every page loads `/data/badges.json` in the browser. The username check and the stream status call Twitch directly from the browser — there is no backend.
+
+## Stream overlay
+
+Add a **Browser Source** in OBS:
+
+- URL: `https://badgestatus.net/overlay/`
+- Width `1920`, height `1080`
+
+Options (append to the URL):
+
+| Option | Effect |
+| --- | --- |
+| `?transparent=1` | No background, to layer the overlay over your own scene |
+| `?rotate=20` | Seconds per page of available badges (default 15) |
+
+The overlay reloads the badge data every 5 minutes and updates all countdowns every second; it never needs a manual refresh.
 
 ## Local development
 

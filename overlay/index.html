@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Overlay — BadgeStatus</title>
+  <!--
+    1920×1080 stream overlay for OBS (Browser Source: width 1920, height 1080).
+    Options: ?transparent=1  → no background (layer it over your own scene)
+             ?rotate=15      → seconds per page of available badges
+  -->
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=22">
+  <link rel="stylesheet" href="/assets/css/pages/overlay.css?v=2">
+</head>
+<body class="ov-body">
+  <div class="ov-stage" id="stage">
+    <!-- Top bar -->
+    <header class="ov-top">
+      <div class="ov-brand">
+        <img src="/assets/img/logo.png" alt="" width="52" height="52">
+        <div>
+          <div class="ov-brand-name">BadgeStatus</div>
+          <div class="ov-brand-sub">Twitch global badge tracker</div>
+        </div>
+      </div>
+      <div class="ov-stats">
+        <div><b class="green" id="oActive">—</b><span>available</span></div>
+        <div><b id="oUpcoming">—</b><span>upcoming</span></div>
+      </div>
+      <div class="ov-clock">
+        <div class="ov-time" id="oTime">--:--</div>
+        <div class="ov-date" id="oDate"></div>
+      </div>
+    </header>
+
+    <!-- Available now -->
+    <section class="ov-main">
+      <div class="ov-head">
+        <h2>Available now</h2>
+        <div class="ov-dots" id="oDots"></div>
+      </div>
+      <div class="ov-grid" id="oGrid"></div>
+    </section>
+
+    <!-- Right column -->
+    <aside class="ov-side">
+      <div class="ov-next" id="oNext">
+        <span class="ov-label">Next drop</span>
+        <div class="ov-next-name" id="oNextName">—</div>
+        <div class="ov-next-icons" id="oNextIcons"></div>
+        <div class="ov-next-count" id="oNextCount">—</div>
+        <div class="ov-next-date" id="oNextDate"></div>
+      </div>
+
+      <div class="ov-soon">
+        <span class="ov-label">Ending soon</span>
+        <div class="ov-list" id="oEnding"></div>
+      </div>
+    </aside>
+
+    <!-- Bottom bar -->
+    <footer class="ov-bottom">
+      <div class="ov-cta">Which badges are you missing? <b>badgestatus.net</b></div>
+      <div class="ov-ticker"><div class="ov-ticker-track" id="oTicker"></div></div>
+    </footer>
+  </div>
+
+  <script type="module" src="/assets/js/pages/overlay.js?v=2"></script>
+</body>
+</html>

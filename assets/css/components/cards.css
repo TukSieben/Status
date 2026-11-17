@@ -43,5 +43,5 @@
 .mini-empty { text-align: center; padding: 20px 0; color: var(--text-3); font-size: 12px; }
 @media (max-width: 560px) { .mini-sub { display: none; } }
 @media (max-width: 520px) { .grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); } }
-.card-meta { flex-wrap: nowrap; white-space: nowrap; gap: 6px; }
+.card-meta { flex-wrap: nowrap; white-space: nowrap; gap: 6px; min-height: 15px; }
 .timer { white-space: nowrap; }

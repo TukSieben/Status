@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archive — BadgeStatus</title>
+  <meta name="description" content="Every Twitch global badge ever released: search the full archive by name, category, cost and status.">
+  <meta property="og:title" content="Twitch Global Badge Archive — BadgeStatus">
+  <meta property="og:description" content="Every Twitch global badge ever released.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://badgestatus.net/archive/">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=22">
+  <link rel="stylesheet" href="/assets/css/components/cards.css?v=22">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=21">
+  <link rel="stylesheet" href="/assets/css/pages/archive.css?v=21">
+</head>
+<body>
+  <div class="bg-waves" id="bgWaves" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="nav-left">
+        <a href="/" class="brand">
+          <img src="/assets/img/logo.png" alt="" width="20" height="20">
+          <span>BadgeStatus</span>
+        </a>
+        <span class="nav-sep">/</span>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/badges/" class="nav-link">Badges</a>
+          <a href="/archive/" class="nav-link is-active">Archive</a>
+          <a href="/#schedule" class="nav-link">Schedule</a>
+          <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <header class="page-head">
+      <div>
+        <h1>Archive</h1>
+        <div class="meta-line">
+          <span><b id="aTotal">—</b> badges</span>
+          <span><b class="green" id="aActive">—</b> available</span>
+          <span><b id="aEnded">—</b> ended</span>
+        </div>
+      </div>
+      <label class="search-field ar-search">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="aQuery" placeholder="Search badges" spellcheck="false" aria-label="Search badges">
+      </label>
+    </header>
+
+    <div class="ar-controls">
+      <div class="chips" id="aStatus" role="group" aria-label="Status">
+        <button type="button" class="chip is-active" data-value="all">All</button>
+        <button type="button" class="chip" data-value="active">Available</button>
+        <button type="button" class="chip" data-value="upcoming">Upcoming</button>
+        <button type="button" class="chip" data-value="ended">Ended</button>
+        <button type="button" class="chip" data-value="permanent">Permanent</button>
+      </div>
+      <div class="ar-selects">
+        <select id="aCategory" aria-label="Category"><option value="">All categories</option></select>
+        <select id="aCost" aria-label="Cost">
+          <option value="">Free &amp; paid</option>
+          <option value="free">Free</option>
+          <option value="paid">Paid</option>
+        </select>
+        <select id="aSort" aria-label="Sort">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="name">Name A–Z</option>
+          <option value="popular">Most owned</option>
+          <option value="rare">Rarest</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="ar-result muted" id="aResult"></div>
+    <div class="grid" id="aGrid"></div>
+    <div class="empty hidden" id="aEmpty">No badges match your search.</div>
+    <button type="button" class="btn-dark ar-more hidden" id="aMore">Show more</button>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-links">badgestatus.net <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="footer-stream" data-live-indicator><span class="stream-dot"></span>twitch.tv/badgestatus</a></span>
+      <span class="muted" id="footerSync"></span>
+    </div>
+  </footer>
+
+
+  <script type="module" src="/assets/js/pages/archive.js?v=21"></script>
+</body>
+</html>
