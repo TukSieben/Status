@@ -50,14 +50,20 @@
 .bd-how { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
 .bd-how-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 .bd-how-text { font-size: 16px; font-weight: 500; line-height: 1.45; color: var(--text); }
-.bd-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px 20px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.bd-facts { display: flex; flex-wrap: wrap; gap: 14px 36px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
 .bd-fact { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .bd-fact-k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 .bd-fact-v { font-size: 13.5px; color: var(--text); }
-.bd-cat { display: inline-flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; width: fit-content; color: var(--text); transition: color .15s; }
-.bd-cat:hover { color: #c4b5fd; }
-.bd-cat:hover span { text-decoration: underline; text-underline-offset: 2px; }
-.bd-cat span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Category is a link to Twitch drops: shown as a chip so it reads as clickable */
+.bd-cat {
+  display: inline-flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; width: fit-content;
+  padding: 4px 10px 4px 4px; border-radius: 6px; color: var(--text);
+  background: rgba(145, 70, 255, 0.10); border: 1px solid rgba(145, 70, 255, 0.35);
+  transition: background .15s, border-color .15s;
+}
+.bd-cat:hover { background: rgba(145, 70, 255, 0.2); border-color: rgba(167, 139, 250, 0.7); }
+.bd-cat-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bd-cat-go { flex-shrink: 0; font-size: 11px; font-weight: 600; color: #c4b5fd; }
 .bd-cat-art { width: 20px; height: 27px; object-fit: cover; border-radius: 2px; flex-shrink: 0; }
 .bd-fact-v.is-live { color: #c4b5fd; }
 .bd-fact-v.is-live:hover { text-decoration: underline; }

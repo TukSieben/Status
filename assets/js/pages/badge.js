@@ -199,7 +199,8 @@ function renderHow() {
       art.height = 27;
       value.appendChild(art);
     }
-    value.appendChild(el("span", "", game?.name || category));
+    value.appendChild(el("span", "bd-cat-name", game?.name || category));
+    value.appendChild(el("span", "bd-cat-go", "Drops ↗"));
     facts.push(fact("Category", value));
   }
   facts.push(fact("Channels", channelsText(badge)));
