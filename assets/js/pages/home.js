@@ -95,7 +95,11 @@ function render() {
     active.filter((b) => b.cost !== "paid").length,
   );
   $("hsTotal").textContent = String(new Set(badges.map((b) => b.setID)).size);
-  $("heroLive").textContent = `${active.length} badges available right now`;
+  $("heroActive").textContent = String(active.length);
+  $("heroUpcoming").textContent = String(upcoming.length);
+  const next = upcoming[0];
+  $("heroNextWrap").classList.toggle("hidden", !next);
+  if (next) $("heroNext").replaceChildren(timerSpan(Date.parse(next.startAt)));
 
   // Hero showcase: current badges floating freely (no tiles), scattered on a loose grid
   const showcase = $("heroShowcase");

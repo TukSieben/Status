@@ -1,23 +1,14 @@
-// Site-wide animated background (purple gradient waves behind all content).
-import { mountGradientWaves } from "./gradient-waves.js";
+// Site-wide animated background (purple "dark veil" behind all content).
+import { mountDarkVeil } from "./dark-veil.js";
 
 const host = document.getElementById("bgWaves");
 if (host) {
-  mountGradientWaves(host, {
-    horizonColor: "#3a1699",
-    waveColor: "#9146ff",
-    crestColor: "#c4b5fd",
-    speed: 0.3,
-    amplitude: 2.5,
-    relief: 1,
-    lightAngle: 120,
-    brightness: 1.1,
-    opacity: 0.95,
-    grain: 0.15,
-    quality: "low", // full-screen background: keep the GPU cost low
-    dpr: 1,
+  mountDarkVeil(host, {
+    color: "#6b12ff",
+    flow: 0,
+    glow: 0.7,
+    grain: 0.07,
+    quality: 0.5, // full-screen background: render the field at half resolution
     mouseInteraction: true,
-    parallaxStrength: 0.4,
-    swellOnClick: true,
   });
 }

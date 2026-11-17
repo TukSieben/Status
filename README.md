@@ -31,7 +31,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 │   │   │   ├── utils.js       # Shared helpers (DOM, dates, badge data, Twitch GQL)
 │   │   │   ├── twitch.js      # twitch.tv/badgestatus live status + chat embed
 │   │   │   ├── schedule.js    # Draggable schedule timeline
-│   │   │   ├── gradient-waves.js  # WebGL2 wave renderer (port of React Bits' GradientWaves)
+│   │   │   ├── dark-veil.js   # WebGL2 background renderer (port of React Bits' DarkVeil)
 │   │   │   └── background.js  # Mounts the animated site background
 │   │   └── pages/             # One entry script per page: home, badges, badge
 │   └── img/
