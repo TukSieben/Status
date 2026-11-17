@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-17T21:09:43Z",
+  "syncedAt": "2026-11-17T21:20:39Z",
   "totalBadges": 574,
   "uniqueSets": 454,
   "trackedOwners": 388,
@@ -30,7 +30,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-15T11:35:44.246Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#686b6f"
     },
     {
       "setID": "10-years-as-twitch-staff",
@@ -56,7 +57,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-12T23:52:12.413Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "15-years-as-twitch-staff",
@@ -82,7 +84,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-12T23:52:12.413Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "1979-revolution_1",
@@ -108,7 +111,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/1979%20Revolution/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "2026-bafta-games-awards",
@@ -134,7 +138,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-08T17:27:01.083Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#467966"
     },
     {
       "setID": "2026-worlds-costumed-pikachu",
@@ -160,7 +165,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-26T22:24:43.544Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ebcb44"
     },
     {
       "setID": "5-years-as-twitch-staff",
@@ -186,7 +192,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-12T23:52:12.413Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "60-seconds_1",
@@ -212,7 +219,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/60%20Seconds!/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "60-seconds_2",
@@ -238,7 +246,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/60%20Seconds!/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "60-seconds_3",
@@ -264,7 +273,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/60%20Seconds!/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "aang",
@@ -290,7 +300,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-25T22:49:30.898Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#fac596"
     },
     {
       "setID": "ace-combat-8-nugget",
@@ -316,7 +327,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-25T16:56:56.956Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e6d57b"
     },
     {
       "setID": "admin",
@@ -342,7 +354,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "alliance",
@@ -368,7 +381,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-02T18:19:53.290Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#bf972f"
     },
     {
       "setID": "alone",
@@ -394,7 +408,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-07T18:17:28.810Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dd9232"
     },
     {
       "setID": "alterra-corporation",
@@ -420,7 +435,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-19T18:33:38.691Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f08b23"
     },
     {
       "setID": "ambassador",
@@ -446,7 +462,8 @@
       "clickURL": "https://www.twitch.tv/team/ambassadors",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "ampersand",
@@ -472,7 +489,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-19T06:53:35.150Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8f1c23"
     },
     {
       "setID": "anomaly-2_1",
@@ -498,7 +516,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Anomaly%202/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "anomaly-warzone-earth_1",
@@ -524,7 +543,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Anomaly:%20Warzone%20Earth/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "anonymous-cheerer",
@@ -550,7 +570,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "arc-raiders-launch-2025",
@@ -576,7 +597,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-29T20:12:06.185Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ecd906"
     },
     {
       "setID": "arcane-season-2-premiere",
@@ -602,7 +624,8 @@
       "clickURL": null,
       "firstSeen": "2024-11-07T21:36:20.704Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "artist-badge",
@@ -628,7 +651,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "assassins-creed-black-flag-resynced",
@@ -654,7 +678,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-10T19:14:05.964Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7b7b78"
     },
     {
       "setID": "axiom-verge_1",
@@ -680,7 +705,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Axiom%20Verge/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "ayane",
@@ -706,7 +732,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T16:34:37.905Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d1fdb4"
     },
     {
       "setID": "baby-chick-chat-badge",
@@ -732,7 +759,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-03T16:56:55.811Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d3b21a"
     },
     {
       "setID": "battlechefbrigade_1",
@@ -758,7 +786,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Battle%20Chef%20Brigade/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "battlechefbrigade_2",
@@ -784,7 +813,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Battle%20Chef%20Brigade/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "battlechefbrigade_3",
@@ -810,7 +840,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Battle%20Chef%20Brigade/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "battlefield-6",
@@ -836,7 +867,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-09T20:15:24.838Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f04123"
     },
     {
       "setID": "battlerite_1",
@@ -862,7 +894,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Battlerite/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "beagoldfish",
@@ -888,7 +921,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-15T23:38:05.315Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d99d4c"
     },
     {
       "setID": "believeinrichmond",
@@ -914,7 +948,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-15T23:38:05.315Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#25295f"
     },
     {
       "setID": "big-walk",
@@ -940,7 +975,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-24T02:45:22.558Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ba3508"
     },
     {
       "setID": "bingbonglove",
@@ -966,7 +1002,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-04T12:50:05.022Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b3d52b"
     },
     {
       "setID": "bits",
@@ -992,7 +1029,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1018,7 +1056,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1044,7 +1083,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1070,7 +1110,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1096,7 +1137,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1122,7 +1164,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1148,7 +1191,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1174,7 +1218,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1200,7 +1245,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1226,7 +1272,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1252,7 +1299,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1278,7 +1326,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1304,7 +1353,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1330,7 +1380,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1356,7 +1407,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1382,7 +1434,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1408,7 +1461,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1434,7 +1488,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1460,7 +1515,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1486,7 +1542,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1512,7 +1569,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1538,7 +1596,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1564,7 +1623,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1590,7 +1650,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1616,7 +1677,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1642,7 +1704,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1668,7 +1731,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits",
@@ -1694,7 +1758,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits-charity",
@@ -1720,7 +1785,8 @@
       "clickURL": "https://link.twitch.tv/blizzardofbits",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits-leader",
@@ -1746,7 +1812,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits-leader",
@@ -1772,7 +1839,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bits-leader",
@@ -1798,7 +1866,8 @@
       "clickURL": "https://bits.twitch.tv",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "black-ops-7-global-launch",
@@ -1824,7 +1893,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-05T03:20:48.252Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e56820"
     },
     {
       "setID": "blastoise",
@@ -1850,7 +1920,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#70afd2"
     },
     {
       "setID": "bleed-miami",
@@ -1876,7 +1947,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:00:36.855Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e131b0"
     },
     {
       "setID": "bloody-finger-elden-ring",
@@ -1902,7 +1974,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-30T21:27:59.606Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#802135"
     },
     {
       "setID": "bloom-badge",
@@ -1928,7 +2001,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-04-27T18:11:47.402Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#97e056"
     },
     {
       "setID": "bloom-badge",
@@ -1954,7 +2028,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-04-27T18:11:47.402Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a8eb61"
     },
     {
       "setID": "bloom-badge",
@@ -1980,7 +2055,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-04-27T18:11:47.402Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#94dc54"
     },
     {
       "setID": "bloom-badge",
@@ -2006,7 +2082,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-04-27T18:11:47.402Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ef9296"
     },
     {
       "setID": "blossom-badge",
@@ -2032,7 +2109,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-06-19T00:07:37.771Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#91d853"
     },
     {
       "setID": "blossom-badge",
@@ -2058,7 +2136,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-06-19T00:07:37.771Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a8eb61"
     },
     {
       "setID": "blossom-badge",
@@ -2084,7 +2163,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-06-19T00:07:37.771Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5b80f6"
     },
     {
       "setID": "blossom-badge",
@@ -2110,7 +2190,8 @@
       "clickURL": "https://help.twitch.tv/s/article/weekly-rewards",
       "firstSeen": "2026-06-19T00:07:37.771Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5b7ff6"
     },
     {
       "setID": "blue-creeper-boss",
@@ -2136,7 +2217,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-17T17:10:58.182Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#41e2ed"
     },
     {
       "setID": "borderlands-4---c4sh",
@@ -2162,7 +2244,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-23T17:55:34.656Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#2f3740"
     },
     {
       "setID": "borderlands-4-badge---ripper",
@@ -2188,7 +2271,8 @@
       "clickURL": null,
       "firstSeen": "2025-06-20T22:01:18.225Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "borderlands-4-badge---vault-symbol",
@@ -2214,7 +2298,8 @@
       "clickURL": null,
       "firstSeen": "2025-06-20T22:01:18.225Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bot-badge",
@@ -2240,7 +2325,8 @@
       "clickURL": null,
       "firstSeen": "2025-06-09T23:43:23.947Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "brawlhalla_1",
@@ -2266,7 +2352,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Brawlhalla/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "brawlhallawoo",
@@ -2292,7 +2379,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-14T18:37:40.707Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#3f86a9"
     },
     {
       "setID": "broadcaster",
@@ -2318,7 +2406,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "broken-age_1",
@@ -2344,7 +2433,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Broken%20Age/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "bronze-chain",
@@ -2370,7 +2460,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c17b71"
     },
     {
       "setID": "bubsy-4d",
@@ -2396,7 +2487,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-22T22:04:44.646Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#da4b1d"
     },
     {
       "setID": "bubsy-the-woolies_1",
@@ -2422,7 +2514,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Bubsy:%20The%20Woolies%20Strike%20Back/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "budz",
@@ -2448,7 +2541,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-22T21:25:44.607Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e05b30"
     },
     {
       "setID": "bulbasaur",
@@ -2474,7 +2568,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-17T16:05:41.845Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#6db8ad"
     },
     {
       "setID": "bungie-foundation-ally",
@@ -2500,7 +2595,8 @@
       "clickURL": null,
       "firstSeen": "2026-01-27T01:02:11.509Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7cb6e5"
     },
     {
       "setID": "bungie-foundation-supporter",
@@ -2526,7 +2622,8 @@
       "clickURL": null,
       "firstSeen": "2026-01-27T01:02:11.509Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e41e25"
     },
     {
       "setID": "castlevania-belmonts-curse",
@@ -2552,7 +2649,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-14T02:15:54.596Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d92b02"
     },
     {
       "setID": "cdawg-cyclethon-5-badge",
@@ -2578,7 +2676,8 @@
       "clickURL": "https://tiltify.com/@cdawgva/cyclethon-5",
       "firstSeen": "2026-04-03T21:17:21.460Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c17253"
     },
     {
       "setID": "chains",
@@ -2604,7 +2703,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-11T17:21:38.567Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#938e92"
     },
     {
       "setID": "charizard",
@@ -2630,7 +2730,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d58504"
     },
     {
       "setID": "charmander",
@@ -2656,7 +2757,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-17T16:05:41.845Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#de741e"
     },
     {
       "setID": "charmeleon",
@@ -2682,7 +2784,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d63520"
     },
     {
       "setID": "chatter-cs-go-2022",
@@ -2708,7 +2811,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "civ-vii---test-of-time",
@@ -2734,7 +2838,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-14T23:07:47.802Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#65615c"
     },
     {
       "setID": "clair-obscur-expedition-33-one-year-anniversary",
@@ -2760,7 +2865,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-16T14:21:51.254Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#191714"
     },
     {
       "setID": "clip-champ",
@@ -2786,7 +2892,8 @@
       "clickURL": "https://help.twitch.tv/customer/portal/articles/2918323-clip-champs-guide",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "clip-the-halls",
@@ -2812,7 +2919,8 @@
       "clickURL": "https://blog.twitch.tv/en/2024/12/02/twitch-holiday-hoopla/",
       "firstSeen": "2024-12-03T18:59:14.164Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "clipped-that",
@@ -2838,7 +2946,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-23T21:15:06.738Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e3e317"
     },
     {
       "setID": "clips-leader",
@@ -2864,7 +2973,8 @@
       "clickURL": null,
       "firstSeen": "2025-04-11T20:37:56.758Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "clips-leader",
@@ -2890,7 +3000,8 @@
       "clickURL": null,
       "firstSeen": "2025-04-11T20:37:56.758Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "clips-leader",
@@ -2916,7 +3027,8 @@
       "clickURL": null,
       "firstSeen": "2025-04-11T20:37:56.758Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "clover",
@@ -2942,7 +3054,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-03T14:24:54.512Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#65af93"
     },
     {
       "setID": "cool-cattiva",
@@ -2968,7 +3081,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T02:24:39.074Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#df8f95"
     },
     {
       "setID": "crash",
@@ -2994,7 +3108,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-06T20:25:23.564Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "creator-cs-go-2022",
@@ -3020,7 +3135,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "crimson-butterfly",
@@ -3046,7 +3162,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-11T20:57:04.279Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#9e252d"
     },
     {
       "setID": "crimson-desert---crest",
@@ -3072,7 +3189,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-18T00:58:18.161Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#2d2822"
     },
     {
       "setID": "crossworlds-world-championship-2026",
@@ -3098,7 +3216,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-07T21:24:51.909Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d2a730"
     },
     {
       "setID": "cryana",
@@ -3124,7 +3243,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-16T21:01:59.059Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d3ac64"
     },
     {
       "setID": "cuphead_1",
@@ -3150,7 +3270,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Cuphead/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "d20",
@@ -3176,7 +3297,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-19T06:53:35.150Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b9549b"
     },
     {
       "setID": "dallas",
@@ -3202,7 +3324,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-11T17:21:38.567Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#94282a"
     },
     {
       "setID": "darkest-dungeon_1",
@@ -3228,7 +3351,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Darkest%20Dungeon/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "dayz-yellow-king",
@@ -3254,7 +3378,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-05T11:30:38.546Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d7cd6a"
     },
     {
       "setID": "dbd-halloween-2026",
@@ -3280,7 +3405,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-27T18:56:17.451Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a83f3d"
     },
     {
       "setID": "dead-by-daylight-icon",
@@ -3306,7 +3432,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-10T18:23:38.412Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#898989"
     },
     {
       "setID": "dead-by-daylight-pride-icon",
@@ -3332,7 +3459,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-27T20:14:03.099Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#fed13a"
     },
     {
       "setID": "dead-by-daylight-x-jason-universe",
@@ -3358,7 +3486,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-10T18:23:38.412Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cccccc"
     },
     {
       "setID": "deceit_1",
@@ -3384,7 +3513,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Deceit/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "default-creator-campaign-reward",
@@ -3410,7 +3540,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-06T23:39:28.638Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "destiny-2-final-shape-raid-race",
@@ -3436,7 +3567,8 @@
       "clickURL": "https://www.twitch.tv/directory/category/destiny-2",
       "firstSeen": "2024-06-06T22:09:47.189Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "destiny-2-the-final-shape-streamer",
@@ -3462,7 +3594,8 @@
       "clickURL": "https://www.twitch.tv/directory/category/destiny-2\t",
       "firstSeen": "2024-06-06T22:09:48.208Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "detroit-android-triangle",
@@ -3488,7 +3621,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-19T13:00:46.304Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1473b5"
     },
     {
       "setID": "detroit-blue-led",
@@ -3514,7 +3648,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-19T13:00:46.304Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a2bdf2"
     },
     {
       "setID": "devil-may-cry-hd_1",
@@ -3540,7 +3675,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Devil%20May%20Cry%20HD%20Collection/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "devil-may-cry-hd_2",
@@ -3566,7 +3702,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Devil%20May%20Cry%20HD%20Collection/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "devil-may-cry-hd_3",
@@ -3592,7 +3729,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Devil%20May%20Cry%20HD%20Collection/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "devil-may-cry-hd_4",
@@ -3618,7 +3756,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Devil%20May%20Cry%20HD%20Collection/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "devilian_1",
@@ -3644,7 +3783,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Devilian/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "diablo",
@@ -3670,7 +3810,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-24T21:19:07.750Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cc5022"
     },
     {
       "setID": "diablo-30th-anniversary",
@@ -3696,7 +3837,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-04T19:20:54.461Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b5000e"
     },
     {
       "setID": "diamond-chain",
@@ -3722,7 +3864,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ceaa69"
     },
     {
       "setID": "diana",
@@ -3748,7 +3891,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-12T17:14:46.639Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c99d54"
     },
     {
       "setID": "ditto",
@@ -3774,7 +3918,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-04T23:19:07.460Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f0b7ff"
     },
     {
       "setID": "doa6lr-kasumi",
@@ -3800,7 +3945,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-24T07:26:37.935Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c56c4b"
     },
     {
       "setID": "dodomogged",
@@ -3826,7 +3972,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-13T22:31:28.394Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#206467"
     },
     {
       "setID": "dont-eat-the-mold",
@@ -3852,7 +3999,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-21T14:06:42.212Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4d9847"
     },
     {
       "setID": "doom-the-dark-ages",
@@ -3878,7 +4026,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-06T19:20:18.752Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cf0001"
     },
     {
       "setID": "dragonscimmy",
@@ -3904,7 +4053,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-24T21:26:04.251Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#65635b"
     },
     {
       "setID": "dream-beyond",
@@ -3930,7 +4080,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-09T19:50:43.466Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#10a9f1"
     },
     {
       "setID": "dreamcon-2024",
@@ -3956,7 +4107,8 @@
       "clickURL": null,
       "firstSeen": "2024-08-28T21:00:06.004Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "dreamers",
@@ -3982,7 +4134,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-15T19:51:34.272Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#15acef"
     },
     {
       "setID": "dron-e",
@@ -4008,7 +4161,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-24T19:49:32.274Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#514f56"
     },
     {
       "setID": "duelyst_1",
@@ -4034,7 +4188,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "duelyst_2",
@@ -4060,7 +4215,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "duelyst_3",
@@ -4086,7 +4242,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "duelyst_4",
@@ -4112,7 +4269,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "duelyst_5",
@@ -4138,7 +4296,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "duelyst_6",
@@ -4164,7 +4323,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "duelyst_7",
@@ -4190,7 +4350,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Duelyst/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "edgerunners-d",
@@ -4216,7 +4377,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-16T14:56:47.168Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#203e58"
     },
     {
       "setID": "edgerunners-talia",
@@ -4242,7 +4404,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-16T14:56:47.168Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c96774"
     },
     {
       "setID": "edgerunners-weak",
@@ -4268,7 +4431,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-16T14:56:47.168Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cfa087"
     },
     {
       "setID": "egg",
@@ -4294,7 +4458,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-28T20:46:18.467Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d0520e"
     },
     {
       "setID": "elden-ring-recluse",
@@ -4320,7 +4485,8 @@
       "clickURL": null,
       "firstSeen": "2025-05-30T22:26:02.951Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "elden-ring-wylder",
@@ -4346,7 +4512,8 @@
       "clickURL": null,
       "firstSeen": "2025-05-30T22:26:02.951Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "enchantedbigboiboxers",
@@ -4372,7 +4539,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-06T18:25:08.357Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ee4a55"
     },
     {
       "setID": "enter-the-gungeon_1",
@@ -4398,7 +4566,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Enter%20the%20Gungeon/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "eso_1",
@@ -4424,7 +4593,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "evo-2025",
@@ -4450,7 +4620,8 @@
       "clickURL": null,
       "firstSeen": "2025-07-31T17:20:48.280Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "evo-las-vegas-2026",
@@ -4476,7 +4647,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-25T17:18:40.214Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#122eae"
     },
     {
       "setID": "ewc-2026-bronze",
@@ -4502,7 +4674,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-07T18:00:20.819Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#734329"
     },
     {
       "setID": "ewc-2026-co-streamer-bronze",
@@ -4528,7 +4701,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-21T17:55:38.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#854b2d"
     },
     {
       "setID": "ewc-2026-co-streamer-diamond",
@@ -4554,7 +4728,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-21T17:55:38.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#6fc8e0"
     },
     {
       "setID": "ewc-2026-co-streamer-gold",
@@ -4580,7 +4755,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-21T17:55:38.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c7a125"
     },
     {
       "setID": "ewc-2026-co-streamer-platinum",
@@ -4606,7 +4782,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-21T17:55:38.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8cb3c0"
     },
     {
       "setID": "ewc-2026-co-streamer-silver",
@@ -4632,7 +4809,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-21T17:55:38.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a4a4a4"
     },
     {
       "setID": "ewc-2026-co-streamer-ultraviolet",
@@ -4658,7 +4836,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-21T17:55:38.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#6e5bc7"
     },
     {
       "setID": "ewc-2026-diamond",
@@ -4684,7 +4863,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-07T18:04:25.680Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5cbfe8"
     },
     {
       "setID": "ewc-2026-gold",
@@ -4710,7 +4890,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-07T18:04:25.680Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cba724"
     },
     {
       "setID": "ewc-2026-platinum",
@@ -4736,7 +4917,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-07T18:04:25.680Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#82adbc"
     },
     {
       "setID": "ewc-2026-silver",
@@ -4762,7 +4944,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-07T18:04:25.680Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7f7f7f"
     },
     {
       "setID": "ewc-2026-ultraviolet",
@@ -4788,7 +4971,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-07T18:04:25.680Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#6d54d0"
     },
     {
       "setID": "extension",
@@ -4814,7 +4998,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "fallout-season-2-ghoul",
@@ -4840,7 +5025,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-15T18:19:32.604Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c48e6b"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-eu---content-unlock-quest-chat",
@@ -4866,7 +5052,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-21T13:43:19.229Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c3a66b"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-eu---moogle-chat",
@@ -4892,7 +5079,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-21T13:43:19.229Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cc6642"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-jp---alpha-chat",
@@ -4918,7 +5106,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-21T13:54:32.644Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dbac40"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat",
@@ -4944,7 +5133,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-21T13:54:32.644Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b08f4f"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-na---fat-cat",
@@ -4970,7 +5160,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-24T15:01:16.643Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dabe90"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-na---fat-cat-chat",
@@ -4996,7 +5187,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-21T13:43:19.229Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dabe90"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-na---main-scenario-quest-",
@@ -5022,7 +5214,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-24T18:02:36.433Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b7985c"
     },
     {
       "setID": "final-fantasy-xiv-fan-festival-2026-na---main-scenario-quest-chat",
@@ -5048,7 +5241,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-21T13:43:19.229Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b09258"
     },
     {
       "setID": "firewatch_1",
@@ -5074,7 +5268,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Firewatch/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "first-stand-2026-supporter",
@@ -5100,7 +5295,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-12T23:43:56.666Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c9a758"
     },
     {
       "setID": "first-stand-2026-viewer",
@@ -5126,7 +5322,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-12T23:43:56.666Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ff5807"
     },
     {
       "setID": "fischer",
@@ -5152,7 +5349,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-13T20:45:16.169Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#bbbbbb"
     },
     {
       "setID": "flameborn-sigil",
@@ -5178,7 +5376,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-14T16:15:05.858Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c0e7fd"
     },
     {
       "setID": "football-fest-2026",
@@ -5204,7 +5403,8 @@
       "clickURL": "https://help.twitch.tv/s/article/twitch-chat-badges-guide",
       "firstSeen": "2026-06-08T23:54:57.584Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c9a255"
     },
     {
       "setID": "founder",
@@ -5230,7 +5430,8 @@
       "clickURL": "https://help.twitch.tv/s/article/founders-badge",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "frekifriend",
@@ -5256,7 +5457,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-01T14:00:15.028Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#acb8bf"
     },
     {
       "setID": "fright-fest-2025",
@@ -5282,7 +5484,8 @@
       "clickURL": "https://blog.twitch.tv/en/2025/10/20/twitch-fright-fest-2025/",
       "firstSeen": "2025-10-29T17:16:49.557Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#9999a3"
     },
     {
       "setID": "frog-lantern",
@@ -5308,7 +5511,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-10T20:13:29.334Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#efb443"
     },
     {
       "setID": "frozen-cortext_1",
@@ -5334,7 +5538,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Frozen%20Cortex/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "frozen-synapse_1",
@@ -5360,7 +5565,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Frozen%20Synapse/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gallica",
@@ -5386,7 +5592,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-06T19:20:18.752Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cd6714"
     },
     {
       "setID": "game-developer",
@@ -5412,7 +5619,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gamerduo",
@@ -5438,7 +5646,8 @@
       "clickURL": "https://blog.twitch.tv/2025/10/02/sub-for-super-duolingo/",
       "firstSeen": "2025-09-26T22:06:28.984Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#81cd09"
     },
     {
       "setID": "gastly",
@@ -5464,7 +5673,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-05T23:04:27.617Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5e3e92"
     },
     {
       "setID": "gears-of-war-superfan-badge",
@@ -5490,7 +5700,8 @@
       "clickURL": null,
       "firstSeen": "2025-08-29T21:42:02.812Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e70000"
     },
     {
       "setID": "gengar",
@@ -5516,7 +5727,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-05T23:04:27.617Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#75559b"
     },
     {
       "setID": "getting-over-it_1",
@@ -5542,7 +5754,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Getting%20Over%20It/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "getting-over-it_2",
@@ -5568,7 +5781,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Getting%20Over%20It/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gingko-leaf",
@@ -5594,7 +5808,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-30T18:53:09.379Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c69826"
     },
     {
       "setID": "glhf-pledge",
@@ -5620,7 +5835,8 @@
       "clickURL": "https://www.anykey.org/pledge",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "glitchcon2020",
@@ -5646,7 +5862,8 @@
       "clickURL": "https://www.twitchcon.com/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "global_mod",
@@ -5672,7 +5889,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gold-chain",
@@ -5698,7 +5916,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c59c52"
     },
     {
       "setID": "gold-pixel-heart",
@@ -5724,7 +5943,8 @@
       "clickURL": "https://help.twitch.tv/s/article/twitch-charity",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gold-pixel-heart---together-for-good-24",
@@ -5750,7 +5970,8 @@
       "clickURL": null,
       "firstSeen": "2024-12-02T21:05:01.561Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gold-stamp",
@@ -5776,7 +5997,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-07T21:15:25.599Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#411f52"
     },
     {
       "setID": "golden-iguana",
@@ -5802,7 +6024,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c1a456"
     },
     {
       "setID": "gone-bananas",
@@ -5828,7 +6051,8 @@
       "clickURL": "http://blog.twitch.tv/2025/04/01/april-fools-day/",
       "firstSeen": "2025-04-01T17:07:13.529Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "gp-explorer-3",
@@ -5854,7 +6078,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-23T21:37:48.860Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#100dee"
     },
     {
       "setID": "gray-zone-warfare-gold",
@@ -5880,7 +6105,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-20T15:33:16.647Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d88d2f"
     },
     {
       "setID": "grey-zone-warfare",
@@ -5906,7 +6132,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-25T21:58:42.312Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7f7f81"
     },
     {
       "setID": "H1Z1_1",
@@ -5932,7 +6159,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/H1Z1/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "harley-mayhem",
@@ -5958,7 +6186,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-31T18:11:30.950Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#bb2e28"
     },
     {
       "setID": "haunter",
@@ -5984,7 +6213,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-05T23:04:27.617Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#75559b"
     },
     {
       "setID": "heartsteel-fan",
@@ -6010,7 +6240,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-13T22:45:28.789Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#85ade3"
     },
     {
       "setID": "heavy-bullets_1",
@@ -6036,7 +6267,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Heavy%20Bullets/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "hello_neighbor_1",
@@ -6062,7 +6294,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Hello%20Neighbor/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "hime",
@@ -6088,7 +6321,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-11T22:32:35.186Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e85e1e"
     },
     {
       "setID": "homo-tenta",
@@ -6114,7 +6348,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-17T22:26:23.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d7c8ab"
     },
     {
       "setID": "horde",
@@ -6140,7 +6375,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-02T18:19:53.290Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a32425"
     },
     {
       "setID": "hornet",
@@ -6166,7 +6402,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-03T19:38:41.174Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#aaa8a8"
     },
     {
       "setID": "hotline",
@@ -6192,7 +6429,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-14T17:16:56.827Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#aa0000"
     },
     {
       "setID": "hoxton",
@@ -6218,7 +6456,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-11T17:21:38.567Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b55777"
     },
     {
       "setID": "hulk",
@@ -6244,7 +6483,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-05T19:07:24.875Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7ab02d"
     },
     {
       "setID": "hunt-crosses",
@@ -6270,7 +6510,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-10T19:35:36.236Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#242a2f"
     },
     {
       "setID": "hunt-red",
@@ -6296,7 +6537,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-26T15:03:54.174Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#71120c"
     },
     {
       "setID": "hunt-white",
@@ -6322,7 +6564,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-26T15:03:54.174Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d7d7d7"
     },
     {
       "setID": "hype-train",
@@ -6348,7 +6591,8 @@
       "clickURL": "https://help.twitch.tv/s/article/hype-train-guide",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "hype-train",
@@ -6374,7 +6618,8 @@
       "clickURL": "https://help.twitch.tv/s/article/hype-train-guide",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "hypershot-celestial",
@@ -6400,7 +6645,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-19T18:55:00.198Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e3b919"
     },
     {
       "setID": "innerspace_1",
@@ -6426,7 +6672,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Innerspace/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "innerspace_2",
@@ -6452,7 +6699,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Innerspace/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "invincible-vs",
@@ -6478,7 +6726,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-23T20:27:23.026Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f1e253"
     },
     {
       "setID": "ivysaur",
@@ -6504,7 +6753,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#21a5ac"
     },
     {
       "setID": "jackbox-party-pack_1",
@@ -6530,7 +6780,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/The%20Jackbox%20Party%20Pack/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "jasontheween-7-day-survival",
@@ -6556,7 +6807,8 @@
       "clickURL": "https://twitch.tv/jasontheween",
       "firstSeen": "2026-02-10T23:46:58.896Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e51c19"
     },
     {
       "setID": "jeff-the-land-shark",
@@ -6582,7 +6834,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-07T12:20:20.468Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#407086"
     },
     {
       "setID": "joker-mayhem",
@@ -6608,7 +6861,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-12T15:53:01.165Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#22a03c"
     },
     {
       "setID": "jordan-x-space-jam",
@@ -6634,7 +6888,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-10T19:25:03.579Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4b4a49"
     },
     {
       "setID": "joy",
@@ -6660,7 +6915,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-03T14:27:53.076Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ea9b97"
     },
     {
       "setID": "jubilee",
@@ -6686,7 +6942,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-09T07:54:46.352Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cf53a2"
     },
     {
       "setID": "k4sen-con-2025",
@@ -6712,7 +6969,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-05T19:35:17.602Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c99438"
     },
     {
       "setID": "kawaiidozer",
@@ -6738,7 +6996,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-03T14:24:54.512Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5e5d5e"
     },
     {
       "setID": "kda-fan",
@@ -6764,7 +7023,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-13T22:45:28.789Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ff0065"
     },
     {
       "setID": "killer-inn",
@@ -6790,7 +7050,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T16:34:37.905Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#bdbdbd"
     },
     {
       "setID": "kingdom-new-lands_1",
@@ -6816,7 +7077,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Kingdom:%20New%20Lands/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "kodama",
@@ -6842,7 +7104,8 @@
       "clickURL": null,
       "firstSeen": "2026-01-28T08:30:40.237Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#793ff4"
     },
     {
       "setID": "koromaru",
@@ -6868,7 +7131,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-17T22:26:23.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b3b4b0"
     },
     {
       "setID": "la-velada-iv",
@@ -6894,7 +7158,8 @@
       "clickURL": null,
       "firstSeen": "2024-07-13T16:19:09.441Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "la-velada-v-badge",
@@ -6920,7 +7185,8 @@
       "clickURL": null,
       "firstSeen": "2025-07-23T19:35:38.725Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "la-velada-vi",
@@ -6946,7 +7212,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-22T20:56:20.123Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#3f3c39"
     },
     {
       "setID": "lamby",
@@ -6972,7 +7239,8 @@
       "clickURL": null,
       "firstSeen": "2026-01-19T16:32:02.102Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5e5959"
     },
     {
       "setID": "lead_moderator",
@@ -6998,7 +7266,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-08T23:17:59.986Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "league-of-legends-classic",
@@ -7024,7 +7293,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-10T17:38:10.705Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1b3560"
     },
     {
       "setID": "league-of-legends-mid-season-invitational-2025---grey",
@@ -7050,7 +7320,8 @@
       "clickURL": null,
       "firstSeen": "2025-06-24T01:11:19.640Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "league-of-legends-mid-season-invitational-2025---purple",
@@ -7076,7 +7347,8 @@
       "clickURL": null,
       "firstSeen": "2025-06-24T01:09:24.851Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "legendus",
@@ -7102,7 +7374,8 @@
       "clickURL": null,
       "firstSeen": "2025-06-28T06:15:55.776Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "lego-batman-legacy-of-the-dark-knight",
@@ -7128,7 +7401,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-15T17:55:59.434Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1f3159"
     },
     {
       "setID": "lol-worlds-2025",
@@ -7154,7 +7428,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-10T18:50:12.527Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#323232"
     },
     {
       "setID": "lost-ark-anniversary",
@@ -7180,7 +7455,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-04T05:59:11.949Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c9de88"
     },
     {
       "setID": "low",
@@ -7206,7 +7482,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-07T18:42:25.533Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#11c6b8"
     },
     {
       "setID": "marathon-reveal-runner",
@@ -7232,7 +7509,8 @@
       "clickURL": null,
       "firstSeen": "2025-04-10T21:04:04.585Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "marathon-silkworm",
@@ -7258,7 +7536,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-26T02:19:36.038Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#95f6c2"
     },
     {
       "setID": "marathon-sub-burger",
@@ -7284,7 +7563,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-26T02:19:36.038Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ea1962"
     },
     {
       "setID": "marvels-wolverine",
@@ -7310,7 +7590,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-14T03:31:35.114Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f1e22a"
     },
     {
       "setID": "meccha-chameleon",
@@ -7336,7 +7617,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-16T01:15:33.048Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#998681"
     },
     {
       "setID": "mel",
@@ -7362,7 +7644,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-23T22:07:37.842Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d38f68"
     },
     {
       "setID": "meltan",
@@ -7388,7 +7671,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T23:44:02.993Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c1973f"
     },
     {
       "setID": "miami-chain",
@@ -7414,7 +7698,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ea6fd0"
     },
     {
       "setID": "minecraft-15th-anniversary-celebration",
@@ -7440,7 +7725,8 @@
       "clickURL": "https://twitch-web.app.link/e/vkOhfCa7nJb",
       "firstSeen": "2024-05-28T17:21:51.188Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "minecraft-golden-frog",
@@ -7466,7 +7752,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T02:51:31.314Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cdb03e"
     },
     {
       "setID": "mint",
@@ -7492,7 +7779,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T03:11:07.305Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#54bbcd"
     },
     {
       "setID": "mod-founder",
@@ -7518,7 +7806,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-29T17:09:40.143Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b9ed27"
     },
     {
       "setID": "moderator",
@@ -7544,7 +7833,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "modern-warfare-4",
@@ -7570,7 +7860,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-10T19:30:44.301Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ffd200"
     },
     {
       "setID": "moments",
@@ -7596,7 +7887,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7622,7 +7914,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7648,7 +7941,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7674,7 +7968,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7700,7 +7995,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7726,7 +8022,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7752,7 +8049,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7778,7 +8076,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7804,7 +8103,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7830,7 +8130,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7856,7 +8157,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7882,7 +8184,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7908,7 +8211,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7934,7 +8238,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7960,7 +8265,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -7986,7 +8292,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -8012,7 +8319,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -8038,7 +8346,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -8064,7 +8373,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "moments",
@@ -8090,7 +8400,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "mootivation",
@@ -8116,7 +8427,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-01T13:17:12.146Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#87543b"
     },
     {
       "setID": "morgana",
@@ -8142,7 +8454,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-17T22:26:23.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4cb2e5"
     },
     {
       "setID": "mouseathon",
@@ -8168,7 +8481,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-27T21:27:46.689Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ad4480"
     },
     {
       "setID": "mr-raccoon",
@@ -8194,7 +8508,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-26T21:56:29.149Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b5662b"
     },
     {
       "setID": "msi-2026",
@@ -8220,7 +8535,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-25T18:58:19.979Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d3d3d3"
     },
     {
       "setID": "nahobiho",
@@ -8246,7 +8562,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-17T22:26:23.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#434eae"
     },
     {
       "setID": "nasa-artemis-ii",
@@ -8272,7 +8589,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-30T16:17:27.388Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#0f399f"
     },
     {
       "setID": "nasa-roman",
@@ -8298,7 +8616,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-24T19:00:00.730Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#72b2dc"
     },
     {
       "setID": "never-grave---witch-hat",
@@ -8324,7 +8643,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-28T00:45:59.549Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8d64f3"
     },
     {
       "setID": "no_audio",
@@ -8350,7 +8670,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "no_video",
@@ -8376,7 +8697,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "nopixel-v-launch",
@@ -8402,7 +8724,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-03T22:52:36.383Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#454545"
     },
     {
       "setID": "okhlos_1",
@@ -8428,7 +8751,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Okhlos/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "onimusha-armament",
@@ -8454,7 +8778,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-02T21:55:09.018Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d0b375"
     },
     {
       "setID": "overwatch-league-insider_1",
@@ -8480,7 +8805,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2018B",
@@ -8506,7 +8832,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019A",
@@ -8532,7 +8859,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019A",
@@ -8558,7 +8886,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019B",
@@ -8584,7 +8913,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019B",
@@ -8610,7 +8940,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019B",
@@ -8636,7 +8967,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019B",
@@ -8662,7 +8994,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "overwatch-league-insider_2019B",
@@ -8688,7 +9021,8 @@
       "clickURL": "https://www.twitch.tv/overwatchleague",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "partner",
@@ -8714,7 +9048,8 @@
       "clickURL": "https://blog.twitch.tv/2017/04/24/the-verified-badge-is-here-13381bc05735",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "path-of-exile-2-badge",
@@ -8740,7 +9075,8 @@
       "clickURL": null,
       "firstSeen": "2025-08-27T22:41:47.536Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a58953"
     },
     {
       "setID": "pearl",
@@ -8766,7 +9102,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-03T14:24:54.512Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#44970c"
     },
     {
       "setID": "pentakill-fan",
@@ -8792,7 +9129,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-13T22:45:28.789Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1a4754"
     },
     {
       "setID": "perlica",
@@ -8818,7 +9156,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T16:34:37.905Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b3ada6"
     },
     {
       "setID": "pichu",
@@ -8844,7 +9183,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-17T16:05:41.845Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#faf16d"
     },
     {
       "setID": "pikachu",
@@ -8870,7 +9210,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f0d402"
     },
     {
       "setID": "pogchamps-6-7",
@@ -8896,7 +9237,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-09T18:21:47.947Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ef5fad"
     },
     {
       "setID": "pokemon-30th-anniversary",
@@ -8922,7 +9264,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-26T22:51:26.378Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#fddf0f"
     },
     {
       "setID": "pokemon-legends-z-a-chikorita",
@@ -8948,7 +9291,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-14T18:16:19.237Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c3ea83"
     },
     {
       "setID": "pokemon-legends-z-a-tepig",
@@ -8974,7 +9318,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-14T18:16:19.237Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#eb8037"
     },
     {
       "setID": "pokemon-legends-z-a-totodile",
@@ -9000,7 +9345,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-14T18:16:19.237Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#43aec6"
     },
     {
       "setID": "pokemonxp-costumed-pikachu",
@@ -9026,7 +9372,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-26T22:24:43.544Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#27a3d7"
     },
     {
       "setID": "power-rangers",
@@ -9052,7 +9399,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "power-rangers",
@@ -9078,7 +9426,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "power-rangers",
@@ -9104,7 +9453,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "power-rangers",
@@ -9130,7 +9480,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "power-rangers",
@@ -9156,7 +9507,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "power-rangers",
@@ -9182,7 +9534,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "power-rangers",
@@ -9208,7 +9561,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9234,7 +9588,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9260,7 +9615,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9286,7 +9642,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9312,7 +9669,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9338,7 +9696,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9364,7 +9723,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9390,7 +9750,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9416,7 +9777,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9442,7 +9804,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9468,7 +9831,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9494,7 +9858,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9520,7 +9885,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9546,7 +9912,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "predictions",
@@ -9572,7 +9939,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "premium",
@@ -9584,7 +9952,7 @@
       "alwaysAvailable": true,
       "year": null,
       "userCount": 21851908,
-      "percentage": 13.8383,
+      "percentage": 13.8382,
       "startAt": null,
       "endAt": null,
       "eventName": null,
@@ -9598,7 +9966,8 @@
       "clickURL": "https://gaming.amazon.com",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "princessdonutbrown",
@@ -9624,7 +9993,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-06T18:25:08.357Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#95d9f6"
     },
     {
       "setID": "princessdonutpink",
@@ -9650,7 +10020,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-06T18:25:08.357Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e1387e"
     },
     {
       "setID": "psychonauts_1",
@@ -9676,7 +10047,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Psychonauts/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "puacl2026-finals-charizard",
@@ -9702,7 +10074,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-26T19:14:44.480Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e08b24"
     },
     {
       "setID": "purple-chain",
@@ -9728,7 +10101,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b967d8"
     },
     {
       "setID": "purple-noob",
@@ -9754,7 +10128,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-15T19:55:25.105Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7e2ae8"
     },
     {
       "setID": "purple-pixel-heart---together-for-good-24",
@@ -9780,7 +10155,8 @@
       "clickURL": null,
       "firstSeen": "2024-12-02T21:05:05.309Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "qsmp2",
@@ -9822,7 +10198,8 @@
       "clickURL": "https://www.twitch.tv/quackity",
       "firstSeen": "2026-03-12T23:43:56.666Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d9d5d5"
     },
     {
       "setID": "raging-wolf-helm",
@@ -9848,7 +10225,8 @@
       "clickURL": null,
       "firstSeen": "2024-06-20T18:10:36.483Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "raiden-v-directors-cut_1",
@@ -9874,7 +10252,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Raiden%20V/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "raider-icon-badge",
@@ -9900,7 +10279,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-10T18:05:21.763Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dfa30a"
     },
     {
       "setID": "rainbow-six-siege-x-10th-anniversary",
@@ -9926,7 +10306,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-26T18:06:02.932Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b2963d"
     },
     {
       "setID": "relink-fabicon",
@@ -9952,7 +10333,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-08T07:59:18.876Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c5c5c5"
     },
     {
       "setID": "rematch-blue-lock",
@@ -9978,7 +10360,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-22T10:26:59.240Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1a2a60"
     },
     {
       "setID": "rematch-brazil",
@@ -10004,7 +10387,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-04T15:23:46.864Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#0f285b"
     },
     {
       "setID": "rematch-england",
@@ -10030,7 +10414,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-04T15:23:46.864Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#08214e"
     },
     {
       "setID": "rematch-france",
@@ -10056,7 +10441,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-04T15:23:46.864Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#092353"
     },
     {
       "setID": "rematch-nations-cup",
@@ -10082,7 +10468,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-04T15:23:46.864Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#0a234f"
     },
     {
       "setID": "rematch-nations-cup-eng",
@@ -10108,7 +10495,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-04T15:34:10.172Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "rematch-us",
@@ -10134,7 +10522,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-04T15:23:46.864Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#152c7a"
     },
     {
       "setID": "resonance-minotaur",
@@ -10160,7 +10549,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-13T18:10:12.544Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#845516"
     },
     {
       "setID": "revedtv-stream-awards-2025",
@@ -10186,7 +10576,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-03T22:31:00.842Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c7a95b"
     },
     {
       "setID": "rift_1",
@@ -10212,7 +10603,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Rift/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "road-to-twitchcon-26",
@@ -10238,7 +10630,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-15T18:26:11.201Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ef4833"
     },
     {
       "setID": "rplace-2023",
@@ -10264,7 +10657,8 @@
       "clickURL": "https://www.reddit.com/r/place/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "ruby-pixel-heart---together-for-good-24",
@@ -10290,7 +10684,8 @@
       "clickURL": null,
       "firstSeen": "2024-12-02T21:05:08.481Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "rudy",
@@ -10316,7 +10711,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-12T21:35:08.647Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ceac6f"
     },
     {
       "setID": "runescape-dragon-dagger",
@@ -10342,7 +10738,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-05T16:33:10.605Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5c5b54"
     },
     {
       "setID": "runescape-dragonwilds-eye",
@@ -10368,7 +10765,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-10T15:54:12.028Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dfc188"
     },
     {
       "setID": "runescape-shrimp",
@@ -10394,7 +10792,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-24T12:25:08.771Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4c413b"
     },
     {
       "setID": "runescape-skull",
@@ -10420,7 +10819,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-05T16:33:10.605Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#9f978d"
     },
     {
       "setID": "rustmas-2025",
@@ -10446,7 +10846,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-04T15:58:10.461Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c8402b"
     },
     {
       "setID": "sajam-slam-badge",
@@ -10472,7 +10873,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-14T19:36:20.798Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#bc460a"
     },
     {
       "setID": "samusoffer_beta",
@@ -10498,7 +10900,8 @@
       "clickURL": "https://twitch.amazon.com/prime",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sand",
@@ -10524,7 +10927,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-16T18:39:17.980Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dab570"
     },
     {
       "setID": "scampuss",
@@ -10550,7 +10954,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-04T02:39:09.092Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#0aa2fa"
     },
     {
       "setID": "scored-big",
@@ -10576,7 +10981,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T17:56:52.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e4a427"
     },
     {
       "setID": "seegson-synthetics",
@@ -10602,7 +11008,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-21T09:12:40.842Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b39c4a"
     },
     {
       "setID": "seeks-eye",
@@ -10628,7 +11035,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-17T22:14:52.338Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#584c4b"
     },
     {
       "setID": "sevastopol-station",
@@ -10654,7 +11062,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-21T09:12:40.842Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dd8c48"
     },
     {
       "setID": "share-the-love",
@@ -10680,7 +11089,8 @@
       "clickURL": "https://blog.twitch.tv/2025/02/14/share-the-love-this-valentine-s-day/",
       "firstSeen": "2025-02-14T18:09:35.910Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "silver-chain",
@@ -10706,7 +11116,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T18:06:43.452Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#95989c"
     },
     {
       "setID": "skulls-10th-anniversary",
@@ -10732,7 +11143,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-15T11:35:44.246Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4c4c4c"
     },
     {
       "setID": "social-sharing",
@@ -10758,7 +11170,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-22T18:17:50.263Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "social-sharing",
@@ -10784,7 +11197,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-22T18:17:50.263Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "social-sharing",
@@ -10810,7 +11224,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-22T18:17:50.263Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "solasta-2-multiplayer",
@@ -10836,7 +11251,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-08T11:11:30.110Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f5d3a0"
     },
     {
       "setID": "sonic-racing-crossworlds",
@@ -10862,7 +11278,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-24T22:02:37.641Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#0550a3"
     },
     {
       "setID": "sorcerer-rogier-elden-ring",
@@ -10888,7 +11305,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-31T19:42:00.846Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#9e603a"
     },
     {
       "setID": "speedons-5-badge",
@@ -10914,7 +11332,8 @@
       "clickURL": null,
       "firstSeen": "2025-02-24T22:34:48.673Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "speedons-6",
@@ -10940,7 +11359,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-05T21:05:07.548Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d911f2"
     },
     {
       "setID": "spiderman",
@@ -10966,7 +11386,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-24T05:38:22.412Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b30b1b"
     },
     {
       "setID": "squirtle",
@@ -10992,7 +11413,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-17T16:05:41.845Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#66bcd7"
     },
     {
       "setID": "staff",
@@ -11018,7 +11440,8 @@
       "clickURL": "https://www.twitch.tv/jobs?ref=chat_badge",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "star-force-mega-man",
@@ -11044,7 +11467,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-26T20:29:11.591Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#2d87bd"
     },
     {
       "setID": "starbound_1",
@@ -11070,7 +11494,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Starbound/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "strafe_1",
@@ -11096,7 +11521,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/strafe/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "stream-for-humanity-2-2025",
@@ -11122,7 +11548,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-12T19:20:11.248Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5072f1"
     },
     {
       "setID": "streamer-awards-2024",
@@ -11148,7 +11575,8 @@
       "clickURL": "https://thestreamerawards.com/home",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "streamer-awards-2026-vote",
@@ -11174,7 +11602,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-14T20:55:30.621Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d9ce7a"
     },
     {
       "setID": "streamer-awards-tux",
@@ -11200,7 +11629,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-01T22:57:03.793Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#dbd07a"
     },
     {
       "setID": "sub-gift-leader",
@@ -11226,7 +11656,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gift-leader",
@@ -11252,7 +11683,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gift-leader",
@@ -11278,7 +11710,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11304,7 +11737,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11330,7 +11764,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11356,7 +11791,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11382,7 +11818,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11408,7 +11845,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11434,7 +11872,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11460,7 +11899,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11486,7 +11926,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11512,7 +11953,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11538,7 +11980,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11564,7 +12007,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11590,7 +12034,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11616,7 +12061,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11642,7 +12088,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11668,7 +12115,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11694,7 +12142,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11720,7 +12169,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11746,7 +12196,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11772,7 +12223,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11798,7 +12250,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11824,7 +12277,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11850,7 +12304,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11876,7 +12331,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11902,7 +12358,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11928,7 +12385,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11954,7 +12412,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -11980,7 +12439,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "sub-gifter",
@@ -12006,7 +12466,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12032,7 +12493,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12058,7 +12520,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12084,7 +12547,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12110,7 +12574,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12136,7 +12601,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12162,7 +12628,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subscriber",
@@ -12188,7 +12655,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subtember-2024",
@@ -12214,7 +12682,8 @@
       "clickURL": "https://link.twitch.tv/subtember2024",
       "firstSeen": "2024-09-26T01:05:12.972Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "subtember-2025",
@@ -12240,7 +12709,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-03T18:05:00.676Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8a44f0"
     },
     {
       "setID": "subtember-2026",
@@ -12266,7 +12736,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-04T17:05:46.220Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#914af7"
     },
     {
       "setID": "superhot_1",
@@ -12292,7 +12763,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/superhot/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "superultracombo-2023",
@@ -12318,7 +12790,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "support-a-streamer-ho26-badge",
@@ -12344,7 +12817,8 @@
       "clickURL": "https://worldoftanks.eu/en/news/general-news/wot-monthly-december-2025/",
       "firstSeen": "2025-12-10T19:54:59.439Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#5e5f68"
     },
     {
       "setID": "survival-cup-4",
@@ -12370,7 +12844,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-18T17:18:35.127Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "team-instinct",
@@ -12396,7 +12871,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-13T02:10:24.784Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#ffdb13"
     },
     {
       "setID": "team-mystic",
@@ -12422,7 +12898,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-11T16:13:04.923Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#2f79ef"
     },
     {
       "setID": "team-valor",
@@ -12448,7 +12925,8 @@
       "clickURL": null,
       "firstSeen": "2026-07-10T22:00:47.009Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f6251e"
     },
     {
       "setID": "teddie",
@@ -12474,7 +12952,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-17T22:26:23.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d7c399"
     },
     {
       "setID": "tft-paris-open",
@@ -12500,7 +12979,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-10T23:27:39.295Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#2d3bdc"
     },
     {
       "setID": "the-blood-of-dawnwalker-launch",
@@ -12526,7 +13006,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-13T13:05:24.214Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#792511"
     },
     {
       "setID": "the-blood-of-dawnwalker-supporter",
@@ -12552,7 +13033,8 @@
       "clickURL": null,
       "firstSeen": "2026-08-13T13:06:28.833Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#77401f"
     },
     {
       "setID": "the-deer",
@@ -12578,7 +13060,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-15T22:17:10.848Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#703528"
     },
     {
       "setID": "the-first-descendant-badge",
@@ -12604,7 +13087,8 @@
       "clickURL": null,
       "firstSeen": "2025-08-07T15:27:05.089Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#0d5cd4"
     },
     {
       "setID": "the-game-awards-2023",
@@ -12630,7 +13114,8 @@
       "clickURL": "https://blog.twitch.tv/2023/11/30/the-2023-game-awards-is-live-on-twitch-december-7th/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "the-golden-predictor-of-the-game-awards-2023",
@@ -12656,7 +13141,8 @@
       "clickURL": "https://blog.twitch.tv/2023/11/30/the-2023-game-awards-is-live-on-twitch-december-7th/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "the-inverted-man",
@@ -12682,7 +13168,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-21T14:06:42.212Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d89634"
     },
     {
       "setID": "the-man-without-fear",
@@ -12708,7 +13195,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-09T21:46:11.419Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#941b4b"
     },
     {
       "setID": "the-mox",
@@ -12734,7 +13222,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-20T21:45:19.800Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f3cbb3"
     },
     {
       "setID": "the-onryos-mask",
@@ -12760,7 +13249,8 @@
       "clickURL": null,
       "firstSeen": "2025-10-01T00:32:39.544Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a09e99"
     },
     {
       "setID": "the-surge_1",
@@ -12786,7 +13276,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/The%20Surge/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "the-surge_2",
@@ -12812,7 +13303,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/The%20Surge/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "the-surge_3",
@@ -12838,7 +13330,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/The%20Surge/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "thedragonsdogma",
@@ -12864,7 +13357,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-01T14:00:15.028Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#841515"
     },
     {
       "setID": "this-war-of-mine_1",
@@ -12890,7 +13384,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/This%20War%20of%20Mine/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "titan-souls_1",
@@ -12916,7 +13411,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Titan%20Souls/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "together-for-good-25---good-badge",
@@ -12942,7 +13438,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-14T18:00:53.624Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e867d0"
     },
     {
       "setID": "together-for-good-25---gooder-badge",
@@ -12968,7 +13465,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-14T18:00:53.624Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4bdd4e"
     },
     {
       "setID": "together-for-good-25---goodest-badge",
@@ -12994,7 +13492,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-14T18:00:53.624Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e1c975"
     },
     {
       "setID": "together-for-good-25---wicked-dub-badge",
@@ -13020,7 +13519,8 @@
       "clickURL": null,
       "firstSeen": "2025-11-14T18:00:53.624Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#fb3dd8"
     },
     {
       "setID": "total-war-anniversary",
@@ -13046,7 +13546,8 @@
       "clickURL": null,
       "firstSeen": "2025-12-03T18:24:40.193Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a3813a"
     },
     {
       "setID": "touch-grass",
@@ -13072,7 +13573,8 @@
       "clickURL": "https://help.twitch.tv/s/article/twitch-chat-badges-guide",
       "firstSeen": "2025-08-21T15:41:30.587Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7ca50c"
     },
     {
       "setID": "toxic-zombie",
@@ -13098,7 +13600,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-26T18:14:18.087Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7e8a88"
     },
     {
       "setID": "treasure-adventure-world_1",
@@ -13124,7 +13627,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Treasure%20Adventure%20World/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "true-damage-fan",
@@ -13150,7 +13654,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-13T22:45:28.789Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#989899"
     },
     {
       "setID": "turbo",
@@ -13176,7 +13681,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitch-dj",
@@ -13202,7 +13708,8 @@
       "clickURL": "https://www.twitch.tv/dj-program",
       "firstSeen": "2024-06-13T18:05:55.002Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitch-intern-2022",
@@ -13228,7 +13735,8 @@
       "clickURL": "https://www.twitch.tv/jobs/early-career/",
       "firstSeen": "2025-09-10T17:15:47.935Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitch-intern-2023",
@@ -13254,7 +13762,8 @@
       "clickURL": "https://www.twitch.tv/jobs/early-career/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitch-intern-2024",
@@ -13280,7 +13789,8 @@
       "clickURL": "https://www.twitch.tv/jobs/early-career/",
       "firstSeen": "2024-08-23T20:21:31.924Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitch-recap-2023",
@@ -13306,7 +13816,8 @@
       "clickURL": "https://twitch-web.app.link/e/twitch-recap",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#9f60f9"
     },
     {
       "setID": "twitch-recap-2024",
@@ -13332,7 +13843,8 @@
       "clickURL": "https://www.twitch.tv/annual-recap",
       "firstSeen": "2024-12-09T22:30:37.858Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8b6cdd"
     },
     {
       "setID": "twitch-recap-2025",
@@ -13358,7 +13870,8 @@
       "clickURL": "https://www.twitch.tv/annual-recap",
       "firstSeen": "2025-12-01T23:27:03.115Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4b4b4a"
     },
     {
       "setID": "twitchbot",
@@ -13384,7 +13897,8 @@
       "clickURL": "http://link.twitch.tv/automod_blog",
       "firstSeen": "2025-04-10T22:14:12.733Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchbot",
@@ -13410,7 +13924,8 @@
       "clickURL": null,
       "firstSeen": "2025-04-10T22:14:12.733Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon-2024---rotterdam",
@@ -13436,7 +13951,8 @@
       "clickURL": "https://twitchcon.com/rotterdam-2024/?utm_source=twitch&utm_medium=chat-badge&utm_campaign=tceu24-chat-badge",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon-2024---san-diego",
@@ -13462,7 +13978,8 @@
       "clickURL": "https://twitchcon.com/san-diego-2024/?utm_source=twitch&utm_medium=chat-badge&utm_campaign=tcsd24-chat-badge",
       "firstSeen": "2024-05-28T21:27:24.791Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon-2025---rotterdam",
@@ -13488,7 +14005,8 @@
       "clickURL": "https://www.twitchcon.com/rotterdam-2025/",
       "firstSeen": "2025-02-10T20:02:25.285Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon-2026---san-diego---beachball",
@@ -13514,7 +14032,8 @@
       "clickURL": "https://twitchcon.com/san-diego-2026/?utm_source=twitch&utm_medium=chat-badge&utm_campaign=tcsd26-beachball",
       "firstSeen": "2026-07-15T18:41:51.293Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e5353e"
     },
     {
       "setID": "twitchcon-2026---san-diego---taco",
@@ -13540,7 +14059,8 @@
       "clickURL": "https://twitchcon.com/san-diego-2026/?utm_source=twitch&utm_medium=chat-badge&utm_campaign=tcsd26-taco",
       "firstSeen": "2026-07-15T18:41:51.293Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#f5d25f"
     },
     {
       "setID": "twitchcon-2026-europe-row-houses",
@@ -13566,7 +14086,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-04T01:06:44.112Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#233eb5"
     },
     {
       "setID": "twitchcon-2026-europe-windmill",
@@ -13592,7 +14113,8 @@
       "clickURL": null,
       "firstSeen": "2026-03-04T01:06:44.112Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4157bf"
     },
     {
       "setID": "twitchcon-referral-program-2025-bleedpurple",
@@ -13618,7 +14140,8 @@
       "clickURL": "https://twitchcon.com/rotterdam-2025/referral-program/",
       "firstSeen": "2025-05-29T16:41:13.259Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon-referral-program-2025-chrome-star",
@@ -13644,7 +14167,8 @@
       "clickURL": "https://twitchcon.com/rotterdam-2025/referral-program/",
       "firstSeen": "2025-05-29T16:41:13.259Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon2017",
@@ -13670,7 +14194,8 @@
       "clickURL": "https://www.twitchcon.com/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchcon2018",
@@ -13696,7 +14221,8 @@
       "clickURL": "https://www.twitchcon.com/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tc18",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconAmsterdam2020",
@@ -13722,7 +14248,8 @@
       "clickURL": "https://www.twitchcon.com/amsterdam/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tcamsterdam20",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconEU2019",
@@ -13748,7 +14275,8 @@
       "clickURL": "https://europe.twitchcon.com/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tceu19",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconEU2022",
@@ -13774,7 +14302,8 @@
       "clickURL": "https://www.twitchcon.com/amsterdam-2022/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tceu22",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconEU2023",
@@ -13800,7 +14329,8 @@
       "clickURL": "https://www.twitchcon.com/paris-2023/?utm_source=chat_badge",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconNA2019",
@@ -13826,7 +14356,8 @@
       "clickURL": "https://www.twitchcon.com/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tcna19",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconNA2020",
@@ -13852,7 +14383,8 @@
       "clickURL": "https://www.twitchcon.com/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tcna20",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconNA2022",
@@ -13878,7 +14410,8 @@
       "clickURL": "https://www.twitchcon.com/san-diego-2022/?utm_source=twitch-chat&utm_medium=badge&utm_campaign=tcna22",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "twitchconNA2023",
@@ -13904,7 +14437,8 @@
       "clickURL": "https://www.twitchcon.com/en/las-vegas-2023/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "two-point-museum",
@@ -13930,7 +14464,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-16T19:50:01.142Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#bc9c67"
     },
     {
       "setID": "two-point-pickle",
@@ -13956,7 +14491,8 @@
       "clickURL": null,
       "firstSeen": "2026-06-16T19:50:01.142Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#81aa3c"
     },
     {
       "setID": "tyranny_1",
@@ -13982,7 +14518,8 @@
       "clickURL": "https://www.twitch.tv/directory/game/Tyranny/details",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "ugly-sweater",
@@ -14008,7 +14545,8 @@
       "clickURL": "https://help.twitch.tv/s/article/how-to-use-badges?language=en_US",
       "firstSeen": "2025-12-01T18:42:11.063Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#03dbd5"
     },
     {
       "setID": "ultramarine",
@@ -14034,7 +14572,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-16T17:11:15.718Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1c4e9f"
     },
     {
       "setID": "umbrella-corporation",
@@ -14060,7 +14599,8 @@
       "clickURL": null,
       "firstSeen": "2026-01-13T21:13:28.751Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b70000"
     },
     {
       "setID": "unicorn-tachanka",
@@ -14086,7 +14626,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-01T20:50:14.779Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d465e6"
     },
     {
       "setID": "user-anniversary",
@@ -14112,7 +14653,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "vaultbreakers",
@@ -14138,7 +14680,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-05T11:30:38.546Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8cc8e7"
     },
     {
       "setID": "vaultbreakers-golden",
@@ -14164,7 +14707,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-05T11:36:55.524Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#decc9b"
     },
     {
       "setID": "vct-paris-2025",
@@ -14190,7 +14734,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-11T16:43:49.922Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c8b375"
     },
     {
       "setID": "venusaur",
@@ -14216,7 +14761,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4badb8"
     },
     {
       "setID": "vga-champ-2017",
@@ -14242,7 +14788,8 @@
       "clickURL": "https://blog.twitch.tv/watch-and-co-stream-the-game-awards-this-thursday-on-twitch-3d8e34d2345d",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "video-games-day",
@@ -14268,7 +14815,8 @@
       "clickURL": "https://www.twitch.tv/directory/gaming",
       "firstSeen": "2025-09-16T17:03:45.397Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#b093f3"
     },
     {
       "setID": "vip",
@@ -14294,7 +14842,8 @@
       "clickURL": "https://help.twitch.tv/customer/en/portal/articles/659115-twitch-chat-badges-guide",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "volume-up",
@@ -14320,7 +14869,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-04T19:06:05.617Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#873fe3"
     },
     {
       "setID": "warcraft",
@@ -14346,7 +14896,8 @@
       "clickURL": "http://warcraftontwitch.tv/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "warcraft",
@@ -14372,7 +14923,8 @@
       "clickURL": "http://warcraftontwitch.tv/",
       "firstSeen": "2026-11-16T23:34:23Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "wardog",
@@ -14398,7 +14950,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-01T17:23:24.367Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#707070"
     },
     {
       "setID": "warlord",
@@ -14424,7 +14977,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-01T17:23:24.367Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#917849"
     },
     {
       "setID": "warrior-jar-alexander",
@@ -14450,7 +15004,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-30T16:59:24.446Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a18550"
     },
     {
       "setID": "wartortle",
@@ -14476,7 +15031,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-06T01:34:54.242Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7897c9"
     },
     {
       "setID": "waterslug",
@@ -14502,7 +15058,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-13T22:52:05.978Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#59b4e6"
     },
     {
       "setID": "welcome-2-miami",
@@ -14528,7 +15085,8 @@
       "clickURL": null,
       "firstSeen": "2026-11-13T17:56:52.100Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cc2aa1"
     },
     {
       "setID": "went-outside",
@@ -14554,7 +15112,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-06T10:41:19.284Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#cc9706"
     },
     {
       "setID": "wholesome-direct-2026",
@@ -14580,7 +15139,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-27T00:04:11.194Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#4cc1e2"
     },
     {
       "setID": "winston-overwatch",
@@ -14606,7 +15166,8 @@
       "clickURL": null,
       "firstSeen": "2026-04-13T15:01:11.793Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#7e838f"
     },
     {
       "setID": "witch-hat",
@@ -14632,7 +15193,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-07T21:14:19.869Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e2ab59"
     },
     {
       "setID": "witchspire-logo",
@@ -14658,7 +15220,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-07T21:15:25.599Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#411f52"
     },
     {
       "setID": "wolf",
@@ -14684,7 +15247,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-11T17:21:38.567Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#8e2425"
     },
     {
       "setID": "wolf-medallion",
@@ -14710,7 +15274,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-28T12:52:49.244Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#c1a676"
     },
     {
       "setID": "worlds-2026-supporter",
@@ -14736,7 +15301,8 @@
       "clickURL": null,
       "firstSeen": "2026-10-13T22:45:28.789Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#a8a8a8"
     },
     {
       "setID": "wsci-2026",
@@ -14762,7 +15328,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-11T19:11:36.398Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#464646"
     },
     {
       "setID": "yellow-noob",
@@ -14788,7 +15355,8 @@
       "clickURL": null,
       "firstSeen": "2026-02-04T01:28:27.849Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#e6cb1a"
     },
     {
       "setID": "yellow-party-hat",
@@ -14814,7 +15382,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-25T11:54:20.471Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d5d31b"
     },
     {
       "setID": "you-got-this",
@@ -14840,7 +15409,8 @@
       "clickURL": "https://www.adidas.com/us/soccer",
       "firstSeen": "2026-06-10T15:53:41.117Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#d12221"
     },
     {
       "setID": "yuzu",
@@ -14866,7 +15436,8 @@
       "clickURL": null,
       "firstSeen": "2026-05-11T22:32:35.186Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#67666c"
     },
     {
       "setID": "zevent-2024",
@@ -14892,7 +15463,8 @@
       "clickURL": null,
       "firstSeen": "2024-09-07T00:35:49.658Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": null
     },
     {
       "setID": "zevent-2026",
@@ -14918,7 +15490,8 @@
       "clickURL": null,
       "firstSeen": "2026-09-02T15:49:52.544Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#22d651"
     },
     {
       "setID": "zevent25",
@@ -14944,7 +15517,8 @@
       "clickURL": null,
       "firstSeen": "2025-09-04T17:18:32.761Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
-      "isInitialSeed": true
+      "isInitialSeed": true,
+      "color": "#1dd955"
     }
   ]
 }
