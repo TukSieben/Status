@@ -9,7 +9,7 @@ async def main():
                                   record_video_dir="out", record_video_size={"width": 1920, "height": 1080})
         pg = await ctx.new_page()
         await pg.goto(pathlib.Path(".preview/gameplay.html").resolve().as_uri(), wait_until="networkidle")
-        await pg.wait_for_timeout(15000)
+        await pg.wait_for_timeout(20000)
         await pg.screenshot(path="out/overlay.png")
         await ctx.close()
         await b.close()

@@ -15,7 +15,7 @@
   @keyframes lines{to{background-position:0 90px}}
   .palm{position:absolute;bottom:200px;width:12px;height:420px;background:#0b0614;border-radius:6px}
   .palm:after{content:"";position:absolute;top:-30px;left:-90px;width:190px;height:70px;border-radius:50%;background:#0b0614}
-  .label{position:absolute;left:490px;top:60px;color:rgba(255,255,255,.55);font-weight:800;font-size:28px;letter-spacing:.2em}
+  .label{position:absolute;left:auto;right:60px;top:60px;color:rgba(255,255,255,.55);font-weight:800;font-size:28px;letter-spacing:.2em}
   .widget{position:absolute;inset:0;width:1920px;height:1080px;border:0;background:transparent}
 </style></head>
 <body>
@@ -26,7 +26,7 @@
     <div class="road"></div>
     <div class="label">YOUR GAMEPLAY</div>
   </div>
-  <iframe class="widget" src="https://badgestatus.net/overlay/sidebar/?v=1" allowtransparency="true"></iframe>
+  <iframe class="widget" src="https://badgestatus.net/overlay/sidebar/?v=3" allowtransparency="true"></iframe>
   <script>
     const c=document.getElementById('city');
     for(let i=0;i<60;i++){const b=document.createElement('i');b.style.height=(80+Math.abs(Math.sin(i*1.7))*260)+'px';c.appendChild(b);}
