@@ -6,36 +6,48 @@
   <meta name="robots" content="noindex">
   <title>Sidebar — BadgeStatus</title>
   <!--
-    Gameplay overlay with a badge sidebar (OBS Browser Source: 1920 × 1080, on top of your game capture).
-    The area right of the sidebar is transparent — place your game there.
+    Gameplay overlay: floating badge panel (OBS Browser Source: 1920 × 1080, on top of your game capture).
+    Everything outside the panel is transparent.
     Options:
-      ?side=right        → sidebar on the right
+      ?side=right        → panel on the right
       ?expired=3         → show badges that ended in the last N days (default 3, 0 = hide)
       ?game=PAYDAY 3     → only badges for that game
-      ?brand=0           → hide the BadgeStatus box in the corner
+      ?brand=0           → plain "Badges" header instead of the BadgeStatus logo
   -->
   <link rel="icon" type="image/png" href="/assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/base.css?v=22">
-  <link rel="stylesheet" href="/assets/css/pages/sidebar.css?v=1">
+  <link rel="stylesheet" href="/assets/css/pages/sidebar.css?v=3">
 </head>
 <body class="sb-body">
   <div class="sb-stage" id="stage">
-    <aside class="sb-panel">
-      <div class="sb-scroll" id="sbScroll">
-        <div class="sb-track" id="sbTrack"></div>
-      </div>
+    <aside class="sb-card">
+      <header class="sb-head">
+        <div class="sb-brand" id="sbBrand">
+          <img src="/assets/img/logo.png" alt="" width="30" height="30">
+          <span>BadgeStatus</span>
+        </div>
+        <div class="sb-live" id="sbLive"></div>
+      </header>
+
+      <section class="sb-spot" id="sbSpot" hidden>
+        <div class="sb-spot-top">
+          <span class="sb-label" id="sbSpotLabel">Ending soon</span>
+          <span class="sb-spot-idx" id="sbSpotIdx"></span>
+        </div>
+        <div class="sb-spot-body" id="sbSpotBody"></div>
+      </section>
+
+      <section class="sb-list" id="sbList"></section>
+
+      <footer class="sb-foot">
+        <div class="sb-dots" id="sbDots"></div>
+        <div class="sb-hint">Type the <b>!command</b> in chat</div>
+      </footer>
     </aside>
-    <div class="sb-brand" id="sbBrand">
-      <img src="/assets/img/logo.png" alt="" width="44" height="44">
-      <div>
-        <div class="sb-brand-name">BadgeStatus</div>
-        <div class="sb-brand-url">badgestatus.net</div>
-      </div>
-    </div>
   </div>
-  <script type="module" src="/assets/js/pages/sidebar.js?v=1"></script>
+  <script type="module" src="/assets/js/pages/sidebar.js?v=2"></script>
 </body>
 </html>
