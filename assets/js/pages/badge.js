@@ -63,6 +63,28 @@ function categoryText(b) {
   return m ? m[1].trim() : "";
 }
 
+/** Twitch category slug: "Metaphor: ReFantazio" -> "metaphor-refantazio", "Tom Clancy's X" -> "tom-clancys-x" */
+function twitchSlug(name) {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** Where to earn the badge on Twitch: the category's drops directory, or the drops campaigns page. */
+function dropsLink(b) {
+  const restricted = /eligible\s+channels?/i.test(b.objective || "");
+  const first = categoryText(b).replace(/\s*\(.*?\)\s*/g, "").split(",")[0].trim();
+  if (!restricted && first) {
+    return { href: `https://www.twitch.tv/directory/category/${twitchSlug(first)}?filter=drops`, label: `Get it on Twitch · ${first}` };
+  }
+  return { href: "https://www.twitch.tv/drops/campaigns", label: "Get it on Twitch" };
+}
+
 function costTag(b) {
   const paid = b.cost === "paid";
   return el("span", `tag ${paid ? "is-paid" : "is-free"}`, paid ? "Paid" : "Free");
@@ -152,6 +174,13 @@ function renderHow() {
     nodes.push(live);
   }
   $("bdFacts").replaceChildren(...nodes);
+
+  const s = statusOf(badge);
+  const btn = $("bdGet");
+  const link = dropsLink(badge);
+  btn.href = link.href;
+  btn.querySelector("span").textContent = link.label;
+  btn.classList.toggle("hidden", !(s === "active" || s === "upcoming"));
 }
 
 /* ---------- 4. Details ---------- */
