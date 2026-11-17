@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-17T14:17:24Z",
+  "syncedAt": "2026-11-17T14:21:17Z",
   "totalBadges": 574,
   "uniqueSets": 454,
   "trackedOwners": 388,
@@ -14083,7 +14083,7 @@
       "year": null,
       "userCount": null,
       "percentage": null,
-      "startAt": null,
+      "startAt": "2021-10-23T00:00:00Z",
       "endAt": null,
       "eventName": null,
       "game": null,
