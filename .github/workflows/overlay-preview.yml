@@ -2,7 +2,7 @@ name: Overlay preview video
 on:
   push:
     branches: [overlay-preview]
-    paths: [".preview/record.py", ".github/workflows/overlay-preview.yml"]
+    paths: [".preview/record.py", ".preview/gameplay.html", ".github/workflows/overlay-preview.yml"]
 permissions:
   contents: write
 jobs:
@@ -19,7 +19,7 @@ jobs:
           sudo apt-get install -y ffmpeg >/dev/null
           f=$(ls out/*.webm | head -1)
           ffmpeg -y -ss 1.5 -i "$f" -vf "scale=1280:-2,fps=24" -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p -movflags +faststart .preview/overlay.mp4
-          ffmpeg -y -ss 1.5 -t 18 -i "$f" -vf "fps=8,scale=960:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer" .preview/overlay.gif
+          ffmpeg -y -ss 1.5 -t 12 -i "$f" -vf "fps=8,scale=960:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer" .preview/overlay.gif
           cp out/overlay.png .preview/overlay.png
           ls -la .preview
       - name: Commit result
