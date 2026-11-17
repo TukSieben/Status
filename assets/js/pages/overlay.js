@@ -1,11 +1,10 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
-import { $, el, badgeImg, splitBadges, loadBadges, URGENT_MS } from "../lib/utils.js";
+import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 
 const params = new URLSearchParams(location.search);
 const ROTATE_MS = Math.max(5, Number(params.get("rotate")) || 15) * 1000;
 const PER_PAGE = 12; // 4 × 3 cards
-const DATA_REFRESH_MS = 5 * 60 * 1000;
 
 if (params.get("transparent") === "1") document.body.classList.add("is-transparent");
 
@@ -165,15 +164,22 @@ function tick() {
 
 /* ---------- init ---------- */
 
-async function refreshData() {
+async function start() {
   const data = await loadBadges();
-  if (data.badges.length) badges = data.badges;
+  badges = data.badges;
   renderAll();
+  // New snapshot from the sync → redraw (checks every minute; OBS keeps the page open for days)
+  watchBadges(
+    (next) => {
+      badges = next.badges;
+      renderAll();
+    },
+    { syncedAt: data.syncedAt, intervalMs: 60_000 }
+  );
 }
 
-refreshData();
+start();
 setInterval(tick, 1000);
-setInterval(refreshData, DATA_REFRESH_MS);
 setInterval(() => {
   page += 1;
   renderGrid(splitBadges(badges).active);

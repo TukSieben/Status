@@ -1,5 +1,5 @@
 import "../lib/background.js";
-import { $, el, badgeImg, badgeHref, formatDate, loadBadges } from "../lib/utils.js";
+import { $, el, badgeImg, badgeHref, formatDate, loadBadges, watchBadges } from "../lib/utils.js";
 import { fetchChannel, paintLiveIndicators } from "../lib/twitch.js";
 
 const PAGE_SIZE = 96;
@@ -167,17 +167,23 @@ $("aMore").addEventListener("click", () => {
 
 /* ---------- init ---------- */
 
-async function init() {
-  const data = await loadBadges();
-  state.sets = toSets(data.badges);
-  $("footerSync").textContent = data.syncedAt ? `Synced ${formatDate(data.syncedAt)}` : "";
-
+function renderCounts() {
   $("aTotal").textContent = String(state.sets.length);
   $("aActive").textContent = String(state.sets.filter((s) => s.status === "active").length);
   $("aEnded").textContent = String(state.sets.filter((s) => s.status === "ended").length);
 
+  const select = $("aCategory");
+  const have = new Set([...select.options].map((o) => o.value));
   const categories = [...new Set(state.sets.map((s) => s.badge.category).filter(Boolean))].sort();
-  $("aCategory").append(...categories.map((c) => Object.assign(el("option", "", c), { value: c })));
+  select.append(...categories.filter((c) => !have.has(c)).map((c) => Object.assign(el("option", "", c), { value: c })));
+}
+
+async function init() {
+  const data = await loadBadges();
+  state.sets = toSets(data.badges);
+  $("footerSync").textContent = data.syncedAt ? `Updated ${formatDate(data.syncedAt)}` : "";
+
+  renderCounts();
 
   // Restore filters from the URL
   const p = new URLSearchParams(location.search);
@@ -193,8 +199,21 @@ async function init() {
 
   render();
 
-  const next = await fetchChannel();
-  paintLiveIndicators(next);
+  // New snapshot from the sync → rebuild the list in place (keeps search, filters and paging)
+  watchBadges(
+    (next) => {
+      const shown = state.shown;
+      state.sets = toSets(next.badges);
+      $("footerSync").textContent = `Updated ${formatDate(next.syncedAt)}`;
+      renderCounts();
+      state.shown = shown;
+      render();
+    },
+    { syncedAt: data.syncedAt }
+  );
+
+  const live = await fetchChannel();
+  paintLiveIndicators(live);
 }
 
 init();

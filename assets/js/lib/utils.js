@@ -133,13 +133,22 @@ export function formatDate(iso) {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
+    timeZoneName: "short", // e.g. "GMT+1" — always show which time zone a time is in
   });
 }
 
+/** "Nov 18, 12:00 GMT+1" (viewer's local time zone) */
 export function shortDate(iso) {
   const t = Date.parse(iso || "");
   if (Number.isNaN(t)) return "—";
-  return new Date(t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+  return new Date(t).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZoneName: "short",
+  });
 }
 
 export function compactNumber(n) {
@@ -187,3 +196,29 @@ export function normalizeLogin(raw) {
 try {
   localStorage.removeItem("badgestatus_user");
 } catch {}
+
+/**
+ * Re-checks the badge snapshot every `intervalMs` and calls `onChange(data)` when the sync
+ * has published a newer one (new badges, times, owner counts, channels…). Pages use this to
+ * stay current without a reload. Returns a function that stops watching.
+ */
+export function watchBadges(onChange, { syncedAt = null, intervalMs = 120_000 } = {}) {
+  let last = syncedAt;
+  const check = async () => {
+    if (document.hidden) return;
+    const data = await loadBadges();
+    if (data.badges.length && data.syncedAt && data.syncedAt !== last) {
+      last = data.syncedAt;
+      onChange(data);
+    }
+  };
+  const timer = setInterval(check, intervalMs);
+  const onVisible = () => {
+    if (!document.hidden) check();
+  };
+  document.addEventListener("visibilitychange", onVisible);
+  return () => {
+    clearInterval(timer);
+    document.removeEventListener("visibilitychange", onVisible);
+  };
+}

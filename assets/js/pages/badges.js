@@ -13,6 +13,7 @@ import {
   formatDate,
   shortDate,
   loadBadges,
+  watchBadges,
   gql,
   normalizeLogin,
   URGENT_MS,
@@ -243,7 +244,7 @@ async function refreshChannel() {
 async function init() {
   const data = await loadBadges();
   state.badges = data.badges;
-  $("footerSync").textContent = data.syncedAt ? `Synced ${formatDate(data.syncedAt)}` : "";
+  $("footerSync").textContent = data.syncedAt ? `Updated ${formatDate(data.syncedAt)}` : "";
   render();
 
   const urlUser = new URLSearchParams(location.search).get("user");
@@ -252,6 +253,16 @@ async function init() {
   setInterval(tick, 1000);
   refreshChannel();
   setInterval(refreshChannel, 60_000);
+
+  // New snapshot from the sync → redraw in place (keeps the checked user and filters)
+  watchBadges(
+    (next) => {
+      state.badges = next.badges;
+      $("footerSync").textContent = `Updated ${formatDate(next.syncedAt)}`;
+      render();
+    },
+    { syncedAt: data.syncedAt }
+  );
 }
 
 init();

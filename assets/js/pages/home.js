@@ -9,7 +9,9 @@ import {
   refreshTimers,
   splitBadges,
   formatDate,
+  shortDate,
   loadBadges,
+  watchBadges,
   normalizeLogin,
   URGENT_MS,
 } from "../lib/utils.js";
@@ -28,6 +30,7 @@ function miniRow(b, mode) {
   row.title = objectiveText(b);
 
   const title = el("span", "mini-title", b.title);
+  title.appendChild(el("span", "mini-sub", shortDate(mode === "ending" ? b.endAt : b.startAt)));
   const side = el("span", "mini-side");
   if (mode === "ending" && earnableOnStream(b, channel)) side.appendChild(el("span", "tag is-live", "On stream"));
   side.append(
@@ -155,13 +158,24 @@ async function init() {
   const data = await loadBadges();
   badges = data.badges;
   $("footerSync").textContent = data.syncedAt
-    ? `Synced ${formatDate(data.syncedAt)}`
+    ? `Updated ${formatDate(data.syncedAt)}`
     : "";
   render();
   drawSchedule();
   setInterval(tick, 1000);
   refreshChannel();
   setInterval(refreshChannel, 60_000);
+
+  // New snapshot from the sync (new badges, times, counts) → redraw everything in place
+  watchBadges(
+    (next) => {
+      badges = next.badges;
+      $("footerSync").textContent = `Updated ${formatDate(next.syncedAt)}`;
+      render();
+      drawSchedule();
+    },
+    { syncedAt: data.syncedAt }
+  );
 }
 
 init();

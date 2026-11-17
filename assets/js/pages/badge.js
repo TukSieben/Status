@@ -1,5 +1,5 @@
 import "../lib/background.js";
-import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, compactNumber, gql } from "../lib/utils.js";
+import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, watchBadges, compactNumber, gql } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 
 let badge = null;
@@ -30,6 +30,7 @@ function localDate(iso, opts = {}) {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
+    timeZoneName: "short",
   });
 }
 
@@ -483,7 +484,7 @@ async function init() {
   const id = new URLSearchParams(location.search).get("id") || "";
   const data = await loadBadges();
   all = data.badges;
-  if (data.syncedAt) $("footerSync").textContent = `Synced ${localDate(data.syncedAt)}`;
+  if (data.syncedAt) $("footerSync").textContent = `Updated ${localDate(data.syncedAt)}`;
 
   $("bdLoading").classList.add("hidden");
   // Prefer the newest version of a set
@@ -514,6 +515,25 @@ async function init() {
   };
   refresh();
   setInterval(refresh, 60_000);
+
+  // New snapshot from the sync (times, owners, channels…) → redraw this badge in place
+  watchBadges(
+    (next) => {
+      const updated = next.badges.filter((b) => b.setID === id).sort((a, b) => Number(b.version) - Number(a.version))[0];
+      if (!updated) return;
+      all = next.badges;
+      badge = updated;
+      $("footerSync").textContent = `Updated ${localDate(next.syncedAt)}`;
+      renderHero();
+      renderWhen();
+      renderHow();
+      renderDetails();
+      renderCampaign();
+      renderOther();
+      loadLive();
+    },
+    { syncedAt: data.syncedAt }
+  );
 }
 
 init();

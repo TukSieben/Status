@@ -21,7 +21,7 @@ function shortRel(ms) {
 }
 
 function fmt(ms) {
-  return new Date(ms).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+  return new Date(ms).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false, timeZoneName: "short" });
 }
 
 /** Groups badges into events (by eventName, falling back to the badge title). */
@@ -68,7 +68,7 @@ function enableDragScroll(scroller) {
     startX = e.clientX;
     startLeft = scroller.scrollLeft;
   });
-  window.addEventListener("pointermove", (e) => {
+  const onMove = (e) => {
     if (!down) return;
     const dx = e.clientX - startX;
     if (!moved && Math.abs(dx) > 3) {
@@ -77,12 +77,14 @@ function enableDragScroll(scroller) {
       scroller.classList.add("is-dragging");
     }
     scroller.scrollLeft = startLeft - dx;
-  });
-  window.addEventListener("pointerup", () => {
+  };
+  const onUp = () => {
     if (!down) return;
     down = false;
     scroller.classList.remove("is-dragging");
-  });
+  };
+  window.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
   // Swallow the click that ends a drag so bars don't navigate
   scroller.addEventListener(
     "click",
@@ -105,6 +107,10 @@ function enableDragScroll(scroller) {
     },
     { passive: false }
   );
+  return () => {
+    window.removeEventListener("pointermove", onMove);
+    window.removeEventListener("pointerup", onUp);
+  };
 }
 
 /**
@@ -115,6 +121,8 @@ function enableDragScroll(scroller) {
 export function renderSchedule(root, badges, options = {}) {
   const now = Date.now();
   const events = buildEvents(badges, now);
+  const prevScroll = root.querySelector(".sched-scroll")?.scrollLeft; // keep position on auto-refresh
+  root._schedCleanup?.();
   root.replaceChildren();
 
   if (events.length === 0) {
@@ -222,10 +230,10 @@ export function renderSchedule(root, badges, options = {}) {
   inner.append(cols, header, rows, nowLine);
   scroller.appendChild(inner);
   root.append(legend, scroller);
-  enableDragScroll(scroller);
 
-  // Always start at the left edge (yesterday + today visible), never mid-day
-  scroller.scrollLeft = 0;
+  // Start at the left edge (yesterday + today visible); keep the user's position on re-render
+  root._schedCleanup = enableDragScroll(scroller);
+  scroller.scrollLeft = prevScroll ?? 0;
 
   // Keep the now-line moving
   clearInterval(root._schedTimer);
