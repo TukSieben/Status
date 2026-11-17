@@ -1,0 +1,31 @@
+name: Overlay preview video
+on:
+  push:
+    branches: [overlay-preview]
+    paths: [".preview/record.py", ".github/workflows/overlay-preview.yml"]
+permissions:
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - run: python .preview/record.py
+      - name: Convert to MP4 + GIF
+        run: |
+          sudo apt-get install -y ffmpeg >/dev/null
+          f=$(ls out/*.webm | head -1)
+          ffmpeg -y -ss 1.5 -i "$f" -vf "scale=1280:-2,fps=24" -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p -movflags +faststart .preview/overlay.mp4
+          ffmpeg -y -ss 1.5 -t 18 -i "$f" -vf "fps=8,scale=960:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer" .preview/overlay.gif
+          cp out/overlay.png .preview/overlay.png
+          ls -la .preview
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .preview/overlay.mp4 .preview/overlay.gif .preview/overlay.png
+          git commit -m "Overlay preview video"
+          git push
