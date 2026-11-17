@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/assets/css/components/cards.css?v=22">
   <link rel="stylesheet" href="/assets/css/components/stream.css?v=21">
   <link rel="stylesheet" href="/assets/css/components/schedule.css?v=21">
-  <link rel="stylesheet" href="/assets/css/pages/home.css?v=26">
+  <link rel="stylesheet" href="/assets/css/pages/home.css?v=27">
 </head>
 <body>
   <div class="bg-waves" id="bgWaves" aria-hidden="true"></div>
@@ -72,10 +72,15 @@
       <div class="hero-stream" id="heroStream">
         <div class="hero-stream-frame" id="heroStreamFrame"></div>
         <a class="hero-stream-offline" id="heroStreamOffline" href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer">
-          <img src="/assets/img/logo.png" alt="" width="40" height="40">
-          <span class="hero-stream-state"><span class="stream-dot"></span>Offline</span>
-          <span class="hero-stream-name">twitch.tv/badgestatus</span>
-          <span class="hero-stream-cta">24/7 badge stream · Visit channel ↗</span>
+          <span class="hso-status"><span class="hso-dot"></span>Offline</span>
+          <span class="hso-bottom">
+            <img class="hso-avatar" id="heroStreamAvatar" src="/assets/img/logo.png" alt="" width="34" height="34">
+            <span class="hso-text">
+              <span class="hso-name">badgestatus</span>
+              <span class="hso-sub">24/7 Twitch badge stream</span>
+            </span>
+            <span class="hso-btn">Visit channel</span>
+          </span>
         </a>
       </div>
 
@@ -118,6 +123,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/assets/js/pages/home.js?v=26"></script>
+  <script type="module" src="/assets/js/pages/home.js?v=27"></script>
 </body>
 </html>

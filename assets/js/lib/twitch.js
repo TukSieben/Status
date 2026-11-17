@@ -9,7 +9,7 @@ export async function fetchChannel() {
     const data = await gql(
       `query Channel($login: String!) {
         user(login: $login) {
-          login displayName profileImageURL(width: 70)
+          login displayName profileImageURL(width: 70) offlineImageURL
           followers { totalCount }
           stream { id title viewersCount createdAt game { name displayName } }
         }
@@ -23,6 +23,7 @@ export async function fetchChannel() {
       live: Boolean(s?.id),
       displayName: user.displayName || CHANNEL,
       avatar: user.profileImageURL || "",
+      offlineImage: user.offlineImageURL || "",
       followers: user.followers?.totalCount ?? null,
       title: s?.title || "",
       game: s?.game?.displayName || s?.game?.name || "",

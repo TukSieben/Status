@@ -133,6 +133,9 @@ function renderStream() {
   const live = Boolean(channel?.live);
   const frame = $("heroStreamFrame");
   $("heroStream").classList.toggle("is-live", live);
+  // Offline: use the channel's own offline image and avatar from Twitch when available
+  if (channel?.offlineImage) $("heroStreamOffline").style.backgroundImage = `url("${channel.offlineImage}")`;
+  if (channel?.avatar) $("heroStreamAvatar").src = channel.avatar;
   if (live && !frame.querySelector("iframe")) {
     const iframe = document.createElement("iframe");
     iframe.src = playerSrc();
