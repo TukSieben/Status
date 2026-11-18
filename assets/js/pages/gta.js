@@ -1,6 +1,7 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
-import { startChatEcho } from "../lib/chat-echo.js?v=3";
+import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=4";
+import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
@@ -223,5 +224,6 @@ $("stage").style.setProperty("--echo-bg", "rgba(24, 6, 40, 0.92)");
 $("stage").style.setProperty("--echo-border", "rgba(255, 193, 220, 0.35)");
 $("stage").style.setProperty("--echo-accent", "#ffc1dc");
 let goalBox = null;
-const echo = startChatEcho($("stage"), { position: { right: 76, bottom: 112 }, getBadges: () => badges, onFollow: () => goalBox?.bump() });
+const hunters = startHunters($("vcHunters"), { avatarOf });
+const echo = startChatEcho($("stage"), { position: { right: 76, bottom: 112 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (name, login) => hunters?.add(name, login) });
 goalBox = startFollowGoal($("vcGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });

@@ -87,6 +87,7 @@
 
 /* ---------- Bottom bar ---------- */
 .ov-bottom { grid-column: 1 / -1; display: flex; align-items: center; gap: 32px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.ov-hunters { flex-shrink: 0; padding-left: 28px; border-left: 1px solid rgba(255, 255, 255, 0.12); }
 .ov-cta { flex-shrink: 0; font-size: 20px; color: var(--text-2); }
 .ov-cta b { color: var(--text); font-weight: 700; margin-left: 6px; }
 .ov-ticker {

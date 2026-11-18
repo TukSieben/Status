@@ -71,7 +71,7 @@ function aliasKeys(badges) {
 
 /* Profile pictures (public Twitch data), cached per user */
 const avatars = new Map();
-function avatarOf(login) {
+export function avatarOf(login) {
   const k = String(login || "").toLowerCase();
   if (!k) return Promise.resolve(null);
   if (!avatars.has(k)) {
@@ -89,9 +89,10 @@ const within = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(() => r
 
 /**
  * onFollow(name, login) is called when the bot thanks a new follower in chat ("Welcome X, thanks for the follow").
+ * onCommand(name, login) is called for every badge command a viewer uses (top hunters).
  * Returns { celebrate(text) } for big one-off messages (follower goals).
  */
-export function startChatEcho(host, { position = { right: 64, bottom: 120 }, getBadges = () => [], onFollow = () => {} } = {}) {
+export function startChatEcho(host, { position = { right: 64, bottom: 120 }, getBadges = () => [], onFollow = () => {}, onCommand = () => {} } = {}) {
   const params = new URLSearchParams(location.search);
   const enabled = params.get("echo") !== "0";
   const channel = (params.get("channel") || "badgestatus").toLowerCase().replace(/^#/, "");
@@ -115,6 +116,7 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
   };
 
   const recent = new Map(); // "user|cmd" → time (no repeats within 15 s)
+  const counted = new Map();
   async function show(name, cmd, color, login, { verb = "checked", big = false, hold = 6000, picture = "" } = {}) {
     const id = `${name.toLowerCase()}|${cmd.toLowerCase()}|${verb}`;
     if (Date.now() - (recent.get(id) || 0) < 15_000) return;
@@ -158,12 +160,16 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
         return;
       }
     }
-    if (!enabled) return;
     const m = String(text).trim().match(/^!([A-Za-z0-9_-]{2,40})\b/);
     if (!m) return;
     const k = key(m[1]);
     if (!FIXED.has(k) && !commands().has(k)) return;
-    show(name, `!${m[1]}`, color, login);
+    const id = `${String(login || name).toLowerCase()}|${k}`;
+    if (Date.now() - (counted.get(id) || 0) > 15_000) {
+      counted.set(id, Date.now()); // same command again within 15 s doesn't count twice
+      onCommand(name, login || name);
+    }
+    if (enabled) show(name, `!${m[1]}`, color, login);
   }
 
   if (enabled && params.get("echodemo") === "1") {

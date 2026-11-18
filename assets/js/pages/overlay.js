@@ -1,6 +1,7 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
-import { startChatEcho } from "../lib/chat-echo.js?v=3";
+import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=4";
+import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
@@ -231,5 +232,6 @@ startDaylight(
 /* Chat echo: badge commands from chat pop up bottom right */
 $("stage").style.setProperty("--echo-accent", "#c4b5fd");
 let goalBox = null;
-const echo = startChatEcho($("stage"), { position: { right: 56, bottom: 110 }, getBadges: () => badges, onFollow: () => goalBox?.bump() });
+const hunters = startHunters($("oHunters"), { avatarOf });
+const echo = startChatEcho($("stage"), { position: { right: 56, bottom: 110 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (name, login) => hunters?.add(name, login) });
 goalBox = startFollowGoal($("oGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
