@@ -1,4 +1,49 @@
 {
-  "updatedAt": "2026-11-16T23:34:23Z",
-  "events": []
+  "updatedAt": "2026-11-18T12:49:06Z",
+  "events": [
+    {
+      "type": "added",
+      "timestamp": "2026-11-18T12:49:06Z",
+      "setID": "runescape-bones",
+      "version": "1",
+      "title": "RuneScape Bones",
+      "description": "Watch 60 minutes of any channel streaming in the Old School RuneScape category.",
+      "category": "Free / Watch",
+      "cost": "free",
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/95507c79-f87e-4a0d-9940-92af830b3b36/2"
+    },
+    {
+      "type": "added",
+      "timestamp": "2026-11-18T12:49:06Z",
+      "setID": "runescape-gnome-plush",
+      "version": "1",
+      "title": "RuneScape Gnome Plush",
+      "description": "Subscribe or Gift 1 sub to any channel streaming in the Old School RuneScape category.",
+      "category": "Paid / Sub",
+      "cost": "paid",
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/8b5bf6d2-3f89-4c24-a6c2-c5eda04ce1e6/2"
+    },
+    {
+      "type": "added",
+      "timestamp": "2026-11-18T12:49:06Z",
+      "setID": "runescape-quest-icon",
+      "version": "1",
+      "title": "RuneScape Quest Icon",
+      "description": "Watch 60 minutes of any channel streaming in the RuneScape category",
+      "category": "Free / Watch",
+      "cost": "free",
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/bf75cdff-7b3a-4ba6-a1d5-e00563b9877e/2"
+    },
+    {
+      "type": "added",
+      "timestamp": "2026-11-18T12:49:06Z",
+      "setID": "runescape-sant-hat",
+      "version": "1",
+      "title": "RuneScape Sant Hat",
+      "description": "Watch 60 minutes of any channel streaming in the Old School RuneScape category during December 2026.",
+      "category": "Free / Watch",
+      "cost": "free",
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/044b64a3-3319-4749-973e-abc5e0dfe323/2"
+    }
+  ]
 }
