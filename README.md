@@ -12,6 +12,7 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 | `/badges/` | `badges/index.html` | Badge tracker with username check (owned / missing), filters, upcoming list |
 | `/badge/?id=<setID>` | `badge/index.html` | Detail page for a single badge |
 | `/archive/` | `archive/index.html` | Every badge ever released: search, status / category / cost filters, sorting (filters are kept in the URL) |
+| `/collection/?game=` | `collection/index.html` | Every badge (and emote) of one campaign at a glance, what the final badge needs, optional name check. `/gta6/` = preset for GTA VI |
 | `/overlay/` | `overlay/index.html` | 1920×1080 overlay for the 24/7 stream (OBS browser source) |
 | `/overlay/widget/` | `overlay/widget/index.html` | Small corner widget for live gameplay streams (460×400, transparent; `?game=<category>`) |
 | `/overlay/gta/` | `overlay/gta/index.html` | Full-screen stream view for one game in a Vice-City sunset look: free badges with how to get them, sub badges, countdown (default GTA VI; `?game=`, `?paid=0`) |
