@@ -1,6 +1,6 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
-import { startDaylight, setVars } from "../lib/daylight.js";
-import { startChatEcho } from "../lib/chat-echo.js";
+import { startDaylight, setVars } from "../lib/daylight.js?v=1";
+import { startChatEcho } from "../lib/chat-echo.js?v=2";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 

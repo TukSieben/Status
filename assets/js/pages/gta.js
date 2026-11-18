@@ -1,6 +1,6 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
-import { startDaylight, setVars } from "../lib/daylight.js";
-import { startChatEcho } from "../lib/chat-echo.js";
+import { startDaylight, setVars } from "../lib/daylight.js?v=1";
+import { startChatEcho } from "../lib/chat-echo.js?v=2";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
