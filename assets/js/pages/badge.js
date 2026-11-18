@@ -144,6 +144,23 @@ function renderHero() {
   const cost = $("bdCost");
   cost.textContent = paid ? "Paid" : "Free";
   cost.className = `bd-cost ${paid ? "is-paid" : "is-free"}`;
+
+  // Part of a bigger campaign? → link to its collection page (/c/<game>/)
+  const baseGame = (t) => String(t || "").replace(/\s*\((subscribe|watch|sub)\)\s*$/i, "").trim();
+  const myGame = baseGame(badge.game);
+  const link = $("bdCollection");
+  link.classList.add("hidden");
+  if (myGame && !/[,(]/.test(myGame)) {
+    const sets = new Set(
+      all.filter((b) => baseGame(b.game) === myGame && Date.parse(b.endAt || "") > Date.now() - 3 * 86_400_000).map((b) => b.setID)
+    );
+    if (sets.size >= 2) {
+      const slug = myGame.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      link.href = `/c/${slug}/`;
+      link.textContent = `See all ${sets.size} ${myGame} badges →`;
+      link.classList.remove("hidden");
+    }
+  }
 }
 
 /* ---------- 2. When (updates every second) ---------- */

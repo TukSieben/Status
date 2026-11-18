@@ -36,13 +36,14 @@ jobs:
       - name: Commit snapshot changes
         run: |
           # sync_badges.py only rewrites the files when badges actually changed
-          if [ -z "$(git status --porcelain data/)" ]; then
+          if [ -z "$(git status --porcelain data/ c/)" ]; then
             echo "No badge changes detected."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/badges.json data/changelog.json
+          git add -A c/   # collection pages per game (/c/<game>/)
           git commit -m "Sync Twitch global badges snapshot"
           # Someone may have pushed site changes meanwhile — rebase onto them, then push
           git pull --rebase origin main

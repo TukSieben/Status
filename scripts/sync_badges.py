@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import re
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +44,8 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
 BADGES_PATH = DATA_DIR / "badges.json"
 CHANGELOG_PATH = DATA_DIR / "changelog.json"
+COLLECTION_TEMPLATE = ROOT_DIR / "collection" / "index.html"
+COLLECTIONS_DIR = ROOT_DIR / "c"
 
 ROLE_SET_IDS = {
     "admin",
@@ -741,11 +743,71 @@ def main() -> None:
             )
             fh.write("\n")
 
+    write_collection_pages(next_badges)
+
     print(
         f"Synced {len(next_badges)} badges ({unique_sets} sets). "
         f"Active now: {active_now_count}, Upcoming: {upcoming_count}. "
         f"Changes recorded: {len(new_changes)}."
     )
+
+
+def parse_dt(value: str | None) -> datetime | None:
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00")) if value else None
+    except ValueError:
+        return None
+
+
+def collection_slug(game: str) -> str:
+    """"PAYDAY 3" -> "payday-3" (same rule as the bot's links)"""
+    return re.sub(r"[^a-z0-9]+", "-", game.lower()).strip("-")
+
+
+def write_collection_pages(badges: list[dict[str, Any]]) -> None:
+    """One page per game with 2+ current badges: /c/<game>/ (a copy of /collection/ preset to that game)."""
+    if not COLLECTION_TEMPLATE.exists():
+        return
+    template = COLLECTION_TEMPLATE.read_text(encoding="utf-8")
+    now = datetime.now(timezone.utc)
+    newest: dict[str, dict[str, Any]] = {}
+    for b in badges:
+        prev = newest.get(b["setID"])
+        try:
+            if prev is None or int(b.get("version") or 0) > int(prev.get("version") or 0):
+                newest[b["setID"]] = b
+        except ValueError:
+            newest.setdefault(b["setID"], b)
+    counts: dict[str, int] = {}
+    for b in newest.values():
+        end = parse_dt(b.get("endAt"))
+        if not end or end < now - timedelta(days=3):
+            continue
+        game = re.sub(r"\s*\((subscribe|watch|sub)\)\s*$", "", b.get("game") or "", flags=re.I).strip()
+        if not game or "," in game or "(" in game:
+            continue
+        counts[game] = counts.get(game, 0) + 1
+    wanted = {collection_slug(g): g for g, n in counts.items() if n >= 2}
+
+    COLLECTIONS_DIR.mkdir(exist_ok=True)
+    for slug, game in wanted.items():
+        page = template.replace("<body>", f'<body data-game="{html_escape(game)}">', 1).replace(
+            "<title>Badge collection — BadgeStatus</title>", f"<title>{html_escape(game)} badges — BadgeStatus</title>", 1
+        )
+        target = COLLECTIONS_DIR / slug / "index.html"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if not target.exists() or target.read_text(encoding="utf-8") != page:
+            target.write_text(page, encoding="utf-8", newline="\n")
+    for old in COLLECTIONS_DIR.iterdir():
+        if old.is_dir() and old.name not in wanted:
+            for f in old.iterdir():
+                f.unlink()
+            old.rmdir()
+    print(f"Collection pages: {', '.join(sorted(wanted)) or 'none'}")
+
+
+def html_escape(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
 if __name__ == "__main__":
