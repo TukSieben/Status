@@ -1,5 +1,5 @@
 // Corner widget for live gameplay streams. Keeps itself up to date like the big overlay.
-import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, URGENT_MS } from "../lib/utils.js";
+import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 
 const game = (new URLSearchParams(location.search).get("game") || "").trim();
@@ -89,3 +89,4 @@ watchBadges((next) => {
   badges = onlyFree(next.badges);
   render();
 }, { syncedAt: data.syncedAt, intervalMs: 60_000 });
+reloadOnUpdate();

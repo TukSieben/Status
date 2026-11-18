@@ -231,3 +231,24 @@ export function watchBadges(onChange, { syncedAt = null, intervalMs = 120_000 } 
     document.removeEventListener("visibilitychange", onVisible);
   };
 }
+
+/**
+ * Overlays stay open for days (OBS, server stream). Reloads the page when /assets/version.json changes,
+ * so design updates show up within a few minutes without restarting anything.
+ */
+export function reloadOnUpdate(intervalMs = 120_000) {
+  let first = null;
+  const check = async () => {
+    try {
+      const res = await fetch(`/assets/version.json?t=${Date.now()}`, { cache: "no-store" });
+      if (!res.ok) return;
+      const { v } = await res.json();
+      if (first === null) first = v;
+      else if (v !== first) location.reload();
+    } catch {
+      /* offline for a moment — try again next time */
+    }
+  };
+  check();
+  setInterval(check, intervalMs);
+}

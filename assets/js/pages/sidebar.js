@@ -1,5 +1,5 @@
 // Gameplay overlay: floating badge panel — spotlight + paged list with bot commands. Updates itself.
-import { $, el, badgeImg, loadBadges, watchBadges, onlyFree } from "../lib/utils.js";
+import { $, el, badgeImg, loadBadges, watchBadges, onlyFree, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
 const EXPIRED_DAYS = params.has("expired") ? Number(params.get("expired")) || 0 : 3;
@@ -259,3 +259,4 @@ watchBadges(
   (next) => { badges = onlyFree(next.badges); render(true); },
   { syncedAt: data.syncedAt, intervalMs: 60_000 }
 );
+reloadOnUpdate();

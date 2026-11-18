@@ -1,5 +1,5 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
-import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, URGENT_MS } from "../lib/utils.js";
+import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 
 const params = new URLSearchParams(location.search);
@@ -211,3 +211,4 @@ setInterval(() => {
   page += 1;
   renderGrid(splitBadges(badges).active);
 }, ROTATE_MS);
+reloadOnUpdate();
