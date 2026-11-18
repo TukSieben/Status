@@ -136,7 +136,12 @@ function render() {
     const icons = el("div", "vc-paid-icons");
     icons.append(...subs.map((x) => badgeImg(x.b, "", 2)));
     const text = el("div", "vc-paid-text");
-    text.append(el("b", "", subs.map((x) => x.b.title).join(", ")), `Subscribe or gift 1 sub to any ${GAME} streamer`);
+    const n = subs.length;
+    const how =
+      n > 1
+        ? `Each new sub or gift sub to a ${GAME} streamer unlocks one — ${n} subs for all ${n}. Prime doesn't count.`
+        : `Subscribe or gift a sub to a ${GAME} streamer. Prime doesn't count.`;
+    text.append(el("b", "", subs.map((x) => x.b.title).join(", ")), how);
     const row = el("div", "vc-paid-row");
     row.append(icons, text);
     rows.push(row);
