@@ -12,3 +12,15 @@
 .footer-links { display: inline-flex; align-items: center; gap: 14px; }
 .footer-stream { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); transition: color .15s; }
 .footer-stream:hover { color: var(--text); }
+
+/* "Get it right here" live box on badge + collection pages */
+.live-embed { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 14px; border: 1px solid rgba(145, 70, 255, .35); background: linear-gradient(140deg, rgba(145, 70, 255, .12), rgba(17, 17, 19, .88) 55%); }
+.live-embed-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.live-embed-tag { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #fca5a5; }
+.live-embed-tag .stream-dot { background: var(--live); box-shadow: 0 0 0 3px rgba(239, 68, 68, .18); animation: pulse 1.6s ease-in-out infinite; }
+.live-embed-title { margin-top: 6px; font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+.live-embed-text { margin-top: 4px; font-size: 13px; color: var(--text-2); }
+.live-embed-open { flex-shrink: 0; }
+.live-embed-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; }
+.live-embed-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.live-embed-note { font-size: 12px; color: var(--text-3); }

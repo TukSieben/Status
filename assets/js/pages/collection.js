@@ -3,7 +3,8 @@
 // /collection/?game=Grand%20Theft%20Auto%20VI · /gta6/ is preset for GTA VI.
 import "../lib/background.js";
 import { $, el, badgeImg, badgeHref, loadBadges, watchBadges, gql, normalizeLogin, extractUuid } from "../lib/utils.js";
-import { fetchChannel, paintLiveIndicators } from "../lib/twitch.js";
+import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
+import { syncLiveEmbed } from "../lib/live-embed.js?v=1";
 
 const params = new URLSearchParams(location.search);
 const GAME = (params.get("game") || document.body.dataset.game || "").trim();
@@ -218,4 +219,28 @@ watchBadges(
   },
   { syncedAt: data.syncedAt, intervalMs: 120_000 }
 );
-fetchChannel().then(paintLiveIndicators).catch(() => {});
+
+/* ---------- Live box: our stream is in this game right now ---------- */
+let channel = null;
+
+function renderLiveBox() {
+  const list = gameBadges();
+  const watchList = list.filter((b) => !isSub(b) && !isFinal(b));
+  const live = Boolean(channel?.live) && list.length > 0 &&
+    (base(channel.game) === GAME.toLowerCase() || watchList.some((b) => earnableOnStream(b, channel)));
+  const head = document.querySelector(".co-head");
+  if (!head) return;
+  syncLiveEmbed(head, live, {
+    title: watchList.length > 1 ? "Get these badges right here" : "Get this badge right here",
+    text: `We're live in ${channel?.game || GAME} right now. Watching here counts toward the free watch badges.`,
+  });
+}
+
+async function refreshChannel() {
+  const next = await fetchChannel().catch(() => null);
+  if (next) channel = next;
+  paintLiveIndicators(channel);
+  renderLiveBox();
+}
+refreshChannel();
+setInterval(refreshChannel, 60_000);

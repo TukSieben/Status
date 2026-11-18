@@ -1,6 +1,7 @@
 import "../lib/background.js";
 import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, watchBadges, compactNumber, gql } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
+import { syncLiveEmbed } from "../lib/live-embed.js?v=1";
 
 let badge = null;
 let all = [];
@@ -233,6 +234,17 @@ function renderHow() {
     nodes.push(fact("Live", live));
   }
   $("bdFacts").replaceChildren(...nodes);
+}
+
+/** Our stream is in this badge's category right now → embed it under the hero. */
+function renderLiveBox() {
+  const hero = document.querySelector(".bd-hero") || $("bdWhen");
+  const now = Date.now();
+  const open = !(Date.parse(badge.endAt || "") <= now) && !(Date.parse(badge.startAt || "") > now);
+  syncLiveEmbed(hero, open && earnableOnStream(badge, channel), {
+    title: "Get this badge right here",
+    text: `We're live in ${channel?.game || "this category"} right now. Watch here to earn it.`,
+  });
 }
 
 /* ---------- Channels + eligible live streams ---------- */
@@ -529,6 +541,7 @@ async function init() {
     if (next) channel = next;
     paintLiveIndicators(channel);
     renderHow();
+    renderLiveBox();
   };
   refresh();
   setInterval(refresh, 60_000);
