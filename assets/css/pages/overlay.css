@@ -2,9 +2,9 @@
 .ov-body {
   margin: 0; overflow: hidden; min-height: 100vh;
   background:
-    radial-gradient(1100px 650px at 85% 0%, rgba(145, 70, 255, 0.38), transparent 70%),
-    radial-gradient(900px 600px at 0% 100%, rgba(107, 18, 255, 0.30), transparent 70%),
-    linear-gradient(160deg, #221c3d 0%, #1a1630 55%, #201a3a 100%);
+    radial-gradient(1100px 650px at 85% 0%, color-mix(in srgb, var(--glow1, #9146ff) 38%, transparent), transparent 70%),
+    radial-gradient(900px 600px at 0% 100%, color-mix(in srgb, var(--glow2, #6b12ff) 30%, transparent), transparent 70%),
+    linear-gradient(160deg, var(--bg1, #221c3d) 0%, var(--bg2, #1a1630) 55%, var(--bg3, #201a3a) 100%);
 }
 .ov-body.is-transparent { background: transparent; }
 

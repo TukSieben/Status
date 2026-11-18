@@ -1,4 +1,5 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
+import { startDaylight, setVars } from "../lib/daylight.js";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
@@ -202,3 +203,15 @@ watchBadges(
   { syncedAt: data.syncedAt, intervalMs: 60_000 }
 );
 reloadOnUpdate();
+
+/* Day & night over Vice City: night sky with a faint moon-sun, soft dawn, bright day, golden-pink sunset */
+startDaylight(
+  [
+    { h: 0, v: { s1: "#070a1f", s2: "#0f1238", s3: "#1c1650", s4: "#2c1a5a", s5: "#3b1d5c", sun: 0.14, palm: "#05040f" } },
+    { h: 6, v: { s1: "#1a1440", s2: "#3b2a6b", s3: "#7a4a8a", s4: "#e08a9a", s5: "#ffc48a", sun: 0.42, palm: "#120a24" } },
+    { h: 12, v: { s1: "#26357e", s2: "#4048a6", s3: "#6c5ec0", s4: "#b884cc", s5: "#ffb4a2", sun: 0.32, palm: "#160c2c" } },
+    { h: 18, v: { s1: "#1c0a35", s2: "#3d1259", s3: "#8a2a78", s4: "#e0517f", s5: "#ff9a5a", sun: 0.6, palm: "#140720" } },
+    { h: 21, v: { s1: "#0f0a2c", s2: "#24104a", s3: "#4a1a62", s4: "#7a2a6e", s5: "#9a3a6a", sun: 0.26, palm: "#0a0518" } },
+  ],
+  (v) => setVars($("stage"), v)
+);

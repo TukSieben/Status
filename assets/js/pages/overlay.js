@@ -1,4 +1,5 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
+import { startDaylight, setVars } from "../lib/daylight.js";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 
@@ -212,3 +213,15 @@ setInterval(() => {
   renderGrid(splitBadges(badges).active);
 }, ROTATE_MS);
 reloadOnUpdate();
+
+/* Day & night look: night deep blue, dawn rose, day brighter lavender-blue, dusk magenta-orange */
+startDaylight(
+  [
+    { h: 0, v: { bg1: "#121030", bg2: "#0e0c24", bg3: "#14102e", glow1: "#4f46e5", glow2: "#3b1a8a" } },
+    { h: 6, v: { bg1: "#2a2050", bg2: "#2a1a44", bg3: "#3a1f4a", glow1: "#f472b6", glow2: "#9146ff" } },
+    { h: 12, v: { bg1: "#2c2c62", bg2: "#25245a", bg3: "#2a2a66", glow1: "#a78bfa", glow2: "#60a5fa" } },
+    { h: 18, v: { bg1: "#2a1844", bg2: "#2a1638", bg3: "#3d1a40", glow1: "#ff5fa2", glow2: "#ff8a4c" } },
+    { h: 21, v: { bg1: "#1c1638", bg2: "#17122e", bg3: "#1d1636", glow1: "#9146ff", glow2: "#6b12ff" } },
+  ],
+  (v) => setVars(document.body, v)
+);
