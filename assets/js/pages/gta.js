@@ -4,6 +4,8 @@ import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib
 const params = new URLSearchParams(location.search);
 const GAME = (params.get("game") || "Grand Theft Auto VI").trim();
 const SHOW_PAID = params.get("paid") !== "0";
+const MOTION = params.get("motion") !== "0";
+if (MOTION) document.body.classList.add("vc-motion");
 let badges = [];
 
 function fit() {
@@ -65,7 +67,16 @@ function render() {
   // countdown
   const target = upcoming ? Math.min(...shown.map((x) => x.start)) : Math.min(...shown.map((x) => x.end));
   $("vcClockLabel").textContent = !shown.length ? "No badges" : upcoming ? "Starts in" : "Ends in";
-  $("vcClock").textContent = shown.length ? rel(target) : "—";
+  const clock = $("vcClock");
+  const text = shown.length ? rel(target) : "—";
+  if (clock.textContent !== text) {
+    clock.textContent = text;
+    if (MOTION) {
+      clock.classList.remove("is-tick");
+      void clock.offsetWidth; // restart the animation
+      clock.classList.add("is-tick");
+    }
+  }
   $("vcDate").textContent = shown.length ? dateText(target) : "";
 
   const key = shown.map((x) => x.b.setID).join(",") + upcoming;
@@ -150,6 +161,27 @@ function render() {
   if (hasWatchCampaign && SHOW_PAID && paid.length) foot.append(" or ", el("b", "", `!${cmd}`));
   foot.append(" in chat for details");
   $("vcCmd").replaceChildren(foot);
+}
+
+/* ---------- motion: one short move every few seconds, nothing runs in between ---------- */
+let spot = 0;
+function moveSpot() {
+  const cards = [...document.querySelectorAll(".vc-card")];
+  cards.forEach((c) => c.classList.remove("is-spot"));
+  if (!cards.length) return;
+  spot = (spot + 1) % cards.length;
+  cards[spot].classList.add("is-spot");
+}
+function replay(node, cls) {
+  node.classList.remove(cls);
+  void node.offsetWidth;
+  node.classList.add(cls);
+}
+if (MOTION) {
+  setInterval(moveSpot, 5000); // spotlight walks Day 1 → Day 6
+  setInterval(() => replay($("vcTitle"), "is-shine"), 14000); // light sweep over the title
+  setInterval(() => document.querySelectorAll(".vc-palm").forEach((p) => replay(p, "is-sway")), 21000); // palms move
+  setTimeout(() => replay($("vcTitle"), "is-shine"), 1800);
 }
 
 const data = await loadBadges();

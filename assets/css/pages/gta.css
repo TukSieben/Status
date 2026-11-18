@@ -34,7 +34,7 @@
 /* layout */
 .vc-main { display: grid; grid-template-columns: minmax(0, 1fr) 620px; gap: 32px; padding: 10px 0 24px; min-height: 0; }
 .vc-side { display: flex; flex-direction: column; gap: 24px; min-height: 0; }
-.vc-panel { background: rgba(20, 6, 36, 0.66); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 22px; padding: 24px 28px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.vc-panel { background: rgba(20, 6, 36, 0.72); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 22px; padding: 24px 28px; }
 .vc-free { display: flex; flex-direction: column; }
 .vc-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .vc-h2 { margin: 0 0 16px; font-family: "Anton", var(--sans); font-weight: 400; font-size: 36px; letter-spacing: .03em; text-transform: uppercase; line-height: 1; }
@@ -68,3 +68,43 @@
 .vc-foot b { color: #fff; font-weight: 800; }
 .vc-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
 .vc-brand img { border-radius: 8px; }
+
+/* ---------- Motion: short, periodic moves (idle in between → still cheap for server streams). ?motion=0 turns it off ---------- */
+.vc-motion .vc-sun { animation: vc-rise 2.4s cubic-bezier(.2, .7, .2, 1) both; }
+.vc-motion .vc-top, .vc-motion .vc-panel, .vc-motion .vc-foot { animation: vc-up .8s cubic-bezier(.2, .7, .2, 1) both; }
+.vc-motion .vc-panel:nth-of-type(1) { animation-delay: .15s; }
+.vc-motion .vc-side .vc-panel:nth-child(1) { animation-delay: .3s; }
+.vc-motion .vc-side .vc-panel:nth-child(2) { animation-delay: .42s; }
+.vc-motion .vc-foot { animation-delay: .55s; }
+@keyframes vc-rise { from { transform: translateY(160px); opacity: 0; } }
+@keyframes vc-up { from { transform: translateY(18px); opacity: 0; } }
+
+/* spotlight moves across the chain cards */
+.vc-card { transition: transform .6s cubic-bezier(.2, .7, .2, 1), background-color .6s, border-color .6s; }
+.vc-card img { transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.vc-card.is-spot { transform: translateY(-8px); background-color: rgba(255, 255, 255, 0.15); border-color: rgba(255, 193, 220, 0.75); }
+.vc-card.is-spot img { transform: scale(1.08) rotate(-3deg); }
+.vc-card-step { transition: color .6s, background-color .6s; padding: 3px 10px; border-radius: 999px; }
+.vc-card.is-spot .vc-card-step { color: #2a0a2e; background-color: #ffc1dc; }
+
+/* light sweep over the title */
+.vc-title {
+  background: linear-gradient(100deg, #fff 0%, #fff 42%, #ffd6ea 50%, #fff 58%, #fff 100%) 120% 0 / 250% 100% no-repeat;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: none; filter: drop-shadow(0 4px 0 rgba(40, 6, 50, 0.55));
+}
+.vc-title.is-shine { animation: vc-shine 1.6s ease-in-out; }
+@keyframes vc-shine { from { background-position: 120% 0; } to { background-position: -20% 0; } }
+
+/* palms sway now and then */
+.vc-palm { transform-origin: 50% 100%; }
+.vc-palm-l.is-sway { animation: vc-sway 3.2s ease-in-out; }
+.vc-palm-r.is-sway { animation: vc-sway-r 3.2s ease-in-out; }
+@keyframes vc-sway { 0%, 100% { transform: rotate(0); } 35% { transform: rotate(1.8deg); } 70% { transform: rotate(-1deg); } }
+@keyframes vc-sway-r { 0%, 100% { transform: scaleX(-1) rotate(0); } 35% { transform: scaleX(-1) rotate(1.8deg); } 70% { transform: scaleX(-1) rotate(-1deg); } }
+
+/* countdown ticks over */
+.vc-clock-time.is-tick { animation: vc-tick .45s cubic-bezier(.2, .7, .2, 1); }
+@keyframes vc-tick { from { transform: translateY(-8px); opacity: .3; } }
+
+@media (prefers-reduced-motion: reduce) { .vc-motion * { animation: none !important; transition: none !important; } }
