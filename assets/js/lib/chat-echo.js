@@ -22,7 +22,7 @@ const STYLE = `
 .echo-bubble.is-big .echo-av{width:48px;height:48px;background:#1b1433;color:#fff}
 `;
 
-const FIXED = new Set(["badges", "badge", "next", "ending", "missing", "badgestatus", "activebadges", "nextdrop", "endingsoon", "mybadges", "badgehelp"]);
+const FIXED = new Set(["osrs", "cs2", "lol", "badges", "badge", "next", "ending", "missing", "badgestatus", "activebadges", "nextdrop", "endingsoon", "mybadges", "badgehelp"]);
 const PALETTE = ["#c4b5fd", "#9fe1cb", "#f4c0d1", "#fac775", "#b5d4f4", "#f5c4b3"];
 const ROMAN = { i: 1, ii: 2, iii: 3, iv: 4, v: 5, vi: 6, vii: 7, viii: 8, ix: 9, x: 10 };
 
