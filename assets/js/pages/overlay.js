@@ -1,5 +1,6 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
 import { startDaylight, setVars } from "../lib/daylight.js";
+import { startChatEcho } from "../lib/chat-echo.js";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
 
@@ -225,3 +226,7 @@ startDaylight(
   ],
   (v) => setVars(document.body, v)
 );
+
+/* Chat echo: badge commands from chat pop up bottom right */
+$("stage").style.setProperty("--echo-accent", "#c4b5fd");
+startChatEcho($("stage"), { position: { right: 56, bottom: 110 }, getBadges: () => badges });

@@ -1,5 +1,6 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js";
+import { startChatEcho } from "../lib/chat-echo.js";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
@@ -215,3 +216,9 @@ startDaylight(
   ],
   (v) => setVars($("stage"), v)
 );
+
+/* Chat echo in the Vice-City colors */
+$("stage").style.setProperty("--echo-bg", "rgba(24, 6, 40, 0.92)");
+$("stage").style.setProperty("--echo-border", "rgba(255, 193, 220, 0.35)");
+$("stage").style.setProperty("--echo-accent", "#ffc1dc");
+startChatEcho($("stage"), { position: { right: 76, bottom: 112 }, getBadges: () => badges });
