@@ -1,6 +1,14 @@
 {
-  "updatedAt": "2026-11-18T13:04:04Z",
+  "updatedAt": "2026-11-18T13:07:23Z",
   "events": [
+    {
+      "type": "removed",
+      "timestamp": "2026-11-18T13:07:23Z",
+      "setID": "runescape-santa-hat",
+      "version": "1",
+      "title": "RuneScape Santa Hat",
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/2bee9264-647c-4bdc-921f-cb5e651b1c64/2"
+    },
     {
       "type": "added",
       "timestamp": "2026-11-18T13:04:04Z",
