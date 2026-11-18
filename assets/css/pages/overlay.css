@@ -23,7 +23,8 @@
 .ov-brand img { border-radius: 10px; }
 .ov-brand-name { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
 .ov-brand-sub { font-size: 16px; color: var(--text-3); }
-.ov-stats { display: flex; gap: 36px; margin-left: auto; }
+.ov-goal { margin-left: auto; padding-right: 36px; border-right: 1px solid rgba(255, 255, 255, 0.12); }
+.ov-stats { display: flex; gap: 36px; }
 .ov-stats div { display: flex; align-items: baseline; gap: 10px; }
 .ov-stats b { font-family: var(--mono); font-size: 40px; font-weight: 700; }
 .ov-stats span { font-family: var(--mono); font-size: 16px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); }

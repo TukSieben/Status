@@ -66,6 +66,11 @@
 /* footer */
 .vc-foot { display: flex; align-items: center; justify-content: space-between; align-self: center; height: 60px; padding: 0 24px; border-radius: 16px; background: rgba(20, 6, 36, 0.62); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 22px; color: #f3e9f7; }
 .vc-foot b { color: #fff; font-weight: 800; }
+.vc-goal { margin-left: auto; margin-right: 36px; --goal-accent: #ffc1dc; --goal-muted: #e6d6ee; }
+.vc-goal .goal { min-width: 300px; gap: 6px; }
+.vc-goal .goal-num { font-size: 20px; }
+.vc-goal .goal-label { font-size: 13px; }
+.vc-goal .goal-bar { height: 6px; }
 .vc-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
 .vc-brand img { border-radius: 8px; }
 

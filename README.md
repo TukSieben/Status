@@ -77,6 +77,7 @@ Options (append to the URL):
 | `?lite=1` | Ticker shows one line at a time instead of scrolling — far less CPU (used by the server stream) |
 | `?daylight=0` | Turn off the day & night look (colors follow the time of day, Europe/Berlin; `?tz=` for another zone, `?hour=14` to preview) — also on `/overlay/gta/` |
 | `?echo=0` | Turn off the chat echo (badge commands from chat pop up as bubbles; reads chat anonymously; `?channel=` for another channel, `?echodemo=1` to preview) — also on `/overlay/gta/` |
+| `?goal=0` | Hide the follower goal (count with a bar; celebrates and moves to the next goal by itself; `?goal=1000` fixes the goal) — also on `/overlay/gta/` |
 | `?free=1` | Only free badges (no sub/gift needed) — also works on `/overlay/widget/` and `/overlay/sidebar/` |
 | `?rotate=20` | Seconds per page of available badges (default 15) |
 

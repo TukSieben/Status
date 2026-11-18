@@ -17,6 +17,9 @@ const STYLE = `
 .echo-name{font-weight:700}
 .echo-verb{color:var(--echo-muted,#b4b2c9);font-weight:500}
 .echo-cmd{color:var(--echo-accent,#f4a8d0);font-weight:800}
+.echo-bubble.is-big{padding:16px 30px 16px 16px;font-size:28px;background:var(--echo-accent,#f4a8d0);color:#1b1433;border-color:transparent}
+.echo-bubble.is-big .echo-verb{color:#3b2a52}
+.echo-bubble.is-big .echo-av{width:48px;height:48px;background:#1b1433;color:#fff}
 `;
 
 const FIXED = new Set(["badges", "badge", "next", "ending", "missing", "badgestatus", "activebadges", "nextdrop", "endingsoon", "mybadges", "badgehelp"]);
@@ -84,9 +87,13 @@ function avatarOf(login) {
 /** Waits at most `ms` for the picture so a bubble is never late */
 const within = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(() => r(null), ms))]);
 
-export function startChatEcho(host, { position = { right: 64, bottom: 120 }, getBadges = () => [] } = {}) {
+/**
+ * onFollow(name, login) is called when the bot thanks a new follower in chat ("Welcome X, thanks for the follow").
+ * Returns { celebrate(text) } for big one-off messages (follower goals).
+ */
+export function startChatEcho(host, { position = { right: 64, bottom: 120 }, getBadges = () => [], onFollow = () => {} } = {}) {
   const params = new URLSearchParams(location.search);
-  if (params.get("echo") === "0") return;
+  const enabled = params.get("echo") !== "0";
   const channel = (params.get("channel") || "badgestatus").toLowerCase().replace(/^#/, "");
 
   const style = document.createElement("style");
@@ -108,11 +115,11 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
   };
 
   const recent = new Map(); // "user|cmd" → time (no repeats within 15 s)
-  async function show(name, cmd, color, login) {
-    const id = `${name.toLowerCase()}|${cmd.toLowerCase()}`;
+  async function show(name, cmd, color, login, { verb = "checked", big = false, hold = 6000, picture = "" } = {}) {
+    const id = `${name.toLowerCase()}|${cmd.toLowerCase()}|${verb}`;
     if (Date.now() - (recent.get(id) || 0) < 15_000) return;
     recent.set(id, Date.now());
-    const pic = await within(avatarOf(login || name), 1500);
+    const pic = picture || (login === null ? null : await within(avatarOf(login || name), 1500));
 
     const b = document.createElement("div");
     b.className = "echo-bubble";
@@ -127,20 +134,31 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
       av.append(img);
     } else av.textContent = name[0]?.toUpperCase() || "?";
     const n = Object.assign(document.createElement("span"), { className: "echo-name", textContent: name });
-    const v = Object.assign(document.createElement("span"), { className: "echo-verb", textContent: "checked" });
+    const v = Object.assign(document.createElement("span"), { className: "echo-verb", textContent: verb });
     const c = Object.assign(document.createElement("span"), { className: "echo-cmd", textContent: cmd });
-    b.append(av, n, v, c);
+    b.append(av, n, v);
+    if (cmd) b.append(c);
+    if (big) b.classList.add("is-big");
     stack.append(b);
     requestAnimationFrame(() => requestAnimationFrame(() => b.classList.add("in")));
     setTimeout(() => {
       b.classList.add("out");
       setTimeout(() => b.remove(), 750);
-    }, 6000);
+    }, hold);
     while (stack.children.length > 3) stack.firstChild.remove();
   }
 
-  /** A chat line → bubble if it is a badge command */
+  /** A chat line → bubble if it is a badge command (or the bot welcoming a new follower) */
   function handle(name, text, color, login) {
+    if (login?.toLowerCase() === channel) {
+      const f = String(text).match(/Welcome @?(\S+?),? thanks for the follow/i);
+      if (f) {
+        onFollow(f[1]);
+        if (enabled) show(f[1], "", "", f[1].toLowerCase(), { verb: "just followed", hold: 7000 });
+        return;
+      }
+    }
+    if (!enabled) return;
     const m = String(text).trim().match(/^!([A-Za-z0-9_-]{2,40})\b/);
     if (!m) return;
     const k = key(m[1]);
@@ -148,7 +166,7 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
     show(name, `!${m[1]}`, color, login);
   }
 
-  if (params.get("echodemo") === "1") {
+  if (enabled && params.get("echodemo") === "1") {
     const demo = [["tuk7", "!GTA6FREE"], ["badgestatus", "!next"], ["max123", "!PAY"], ["vicecity_fan", "!GTA6"], ["noah", "!badges"]];
     let i = 0;
     setInterval(() => {
@@ -190,4 +208,12 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
     ws.onerror = () => ws.close();
   }
   connect();
+
+  return {
+    /** Big bubble, e.g. "500 followers — thank you!" */
+    celebrate(text, hold = 9000) {
+      const av = String(text).match(/^\d[\d,]*/)?.[0] || "";
+      show(av ? `${av} followers` : text, "", "", null, { verb: av ? "— thank you!" : "", big: true, hold, picture: "/assets/img/logo.png" });
+    },
+  };
 }
