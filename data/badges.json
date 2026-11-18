@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-18T15:01:13Z",
+  "syncedAt": "2026-11-18T15:16:14Z",
   "totalBadges": 579,
   "uniqueSets": 459,
   "trackedOwners": 394,
@@ -2253,13 +2253,13 @@
       "title": "Borderlands 4 Badge - Ripper",
       "description": "This user joined the ranks of the Rippers in Borderlands 4.",
       "category": "Event",
-      "cost": "free",
+      "cost": "paid",
       "alwaysAvailable": false,
       "year": null,
       "userCount": 12109,
       "percentage": 0.0077,
-      "startAt": null,
-      "endAt": null,
+      "startAt": "2025-09-11T12:00:00Z",
+      "endAt": "2025-09-15T06:59:00Z",
       "eventName": null,
       "game": null,
       "objective": null,
@@ -2272,7 +2272,7 @@
       "firstSeen": "2025-06-20T22:01:18.225Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
       "isInitialSeed": true,
-      "color": null
+      "color": "#116e9c"
     },
     {
       "setID": "borderlands-4-badge---vault-symbol",
@@ -2285,8 +2285,8 @@
       "year": null,
       "userCount": 42880,
       "percentage": 0.0271,
-      "startAt": null,
-      "endAt": null,
+      "startAt": "2025-06-21T15:00:00Z",
+      "endAt": "2025-06-22T00:00:00Z",
       "eventName": null,
       "game": null,
       "objective": null,
@@ -2299,7 +2299,7 @@
       "firstSeen": "2025-06-20T22:01:18.225Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
       "isInitialSeed": true,
-      "color": null
+      "color": "#f41328"
     },
     {
       "setID": "bot-badge",
@@ -4472,8 +4472,8 @@
       "year": null,
       "userCount": 171292,
       "percentage": 0.1084,
-      "startAt": null,
-      "endAt": null,
+      "startAt": "2025-05-30T07:00:00Z",
+      "endAt": "2025-08-26T07:00:00Z",
       "eventName": null,
       "game": null,
       "objective": null,
@@ -4486,7 +4486,7 @@
       "firstSeen": "2025-05-30T22:26:02.951Z",
       "lastUpdated": "2026-11-16T23:34:23Z",
       "isInitialSeed": true,
-      "color": null
+      "color": "#454157"
     },
     {
       "setID": "elden-ring-wylder",
@@ -7360,7 +7360,7 @@
       "alwaysAvailable": false,
       "year": 2025,
       "userCount": 42892,
-      "percentage": 0.0272,
+      "percentage": 0.0271,
       "startAt": "2025-07-28T00:00:00Z",
       "endAt": "2025-07-29T23:59:59Z",
       "eventName": null,
@@ -8683,7 +8683,7 @@
       "alwaysAvailable": true,
       "year": null,
       "userCount": 1843074,
-      "percentage": 1.1667,
+      "percentage": 1.1666,
       "startAt": null,
       "endAt": null,
       "eventName": null,
@@ -9169,7 +9169,7 @@
       "alwaysAvailable": false,
       "year": null,
       "userCount": 2743856,
-      "percentage": 1.7369,
+      "percentage": 1.7368,
       "startAt": "2026-08-24T17:00:00Z",
       "endAt": "2026-11-01T07:00:00Z",
       "eventName": null,
@@ -9952,7 +9952,7 @@
       "alwaysAvailable": true,
       "year": null,
       "userCount": 22011806,
-      "percentage": 13.9334,
+      "percentage": 13.9331,
       "startAt": null,
       "endAt": null,
       "eventName": null,
