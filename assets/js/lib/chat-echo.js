@@ -2,6 +2,7 @@
 // ("max123 checked !GTA6FREE") and fades out after a few seconds. Reads the channel's chat anonymously
 // (read-only, no login) straight from Twitch, so it works in OBS and in the server stream alike.
 // URL options: ?echo=0 (off) · ?channel=name (default badgestatus) · ?echodemo=1 (sample bubbles)
+import { gql } from "./utils.js";
 
 const STYLE = `
 .echo-stack{position:absolute;display:flex;flex-direction:column;align-items:flex-end;gap:12px;z-index:20;pointer-events:none}
@@ -11,7 +12,8 @@ const STYLE = `
   transform:translateX(60px);opacity:0;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .5s}
 .echo-bubble.in{transform:none;opacity:1}
 .echo-bubble.out{opacity:0;transform:translateY(-10px);transition:transform .7s ease,opacity .7s ease}
-.echo-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:800;color:#1b1433}
+.echo-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:800;color:#1b1433;overflow:hidden;flex-shrink:0}
+.echo-av img{width:100%;height:100%;object-fit:cover;display:block}
 .echo-name{font-weight:700}
 .echo-verb{color:var(--echo-muted,#b4b2c9);font-weight:500}
 .echo-cmd{color:var(--echo-accent,#f4a8d0);font-weight:800}
@@ -64,6 +66,24 @@ function aliasKeys(badges) {
   return out;
 }
 
+/* Profile pictures (public Twitch data), cached per user */
+const avatars = new Map();
+function avatarOf(login) {
+  const k = String(login || "").toLowerCase();
+  if (!k) return Promise.resolve(null);
+  if (!avatars.has(k)) {
+    avatars.set(
+      k,
+      gql("query($l:String!){user(login:$l){profileImageURL(width:70)}}", { l: k })
+        .then((d) => d?.user?.profileImageURL || null)
+        .catch(() => null)
+    );
+  }
+  return avatars.get(k);
+}
+/** Waits at most `ms` for the picture so a bubble is never late */
+const within = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(() => r(null), ms))]);
+
 export function startChatEcho(host, { position = { right: 64, bottom: 120 }, getBadges = () => [] } = {}) {
   const params = new URLSearchParams(location.search);
   if (params.get("echo") === "0") return;
@@ -88,17 +108,24 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
   };
 
   const recent = new Map(); // "user|cmd" → time (no repeats within 15 s)
-  function show(name, cmd, color) {
+  async function show(name, cmd, color, login) {
     const id = `${name.toLowerCase()}|${cmd.toLowerCase()}`;
     if (Date.now() - (recent.get(id) || 0) < 15_000) return;
     recent.set(id, Date.now());
+    const pic = await within(avatarOf(login || name), 1500);
 
     const b = document.createElement("div");
     b.className = "echo-bubble";
     const av = document.createElement("span");
     av.className = "echo-av";
     av.style.background = color || PALETTE[[...name].reduce((n, c) => n + c.charCodeAt(0), 0) % PALETTE.length];
-    av.textContent = name[0]?.toUpperCase() || "?";
+    if (pic) {
+      const img = document.createElement("img");
+      img.src = pic;
+      img.alt = "";
+      img.onerror = () => img.replaceWith(name[0]?.toUpperCase() || "?");
+      av.append(img);
+    } else av.textContent = name[0]?.toUpperCase() || "?";
     const n = Object.assign(document.createElement("span"), { className: "echo-name", textContent: name });
     const v = Object.assign(document.createElement("span"), { className: "echo-verb", textContent: "checked" });
     const c = Object.assign(document.createElement("span"), { className: "echo-cmd", textContent: cmd });
@@ -113,16 +140,16 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
   }
 
   /** A chat line → bubble if it is a badge command */
-  function handle(name, text, color) {
+  function handle(name, text, color, login) {
     const m = String(text).trim().match(/^!([A-Za-z0-9_-]{2,40})\b/);
     if (!m) return;
     const k = key(m[1]);
     if (!FIXED.has(k) && !commands().has(k)) return;
-    show(name, `!${m[1]}`, color);
+    show(name, `!${m[1]}`, color, login);
   }
 
   if (params.get("echodemo") === "1") {
-    const demo = [["max123", "!GTA6FREE"], ["lena_", "!next"], ["tuk7", "!PAY"], ["vicecity_fan", "!GTA6"], ["noah", "!badges"]];
+    const demo = [["tuk7", "!GTA6FREE"], ["badgestatus", "!next"], ["max123", "!PAY"], ["vicecity_fan", "!GTA6"], ["noah", "!badges"]];
     let i = 0;
     setInterval(() => {
       const [n, t] = demo[i++ % demo.length];
@@ -156,7 +183,7 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
         const m = line.match(/^(?:@(\S+) )?:(\w+)!\S+ PRIVMSG #\S+ :(.*)$/);
         if (!m) continue;
         const tags = Object.fromEntries((m[1] || "").split(";").map((t) => t.split("=")));
-        handle(tags["display-name"] || m[2], m[3], tags.color || "");
+        handle(tags["display-name"] || m[2], m[3], tags.color || "", m[2]);
       }
     };
     ws.onclose = () => setTimeout(connect, (delay = Math.min(delay * 2, 60_000)));
