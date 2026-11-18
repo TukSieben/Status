@@ -6,43 +6,63 @@
   <meta name="robots" content="noindex">
   <title>GTA VI badges — BadgeStatus</title>
   <!--
-    Gameplay overlay for ONE game (OBS Browser Source: 1920 × 1080, on top of your game capture).
-    Shows every badge of that game: free (watch) and paid (sub), with times. Transparent outside the panel.
-    Options:
-      ?game=PAYDAY 3      → the game (category name as on Twitch)
-      ?side=left          → panel on the left (default right)
-      ?paid=0             → hide sub badges
-      ?theme=sunset       → pink/orange accent (default purple)
-    /overlay/gta/ is this page preset for Grand Theft Auto VI.
+    Full-screen stream view for one game's badges, in a Vice-City sunset look (1920 × 1080).
+    Default game: Grand Theft Auto VI. Options: ?game=<category> · ?paid=0 (hide sub badges)
+    Low CPU: nothing moves except the countdown (updates every 20 s).
   -->
   <link rel="icon" type="image/png" href="/assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/base.css?v=22">
-  <link rel="stylesheet" href="/assets/css/pages/game.css?v=1">
+  <link rel="stylesheet" href="/assets/css/pages/gta.css?v=1">
 </head>
-<body class="gm-body" data-game="Grand Theft Auto VI" data-theme="sunset">
-  <div class="gm-stage" id="stage">
-    <aside class="gm-panel" id="gmPanel">
-      <div class="gm-accent"></div>
-      <header class="gm-head">
-        <div class="gm-kicker" id="gmKicker">Badges you can get here</div>
-        <h1 class="gm-title" id="gmTitle"></h1>
-        <div class="gm-meta" id="gmMeta"></div>
-      </header>
-      <section class="gm-sec" id="gmFree" hidden>
-        <div class="gm-label" id="gmFreeLabel">Free</div>
-        <div class="gm-grid" id="gmFreeGrid"></div>
+<body class="vc-body">
+  <div class="vc-stage" id="stage">
+    <div class="vc-sky" aria-hidden="true">
+      <div class="vc-sun"></div>
+      <svg class="vc-palm vc-palm-l" viewBox="0 0 300 600"><path d="M150 600c-6-120-4-260 14-380l10 2c-16 118-18 258-12 378z"/><path d="M164 230c-40-60-110-80-160-60 50-6 110 14 152 66zM166 226c10-70 60-120 120-130-50 22-92 72-110 134zM160 232c-70-20-130 10-158 60 40-34 100-56 154-48zM168 232c60-30 120-20 132 20-34-20-86-24-128-6zM162 228c-20-60-70-96-120-100 44 14 84 52 106 104z"/></svg>
+      <svg class="vc-palm vc-palm-r" viewBox="0 0 300 600"><path d="M150 600c-6-120-4-260 14-380l10 2c-16 118-18 258-12 378z"/><path d="M164 230c-40-60-110-80-160-60 50-6 110 14 152 66zM166 226c10-70 60-120 120-130-50 22-92 72-110 134zM160 232c-70-20-130 10-158 60 40-34 100-56 154-48zM168 232c60-30 120-20 132 20-34-20-86-24-128-6zM162 228c-20-60-70-96-120-100 44 14 84 52 106 104z"/></svg>
+    </div>
+
+    <header class="vc-top">
+      <div>
+        <div class="vc-kicker">Twitch badges</div>
+        <h1 class="vc-title" id="vcTitle">Grand Theft Auto VI</h1>
+      </div>
+      <div class="vc-clock">
+        <div class="vc-clock-label" id="vcClockLabel">Ends in</div>
+        <div class="vc-clock-time" id="vcClock">--</div>
+        <div class="vc-clock-date" id="vcDate"></div>
+      </div>
+    </header>
+
+    <main class="vc-main">
+      <section class="vc-panel vc-free" id="vcFreePanel">
+        <div class="vc-panel-head">
+          <h2 class="vc-h2" id="vcFreeHead">Free badges</h2>
+          <span class="vc-pill" id="vcFreePill"></span>
+        </div>
+        <div class="vc-cards" id="vcCards"></div>
       </section>
-      <section class="gm-sec" id="gmPaid" hidden>
-        <div class="gm-label">Sub or gift a sub</div>
-        <div class="gm-row" id="gmPaidRow"></div>
-      </section>
-      <div class="gm-empty" id="gmEmpty" hidden>No badges for this game right now.</div>
-      <footer class="gm-foot" id="gmFoot"></footer>
-    </aside>
+
+      <div class="vc-side">
+        <section class="vc-panel">
+          <h2 class="vc-h2">How to get them</h2>
+          <ol class="vc-steps" id="vcSteps"></ol>
+        </section>
+        <section class="vc-panel" id="vcPaidPanel">
+          <h2 class="vc-h2">Sub badges</h2>
+          <div class="vc-paid" id="vcPaid"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="vc-foot">
+      <div id="vcCmd"></div>
+      <div class="vc-brand"><img src="/assets/img/logo.png" alt="" width="34" height="34"><span>badgestatus.net</span></div>
+    </footer>
   </div>
-  <script type="module" src="/assets/js/pages/game.js?v=1"></script>
+  <script type="module" src="/assets/js/pages/gta.js?v=1"></script>
 </body>
 </html>

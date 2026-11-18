@@ -1,0 +1,70 @@
+/* GTA VI badge view — Vice-City sunset look, fixed 1920×1080 stage. Nothing animates (cheap for server streams). */
+.vc-body { margin: 0; overflow: hidden; min-height: 100vh; background: #12061f; }
+.vc-stage {
+  position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: 0 0; overflow: hidden;
+  display: grid; grid-template-rows: 170px 1fr 86px; padding: 0 64px; box-sizing: border-box;
+  color: #fff; font-family: var(--sans);
+  background: linear-gradient(180deg, #1c0a35 0%, #3d1259 30%, #8a2a78 58%, #e0517f 78%, #ff9a5a 100%);
+}
+
+/* sky: sun with stripes + palm silhouettes */
+.vc-sky { position: absolute; inset: 0; pointer-events: none; }
+.vc-sun {
+  position: absolute; left: 50%; bottom: -170px; width: 760px; height: 760px; margin-left: -380px; border-radius: 50%;
+  background: linear-gradient(180deg, #ffd27a 0%, #ff8a5c 45%, #ff4f8f 100%);
+  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 26px, transparent 26px 34px);
+  mask-image: repeating-linear-gradient(180deg, #000 0 26px, transparent 26px 34px);
+  opacity: .55;
+}
+.vc-palm { position: absolute; bottom: -20px; width: 300px; height: 600px; fill: #140720; opacity: .9; }
+.vc-palm-l { left: -60px; }
+.vc-palm-r { right: -40px; transform: scaleX(-1); height: 520px; width: 260px; }
+
+.vc-top, .vc-main, .vc-foot { position: relative; z-index: 1; }
+
+/* header */
+.vc-top { display: flex; align-items: center; justify-content: space-between; }
+.vc-kicker { font-size: 20px; font-weight: 800; letter-spacing: .3em; text-transform: uppercase; color: #ffc1dc; }
+.vc-title { margin: 2px 0 0; font-family: "Anton", var(--sans); font-weight: 400; font-size: 104px; line-height: .95; letter-spacing: .01em; text-transform: uppercase; text-shadow: 0 4px 0 rgba(40, 6, 50, 0.55); }
+.vc-clock { text-align: right; padding: 16px 26px; border-radius: 20px; background: rgba(20, 6, 36, 0.62); border: 1px solid rgba(255, 255, 255, 0.16); }
+.vc-clock-label { font-size: 16px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #ffc1dc; }
+.vc-clock-time { font-family: "Anton", var(--sans); font-size: 58px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.vc-clock-date { font-size: 16px; color: #e6d6ee; }
+
+/* layout */
+.vc-main { display: grid; grid-template-columns: minmax(0, 1fr) 620px; gap: 32px; padding: 10px 0 24px; min-height: 0; }
+.vc-side { display: flex; flex-direction: column; gap: 24px; min-height: 0; }
+.vc-panel { background: rgba(20, 6, 36, 0.66); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 22px; padding: 24px 28px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.vc-free { display: flex; flex-direction: column; }
+.vc-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.vc-h2 { margin: 0 0 16px; font-family: "Anton", var(--sans); font-weight: 400; font-size: 36px; letter-spacing: .03em; text-transform: uppercase; line-height: 1; }
+.vc-panel-head .vc-h2 { margin: 0; }
+.vc-pill { padding: 8px 16px; border-radius: 999px; font-size: 18px; font-weight: 800; color: #2a0a2e; background: linear-gradient(90deg, #ffd27a, #ff7fb0); white-space: nowrap; }
+
+/* free badge cards */
+.vc-cards { flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 18px; }
+.vc-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px; border-radius: 18px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); text-align: center; min-width: 0; }
+.vc-card img { width: 104px; height: 104px; object-fit: contain; }
+.vc-card-name { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.vc-card-step { font-size: 15px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #ffc1dc; }
+.vc-card-how { font-size: 17px; color: #eadcf2; }
+
+/* steps */
+.vc-steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; counter-reset: step; }
+.vc-steps li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; font-size: 20px; line-height: 1.35; color: #f3e9f7; counter-increment: step; }
+.vc-steps li::before { content: counter(step); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; font-family: "Anton", var(--sans); font-size: 22px; color: #2a0a2e; background: linear-gradient(135deg, #ffd27a, #ff7fb0); }
+.vc-steps b { color: #fff; }
+
+/* sub badges */
+.vc-paid { display: flex; flex-direction: column; gap: 12px; }
+.vc-paid-row { display: flex; align-items: center; gap: 14px; }
+.vc-paid-icons { display: flex; gap: 8px; flex-shrink: 0; }
+.vc-paid-icons img { width: 48px; height: 48px; object-fit: contain; }
+.vc-paid-text { font-size: 17px; line-height: 1.35; color: #eadcf2; }
+.vc-paid-text b { display: block; color: #fff; font-size: 18px; }
+
+/* footer */
+.vc-foot { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.18); font-size: 22px; color: #f3e9f7; }
+.vc-foot b { color: #fff; font-weight: 800; }
+.vc-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.vc-brand img { border-radius: 8px; }

@@ -14,7 +14,8 @@ The site is fully static and hosted on GitHub Pages. Badge data is refreshed eve
 | `/archive/` | `archive/index.html` | Every badge ever released: search, status / category / cost filters, sorting (filters are kept in the URL) |
 | `/overlay/` | `overlay/index.html` | 1920×1080 overlay for the 24/7 stream (OBS browser source) |
 | `/overlay/widget/` | `overlay/widget/index.html` | Small corner widget for live gameplay streams (460×400, transparent; `?game=<category>`) |
-| `/overlay/game/` | `overlay/game/index.html` | Gameplay overlay for one game: all its badges, free and paid (1920×1080, transparent; `?game=`, `?side=left`, `?paid=0`, `?theme=sunset`). `/overlay/gta/` = preset for GTA VI |
+| `/overlay/gta/` | `overlay/gta/index.html` | Full-screen stream view for one game in a Vice-City sunset look: free badges with how to get them, sub badges, countdown (default GTA VI; `?game=`, `?paid=0`) |
+| `/overlay/game/` | `overlay/game/index.html` | Gameplay overlay for one game: all its badges, free and paid (1920×1080, transparent; `?game=`, `?side=left`, `?paid=0`, `?theme=sunset`). `?theme=sunset` for a pink/orange accent |
 | `/overlay/sidebar/` | `overlay/sidebar/index.html` | Gameplay overlay: floating badge panel with spotlight, bot commands and times (1920×1080, transparent; `?side=right`, `?expired=N`, `?game=`, `?brand=0`) |
 | — | `404.html` | Not-found page (also redirects old `badges.html` / `badge.html` links) |
 
