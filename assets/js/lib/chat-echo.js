@@ -162,14 +162,22 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
     }
     const m = String(text).trim().match(/^!([A-Za-z0-9_-]{2,40})\b/);
     if (!m) return;
-    const k = key(m[1]);
-    if (!FIXED.has(k) && !commands().has(k)) return;
+    let k = key(m[1]);
+    let shown = m[1];
+    if (!FIXED.has(k) && !commands().has(k)) {
+      // "!RuneScape Gnome Plush" with spaces: the bot answers it too
+      const words = String(text).trim().slice(1).split(/\s+/).slice(0, 6);
+      const n = words.findLastIndex((_, i) => i > 0 && commands().has(key(words.slice(0, i + 1).join(""))));
+      if (n < 1) return;
+      k = key(words.slice(0, n + 1).join(""));
+      shown = words.slice(0, n + 1).join("");
+    }
     const id = `${String(login || name).toLowerCase()}|${k}`;
     if (Date.now() - (counted.get(id) || 0) > 15_000) {
       counted.set(id, Date.now()); // same command again within 15 s doesn't count twice
       onCommand(name, login || name);
     }
-    if (enabled) show(name, `!${m[1]}`, color, login);
+    if (enabled) show(name, `!${shown}`, color, login);
   }
 
   if (enabled && params.get("echodemo") === "1") {
