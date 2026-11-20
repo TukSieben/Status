@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-11-18T13:22:24Z",
+  "updatedAt": "2026-11-20T22:37:56Z",
   "events": [
+    {
+      "type": "updated",
+      "timestamp": "2026-11-20T22:37:56Z",
+      "setID": "runescape-quest-icon",
+      "version": "1",
+      "title": "RuneScape Quest Icon",
+      "fields": [
+        "description"
+      ],
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/bf75cdff-7b3a-4ba6-a1d5-e00563b9877e/2"
+    },
     {
       "type": "added",
       "timestamp": "2026-11-18T13:22:24Z",
