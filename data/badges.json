@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-11-20T20:07:52Z",
+  "syncedAt": "2026-11-20T20:22:52Z",
   "totalBadges": 579,
   "uniqueSets": 459,
   "trackedOwners": 396,
@@ -6877,16 +6877,10 @@
       "percentage": 0.0027,
       "startAt": "2026-11-19T20:00:00Z",
       "endAt": "2026-11-20T19:59:00Z",
-      "eventName": "Jordan x Space Jam",
-      "game": "IRL",
-      "objective": "Watch 15m in IRL (1 eligible channels)",
-      "channels": [
-        {
-          "login": "samham",
-          "displayName": "Samham",
-          "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/d786583d-f944-426a-a213-8f226d6e56a2-profile_image-300x300.png"
-        }
-      ],
+      "eventName": null,
+      "game": null,
+      "objective": null,
+      "channels": [],
       "image1x": "https://static-cdn.jtvnw.net/badges/v1/f7d0e088-2870-4b20-93e8-ab0fedfe50e4/1",
       "image2x": "https://static-cdn.jtvnw.net/badges/v1/f7d0e088-2870-4b20-93e8-ab0fedfe50e4/2",
       "image4x": "https://static-cdn.jtvnw.net/badges/v1/f7d0e088-2870-4b20-93e8-ab0fedfe50e4/3",
@@ -9958,7 +9952,7 @@
       "alwaysAvailable": true,
       "year": null,
       "userCount": 22122558,
-      "percentage": 13.9832,
+      "percentage": 13.9831,
       "startAt": null,
       "endAt": null,
       "eventName": null,
