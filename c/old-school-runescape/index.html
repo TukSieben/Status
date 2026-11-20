@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Old School RuneScape badges — BadgeStatus</title>
+  <meta name="description" content="Every badge and emote of a Twitch badge campaign at a glance — and what you need for the final badge.">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=22">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=23">
+  <link rel="stylesheet" href="/assets/css/pages/collection.css?v=1">
+</head>
+<body data-game="Old School RuneScape">
+  <div class="bg-waves" id="bgWaves" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="nav-left">
+        <a href="/" class="brand">
+          <img src="/assets/img/logo.png" alt="" width="20" height="20">
+          <span>BadgeStatus</span>
+        </a>
+        <span class="nav-sep">/</span>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/badges/" class="nav-link is-active">Badges</a>
+          <a href="/archive/" class="nav-link">Archive</a>
+          <a href="/#schedule" class="nav-link">Schedule</a>
+          <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main co-main">
+    <div class="bd-loading" id="coLoading"><span class="spinner"></span></div>
+
+    <div class="co-missing hidden" id="coNotFound">
+      <h1>No badges for this game right now</h1>
+      <p class="muted">The campaign may have ended or the link is wrong.</p>
+      <a href="/badges/" class="btn-white">All badges</a>
+    </div>
+
+    <article class="co hidden" id="co">
+      <nav class="co-crumbs"><a href="/badges/">Badges</a><span>/</span><span>Collection</span></nav>
+
+      <header class="co-head">
+        <div>
+          <div class="co-kicker">Badge collection</div>
+          <h1 id="coTitle"></h1>
+          <p class="co-sub" id="coSub"></p>
+        </div>
+        <div class="co-time" id="coTime"></div>
+      </header>
+
+      <form class="search co-check" id="coForm" autocomplete="off">
+        <label class="search-field">
+          <span class="search-prefix">twitch.tv/</span>
+          <input type="text" id="coUser" placeholder="username" spellcheck="false" aria-label="Twitch username">
+        </label>
+        <button type="submit" class="btn-white" id="coBtn"><span id="coBtnLabel">Check</span><span class="spinner hidden" id="coSpin"></span></button>
+      </form>
+      <div class="co-result hidden" id="coResult"></div>
+      <div class="error-box hidden" id="coError"></div>
+
+      <section class="panel co-final hidden" id="coFinal"></section>
+
+      <section class="co-sec" id="coWatchSec">
+        <div class="co-sec-head"><h2>Watch</h2><span class="co-pill is-free" id="coWatchPill">Free</span></div>
+        <div class="co-grid" id="coWatch"></div>
+      </section>
+
+      <section class="co-sec" id="coSubSec">
+        <div class="co-sec-head"><h2>Subscribe</h2><span class="co-pill is-paid" id="coSubPill">Paid</span></div>
+        <div class="co-grid" id="coSubs"></div>
+        <div class="co-emotes hidden" id="coEmotes"></div>
+      </section>
+
+      <section class="panel co-tips">
+        <h2>Good to know</h2>
+        <ul id="coTips"></ul>
+      </section>
+    </article>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-links">badgestatus.net <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="footer-stream" data-live-indicator><span class="stream-dot"></span>twitch.tv/badgestatus</a></span>
+      <span class="muted" id="footerSync"></span>
+    </div>
+  </footer>
+  <script type="module" src="/assets/js/pages/collection.js?v=2"></script>
+</body>
+</html>
