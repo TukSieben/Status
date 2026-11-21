@@ -31,6 +31,11 @@
 .vc-clock-time { font-family: "Anton", var(--sans); font-size: 58px; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .vc-clock-date { font-size: 16px; color: #e6d6ee; }
 
+/* meme clip next to the clock */
+.vc-meme { margin-left: auto; margin-right: 28px; width: 248px; height: 140px; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid rgba(255, 193, 220, .5); box-shadow: 0 10px 30px rgba(20, 6, 36, .45); }
+.vc-meme[hidden] { display: none; }
+.vc-meme video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 /* layout */
 .vc-main { display: grid; grid-template-columns: minmax(0, 1fr) 620px; gap: 32px; padding: 10px 0 24px; min-height: 0; }
 .vc-side { display: flex; flex-direction: column; gap: 24px; min-height: 0; }

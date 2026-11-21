@@ -3,6 +3,7 @@ import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=6";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
+import { startMeme } from "../lib/meme.js?v=1";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
@@ -227,3 +228,6 @@ let goalBox = null;
 const hunters = startHunters($("vcHunters"), { avatarOf });
 const echo = startChatEcho($("stage"), { position: { right: 76, bottom: 112 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (name, login) => hunters?.add(name, login) });
 goalBox = startFollowGoal($("vcGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
+
+/* Meme clip in the header (only on the stream, from MEME_<command> in the server's .env) */
+startMeme($("vcMeme"), alias(GAME));
