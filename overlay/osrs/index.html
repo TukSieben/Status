@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>OSRS badges — BadgeStatus</title>
+  <!--
+    Full-screen stream view for one game's badges, in a medieval dusk look (1920 × 1080).
+    Default game: Old School RuneScape. Options: ?game=<category> · ?paid=0 (hide sub badges)
+    Motion: short moves every few seconds (badge spotlight, title sweep, torches, flag); ?motion=0 turns it off.
+  -->
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=22">
+  <link rel="stylesheet" href="/assets/css/pages/osrs.css?v=1">
+</head>
+<body class="rs-body">
+  <div class="rs-stage" id="stage">
+    <div class="rs-sky" aria-hidden="true">
+      <div class="rs-stars"></div>
+      <div class="rs-moon"></div>
+      <svg class="rs-land" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+        <!-- horizon along the header: distant hills with a castle between the title and the clock -->
+        <path class="rs-hill-far" d="M0 196 C200 186 420 192 640 182 C820 174 960 170 1100 166 C1200 150 1290 140 1380 146 C1480 152 1560 172 1700 176 C1800 180 1870 184 1920 186 V1080 H0 Z"/>
+        <g class="rs-castle">
+          <rect x="1196" y="92" width="34" height="62"/>
+          <rect x="1230" y="112" width="96" height="42"/>
+          <rect x="1326" y="80" width="38" height="74"/>
+          <path d="M1193 92h40l-20-30z M1323 80h44l-22-34z"/>
+          <path d="M1230 112h8v-9h9v9h9v-9h9v9h9v-9h9v9h9v-9h9v9h9v-9h9v9h8v4h-96z"/>
+          <rect x="1344" y="16" width="2" height="32"/>
+          <path class="rs-flag" d="M1346 17c11 3 19-3 29 1v16c-10-4-18 2-29-1z"/>
+          <rect class="rs-win" x="1208" y="110" width="9" height="14" rx="4.5"/>
+          <rect class="rs-win" x="1272" y="124" width="10" height="15" rx="5"/>
+          <rect class="rs-win" x="1340" y="98" width="9" height="14" rx="4.5"/>
+        </g>
+        <path class="rs-hill-near" d="M0 214 C260 204 520 210 760 200 C980 192 1140 178 1260 160 C1340 150 1420 162 1520 184 C1660 206 1820 210 1920 206 V1080 H0 Z"/>
+        <g class="rs-pines">
+          <path d="M1010 196l14-44 14 44z M1004 206l20-52 20 52z"/>
+          <path d="M1048 194l11-34 11 34z"/>
+          <path d="M1468 190l12-38 12 38z M1462 200l18-46 18 46z"/>
+        </g>
+      </svg>
+    </div>
+
+    <header class="rs-top">
+      <div>
+        <div class="rs-kicker">Twitch badges</div>
+        <h1 class="rs-title" id="rsTitle">Old School RuneScape</h1>
+      </div>
+      <div class="rs-clock">
+        <div class="rs-clock-label" id="rsClockLabel">Ends in</div>
+        <div class="rs-clock-time" id="rsClock">--</div>
+        <div class="rs-clock-date" id="rsDate"></div>
+      </div>
+    </header>
+
+    <main class="rs-main" id="rsMain">
+      <section class="rs-panel rs-free" id="rsFreePanel">
+        <div class="rs-panel-head">
+          <h2 class="rs-h2" id="rsFreeHead">Free badge</h2>
+          <span class="rs-pill" id="rsFreePill"></span>
+        </div>
+        <div class="rs-badges" id="rsFree"></div>
+        <ol class="rs-steps" id="rsFreeSteps"></ol>
+      </section>
+
+      <section class="rs-panel rs-paid" id="rsPaidPanel">
+        <div class="rs-panel-head">
+          <h2 class="rs-h2" id="rsPaidHead">Sub badge</h2>
+          <span class="rs-pill is-paid" id="rsPaidPill"></span>
+        </div>
+        <div class="rs-badges" id="rsPaid"></div>
+        <ol class="rs-steps" id="rsPaidSteps"></ol>
+      </section>
+    </main>
+
+    <footer class="rs-foot">
+      <div id="rsCmd"></div>
+      <div class="rs-hunters" id="rsHunters"></div>
+      <div class="rs-goal" id="rsGoal"></div>
+      <div class="rs-brand"><img src="/assets/img/logo.png" alt="" width="34" height="34"><span>badgestatus.net</span></div>
+    </footer>
+  </div>
+  <script type="module" src="/assets/js/pages/osrs.js?v=1"></script>
+</body>
+</html>
