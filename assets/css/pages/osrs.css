@@ -44,13 +44,31 @@
 .rs-clock-time { font-family: "Cinzel", Georgia, serif; font-weight: 900; font-size: 54px; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .rs-clock-date { font-size: 16px; color: var(--muted); }
 
-/* meme clip next to the clock — the castle moves aside */
-.rs-meme { margin-left: auto; margin-right: 28px; width: 248px; height: 140px; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(232, 194, 106, .55); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .5), 0 10px 30px rgba(0, 0, 0, .35); }
+/* meme clip: when a clip runs it's the biggest thing on screen, the badges move into a compact column */
+.rs-meme {
+  grid-row: 1 / span 2; align-self: center; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000;
+  border: 1px solid rgba(232, 194, 106, .55); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .5), 0 24px 60px rgba(0, 0, 0, .45);
+}
 .rs-meme[hidden] { display: none; }
 .rs-meme video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.rs-castle { transition: transform .8s ease; }
-.has-meme .rs-castle { transform: translateX(-200px); }
-.has-meme .rs-moon { display: none; }
+
+.has-meme .rs-main, .has-meme .rs-main.is-single { grid-template-columns: 1fr 600px; grid-template-rows: 1fr 1fr; gap: 24px 32px; max-width: none; margin: 0; }
+.has-meme .rs-main.is-single .rs-panel { grid-row: 1 / span 2; }
+.has-meme .rs-panel { padding: 20px 26px; justify-content: center; }
+.has-meme .rs-h2 { font-size: 30px; }
+.has-meme .rs-pill { font-size: 16px; padding: 6px 13px; }
+.has-meme .rs-badges, .has-meme .rs-badges.is-one { flex: 0 0 auto; display: flex; flex-direction: column; align-items: stretch; gap: 12px; margin-top: 10px; }
+.has-meme .rs-badge { flex-direction: row; text-align: left; gap: 18px; }
+.has-meme .rs-medal, .has-meme .rs-badges.is-one .rs-medal { width: 104px; height: 104px; flex-shrink: 0; }
+.has-meme .rs-medal img, .has-meme .rs-badges.is-one .rs-medal img { width: 70px; height: 70px; }
+.has-meme .rs-badges.is-one .rs-badge-name, .has-meme .rs-badge-name { font-family: "Cinzel", Georgia, serif; font-size: 30px; font-weight: 700; white-space: normal; line-height: 1.1; }
+.has-meme .rs-badge > .rs-badge-how { display: none; }
+.has-meme .rs-badges.is-many .rs-medal { width: 64px; height: 64px; }
+.has-meme .rs-badges.is-many .rs-medal img { width: 44px; height: 44px; }
+.has-meme .rs-badges.is-many .rs-badge-name { font-size: 22px; }
+.has-meme .rs-steps { height: auto; margin-top: 14px; padding-top: 14px; gap: 8px; }
+.has-meme .rs-steps li { grid-template-columns: 30px 1fr; gap: 12px; font-size: 17px; }
+.has-meme .rs-steps li::before { width: 28px; height: 28px; font-size: 14px; }
 
 /* layout */
 .rs-main { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 10px 0 24px; min-height: 0; }
