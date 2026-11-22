@@ -44,15 +44,18 @@
 .rs-clock-time { font-family: "Cinzel", Georgia, serif; font-weight: 900; font-size: 54px; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .rs-clock-date { font-size: 16px; color: var(--muted); }
 
-/* meme clip: when a clip runs it's the biggest thing on screen, the badges move into a compact column */
-.rs-meme {
-  grid-row: 1 / span 2; align-self: center; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000;
-  border: 1px solid rgba(232, 194, 106, .55); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .5), 0 24px 60px rgba(0, 0, 0, .45);
+/* meme clip: when a clip runs it's the biggest thing on screen, the badges move into a compact column.
+   On the stream the box is filled by ffmpeg at exactly this spot (stage x 64, y 200, 1152 × 648) — keep in sync with stream.js MEME_SLOT. */
+.rs-meme { display: none; }
+.has-meme .rs-meme {
+  display: block; position: absolute; left: 0; top: 24px; width: 1152px; height: 648px; overflow: hidden; background: #000;
+  box-shadow: 0 0 0 1px rgba(232, 194, 106, .55), 0 0 0 6px rgba(18, 14, 10, .74), 0 0 0 7px rgba(232, 194, 106, .2), 0 24px 60px rgba(0, 0, 0, .45);
 }
-.rs-meme[hidden] { display: none; }
+.rs-meme[hidden] { display: none !important; }
 .rs-meme video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.has-meme .rs-main, .has-meme .rs-main.is-single { grid-template-columns: 1fr 600px; grid-template-rows: 1fr 1fr; gap: 24px 32px; max-width: none; margin: 0; }
+.has-meme .rs-main, .has-meme .rs-main.is-single { grid-template-columns: 1152px 1fr; grid-template-rows: 1fr 1fr; gap: 24px 32px; max-width: none; margin: 0; }
+.has-meme .rs-panel { grid-column: 2; }
 .has-meme .rs-main.is-single .rs-panel { grid-row: 1 / span 2; }
 .has-meme .rs-panel { padding: 20px 26px; justify-content: center; }
 .has-meme .rs-h2 { font-size: 30px; }
