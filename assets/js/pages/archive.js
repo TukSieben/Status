@@ -1,6 +1,7 @@
 import "../lib/background.js";
 import { $, el, badgeImg, badgeHref, formatDate, loadBadges, watchBadges } from "../lib/utils.js";
 import { fetchChannel, paintLiveIndicators } from "../lib/twitch.js";
+import { plannedMonth, plannedLabel } from "../lib/planned.js?v=1";
 
 const PAGE_SIZE = 96;
 
@@ -21,6 +22,8 @@ function statusOf(b, now = Date.now()) {
   const end = Date.parse(b.endAt || "");
   const start = Date.parse(b.startAt || "");
   if (!Number.isNaN(start) && start > now) return "upcoming";
+  // no dates yet, but announced for a coming month
+  if (Number.isNaN(start) && Number.isNaN(end) && plannedMonth(b) > now) return "upcoming";
   if (!Number.isNaN(end) && end > now) return "active";
   return "ended";
 }
@@ -32,6 +35,8 @@ function statusOf(b, now = Date.now()) {
 function releasedAt(b) {
   const start = Date.parse(b.startAt || "");
   if (!Number.isNaN(start)) return start;
+  const planned = plannedMonth(b);
+  if (!Number.isNaN(planned)) return planned;
   if (b.year) return Date.UTC(b.year, 0, 1);
   if (b.isInitialSeed) return 0;
   const seen = Date.parse(b.firstSeen || "");
@@ -40,6 +45,8 @@ function releasedAt(b) {
 
 function releaseLabel(b) {
   if (b.startAt) return new Date(b.startAt).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+  const planned = plannedMonth(b);
+  if (!Number.isNaN(planned)) return plannedLabel(planned);
   if (b.year) return String(b.year);
   return "";
 }

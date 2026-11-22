@@ -2,6 +2,7 @@ import "../lib/background.js";
 import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, watchBadges, compactNumber, gql } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 import { syncLiveEmbed } from "../lib/live-embed.js?v=1";
+import { plannedMonth, plannedLabel } from "../lib/planned.js?v=1";
 
 let badge = null;
 let all = [];
@@ -171,6 +172,12 @@ function renderWhen() {
   const state = $("bdState");
   state.textContent = STATE_LABEL[s];
   state.className = `bd-state is-${s}`;
+  // no dates yet, but announced for a coming month → "Upcoming · Dec 2026"
+  const planned = s === "unknown" ? plannedMonth(badge) : NaN;
+  if (planned > Date.now()) {
+    state.textContent = `Upcoming · ${plannedLabel(planned)}`;
+    state.className = "bd-state is-upcoming";
+  }
 
   if (s === "permanent" || s === "unknown") {
     $("bdWhen").classList.add("hidden");
