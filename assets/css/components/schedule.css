@@ -92,8 +92,8 @@
 }
 .sched-rel.is-urgent { color: var(--amber); font-weight: 600; }
 
-.sched-now { position: absolute; top: 38px; bottom: 0; width: 1px; background: rgba(239, 68, 68, 0.55); pointer-events: none; z-index: 1; }
-.sched-now::before { content: ""; position: absolute; top: -3px; left: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); z-index: 3; }
+.sched-now { position: absolute; top: 38px; bottom: 0; width: 1px; background: rgba(239, 68, 68, 0.72); pointer-events: none; z-index: 3; }
+.sched-now::before { content: ""; position: absolute; top: -3px; left: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
 
 .sched-empty { padding: 36px; text-align: center; color: var(--text-3); font-size: 13px; }
 .sched-bar.is-narrow .sched-rel { position: absolute; right: auto; top: 50%; transform: translateY(-50%); color: var(--text-2); }
