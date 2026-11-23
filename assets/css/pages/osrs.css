@@ -45,16 +45,16 @@
 .rs-clock-date { font-size: 16px; color: var(--muted); }
 
 /* meme clip: when a clip runs it's the biggest thing on screen, the badges move into a compact column.
-   On the stream the box is filled by ffmpeg at exactly this spot (stage x 64, y 200, 1152 × 648) — keep in sync with stream.js MEME_SLOT. */
+   On the stream the box is filled by ffmpeg at exactly this spot (stage x 64, y 196, 1312 × 738) — keep in sync with stream.js MEME_SLOT. */
 .rs-meme { display: none; }
 .has-meme .rs-meme {
-  display: block; position: absolute; left: 0; top: 24px; width: 1152px; height: 648px; overflow: hidden; background: #000;
+  display: block; position: absolute; left: 0; top: 20px; width: 1312px; height: 738px; overflow: hidden; background: #000;
   box-shadow: 0 0 0 1px rgba(232, 194, 106, .55), 0 0 0 6px rgba(18, 14, 10, .74), 0 0 0 7px rgba(232, 194, 106, .2), 0 24px 60px rgba(0, 0, 0, .45);
 }
 .rs-meme[hidden] { display: none !important; }
 .rs-meme video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.has-meme .rs-main, .has-meme .rs-main.is-single { grid-template-columns: 1152px 1fr; grid-template-rows: 1fr 1fr; gap: 24px 32px; max-width: none; margin: 0; }
+.has-meme .rs-main, .has-meme .rs-main.is-single { grid-template-columns: 1312px 1fr; grid-template-rows: 1fr 1fr; gap: 20px 28px; max-width: none; margin: 0; padding-bottom: 8px; }
 .has-meme .rs-panel { grid-column: 2; }
 .has-meme .rs-main.is-single .rs-panel { grid-row: 1 / span 2; }
 .has-meme .rs-panel { padding: 20px 26px; justify-content: center; }
@@ -168,3 +168,18 @@
 
 /* bottom strip "THIS IS LIVE · NOT A VOD" */
 .rs-stage.has-livemark { grid-template-rows: 176px 1fr 86px 52px; }
+
+/* narrower badge column next to the big clip */
+.has-meme .rs-panel { padding: 16px 20px; }
+.has-meme .rs-panel::before { left: 18px; } .has-meme .rs-panel::after { right: 18px; }
+.has-meme .rs-panel-head { flex-wrap: wrap; gap: 8px; }
+.has-meme .rs-h2 { font-size: 24px; }
+.has-meme .rs-pill { font-size: 13px; padding: 5px 11px; }
+.has-meme .rs-badges, .has-meme .rs-badges.is-one { margin-top: 8px; }
+.has-meme .rs-badge { gap: 14px; }
+.has-meme .rs-medal, .has-meme .rs-badges.is-one .rs-medal { width: 82px; height: 82px; }
+.has-meme .rs-medal img, .has-meme .rs-badges.is-one .rs-medal img { width: 54px; height: 54px; }
+.has-meme .rs-badges.is-one .rs-badge-name, .has-meme .rs-badge-name { font-size: 24px; }
+.has-meme .rs-steps { margin-top: 10px; padding-top: 10px; gap: 6px; }
+.has-meme .rs-steps li { grid-template-columns: 24px 1fr; gap: 10px; font-size: 15px; line-height: 1.3; }
+.has-meme .rs-steps li::before { width: 24px; height: 24px; font-size: 12px; }
