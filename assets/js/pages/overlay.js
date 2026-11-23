@@ -1,6 +1,7 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
-import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=6";
+import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=2";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
@@ -234,8 +235,29 @@ startDaylight(
 $("stage").style.setProperty("--echo-accent", "#c4b5fd");
 let goalBox = null;
 const hunters = startHunters($("oHunters"), { avatarOf });
-const echo = startChatEcho($("stage"), { position: { right: 56, bottom: 110 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (name, login) => hunters?.add(name, login) });
+/* Pixel alien standing on the badge grid, next to the "Available now" heading */
+const alien = startPixelAlien($("stage"), { left: 1110, top: 117, size: 84, accent: "#a78bfa", bg: "rgba(14, 12, 28, .95)", text: "#ffffff" });
+function alienCommand(name, cmd) {
+  if (!alien) return;
+  alien.hop([`Nice, ${name}!`, cmd ? `${cmd} · the bot has the details` : "happy hunting"]);
+}
+const echo = startChatEcho($("stage"), {
+  position: { right: 56, bottom: 110 },
+  getBadges: () => badges,
+  onFollow: (name) => { goalBox?.bump(); alien?.cheer([`Welcome, ${name}!`, "welcome to the hunt"]); },
+  onCommand: (name, login, cmd) => { hunters?.add(name, login); alienCommand(name, cmd); },
+});
 goalBox = startFollowGoal($("oGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
 
 /* "THIS IS LIVE · NOT A VOD" strip at the bottom */
 startLiveTag(document.getElementById("stage"));
+
+/* ?aliendemo=1 → follow + command reactions every few seconds (to try it out) */
+if (alien && params.get("aliendemo") === "1") {
+  const demo = () => {
+    alien.cheer(["Welcome, NewViewer!", "welcome to the hunt"]);
+    setTimeout(() => alienCommand("viewer", "!osrs"), 4200);
+  };
+  setTimeout(demo, 1500);
+  setInterval(demo, 10_000);
+}

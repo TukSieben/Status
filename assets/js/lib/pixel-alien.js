@@ -13,14 +13,14 @@ const CSS = `
 @keyframes px-spark { 0% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--a)) translateX(30px); }
   100% { opacity: 0; transform: translate(-50%, -50%) rotate(calc(var(--a) + 70deg)) translateX(78px); } }
 .px-bubble { position: absolute; right: -6px; top: calc(100% + 22px); min-width: 220px; padding: 12px 20px 13px; border-radius: 13px;
-  background: rgba(18, 14, 10, .94); border: 3px solid #e8c26a; color: #f3ead8; font: 800 22px/1.25 var(--sans, Inter, sans-serif);
+  background: var(--px-bg, rgba(18, 14, 10, .94)); border: 3px solid var(--px-accent, #e8c26a); color: var(--px-text, #f3ead8); font: 800 22px/1.25 var(--sans, Inter, sans-serif);
   white-space: nowrap; opacity: 0; transform: translateY(-6px); transition: opacity .25s, transform .25s; }
-.px-bubble::before { content: ""; position: absolute; right: 40px; top: -17px; border: 8px solid transparent; border-bottom: 9px solid #e8c26a; }
-.px-bubble small { display: block; font-size: 18px; font-weight: 600; color: #e8c26a; }
+.px-bubble::before { content: ""; position: absolute; right: 40px; top: -17px; border: 8px solid transparent; border-bottom: 9px solid var(--px-accent, #e8c26a); }
+.px-bubble small { display: block; font-size: 18px; font-weight: 600; color: var(--px-accent, #e8c26a); }
 .px-alien.is-talking .px-bubble { opacity: 1; transform: none; }`;
 
 /** box: { left, top, size } in stage pixels. Returns { cheer(lines), hop(lines) } */
-export function startPixelAlien(host, { left, top, size = 96 } = {}) {
+export function startPixelAlien(host, { left, top, size = 96, accent, bg, text } = {}) {
   if (!host || new URLSearchParams(location.search).get("alien") === "0") return null;
   if (!document.getElementById("pxAlienCss")) {
     const style = document.createElement("style");
@@ -33,6 +33,9 @@ export function startPixelAlien(host, { left, top, size = 96 } = {}) {
   const root = document.createElement("div");
   root.className = "px-alien";
   Object.assign(root.style, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
+  if (accent) root.style.setProperty("--px-accent", accent);
+  if (bg) root.style.setProperty("--px-bg", bg);
+  if (text) root.style.setProperty("--px-text", text);
   const sprite = document.createElement("img");
   sprite.className = "px-alien-sprite";
   sprite.alt = "";

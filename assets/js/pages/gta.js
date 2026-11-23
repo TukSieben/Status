@@ -1,6 +1,7 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
-import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=6";
+import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=2";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startLiveTag } from "../lib/live-tag.js?v=4";
@@ -226,8 +227,30 @@ $("stage").style.setProperty("--echo-border", "rgba(255, 193, 220, 0.35)");
 $("stage").style.setProperty("--echo-accent", "#ffc1dc");
 let goalBox = null;
 const hunters = startHunters($("vcHunters"), { avatarOf });
-const echo = startChatEcho($("stage"), { position: { right: 76, bottom: 112 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (name, login) => hunters?.add(name, login) });
+/* Pixel alien standing on the "How to get them" panel, between the title and the clock */
+const alien = startPixelAlien($("stage"), { left: 1330, top: 92, size: 96, accent: "#ffc1dc", bg: "rgba(20, 6, 36, .94)", text: "#ffffff" });
+function alienCommand(name, cmd) {
+  if (!alien) return;
+  const mine = cmd && cmd.slice(1).toLowerCase().startsWith(alias(GAME).toLowerCase());
+  alien.hop(mine ? ["Watch 1 hour a day", "→ every day unlocks the next chain"] : [`Good luck, ${name}!`, "happy hunting"]);
+}
+const echo = startChatEcho($("stage"), {
+  position: { right: 76, bottom: 112 },
+  getBadges: () => badges,
+  onFollow: (name) => { goalBox?.bump(); alien?.cheer([`Welcome, ${name}!`, "welcome to the hunt"]); },
+  onCommand: (name, login, cmd) => { hunters?.add(name, login); alienCommand(name, cmd); },
+});
 goalBox = startFollowGoal($("vcGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
 
 /* "THIS IS LIVE · NOT A VOD" strip at the bottom */
 startLiveTag($("stage"));
+
+/* ?aliendemo=1 → follow + command reactions every few seconds (to try it out) */
+if (alien && params.get("aliendemo") === "1") {
+  const demo = () => {
+    alien.cheer(["Welcome, NewViewer!", "welcome to the hunt"]);
+    setTimeout(() => alienCommand("viewer", `!${alias(GAME)}`), 4200);
+  };
+  setTimeout(demo, 1500);
+  setInterval(demo, 10_000);
+}
