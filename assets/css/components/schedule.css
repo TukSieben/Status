@@ -1,51 +1,63 @@
 /* =========================================================
-   SCHEDULE (draggable timeline)
+   SCHEDULE (draggable timeline — flat, matte, readable)
    ========================================================= */
 .sched { padding: 0; overflow: hidden; }
-.sched-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 500; color: var(--text-3); }
+.sched-legend {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 16px;
+  padding: 10px 16px; background: var(--panel-2); border-bottom: 1px solid var(--line);
+  font-size: 11.5px; font-weight: 500; color: var(--text-2);
+}
 .sched-legend-item { display: inline-flex; align-items: center; gap: 7px; }
 .sched-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
-.sw-now { width: 2px; height: 12px; border-radius: 0; background: var(--live); }
-.sw-active { background: rgba(145, 70, 255, 0.8); }
-.sw-upcoming { background: transparent; border: 1px dashed #a78bfa; }
-.sched-hint { margin-left: auto; color: var(--text-3); font-weight: 500; text-transform: none; letter-spacing: 0; }
+.sw-now { width: 2px; height: 12px; border-radius: 0; background: var(--red); }
+.sw-active { background: #262b38; border: 1px solid #3f475c; border-left: 3px solid var(--green); }
+.sw-upcoming { background: transparent; border: 1px dashed #4b5563; }
+.sched-hint { margin-left: auto; color: var(--text-3); font-size: 11.5px; }
 
-.sched-scroll { overflow-x: auto; overflow-y: hidden; cursor: grab; user-select: none; scrollbar-width: thin; scrollbar-color: #52525b transparent; }
+.sched-scroll { overflow-x: auto; overflow-y: hidden; cursor: grab; user-select: none; scrollbar-width: thin; scrollbar-color: #343a49 transparent; }
 .sched-scroll.is-dragging { cursor: grabbing; }
 .sched-scroll.is-dragging .sched-bar { pointer-events: none; }
 .sched-scroll::-webkit-scrollbar { height: 8px; }
-.sched-scroll::-webkit-scrollbar-thumb { background: #52525b; border-radius: 4px; }
-.sched-inner { position: relative; min-height: 100px; padding-bottom: 8px; }
+.sched-scroll::-webkit-scrollbar-thumb { background: #343a49; border-radius: 4px; }
+.sched-inner { position: relative; min-height: 110px; padding-bottom: 12px; }
 
 .sched-cols { position: absolute; inset: 0; }
-.sched-col { position: absolute; top: 0; bottom: 0; }
-.sched-col.is-alt { background: rgba(255, 255, 255, 0.025); }
+.sched-col { position: absolute; top: 0; bottom: 0; border-right: 1px solid rgba(35, 39, 50, 0.45); }
+.sched-col.is-alt { background: rgba(255, 255, 255, 0.014); }
 
-.sched-header { position: relative; height: 32px; border-bottom: 1px solid var(--line); }
-.sched-day { position: absolute; top: 0; height: 32px; display: grid; place-items: center; font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--text-3); }
-.sched-day.is-today { color: var(--text); }
-
-.sched-rows { position: relative; display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
-.sched-row { position: relative; height: 26px; }
-.sched-bar {
-  position: absolute; top: 0; height: 26px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  border: 0; border-radius: 4px; padding: 0 10px 0 8px; color: #fff; text-align: left; overflow: visible;
-  background: rgba(145, 70, 255, 0.8); transition: filter .15s;
+.sched-header { position: relative; height: 34px; border-bottom: 1px solid var(--line); }
+.sched-day {
+  position: absolute; top: 0; height: 34px; display: grid; place-items: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text-3);
 }
-.sched-bar:hover { filter: brightness(1.12); }
-.sched-bar.is-clipped { border-top-left-radius: 0; border-bottom-left-radius: 0; }
-.sched-bar.is-upcoming { background: rgba(145, 70, 255, 0.12); border: 1px dashed rgba(167, 139, 250, 0.7); color: #ede9fe; }
-.sched-label { position: sticky; left: 8px; display: inline-flex; align-items: center; gap: 8px; min-width: 0; white-space: nowrap; }
-.sched-icons { display: inline-flex; gap: 3px; flex-shrink: 0; }
-.sched-icon { display: inline-flex; border-radius: 4px; padding: 1px; transition: transform .12s, background .12s; }
-.sched-icon:hover { transform: translateY(-1px) scale(1.18); background: rgba(255, 255, 255, 0.16); }
+.sched-day.is-today { color: var(--text); font-weight: 700; }
+
+.sched-rows { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 6px; padding-top: 10px; }
+.sched-row { position: relative; height: 30px; }
+.sched-bar {
+  position: absolute; top: 0; height: 30px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  border-radius: 5px; padding: 0 10px 0 9px; color: var(--text); text-align: left; overflow: visible;
+  background: #1d212b; border: 1px solid #323847; border-left: 3px solid var(--green);
+  transition: background .14s, border-color .14s;
+}
+.sched-bar:hover { background: #242936; border-color: #464e63; border-left-color: var(--green); }
+.sched-bar.is-clipped { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left-width: 1px; border-left-color: #323847; }
+.sched-bar.is-upcoming {
+  background: #14171f; border: 1px dashed #3a4152; color: var(--text-2);
+}
+.sched-bar.is-upcoming:hover { background: #1a1e29; border-color: #525c73; color: var(--text); }
+
+.sched-label { position: sticky; left: 10px; display: inline-flex; align-items: center; gap: 8px; min-width: 0; white-space: nowrap; }
+.sched-icons { display: inline-flex; gap: 4px; flex-shrink: 0; }
+.sched-icon { display: inline-flex; border-radius: 4px; padding: 1px; transition: background .12s; }
+.sched-icon:hover { background: rgba(255, 255, 255, 0.1); }
 .sched-icons img { width: 18px; height: 18px; object-fit: contain; border-radius: 3px; display: block; }
 .sched-bar, .sched-icon { cursor: pointer; }
-.sched-bar:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.sched-name { font-size: 12px; font-weight: 600; }
-.sched-rel { font-family: var(--mono); font-size: 10px; font-weight: 500; opacity: .8; white-space: nowrap; flex-shrink: 0; }
-.sched-now { position: absolute; top: 0; bottom: 0; width: 1px; margin-left: 0; background: var(--live); pointer-events: none; z-index: 2; }
-.sched-now::before { content: ""; position: absolute; top: 29px; left: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--live); }
-.sched-empty { padding: 32px; text-align: center; color: var(--text-3); font-size: 12px; }
-.sched-bar.is-narrow .sched-rel { position: absolute; top: 50%; transform: translateY(-50%); color: var(--text-2); opacity: 1; }
+.sched-bar:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.sched-name { font-size: 12.5px; font-weight: 600; }
+.sched-rel { font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--text-2); white-space: nowrap; flex-shrink: 0; }
+.sched-now { position: absolute; top: 0; bottom: 0; width: 1px; margin-left: 0; background: rgba(239, 68, 68, 0.55); pointer-events: none; z-index: 1; }
+.sched-now::before { content: ""; position: absolute; top: 31px; left: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); z-index: 3; }
+.sched-empty { padding: 36px; text-align: center; color: var(--text-3); font-size: 13px; }
+.sched-bar.is-narrow .sched-rel { position: absolute; top: 50%; transform: translateY(-50%); color: var(--text-2); }
 .sched-bar.is-narrow .sched-label { position: static; }

@@ -1,47 +1,68 @@
-/* Badge cards (grid) and compact lists — shared by home + badges pages */
+/* Badge cards (grid) and structured rows — shared by home, badges, archive, badge detail */
 
 /* ---------- Grid of cards ---------- */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px; }
 .card {
-  position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 0;
-  text-align: center; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
-  padding: 16px 10px 12px; transition: border-color .15s, opacity .15s;
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0;
+  text-align: center; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 20px 14px 14px; transition: border-color .14s, background .14s, opacity .14s;
 }
-.card:hover { border-color: var(--line-2); }
-.card-img { width: 44px; height: 44px; object-fit: contain; }
-.card-title { width: 100%; font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.card-meta { display: flex; align-items: center; justify-content: center; gap: 8px; }
-.card-meta .timer { font-size: 10.5px; color: var(--text-3); }
+.card:hover { border-color: var(--line-2); background: var(--panel-hover); }
+
+/* Clean framed icon pedestal (no glow / drop-shadow) */
+.card-img {
+  width: 58px; height: 58px; padding: 9px; object-fit: contain;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px;
+}
+.card-title {
+  width: 100%; font-size: 13px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-meta {
+  width: 100%; padding-top: 8px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; white-space: nowrap; gap: 8px; min-height: 24px;
+}
+.card-meta:empty { display: none; }
+.card-meta .timer { font-family: var(--mono); font-size: 11px; color: var(--text-2); }
 .card-meta .timer.is-urgent { color: var(--amber); }
 
 /* Owned / missing state (only after a username check) */
-.card-flag { position: absolute; top: 8px; right: 8px; font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .04em; }
-.card.is-missing .card-flag { color: var(--red); }
-.card.is-owned .card-flag { color: var(--green); }
-.card.is-owned { opacity: .45; }
-.card.is-owned:hover { opacity: .8; }
-.card.is-owned .card-img { filter: grayscale(1); }
+.card-flag {
+  position: absolute; top: 9px; right: 9px;
+  font-family: var(--mono); font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+  padding: 2px 6px; border-radius: 4px; border: 1px solid transparent;
+}
+.card.is-missing .card-flag { color: var(--red); background: var(--red-bg); border-color: var(--red-line); }
+.card.is-missing { border-color: rgba(239, 68, 68, 0.28); }
+.card.is-missing:hover { border-color: rgba(239, 68, 68, 0.5); }
+.card.is-owned .card-flag { color: var(--green); background: var(--green-bg); border-color: var(--green-line); }
+.card.is-owned { opacity: .52; }
+.card.is-owned:hover { opacity: .9; }
+.card.is-owned .card-img { opacity: .75; }
 
 /* ---------- Small text tags ---------- */
-.tag { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-3); }
+.tag { font-family: var(--mono); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-3); }
 .tag.is-free { color: var(--green); }
 .tag.is-paid { color: var(--amber); }
-.tag.is-live { color: #c4b5fd; }
+.tag.is-live { color: var(--sky); }
 .tag.is-owned { color: var(--green); }
 
 /* ---------- Compact list (one panel, divided rows) ---------- */
-.mini-list { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-.mini-row { display: flex; align-items: center; gap: 10px; padding: 8px 12px; min-width: 0; color: inherit; transition: background .12s; }
+.mini-list { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.mini-row { display: flex; align-items: center; gap: 12px; padding: 11px 16px; min-width: 0; color: inherit; transition: background .12s; }
 .mini-row + .mini-row { border-top: 1px solid var(--line); }
-.mini-row:hover { background: rgba(255, 255, 255, 0.03); }
-.mini-img { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
-.mini-title { flex: 1; min-width: 0; font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mini-sub { color: var(--text-3); font-weight: 400; margin-left: 8px; font-size: 11.5px; }
-.mini-side { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.mini-side .timer { min-width: 78px; text-align: right; font-size: 11px; color: var(--text-2); }
+.mini-row:hover { background: var(--panel-hover); }
+.mini-img {
+  width: 30px; height: 30px; padding: 4px; object-fit: contain; flex-shrink: 0;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px;
+}
+.mini-title { flex: 1; min-width: 0; font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-sub { color: var(--text-3); font-weight: 400; margin-left: 8px; font-size: 12px; }
+.mini-side { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.mini-side .timer { min-width: 78px; text-align: right; font-family: var(--mono); font-size: 11.5px; color: var(--text-2); }
 .mini-side .timer.is-urgent { color: var(--amber); }
-.mini-empty { text-align: center; padding: 20px 0; color: var(--text-3); font-size: 12px; }
+.mini-empty { flex: 1; display: grid; place-items: center; text-align: center; padding: 32px 16px; color: var(--text-3); font-size: 13px; }
+.timer { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
 @media (max-width: 560px) { .mini-sub { display: none; } }
-@media (max-width: 520px) { .grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); } }
-.card-meta { flex-wrap: nowrap; white-space: nowrap; gap: 6px; min-height: 15px; }
-.timer { white-space: nowrap; }
+@media (max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }

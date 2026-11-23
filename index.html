@@ -21,23 +21,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/base.css?v=23">
-    <link rel="stylesheet" href="/assets/css/components/cards.css?v=22">
-  <link rel="stylesheet" href="/assets/css/components/stream.css?v=21">
-  <link rel="stylesheet" href="/assets/css/components/schedule.css?v=21">
-  <link rel="stylesheet" href="/assets/css/pages/home.css?v=27">
+  <link rel="stylesheet" href="/assets/css/base.css?v=30">
+  <link rel="stylesheet" href="/assets/css/components/cards.css?v=30">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=30">
+  <link rel="stylesheet" href="/assets/css/components/schedule.css?v=30">
+  <link rel="stylesheet" href="/assets/css/pages/home.css?v=30">
 </head>
 <body>
-  <div class="bg-waves" id="bgWaves" aria-hidden="true"></div>
   <header class="nav">
     <div class="wrap nav-inner">
       <div class="nav-left">
         <a href="/" class="brand">
-          <img src="/assets/img/logo.png" alt="" width="20" height="20">
+          <img src="/assets/img/logo.png" alt="" width="22" height="22">
           <span>BadgeStatus</span>
         </a>
-        <span class="nav-sep">/</span>
-        <nav class="nav-links">
+        <nav class="nav-links" aria-label="Primary navigation">
           <a href="/" class="nav-link is-active">Home</a>
           <a href="/badges/" class="nav-link">Badges</a>
           <a href="/archive/" class="nav-link">Archive</a>
@@ -58,6 +56,7 @@
           <span id="heroNextWrap">next drop <b id="heroNext">—</b></span>
         </div>
         <h1>Which badges are you missing?</h1>
+        <p class="hero-sub">Check active Twitch global drops, see what is starting next, and compare against your account.</p>
 
         <form class="hero-form" id="homeForm" autocomplete="off">
           <label class="search-field">
@@ -66,9 +65,14 @@
           </label>
           <button type="submit" class="btn-white">Check</button>
         </form>
+
+        <div class="hero-links">
+          <a href="/badges/" class="box-link">Browse all active badges →</a>
+          <a href="/archive/" class="box-link">Full badge archive →</a>
+        </div>
       </div>
 
-      <!-- 24/7 stream: player while live, a quiet card while offline -->
+      <!-- 24/7 stream: player while live, clean card while offline -->
       <div class="hero-stream" id="heroStream">
         <div class="hero-stream-frame" id="heroStreamFrame"></div>
         <a class="hero-stream-offline" id="heroStreamOffline" href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer">
@@ -83,16 +87,6 @@
           </span>
         </a>
       </div>
-
-      <div class="hero-showcase" id="heroShowcase"></div>
-    </section>
-
-    <!-- SCHEDULE -->
-    <section class="section" id="schedule">
-      <div class="section-head">
-        <h2>Schedule</h2>
-      </div>
-      <div class="panel sched" id="scheduleRoot"></div>
     </section>
 
     <!-- ENDING / STARTING -->
@@ -100,21 +94,27 @@
       <section class="section">
         <div class="section-head">
           <h2>Ending soon</h2>
-          <a href="/badges/" class="box-link">All →</a>
+          <a href="/badges/" class="box-link">View all →</a>
         </div>
         <div class="mini-list" id="endingList"></div>
       </section>
       <section class="section">
         <div class="section-head">
           <h2>Starting next</h2>
-          <a href="/badges/#upcoming" class="box-link">All →</a>
+          <a href="/badges/#upcoming" class="box-link">View all →</a>
         </div>
         <div class="mini-list" id="startingList"></div>
       </section>
     </div>
-  </main>
 
-  </div>
+    <!-- SCHEDULE -->
+    <section class="section" id="schedule">
+      <div class="section-head">
+        <h2>Drop schedule</h2>
+      </div>
+      <div class="panel sched" id="scheduleRoot"></div>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="wrap footer-inner">
@@ -123,6 +123,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/assets/js/pages/home.js?v=29"></script>
+  <script type="module" src="/assets/js/pages/home.js?v=30"></script>
 </body>
 </html>

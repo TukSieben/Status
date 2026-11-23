@@ -1,4 +1,4 @@
-import "../lib/background.js?v=23";
+import "../lib/background.js?v=30";
 import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, watchBadges, compactNumber, gql } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 import { syncLiveEmbed } from "../lib/live-embed.js?v=1";
