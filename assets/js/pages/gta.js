@@ -3,7 +3,7 @@ import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=6";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
-import { startLiveTag } from "../lib/live-tag.js?v=1";
+import { startLiveTag } from "../lib/live-tag.js?v=2";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);

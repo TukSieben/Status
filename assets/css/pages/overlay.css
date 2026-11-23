@@ -103,3 +103,8 @@
 .is-lite .ov-ticker-track { animation: none; }
 .is-lite .ov-ticker-item { padding-right: 0; animation: ov-fade .4s ease both; }
 @keyframes ov-fade { from { opacity: 0; } }
+
+/* LIVE tag in the top bar: nothing wraps */
+.ov-top .live-tag { margin-left: 0; flex-shrink: 0; }
+.ov-brand, .ov-clock, .ov-stats { flex-shrink: 0; white-space: nowrap; }
+.ov-goal { min-width: 0; }
