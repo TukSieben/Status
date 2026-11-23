@@ -1,5 +1,6 @@
 // Draggable timeline ("Schedule") of active + upcoming badge events.
 import { el, img, badgeHref, URGENT_MS } from "./utils.js";
+import { plannedMonth } from "./planned.js?v=1";
 const DAY_MS = 86_400_000;
 const DAY_PX = 76;
 const MIN_DAYS = 21;
@@ -68,6 +69,29 @@ export function buildEvents(badges, now = Date.now()) {
   return list;
 }
 
+/** Announced events without exact dates yet ("… during December 2026"): one per event, spanning that month. */
+export function buildAnnounced(badges, now = Date.now()) {
+  const groups = new Map();
+  const seen = new Set();
+  for (const b of badges) {
+    if (seen.has(b.setID) || b.startAt || b.endAt) continue;
+    const month = plannedMonth(b);
+    if (!(month > now)) continue;
+    seen.add(b.setID);
+    const key = (b.eventName || b.title || b.setID).trim();
+    const d = new Date(month);
+    const monthEnd = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1);
+    const g = groups.get(key) || { name: key, start: month, end: monthEnd, badges: [], paid: 0, free: 0, announced: true };
+    g.start = Math.min(g.start, month);
+    g.end = Math.max(g.end, monthEnd);
+    g.badges.push(b);
+    if (b.cost === "paid") g.paid++;
+    else g.free++;
+    groups.set(key, g);
+  }
+  return [...groups.values()].sort((a, b) => a.start - b.start || a.name.localeCompare(b.name));
+}
+
 function enableDragScroll(scroller) {
   let down = false;
   let startX = 0;
@@ -131,18 +155,19 @@ function enableDragScroll(scroller) {
 export function renderSchedule(root, badges, options = {}) {
   const now = Date.now();
   const events = buildEvents(badges, now);
+  const announced = buildAnnounced(badges, now);
   const prevScroll = root.querySelector(".sched-scroll")?.scrollLeft;
   root._schedCleanup?.();
   clearInterval(root._schedTimer);
   root.replaceChildren();
 
-  if (events.length === 0) {
+  if (events.length === 0 && announced.length === 0) {
     root.appendChild(el("div", "sched-empty", "No active or upcoming badge events."));
     return;
   }
 
   const rangeStart = startOfLocalDay(now - DAY_MS);
-  const lastEnd = Math.max(...events.map((e) => e.end));
+  const lastEnd = Math.max(...events.map((e) => e.end), ...announced.map((e) => e.end));
   const days = Math.min(MAX_DAYS, Math.max(MIN_DAYS, Math.ceil((lastEnd - rangeStart) / DAY_MS) + 1));
   const rangeEnd = rangeStart + days * DAY_MS;
   const width = days * DAY_PX;
@@ -160,7 +185,8 @@ export function renderSchedule(root, badges, options = {}) {
     lg("sw-free", "Free"),
     lg("sw-paid", "Paid"),
     lg("sw-mixed", "Free & Paid"),
-    lg("sw-upcoming", "Upcoming")
+    lg("sw-upcoming", "Upcoming"),
+    lg("sw-expected", "Announced, exact dates not out yet")
   );
 
   const nav = el("div", "sched-nav");
@@ -270,6 +296,57 @@ export function renderSchedule(root, badges, options = {}) {
     bar.append(label, rel);
     row.appendChild(bar);
     rows.appendChild(row);
+  }
+
+  // Announced events: hatched bar over the expected month, updated automatically once Twitch publishes dates
+  if (announced.length) {
+    rows.appendChild(el("div", "sched-divider", "Announced · dates coming soon"));
+    for (const ev of announced) {
+      const row = el("div", "sched-row");
+      const left = x(ev.start);
+      const barW = Math.max(8, x(ev.end) - left);
+      const bar = el("div", `sched-bar is-expected${ev.end > rangeEnd ? " is-clipped-right" : ""}`);
+      const barHref = options.href ? options.href(ev) : badgeHref(ev.badges[0]);
+      bar.setAttribute("role", "link");
+      bar.tabIndex = 0;
+      bar.style.left = `${left}px`;
+      bar.style.width = `${barW}px`;
+      const monthName = new Date(ev.start).toLocaleString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+      bar.title = `${ev.name}\nExpected in ${monthName} — exact times not announced yet\n${ev.badges.length} badge${ev.badges.length === 1 ? "" : "s"}`;
+      bar.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return;
+        location.href = barHref;
+      });
+      const label = el("span", "sched-label");
+      const icons = el("span", "sched-icons");
+      for (const b of ev.badges.slice(0, 6)) {
+        const link = el("a", "sched-icon");
+        link.href = badgeHref(b);
+        link.title = b.title;
+        const im = el("img");
+        im.src = img(b, 2);
+        im.alt = b.title;
+        im.loading = "lazy";
+        link.appendChild(im);
+        icons.appendChild(link);
+      }
+      label.append(icons, el("span", "sched-name", ev.name));
+      const tba = el("span", "sched-rel", `${monthName.split(" ")[0]} · dates TBA`);
+      if (left > 220) {
+        // name sits at the left like a row label; the hatched bar only shows the expected month
+        const ghost = el("span", "sched-ghost-label");
+        ghost.append(label);
+        ghost.style.left = "10px";
+        ghost.style.maxWidth = `${left - 20}px`;
+        row.appendChild(ghost);
+        bar.classList.add("is-tba-only");
+        bar.append(tba);
+      } else {
+        bar.append(label, tba);
+      }
+      row.appendChild(bar);
+      rows.appendChild(row);
+    }
   }
 
   // Now line

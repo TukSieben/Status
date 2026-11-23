@@ -33,7 +33,7 @@
 
 .sched-cols { position: absolute; inset: 0; pointer-events: none; }
 .sched-col { position: absolute; top: 0; bottom: 0; border-right: 1px solid rgba(35, 39, 50, 0.45); }
-.sched-col.is-alt { background: rgba(255, 255, 255, 0.012); }
+.sched-col.is-alt { background: rgba(255, 255, 255, 0.03); }
 .sched-col.is-today { background: rgba(255, 255, 255, 0.025); }
 .sched-col.is-month-start { border-left: 1px solid var(--line-2); }
 
@@ -98,3 +98,35 @@
 .sched-empty { padding: 36px; text-align: center; color: var(--text-3); font-size: 13px; }
 .sched-bar.is-narrow .sched-rel { position: absolute; right: auto; top: 50%; transform: translateY(-50%); color: var(--text-2); }
 .sched-bar.is-narrow .sched-label { position: static; }
+
+/* ---------- filled bars, clearer day stripes, announced section ---------- */
+.sched-day.is-alt { background: rgba(255, 255, 255, 0.03); }
+.sched-bar { border: 0; border-left: 0; color: #fff; }
+.sched-bar.is-free  { background: #17643a; }
+.sched-bar.is-free:hover  { background: #1c7444; }
+.sched-bar.is-paid  { background: #7a5410; }
+.sched-bar.is-paid:hover  { background: #8a5f13; }
+.sched-bar.is-mixed { background: #1e4f7a; }
+.sched-bar.is-mixed:hover { background: #245b8b; }
+.sched-bar.is-upcoming { background: #1b1f2a; border: 1px dashed #4b5468; color: var(--text); }
+.sched-bar .sched-rel { color: rgba(255, 255, 255, 0.78); }
+.sched-bar.is-upcoming .sched-rel, .sched-bar.is-narrow .sched-rel { color: var(--text-2); }
+.sched-bar .sched-rel.is-urgent { color: #ffd27a; }
+.sw-free { background: #17643a; border: 0; }
+.sw-paid { background: #7a5410; border: 0; }
+.sw-mixed { background: #1e4f7a; border: 0; }
+.sw-expected, .sched-bar.is-expected {
+  background: repeating-linear-gradient(135deg, #2a2f3b 0 6px, #22262f 6px 12px);
+}
+.sw-expected { border: 1px dashed #5a6377; }
+.sched-bar.is-expected { border: 1px dashed #5a6377; color: var(--text); }
+.sched-bar.is-expected:hover { border-color: #7a849a; }
+.sched-bar.is-expected .sched-rel { color: var(--text-2); }
+.sched-divider {
+  position: sticky; left: 0; width: max-content; margin: 8px 0 -2px 12px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3);
+}
+.sched-ghost-label { position: absolute; top: 0; height: 36px; display: flex; align-items: center; overflow: hidden; opacity: .85; pointer-events: none; }
+.sched-ghost-label .sched-label { position: static; }
+.sched-bar.is-tba-only { justify-content: flex-end; }
+.sched-ghost-label { position: sticky; }
