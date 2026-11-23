@@ -1,6 +1,14 @@
 {
-  "updatedAt": "2026-11-20T22:37:56Z",
+  "updatedAt": "2026-11-23T16:59:00Z",
   "events": [
+    {
+      "type": "removed",
+      "timestamp": "2026-11-23T16:59:00Z",
+      "setID": "runescape-sant-hat",
+      "version": "1",
+      "title": "RuneScape Sant Hat",
+      "image2x": "https://static-cdn.jtvnw.net/badges/v1/044b64a3-3319-4749-973e-abc5e0dfe323/2"
+    },
     {
       "type": "updated",
       "timestamp": "2026-11-20T22:37:56Z",
