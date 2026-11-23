@@ -16,7 +16,7 @@ import {
   URGENT_MS,
 } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators, playerSrc } from "../lib/twitch.js";
-import { renderSchedule } from "../lib/schedule.js?v=31";
+import { renderSchedule } from "../lib/schedule.js?v=32";
 
 let badges = [];
 let channel = null;
