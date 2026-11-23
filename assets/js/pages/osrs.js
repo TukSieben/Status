@@ -1,6 +1,7 @@
 // Full-screen badge view for one game (default Old School RuneScape): free + sub badges side by side, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
-import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=6";
+import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=1";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startMeme } from "../lib/meme.js?v=1";
@@ -219,7 +220,30 @@ $("stage").style.setProperty("--echo-border", "rgba(226, 182, 92, 0.45)");
 $("stage").style.setProperty("--echo-accent", "#e8c26a");
 let goalBox = null;
 const hunters = startHunters($("rsHunters"), { avatarOf });
-const echo = startChatEcho($("stage"), { position: { right: 76, bottom: 112 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (n, login) => hunters?.add(n, login) });
+
+/* Pixel alien standing on the top edge of the meme / badge panels, next to the castle */
+const alien = startPixelAlien($("stage"), { left: 1227, top: 104, size: 96 });
+function alienCommand(name, cmd) {
+  if (!alien) return;
+  const mine = cmd && cmd.slice(1).toLowerCase() === command(GAME).toLowerCase();
+  const free = gameBadges().filter((x) => !isSub(x.b) && !(x.start > Date.now()));
+  const t = free.length ? watchTime(free[0].b) : null;
+  if (mine && free.length && t) alien.hop([`Watch ${pretty(t)}`, `→ ${free.length > 1 ? `${free.length} free badges` : free[0].b.title}`]);
+  else alien.hop([`Good luck, ${name}!`, "happy hunting"]);
+}
+
+const echo = startChatEcho($("stage"), {
+  position: { right: 76, bottom: 112 },
+  getBadges: () => badges,
+  onFollow: (name) => {
+    goalBox?.bump();
+    alien?.cheer([`Welcome, ${name}!`, "welcome to the hunt"]);
+  },
+  onCommand: (n, login, cmd) => {
+    hunters?.add(n, login);
+    alienCommand(n, cmd);
+  },
+});
 goalBox = startFollowGoal($("rsGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
 
 /* Meme clip in the header (only on the stream, from MEME_<command> in the server's .env) */
@@ -254,3 +278,13 @@ function fitTitle() {
 document.fonts?.ready.then(fitTitle);
 setTimeout(fitTitle, 1500);
 setInterval(fitTitle, 30_000); // title text can change (new game); cheap, no paint when nothing changes
+
+/* ?aliendemo=1 → follow + command reactions every few seconds (to try it out) */
+if (alien && params.get("aliendemo") === "1") {
+  const demo = () => {
+    alien.cheer(["Welcome, NewViewer!", "welcome to the hunt"]);
+    setTimeout(() => alienCommand("viewer", `!${command(GAME)}`), 4200);
+  };
+  setTimeout(demo, 1500);
+  setInterval(demo, 10_000);
+}

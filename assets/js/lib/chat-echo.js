@@ -89,7 +89,7 @@ const within = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(() => r
 
 /**
  * onFollow(name, login) is called when the bot thanks a new follower in chat ("Welcome X, thanks for the follow").
- * onCommand(name, login) is called for every badge command a viewer uses (top hunters).
+ * onCommand(name, login, command, key) is called for every badge command a viewer uses (top hunters).
  * Returns { celebrate(text) } for big one-off messages (follower goals).
  */
 export function startChatEcho(host, { position = { right: 64, bottom: 120 }, getBadges = () => [], onFollow = () => {}, onCommand = () => {} } = {}) {
@@ -175,7 +175,7 @@ export function startChatEcho(host, { position = { right: 64, bottom: 120 }, get
     const id = `${String(login || name).toLowerCase()}|${k}`;
     if (Date.now() - (counted.get(id) || 0) > 15_000) {
       counted.set(id, Date.now()); // same command again within 15 s doesn't count twice
-      onCommand(name, login || name);
+      onCommand(name, login || name, `!${shown}`, k);
     }
     if (enabled) show(name, `!${shown}`, color, login);
   }

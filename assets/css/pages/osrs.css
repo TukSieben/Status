@@ -230,3 +230,4 @@
 .rs-title { white-space: nowrap; display: inline-block; }
 .rs-top > div:first-child { min-width: 0; }
 .rs-qr-cap b { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .3em; }
+.rs-stage:not(.has-meme) .px-alien { top: 92px !important; }
