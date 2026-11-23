@@ -224,3 +224,5 @@ b { font-weight: 600; color: var(--text); }
 .bd-live-empty::before { width: 48px; height: 48px; margin-bottom: 8px; }
 .empty[data-mood="happy"]::before, .mini-empty[data-mood="happy"]::before { background-image: url("/assets/img/aliens/happy.png"); }
 .alien-404 { width: 128px; height: 128px; image-rendering: pixelated; margin-bottom: 4px; }
+.is-winter .mini-empty::before, .is-winter .empty::before, .is-winter .bd-live-empty::before { background-image: url("/assets/img/aliens/bored-winter.png"); }
+.is-winter .empty[data-mood="happy"]::before, .is-winter .mini-empty[data-mood="happy"]::before { background-image: url("/assets/img/aliens/happy-winter.png"); }

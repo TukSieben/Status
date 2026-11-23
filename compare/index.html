@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare badges — BadgeStatus</title>
+  <meta name="description" content="Compare the Twitch badges of two accounts: who has more, which ones only one of you has, and who owns the rarest.">
+  <meta property="og:title" content="Compare Twitch badges — BadgeStatus">
+  <meta property="og:description" content="Two usernames, one winner. See who has more Twitch badges.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://badgestatus.net/compare/">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=32">
+  <link rel="stylesheet" href="/assets/css/components/cards.css?v=30">
+  <link rel="stylesheet" href="/assets/css/components/stream.css?v=30">
+  <link rel="stylesheet" href="/assets/css/pages/compare.css?v=1">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="nav-left">
+        <a href="/" class="brand">
+          <img src="/assets/img/logo.png" alt="" width="22" height="22">
+          <span>BadgeStatus</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/badges/" class="nav-link">Badges</a>
+          <a href="/archive/" class="nav-link">Archive</a>
+          <a href="/#schedule" class="nav-link">Schedule</a>
+          <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="nav-link nav-stream" data-live-indicator><span class="stream-dot"></span><span data-live-label>Stream</span></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <header class="page-head">
+      <div>
+        <h1>Compare badges</h1>
+        <p class="muted">Two Twitch names, one winner. Nothing is saved.</p>
+      </div>
+    </header>
+
+    <form class="cmp-form" id="cmpForm" autocomplete="off">
+      <label class="search-field">
+        <span class="search-prefix">twitch.tv/</span>
+        <input type="text" id="cmpA" placeholder="you" spellcheck="false" aria-label="First Twitch username">
+      </label>
+      <span class="cmp-vs">vs</span>
+      <label class="search-field">
+        <span class="search-prefix">twitch.tv/</span>
+        <input type="text" id="cmpB" placeholder="your friend" spellcheck="false" aria-label="Second Twitch username">
+      </label>
+      <button type="submit" class="btn-white" id="cmpBtn"><span id="cmpLabel">Compare</span><span class="spinner hidden" id="cmpSpin"></span></button>
+    </form>
+
+    <div class="error-box hidden" id="errorBox"></div>
+
+    <section class="cmp-result hidden" id="cmpResult">
+      <div class="cmp-banner" id="cmpBanner"></div>
+      <div class="cmp-players">
+        <div class="cmp-player" id="cmpPlayerA"></div>
+        <div class="cmp-player" id="cmpPlayerB"></div>
+      </div>
+      <div class="cmp-cols">
+        <div class="cmp-col"><h2 id="cmpOnlyAHead"></h2><div class="cmp-icons" id="cmpOnlyA"></div></div>
+        <div class="cmp-col"><h2 id="cmpBothHead"></h2><div class="cmp-icons" id="cmpBoth"></div></div>
+        <div class="cmp-col"><h2 id="cmpOnlyBHead"></h2><div class="cmp-icons" id="cmpOnlyB"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-links">badgestatus.net <a href="https://www.twitch.tv/badgestatus" target="_blank" rel="noopener noreferrer" class="footer-stream" data-live-indicator><span class="stream-dot"></span>twitch.tv/badgestatus</a></span>
+      <span class="muted" id="footerSync"></span>
+    </div>
+  </footer>
+
+
+  <script type="module" src="/assets/js/pages/compare.js?v=1"></script>
+</body>
+</html>

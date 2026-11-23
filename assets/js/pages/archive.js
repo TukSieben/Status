@@ -1,4 +1,4 @@
-import "../lib/background.js?v=30";
+import "../lib/background.js?v=31";
 import { $, el, badgeImg, badgeHref, formatDate, loadBadges, watchBadges } from "../lib/utils.js";
 import { fetchChannel, paintLiveIndicators } from "../lib/twitch.js";
 import { plannedMonth, plannedLabel } from "../lib/planned.js?v=1";

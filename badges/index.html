@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/base.css?v=31">
+  <link rel="stylesheet" href="/assets/css/base.css?v=32">
   <link rel="stylesheet" href="/assets/css/components/cards.css?v=30">
   <link rel="stylesheet" href="/assets/css/components/stream.css?v=30">
-  <link rel="stylesheet" href="/assets/css/pages/badges.css?v=30">
+  <link rel="stylesheet" href="/assets/css/pages/badges.css?v=31">
 </head>
 <body>
   <header class="nav">
@@ -69,6 +69,15 @@
       <span class="mono user-count" id="userCount"></span>
     </div>
 
+    <!-- Rarest badges of the checked user + compare (only after a check) -->
+    <section class="rare-box hidden" id="rareBox">
+      <div class="rare-head">
+        <h2>Your rarest badges</h2>
+        <a class="rare-compare" id="compareLink" href="/compare/">Compare with a friend →</a>
+      </div>
+      <div class="rare-list" id="rareList"></div>
+    </section>
+
     <!-- AVAILABLE -->
     <section class="section" id="available">
       <div class="section-head">
@@ -100,6 +109,6 @@
   </footer>
 
 
-  <script type="module" src="/assets/js/pages/badges.js?v=31"></script>
+  <script type="module" src="/assets/js/pages/badges.js?v=33"></script>
 </body>
 </html>

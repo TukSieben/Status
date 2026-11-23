@@ -1,0 +1,36 @@
+/* Compare two accounts */
+.cmp-form { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cmp-form .search-field { flex: 1 1 240px; }
+.cmp-vs { font-family: var(--mono); font-size: 12px; color: var(--text-3); }
+.cmp-result { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+.cmp-banner { display: flex; align-items: center; gap: 16px; padding: 14px 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+.cmp-alien { width: 56px; height: 56px; image-rendering: pixelated; flex-shrink: 0; }
+.cmp-banner-text { display: flex; flex-direction: column; gap: 2px; }
+.cmp-banner-text b { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.cmp-banner-text span { font-size: 13px; color: var(--text-2); }
+.cmp-players { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cmp-player { display: flex; flex-direction: column; gap: 14px; padding: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.cmp-player-top { display: flex; align-items: center; gap: 12px; }
+.cmp-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: var(--panel-2); border: 1px solid var(--line); }
+.cmp-name { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.cmp-crown { font-size: 11px; font-weight: 600; color: var(--green); padding: 2px 8px; border-radius: 5px; border: 1px solid var(--green-line, #1f5134); background: var(--green-bg, #0f2418); }
+.cmp-stats { display: flex; gap: 24px; }
+.cmp-stat { display: flex; flex-direction: column; }
+.cmp-stat b { font-family: var(--mono); font-size: 22px; font-weight: 600; }
+.cmp-stat span { font-size: 12px; color: var(--text-3); }
+.cmp-rarest { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--panel-2); border: 1px solid var(--line); }
+.cmp-rarest:hover { border-color: var(--line-2); }
+.cmp-rarest-img { width: 32px; height: 32px; object-fit: contain; }
+.cmp-rarest-text { display: flex; flex-direction: column; min-width: 0; }
+.cmp-rarest-label { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+.cmp-rarest-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmp-rarest-sub { font-size: 12px; color: var(--text-3); }
+.cmp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cmp-col { padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.cmp-col h2 { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmp-icons { display: flex; flex-wrap: wrap; gap: 6px; }
+.cmp-icon { display: inline-flex; padding: 3px; border-radius: 5px; background: var(--panel-2); border: 1px solid var(--line); }
+.cmp-icon:hover { border-color: var(--line-2); }
+.cmp-icon img { width: 26px; height: 26px; object-fit: contain; display: block; }
+.cmp-more, .cmp-none { font-size: 12px; color: var(--text-3); align-self: center; padding: 0 4px; }
+@media (max-width: 760px) { .cmp-players, .cmp-cols { grid-template-columns: 1fr; } }

@@ -1,4 +1,4 @@
-import "../lib/background.js?v=30";
+import "../lib/background.js?v=31";
 import {
   $,
   el,
@@ -30,6 +30,48 @@ const state = {
 };
 
 /* ---------- helpers ---------- */
+
+/** "0.012 %" style share; tiny numbers stay readable */
+export function shareText(b) {
+  const p = typeof b.percentage === "number" ? b.percentage : null;
+  if (p === null) return "";
+  if (p < 0.01) return "<0.01% of Twitch";
+  return `${p < 1 ? p.toFixed(2) : p.toFixed(1)}% of Twitch`;
+}
+
+/** The user's 3 rarest badges (exact version owned, owner count known) */
+function rarestOwned() {
+  const seen = new Set();
+  return state.badges
+    .filter((b) => {
+      if (typeof b.userCount !== "number" || b.userCount < 1) return false;
+      const uuid = extractUuid(img(b));
+      if (!uuid || !state.ownedUuids.has(uuid) || seen.has(uuid)) return false;
+      seen.add(uuid);
+      return true;
+    })
+    .sort((a, b) => a.userCount - b.userCount)
+    .slice(0, 3);
+}
+
+function renderRarest() {
+  const list = state.user ? rarestOwned() : [];
+  $("rareBox").classList.toggle("hidden", !state.user);
+  if (!state.user) return;
+  $("compareLink").href = `/compare/?a=${encodeURIComponent(state.user.login)}`;
+  $("rareList").replaceChildren(
+    ...(list.length
+      ? list.map((b, i) => {
+          const a = el("a", "rare-item");
+          a.href = badgeHref(b);
+          const text = el("div", "rare-text");
+          text.append(el("div", "rare-title", b.title), el("div", "rare-sub", `${b.userCount.toLocaleString("en-US")} ${b.userCount === 1 ? "person has" : "people have"} this${shareText(b) ? ` · ${shareText(b)}` : ""}`));
+          a.append(el("span", "rare-rank", `#${i + 1}`), badgeImg(b, "rare-img", 2), text);
+          return a;
+        })
+      : [el("div", "rare-none", "No owner counts known for your badges yet.")])
+  );
+}
 
 function isOwned(badge) {
   if (!state.user) return false;
@@ -113,6 +155,8 @@ function render() {
     $("userCount").textContent = `${owned.length}/${active.length}`;
     $("progressFill").style.width = `${pct}%`;
   }
+
+  renderRarest();
 
   // Grid
   let list = active;

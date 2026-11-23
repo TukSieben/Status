@@ -22,3 +22,20 @@
   .page-head .search { max-width: none; }
   .page-head > div { width: 100%; }
 }
+
+/* Rarest badges (after a check) */
+.rare-box { margin-top: 12px; padding: 14px 16px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+.rare-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.rare-head h2 { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); }
+.rare-compare { font-size: 12.5px; font-weight: 500; color: var(--text-2); padding: 5px 10px; border-radius: 6px; background: var(--panel-2); border: 1px solid var(--line); transition: color .14s, border-color .14s; }
+.rare-compare:hover { color: var(--text); border-color: var(--line-2); }
+.rare-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.rare-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--panel-2); border: 1px solid var(--line); min-width: 0; transition: border-color .14s, background .14s; }
+.rare-item:hover { border-color: var(--line-2); background: var(--panel-hover); }
+.rare-rank { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+.rare-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+.rare-text { min-width: 0; }
+.rare-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rare-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.rare-none { font-size: 13px; color: var(--text-3); }
+@media (max-width: 760px) { .rare-list { grid-template-columns: 1fr; } }
