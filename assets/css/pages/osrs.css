@@ -183,3 +183,34 @@
 .has-meme .rs-steps { margin-top: 10px; padding-top: 10px; gap: 6px; }
 .has-meme .rs-steps li { grid-template-columns: 24px 1fr; gap: 10px; font-size: 15px; line-height: 1.3; }
 .has-meme .rs-steps li::before { width: 24px; height: 24px; font-size: 12px; }
+
+/* ---------- clean look: flat surfaces, thin lines, no ornaments ---------- */
+.rs-panel, .rs-clock, .rs-foot {
+  background: rgba(12, 10, 9, .8); border: 1px solid rgba(232, 194, 106, .22); box-shadow: none;
+}
+.rs-panel::before, .rs-panel::after { display: none; }
+.rs-panel { border-radius: 14px; }
+.rs-clock { border-radius: 12px; }
+.rs-foot { border-radius: 12px; }
+.rs-medal { border: 1px solid rgba(232, 194, 106, .4); box-shadow: none; background: rgba(232, 194, 106, .06); }
+.rs-badge.is-spot .rs-medal { box-shadow: 0 0 30px rgba(232, 194, 106, .18); border-color: rgba(232, 194, 106, .8); }
+.rs-pill { background: none; color: var(--gold); border: 1px solid rgba(232, 194, 106, .45); }
+.rs-pill.is-paid { color: var(--muted); border-color: rgba(214, 200, 173, .3); background: none; }
+.rs-badge-how { background: none !important; color: var(--gold) !important; padding: 0; }
+.rs-steps { border-top: 0; padding-top: 0; }
+.rs-steps li::before { content: ""; width: 6px; height: 6px; margin: 0 auto; background: var(--gold); }
+.rs-steps li { grid-template-columns: 16px 1fr; }
+.has-meme .rs-steps li { grid-template-columns: 14px 1fr; }
+.has-meme .rs-steps li::before { width: 5px; height: 5px; }
+.has-meme .rs-meme { box-shadow: 0 0 0 1px rgba(232, 194, 106, .3); border-radius: 0; }
+.rs-castle { opacity: .7; }
+.rs-stage .live-mark { color: rgba(255, 255, 255, .32); font-size: 28px; }
+.has-meme .rs-panel { justify-content: flex-start; padding-top: 22px; }
+.has-meme .rs-panel { justify-content: center; padding: 22px 24px; }
+.has-meme .rs-medal, .has-meme .rs-badges.is-one .rs-medal { width: 112px; height: 112px; }
+.has-meme .rs-medal img, .has-meme .rs-badges.is-one .rs-medal img { width: 72px; height: 72px; }
+.has-meme .rs-badges.is-one .rs-badge-name, .has-meme .rs-badge-name { font-size: 28px; }
+.has-meme .rs-h2 { font-size: 28px; }
+.has-meme .rs-badges, .has-meme .rs-badges.is-one { margin-top: 18px; }
+.has-meme .rs-steps { margin-top: 20px; gap: 8px; }
+.has-meme .rs-steps li { font-size: 17px; }

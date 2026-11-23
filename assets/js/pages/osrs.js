@@ -139,8 +139,8 @@ function render() {
   });
   steps("rsFreeSteps", [
     ["Watch any ", el("b", "", `${name}`), " stream for ", el("b", "", t), daily ? " a day." : "."],
-    daily ? ["Come back the next day — ", el("b", "", "every day unlocks the next one"), "."] : ["Stay logged in to Twitch while you watch."],
-    ["Track your progress at ", el("b", "", "twitch.tv/drops/inventory"), "."],
+    ...(daily ? [["Come back the next day — ", el("b", "", "every day unlocks the next one"), "."]] : []),
+    ["Progress: ", el("b", "", "twitch.tv/drops/inventory")],
   ]);
 
   // sub
@@ -153,7 +153,7 @@ function render() {
     n > 1
       ? ["Each new sub or gift sub to a ", el("b", "", name), " streamer unlocks one — ", el("b", "", `${n} subs for all ${n}`), "."]
       : ["Subscribe or gift a sub to ", el("b", "", `any ${name} streamer`), "."],
-    ["Tier 1 is enough. ", el("b", "", "Prime subs don't count"), "."],
+    ["Tier 1 is enough, ", el("b", "", "Prime doesn't count"), "."],
   ]);
 
   $("rsMain").classList.toggle("is-single", $("rsFreePanel").hidden || $("rsPaidPanel").hidden);
