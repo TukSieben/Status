@@ -233,9 +233,24 @@ if (params.get("qr") !== "0") {
   const slug = GAME.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const box = $("rsQr");
   const cap = el("div", "rs-qr-cap");
-  cap.append(el("b", "", "Scan me"), el("span", "", "all badges + your progress"));
+  cap.append(el("b", "", "Scan me"));
   // short links keep the code coarse enough to scan from a phone pointed at the stream
   const SHORT_LINKS = { "old-school-runescape": "https://badgestatus.net/osrs" };
   box.append(qrSvg(SHORT_LINKS[slug] || `https://badgestatus.net/c/${slug}/`), cap);
   box.hidden = false;
 }
+
+/* The title stays on one line: shrink it until it fits next to the QR code / countdown */
+function fitTitle() {
+  const title = $("rsTitle");
+  const limit = ($("rsQr").hidden ? document.querySelector(".rs-clock") : $("rsQr")).getBoundingClientRect().left - 32;
+  let size = 88;
+  title.style.fontSize = `${size}px`;
+  while (title.getBoundingClientRect().right > limit && size > 44) {
+    size -= 2;
+    title.style.fontSize = `${size}px`;
+  }
+}
+document.fonts?.ready.then(fitTitle);
+setTimeout(fitTitle, 1500);
+setInterval(fitTitle, 30_000); // title text can change (new game); cheap, no paint when nothing changes
