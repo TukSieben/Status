@@ -225,3 +225,5 @@
 /* make room for the QR: castle and moon move left */
 .rs-stage:has(.rs-qr:not([hidden])) .rs-castle { transform: translateX(-150px); }
 .rs-stage:has(.rs-qr:not([hidden])) .rs-moon { left: 980px; }
+.rs-clock { flex-shrink: 0; white-space: nowrap; }
+.rs-clock-time { font-family: var(--sans); font-weight: 800; font-size: 50px; letter-spacing: -0.01em; }

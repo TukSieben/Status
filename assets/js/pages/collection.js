@@ -1,7 +1,7 @@
 // Badge collection: every badge of one campaign/game at a glance — watch badges, sub badges (+ emotes),
 // and the final badge you get for all of them. Optional check of a Twitch name (not stored).
 // /collection/?game=Grand%20Theft%20Auto%20VI · /gta6/ is preset for GTA VI.
-import "../lib/background.js";
+import "../lib/background.js?v=23";
 import { $, el, badgeImg, badgeHref, loadBadges, watchBadges, gql, normalizeLogin, extractUuid } from "../lib/utils.js";
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 import { syncLiveEmbed } from "../lib/live-embed.js?v=1";

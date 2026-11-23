@@ -4,7 +4,7 @@
 // With flow 0 the animation was barely visible but re-rendered a full-screen shader every
 // frame, which kept the GPU busy permanently. paused + no mouse interaction stops the loop;
 // dpr 1 and a lower field quality keep the one-off render cheap. It re-renders only on resize.
-import { mountDarkVeil } from "./dark-veil.js";
+import { mountDarkVeil } from "./dark-veil.js?v=2";
 
 const host = document.getElementById("bgWaves");
 if (host) {

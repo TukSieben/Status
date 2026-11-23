@@ -70,8 +70,7 @@ b { font-weight: 600; color: var(--text); }
 /* ---------- Navbar ---------- */
 .nav {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(9, 9, 11, 0.95);
-  backdrop-filter: blur(8px);
+  background: rgba(9, 9, 11, 0.97); /* no backdrop blur: it re-reads the animated background every frame */
   border-bottom: 1px solid var(--line);
 }
 .nav-inner { height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }

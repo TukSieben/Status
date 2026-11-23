@@ -1,4 +1,4 @@
-import "../lib/background.js";
+import "../lib/background.js?v=23";
 import {
   $,
   el,

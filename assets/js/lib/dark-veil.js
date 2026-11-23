@@ -283,7 +283,10 @@ export function mountDarkVeil(container, options = {}) {
     antialias: false,
     depth: false,
     stencil: false,
-    powerPreference: 'high-performance'
+    // keep the last frame: without it some Chromium/Brave builds show an empty (black) canvas for a frame
+    // whenever something else on the page repaints — e.g. next to the Twitch player — which looks like flicker
+    preserveDrawingBuffer: true,
+    powerPreference: 'default'
   });
   if (!gl) {
     canvas.remove();
