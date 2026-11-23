@@ -5,6 +5,7 @@ import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startMeme } from "../lib/meme.js?v=1";
 import { startLiveTag } from "../lib/live-tag.js?v=4";
+import { qrSvg } from "../lib/qr.js?v=2";
 import { $, el, badgeImg, loadBadges, watchBadges, reloadOnUpdate } from "../lib/utils.js";
 
 const params = new URLSearchParams(location.search);
@@ -226,3 +227,15 @@ startMeme($("rsMeme"), command(GAME), (on) => $("stage").classList.toggle("has-m
 
 /* "THIS IS LIVE · NOT A VOD" strip at the bottom */
 startLiveTag($("stage"));
+
+/* QR code to this game's badge page (badgestatus.net/c/<game>/) next to the countdown. ?qr=0 hides it */
+if (params.get("qr") !== "0") {
+  const slug = GAME.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const box = $("rsQr");
+  const cap = el("div", "rs-qr-cap");
+  cap.append(el("b", "", "Scan me"), el("span", "", "all badges + your progress"));
+  // short links keep the code coarse enough to scan from a phone pointed at the stream
+  const SHORT_LINKS = { "old-school-runescape": "https://badgestatus.net/osrs" };
+  box.append(qrSvg(SHORT_LINKS[slug] || `https://badgestatus.net/c/${slug}/`), cap);
+  box.hidden = false;
+}

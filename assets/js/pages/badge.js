@@ -170,17 +170,16 @@ function renderHero() {
 function renderWhen() {
   const s = statusOf(badge);
   const state = $("bdState");
-  state.textContent = STATE_LABEL[s];
-  state.className = `bd-state is-${s}`;
   // no dates yet, but announced for a coming month → "Upcoming · Dec 2026"
   const planned = s === "unknown" ? plannedMonth(badge) : NaN;
-  if (planned > Date.now()) {
-    state.textContent = `Upcoming · ${plannedLabel(planned)}`;
-    state.className = "bd-state is-upcoming";
-  }
+  const label = planned > Date.now() ? `Upcoming · ${plannedLabel(planned)}` : STATE_LABEL[s];
+  const cls = planned > Date.now() ? "bd-state is-upcoming" : `bd-state is-${s}`;
+  // runs every second: only touch the page when something changed (no repaint → no flicker)
+  if (state.textContent !== label) state.textContent = label;
+  if (state.className !== cls) state.className = cls;
 
   if (s === "permanent" || s === "unknown") {
-    $("bdWhen").classList.add("hidden");
+    if (!$("bdWhen").classList.contains("hidden")) $("bdWhen").classList.add("hidden");
     return;
   }
 
@@ -233,7 +232,7 @@ function renderHow() {
   if (typeof badge.userCount === "number") facts.push(fact("Owned by", `${compactNumber(badge.userCount)} users`));
   const nodes = facts;
 
-  if (earnableOnStream(badge, channel)) {
+  if (earnableOnStream(badge, channel) && !(plannedMonth(badge) > Date.now())) {
     const live = el("a", "bd-fact-v is-live", "Earnable on our stream ↗");
     live.href = "https://www.twitch.tv/badgestatus";
     live.target = "_blank";
@@ -247,7 +246,7 @@ function renderHow() {
 function renderLiveBox() {
   const hero = document.querySelector(".bd-hero") || $("bdWhen");
   const now = Date.now();
-  const open = !(Date.parse(badge.endAt || "") <= now) && !(Date.parse(badge.startAt || "") > now);
+  const open = !(Date.parse(badge.endAt || "") <= now) && !(Date.parse(badge.startAt || "") > now) && !(plannedMonth(badge) > now);
   syncLiveEmbed(hero, open && earnableOnStream(badge, channel), {
     title: "Get this badge right here",
     text: `We're live in ${channel?.game || "this category"} right now. Watch here to earn it.`,

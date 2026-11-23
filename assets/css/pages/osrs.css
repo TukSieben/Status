@@ -214,3 +214,14 @@
 .has-meme .rs-badges, .has-meme .rs-badges.is-one { margin-top: 18px; }
 .has-meme .rs-steps { margin-top: 20px; gap: 8px; }
 .has-meme .rs-steps li { font-size: 17px; }
+
+/* QR code next to the countdown */
+.rs-qr { margin-left: auto; margin-right: 26px; display: flex; align-items: center; gap: 14px; }
+.rs-qr[hidden] { display: none; }
+.rs-qr svg { width: 150px; height: 150px; border-radius: 4px; display: block; }
+.rs-qr-cap { display: flex; flex-direction: column; gap: 4px; text-align: right; }
+.rs-qr-cap b { font-size: 16px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.rs-qr-cap span { font-size: 15px; color: var(--muted); max-width: 120px; line-height: 1.3; }
+/* make room for the QR: castle and moon move left */
+.rs-stage:has(.rs-qr:not([hidden])) .rs-castle { transform: translateX(-150px); }
+.rs-stage:has(.rs-qr:not([hidden])) .rs-moon { left: 980px; }
