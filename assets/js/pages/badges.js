@@ -133,7 +133,9 @@ function render() {
 
   $("activeGrid").replaceChildren(...list.map(renderCard));
   $("activeEmpty").classList.toggle("hidden", list.length > 0);
-  $("activeEmpty").textContent = active.length === 0 ? "No active badge drops right now." : "No badges match this filter.";
+  const allDone = checked && state.filter === "missing" && active.length > 0 && missing.length === 0;
+  $("activeEmpty").textContent = active.length === 0 ? "No active badge drops right now." : allDone ? "You have every active badge. Nice." : "No badges match this filter.";
+  $("activeEmpty").dataset.mood = allDone ? "happy" : "bored";
 
   // Upcoming
   $("upcomingList").replaceChildren(

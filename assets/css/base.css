@@ -215,3 +215,12 @@ b { font-weight: 600; color: var(--text); }
 
 /* ---------- Empty state ---------- */
 .empty { text-align: center; padding: 40px 20px; color: var(--text-3); font-size: 13px; background: var(--panel); border: 1px dashed var(--line); border-radius: 10px; }
+
+/* ---------- Pixel alien in empty states (bored by default, happy when there's good news) ---------- */
+.mini-empty::before, .empty::before, .bd-live-empty::before {
+  content: ""; display: block; width: 72px; height: 72px; margin: 0 auto 12px;
+  background: url("/assets/img/aliens/bored.png") center / contain no-repeat; image-rendering: pixelated;
+}
+.bd-live-empty::before { width: 48px; height: 48px; margin-bottom: 8px; }
+.empty[data-mood="happy"]::before, .mini-empty[data-mood="happy"]::before { background-image: url("/assets/img/aliens/happy.png"); }
+.alien-404 { width: 128px; height: 128px; image-rendering: pixelated; margin-bottom: 4px; }
