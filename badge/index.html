@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/assets/css/base.css?v=30">
   <link rel="stylesheet" href="/assets/css/components/cards.css?v=30">
   <link rel="stylesheet" href="/assets/css/components/stream.css?v=30">
-  <link rel="stylesheet" href="/assets/css/pages/badge.css?v=31">
+  <link rel="stylesheet" href="/assets/css/pages/badge.css?v=32">
 </head>
 <body>
   <header class="nav">
@@ -55,6 +55,11 @@
           <span class="bd-cost" id="bdCost"></span>
         </div>
         <a class="bd-collection hidden" id="bdCollection" href="/badges/"></a>
+        <div class="bd-cal hidden" id="bdCal">
+          <span class="bd-cal-label" id="bdCalLabel">Remind me</span>
+          <a class="bd-cal-btn" id="bdCalGoogle" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+          <a class="bd-cal-btn" id="bdCalIcs">Apple / Outlook</a>
+        </div>
       </header>
 
       <!-- 2. When -->
@@ -138,6 +143,6 @@
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-  <script type="module" src="/assets/js/pages/badge.js?v=38"></script>
+  <script type="module" src="/assets/js/pages/badge.js?v=39"></script>
 </body>
 </html>

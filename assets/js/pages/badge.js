@@ -3,6 +3,7 @@ import { $, el, img, onImgError, badgeImg, badgeHref, showToast, loadBadges, wat
 import { fetchChannel, earnableOnStream, paintLiveIndicators } from "../lib/twitch.js";
 import { syncLiveEmbed } from "../lib/live-embed.js?v=1";
 import { plannedMonth, plannedLabel } from "../lib/planned.js?v=1";
+import { calendarEvent, googleCalendarUrl, icsText } from "../lib/calendar.js?v=1";
 
 let badge = null;
 let all = [];
@@ -131,6 +132,21 @@ const STATE_LABEL = {
   permanent: "Always available",
   unknown: "Unknown",
 };
+
+/** "Remind me": calendar entry for the start (upcoming) or the last hour (active) */
+let calUrl = null;
+function renderCalendar() {
+  const ev = calendarEvent(badge);
+  $("bdCal").classList.toggle("hidden", !ev);
+  if (!ev) return;
+  $("bdCalLabel").textContent = ev.title.startsWith("Last chance") ? "Remind me before it ends" : "Remind me when it starts";
+  $("bdCalGoogle").href = googleCalendarUrl(ev);
+  if (calUrl) URL.revokeObjectURL(calUrl);
+  calUrl = URL.createObjectURL(new Blob([icsText(ev)], { type: "text/calendar" }));
+  const ics = $("bdCalIcs");
+  ics.href = calUrl;
+  ics.download = `${badge.setID}.ics`;
+}
 
 function renderHero() {
   document.title = `${badge.title} — BadgeStatus`;
@@ -532,6 +548,7 @@ async function init() {
 
   $("bd").classList.remove("hidden");
   renderHero();
+  renderCalendar();
   renderWhen();
   renderHow();
   renderDetails();
@@ -561,6 +578,8 @@ async function init() {
       badge = updated;
       $("footerSync").textContent = `Updated ${localDate(next.syncedAt)}`;
       renderHero();
+      renderCalendar();
+  renderCalendar();
       renderWhen();
       renderHow();
       renderDetails();
