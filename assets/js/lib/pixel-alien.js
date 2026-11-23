@@ -17,10 +17,17 @@ const CSS = `
   white-space: nowrap; opacity: 0; transform: translateY(-6px); transition: opacity .25s, transform .25s; }
 .px-bubble::before { content: ""; position: absolute; right: 40px; top: -17px; border: 8px solid transparent; border-bottom: 9px solid var(--px-accent, #e8c26a); }
 .px-bubble small { display: block; font-size: 18px; font-weight: 600; color: var(--px-accent, #e8c26a); }
-.px-alien.is-talking .px-bubble { opacity: 1; transform: none; }`;
+.px-alien.is-talking .px-bubble { opacity: 1; transform: none; }
+/* bubble to the left of the alien (OSRS: the area below is covered by the meme video, which ffmpeg draws on top) */
+.px-alien.is-left .px-bubble { right: calc(100% + 16px); top: 8px; min-width: 0; max-width: 236px; overflow: hidden; text-overflow: ellipsis; transform: translateX(6px); }
+.px-alien.is-left .px-bubble small { overflow: hidden; text-overflow: ellipsis; }
+.px-alien.is-left .px-bubble::before { display: none; }
+.px-alien.is-left::after { content: ""; position: absolute; right: calc(100% + 1px); top: 34px; border: 8px solid transparent; border-left: 10px solid var(--px-accent, #e8c26a); opacity: 0; transition: opacity .25s; }
+.px-alien.is-left.is-talking::after { opacity: 1; }
+.px-alien.is-left.is-talking .px-bubble { transform: none; }`;
 
 /** box: { left, top, size } in stage pixels. Returns { cheer(lines), hop(lines) } */
-export function startPixelAlien(host, { left, top, size = 96, accent, bg, text } = {}) {
+export function startPixelAlien(host, { left, top, size = 96, accent, bg, text, bubble: side = "below" } = {}) {
   if (!host || new URLSearchParams(location.search).get("alien") === "0") return null;
   if (!document.getElementById("pxAlienCss")) {
     const style = document.createElement("style");
@@ -31,7 +38,7 @@ export function startPixelAlien(host, { left, top, size = 96, accent, bg, text }
   for (const n of ["bored", "bored-blink", "happy"]) new Image().src = `${IMG}${n}.png`; // preload
 
   const root = document.createElement("div");
-  root.className = "px-alien";
+  root.className = side === "left" ? "px-alien is-left" : "px-alien";
   Object.assign(root.style, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
   if (accent) root.style.setProperty("--px-accent", accent);
   if (bg) root.style.setProperty("--px-bg", bg);

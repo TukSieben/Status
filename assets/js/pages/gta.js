@@ -1,7 +1,7 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=2";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=4";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startLiveTag } from "../lib/live-tag.js?v=4";

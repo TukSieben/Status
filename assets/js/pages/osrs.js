@@ -1,7 +1,7 @@
 // Full-screen badge view for one game (default Old School RuneScape): free + sub badges side by side, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=2";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=4";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startMeme } from "../lib/meme.js?v=1";
@@ -222,14 +222,14 @@ let goalBox = null;
 const hunters = startHunters($("rsHunters"), { avatarOf });
 
 /* Pixel alien standing on the top edge of the meme / badge panels, next to the castle */
-const alien = startPixelAlien($("stage"), { left: 1227, top: 104, size: 96 });
+const alien = startPixelAlien($("stage"), { left: 1227, top: 104, size: 96, bubble: "left" });
 function alienCommand(name, cmd) {
   if (!alien) return;
   const mine = cmd && cmd.slice(1).toLowerCase() === command(GAME).toLowerCase();
   const free = gameBadges().filter((x) => !isSub(x.b) && !(x.start > Date.now()));
   const t = free.length ? watchTime(free[0].b) : null;
   if (mine && free.length && t) alien.hop([`Watch ${pretty(t)}`, `→ ${free.length > 1 ? `${free.length} free badges` : free[0].b.title}`]);
-  else alien.hop([`Good luck, ${name}!`, "happy hunting"]);
+  else alien.hop(["Good luck!", name]);
 }
 
 const echo = startChatEcho($("stage"), {
@@ -237,7 +237,7 @@ const echo = startChatEcho($("stage"), {
   getBadges: () => badges,
   onFollow: (name) => {
     goalBox?.bump();
-    alien?.cheer([`Welcome, ${name}!`, "welcome to the hunt"]);
+    alien?.cheer(["Welcome!", name]);
   },
   onCommand: (n, login, cmd) => {
     hunters?.add(n, login);
@@ -282,7 +282,7 @@ setInterval(fitTitle, 30_000); // title text can change (new game); cheap, no pa
 /* ?aliendemo=1 → follow + command reactions every few seconds (to try it out) */
 if (alien && params.get("aliendemo") === "1") {
   const demo = () => {
-    alien.cheer(["Welcome, NewViewer!", "welcome to the hunt"]);
+    alien.cheer(["Welcome!", "NewViewer"]);
     setTimeout(() => alienCommand("viewer", `!${command(GAME)}`), 4200);
   };
   setTimeout(demo, 1500);
