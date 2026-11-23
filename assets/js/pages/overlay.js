@@ -5,7 +5,7 @@ import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
-import { startLiveTag } from "../lib/live-tag.js?v=2";
+import { startLiveTag } from "../lib/live-tag.js?v=4";
 
 const params = new URLSearchParams(location.search);
 const ROTATE_MS = Math.max(5, Number(params.get("rotate")) || 15) * 1000;
@@ -237,5 +237,5 @@ const hunters = startHunters($("oHunters"), { avatarOf });
 const echo = startChatEcho($("stage"), { position: { right: 56, bottom: 110 }, getBadges: () => badges, onFollow: () => goalBox?.bump(), onCommand: (name, login) => hunters?.add(name, login) });
 goalBox = startFollowGoal($("oGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
 
-/* "LIVE — not a VOD" in the top bar, next to the brand */
-startLiveTag(document.querySelector(".ov-top"), { size: 22, before: document.getElementById("oGoal") });
+/* "THIS IS LIVE · NOT A VOD" strip at the bottom */
+startLiveTag(document.getElementById("stage"));

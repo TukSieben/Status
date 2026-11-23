@@ -165,3 +165,6 @@
 @keyframes rs-tick { from { transform: translateY(-8px); opacity: .3; } }
 
 @media (prefers-reduced-motion: reduce) { .rs-motion * { animation: none !important; transition: none !important; } }
+
+/* bottom strip "THIS IS LIVE · NOT A VOD" */
+.rs-stage.has-livemark { grid-template-rows: 176px 1fr 86px 52px; }
