@@ -204,7 +204,6 @@
 .has-meme .rs-steps li::before { width: 5px; height: 5px; }
 .has-meme .rs-meme { box-shadow: 0 0 0 1px rgba(232, 194, 106, .3); border-radius: 0; }
 .rs-castle { opacity: .7; }
-.rs-stage .live-mark { color: rgba(255, 255, 255, .32); font-size: 28px; }
 .has-meme .rs-panel { justify-content: flex-start; padding-top: 22px; }
 .has-meme .rs-panel { justify-content: center; padding: 22px 24px; }
 .has-meme .rs-medal, .has-meme .rs-badges.is-one .rs-medal { width: 112px; height: 112px; }

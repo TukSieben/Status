@@ -6,7 +6,7 @@ import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
 import { buildEvents } from "../lib/schedule.js";
-import { startLiveTag } from "../lib/live-tag.js?v=4";
+import { startLiveTag } from "../lib/live-tag.js?v=5";
 
 const params = new URLSearchParams(location.search);
 const ROTATE_MS = Math.max(5, Number(params.get("rotate")) || 15) * 1000;
