@@ -151,3 +151,50 @@
 .has-meme .vc-paid-icons img { width: 34px; height: 34px; }
 .has-meme .vc-paid-text { font-size: 14px; }
 .has-meme .vc-paid-text b { font-size: 14px; }
+
+/* ---------- meme mode, Vice City TV look ---------- */
+/* neon frame drawn just outside the clip (the clip area itself is covered by the video) */
+.has-meme .vc-meme {
+  border-radius: 0; background: #000;
+  box-shadow: 0 0 0 3px #10061f, 0 0 0 6px #ff4fa3, 0 0 0 9px #10061f, 0 0 0 11px #3ee6ff, 0 0 38px 10px rgba(255, 79, 163, .55), 0 0 90px 24px rgba(62, 230, 255, .22);
+}
+.has-meme .vc-meme::before {
+  content: "VICE CITY TV"; position: absolute; left: -11px; top: -40px; height: 28px; padding: 0 16px 0 34px; display: flex; align-items: center;
+  font-family: "Anton", var(--sans); font-size: 18px; letter-spacing: .14em; color: #10061f;
+  background: linear-gradient(90deg, #ffd27a, #ff7fb0); border-radius: 8px 8px 0 0;
+}
+.has-meme .vc-meme::after {
+  content: ""; position: absolute; left: 3px; top: -31px; width: 10px; height: 10px; border-radius: 50%; background: #e0182e;
+  box-shadow: 0 0 0 2px #10061f; animation: vc-rec 1.6s steps(1) infinite;
+}
+@keyframes vc-rec { 50% { opacity: .25; } }
+/* corner brackets */
+.has-meme .vc-main::before, .has-meme .vc-main::after {
+  content: ""; position: absolute; width: 46px; height: 46px; border: 4px solid #3ee6ff; pointer-events: none; z-index: 1;
+}
+.has-meme .vc-main::before { left: 1290px; top: 790px; border-left: 0; border-top: 0; display: none; }
+.has-meme .vc-main::after { display: none; }
+
+/* side column: free chains as a mission list */
+.has-meme .vc-free { padding: 14px 16px; }
+.has-meme .vc-cards { display: flex; flex-direction: column; gap: 6px; }
+.has-meme .vc-card { flex-direction: row; justify-content: flex-start; gap: 12px; padding: 5px 12px 5px 6px; border-radius: 10px; text-align: left;
+  background: linear-gradient(90deg, rgba(255, 127, 176, .16), rgba(255, 255, 255, .04)); border-color: rgba(255, 193, 220, .22); }
+.has-meme .vc-card img { width: 38px; height: 38px; }
+.has-meme .vc-card-name { display: block; font-size: 16px; order: 2; flex: 1; }
+.has-meme .vc-card-step { order: 1; min-width: 50px; font-family: "Anton", var(--sans); font-size: 15px; letter-spacing: .08em; color: #ffd27a; }
+.has-meme .vc-card img { order: 0; }
+.has-meme .vc-card.is-spot { background: linear-gradient(90deg, rgba(255, 127, 176, .45), rgba(62, 230, 255, .12)); border-color: #ffc1dc; }
+.has-meme .vc-h2 { font-size: 22px; }
+.has-meme .vc-steps li:nth-child(3) { display: none; }
+.has-meme .vc-meme::before, .has-meme .vc-meme::after { display: none; }
+.has-meme .vc-cards { gap: 4px; }
+.has-meme .vc-card { padding: 3px 10px 3px 5px; }
+.has-meme .vc-card img { width: 30px; height: 30px; }
+.has-meme .vc-card-name { font-size: 15px; }
+.has-meme .vc-side { gap: 14px; }
+.has-meme .vc-panel { padding: 12px 16px; }
+.has-meme .vc-paid { gap: 8px; }
+.has-meme .vc-paid-text { font-size: 13px; line-height: 1.3; }
+.has-meme .vc-paid-text b { font-size: 13px; }
+.has-meme .vc-paid-icons img { width: 28px; height: 28px; }
