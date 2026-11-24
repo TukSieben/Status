@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>DOOM: The Dark Ages badges — BadgeStatus</title>
+  <!--
+    Full-screen stream view for one game's badges in a dark-iron and ember look (1920 × 1080).
+    Default game: DOOM: The Dark Ages. Options: ?game=<category> · ?paid=0 (hide sub badges) · ?motion=0
+    Meme: MEME_DOOM=<file> in the server's .env — the clip gets the big slot, the badge moves into the sidebar.
+  -->
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/base.css?v=24">
+  <link rel="stylesheet" href="/assets/css/pages/doom.css?v=1">
+</head>
+<body class="dm-body">
+  <div class="dm-stage" id="stage">
+    <div class="dm-sky" aria-hidden="true">
+      <div class="dm-glow"></div>
+      <svg class="dm-ruins" viewBox="0 0 1920 300" preserveAspectRatio="none">
+        <path d="M0 300V214l40-6 22-58 14 52 48-10 18-88 10-30 10 30 16 92 44 8 30-40 26 34 60-6 14-70 8 0 14 74 70 10 40-22 22-80 6-24 6 24 20 86 52 6 34-34 42 30 64 0 18-60 26 58 58 6 30-50 14-62 8-20 8 20 14 66 36 44 70-4 26-46 30 42 54 4 20-96 8-26 10 26 18 100 46 6 34-30 40 28 66-2 14-58 10 0 16 60 50 6 26-44 22 44 62 2 16-82 8-30 8 30 18 84 40 10V300Z"/>
+      </svg>
+      <div class="dm-embers" id="dmEmbers"></div>
+    </div>
+
+    <header class="dm-top">
+      <div>
+        <div class="dm-kicker">Twitch badge</div>
+        <h1 class="dm-title" id="dmTitle">DOOM: The Dark Ages</h1>
+      </div>
+      <div class="dm-clock">
+        <div class="dm-clock-label" id="dmClockLabel">Ends in</div>
+        <div class="dm-clock-time" id="dmClock">--</div>
+        <div class="dm-clock-date" id="dmDate"></div>
+      </div>
+    </header>
+
+    <main class="dm-main" id="dmMain">
+      <div class="dm-meme" id="dmMeme" hidden></div>
+      <section class="dm-panel dm-hero" id="dmHero"></section>
+      <div class="dm-side">
+        <section class="dm-panel" id="dmStepsPanel">
+          <h2 class="dm-h2">How to get it</h2>
+          <ol class="dm-steps" id="dmSteps"></ol>
+        </section>
+        <section class="dm-panel dm-rare" id="dmRare"></section>
+      </div>
+    </main>
+
+    <footer class="dm-foot">
+      <div id="dmCmd"></div>
+      <div class="dm-hunters" id="dmHunters"></div>
+      <div class="dm-goal" id="dmGoal"></div>
+      <div class="dm-brand"><img src="/assets/img/logo.png" alt="" width="34" height="34"><span>badgestatus.net</span></div>
+    </footer>
+  </div>
+  <script type="module" src="/assets/js/pages/doom.js?v=1"></script>
+</body>
+</html>
