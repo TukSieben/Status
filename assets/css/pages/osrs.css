@@ -230,3 +230,38 @@
 .rs-top > div:first-child { min-width: 0; }
 .rs-qr-cap b { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .3em; }
 .rs-stage:not(.has-meme) .px-alien { top: 92px !important; }
+
+/* =========================================================================================
+   Meme mode v2: bigger clip (stage x 48, y 140, 1456 × 819 — stream.js MEME_SLOT),
+   compact header, slim sidebar on the right with the alien in its free space.
+   ========================================================================================= */
+.rs-stage.has-meme { grid-template-rows: 124px minmax(0, 1fr) 62px; }
+.rs-stage.has-meme.has-livemark { grid-template-rows: 124px minmax(0, 1fr) 62px 46px; }
+.rs-stage.has-meme .rs-kicker { font-size: 15px; }
+.rs-stage.has-meme .rs-title { font-size: 66px !important; }
+.rs-stage.has-meme .rs-qr svg { width: 104px; height: 104px; }
+.rs-stage.has-meme .rs-clock { padding: 10px 18px; }
+.rs-stage.has-meme .rs-clock-time { font-size: 38px; }
+.rs-stage.has-meme .rs-clock-label, .rs-stage.has-meme .rs-clock-date { font-size: 12px; }
+.rs-stage.has-meme .rs-main, .rs-stage.has-meme .rs-main.is-single { grid-template-columns: 1440px minmax(0, 1fr); grid-template-rows: auto auto minmax(0, 1fr); gap: 14px 24px; padding: 16px 0 12px; }
+.rs-stage.has-meme .rs-meme { left: -16px; top: 16px; width: 1456px; height: 819px; }
+.rs-stage.has-meme .rs-panel { grid-column: 2; padding: 14px 16px; border-radius: 12px; }
+.rs-stage.has-meme #rsFreePanel { grid-row: 1; }
+.rs-stage.has-meme #rsPaidPanel { grid-row: 2; }
+.rs-stage.has-meme .rs-main.is-single .rs-panel { grid-row: 1; }
+.rs-stage.has-meme .rs-h2 { font-size: 20px; }
+.rs-stage.has-meme .rs-pill { font-size: 11px; padding: 4px 9px; }
+.rs-stage.has-meme .rs-badges, .rs-stage.has-meme .rs-badges.is-one { margin-top: 10px; gap: 8px; }
+.rs-stage.has-meme .rs-badge { gap: 12px; }
+.rs-stage.has-meme .rs-medal, .rs-stage.has-meme .rs-badges.is-one .rs-medal { width: 64px; height: 64px; }
+.rs-stage.has-meme .rs-medal img, .rs-stage.has-meme .rs-badges.is-one .rs-medal img { width: 42px; height: 42px; }
+.rs-stage.has-meme .rs-badges.is-one .rs-badge-name, .rs-stage.has-meme .rs-badge-name { font-size: 19px; }
+.rs-stage.has-meme .rs-steps { margin-top: 10px; gap: 5px; }
+.rs-stage.has-meme .rs-steps li { font-size: 13px; }
+.rs-stage.has-meme .rs-foot { height: 52px; font-size: 18px; }
+.rs-stage.has-meme .live-mark { font-size: 30px; }
+.rs-stage.has-meme .live-mark-time { font-size: 20px; }
+.rs-stage.has-meme .px-alien { left: 1680px !important; top: 742px !important; }
+.rs-stage.has-meme .px-alien.is-left .px-bubble { right: -6px; top: calc(100% + 22px); max-width: 300px; }
+.rs-stage.has-meme .px-alien.is-left::after { display: none; }
+.rs-stage.has-meme .px-alien.is-left .px-bubble::before { display: block; }

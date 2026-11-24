@@ -198,3 +198,57 @@
 .has-meme .vc-paid-text { font-size: 13px; line-height: 1.3; }
 .has-meme .vc-paid-text b { font-size: 13px; }
 .has-meme .vc-paid-icons img { width: 28px; height: 28px; }
+
+/* =========================================================================================
+   Meme mode v2: the clip is huge (stage x 48, y 140, 1456 × 819 — stream.js MEME_SLOT),
+   compact header, a slim "mission" sidebar on the right.
+   ========================================================================================= */
+.vc-stage.has-meme { grid-template-rows: 124px minmax(0, 1fr) 62px; }
+.vc-stage.has-meme.has-livemark { grid-template-rows: 124px minmax(0, 1fr) 62px 46px; }
+.has-meme .vc-top { padding-top: 6px; }
+.has-meme .vc-kicker { font-size: 15px; letter-spacing: .34em; }
+.has-meme .vc-title {
+  font-size: 76px; letter-spacing: .02em;
+  background: linear-gradient(180deg, #fff 0%, #ffe3f0 55%, #ff9cc8 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 0 rgba(40, 6, 50, .6));
+}
+.has-meme .vc-clock { padding: 10px 20px; border-radius: 14px; }
+.has-meme .vc-clock-label { font-size: 12px; }
+.has-meme .vc-clock-time { font-size: 42px; }
+.has-meme .vc-clock-date { font-size: 13px; }
+
+.vc-stage.has-meme .vc-main { grid-template-columns: 1440px minmax(0, 1fr); grid-template-rows: auto auto minmax(0, 1fr); gap: 14px 24px; padding: 16px 0 12px; }
+.vc-stage.has-meme .vc-meme { left: -16px; top: 16px; width: 1456px; height: 819px; }
+.vc-stage.has-meme .vc-free { grid-column: 2; grid-row: 1; }
+.vc-stage.has-meme .vc-side { display: contents; }
+.vc-stage.has-meme .vc-side > .vc-panel:first-child { grid-column: 2; grid-row: 3; align-self: end; }
+.vc-stage.has-meme #vcPaidPanel { grid-column: 2; grid-row: 2; }
+.vc-stage.has-meme .vc-panel { padding: 12px 14px; border-radius: 14px; background: rgba(20, 6, 36, .8); border-color: rgba(255, 193, 220, .25); }
+.vc-stage.has-meme .vc-h2 { font-size: 19px; letter-spacing: .08em; margin-bottom: 8px; color: #ffd27a; }
+.vc-stage.has-meme .vc-panel-head { margin-bottom: 8px; }
+.vc-stage.has-meme .vc-pill { font-size: 11px; padding: 4px 9px; }
+/* missions */
+.vc-stage.has-meme .vc-cards { gap: 4px; }
+.vc-stage.has-meme .vc-card { padding: 3px 8px 3px 4px; gap: 9px; border-radius: 9px; }
+.vc-stage.has-meme .vc-card img { width: 28px; height: 28px; }
+.vc-stage.has-meme .vc-card-step { min-width: 44px; font-size: 13px; }
+.vc-stage.has-meme .vc-card-name { font-size: 14px; }
+/* sub badges: icons + one line */
+.vc-stage.has-meme .vc-paid { gap: 6px; }
+.vc-stage.has-meme .vc-paid-row { gap: 10px; }
+.vc-stage.has-meme .vc-paid-icons { gap: 4px; }
+.vc-stage.has-meme .vc-paid-icons img { width: 30px; height: 30px; }
+.vc-stage.has-meme .vc-paid-text { font-size: 12px; line-height: 1.3; }
+.vc-stage.has-meme .vc-paid-text b { font-size: 13px; }
+/* how to: two short lines */
+.vc-stage.has-meme .vc-steps { gap: 6px; }
+.vc-stage.has-meme .vc-steps li { grid-template-columns: 20px 1fr; gap: 8px; font-size: 13px; line-height: 1.3; }
+.vc-stage.has-meme .vc-steps li::before { width: 20px; height: 20px; font-size: 12px; border-radius: 6px; }
+.vc-stage.has-meme .vc-foot { height: 52px; font-size: 18px; }
+.vc-stage.has-meme .live-mark { font-size: 30px; }
+.vc-stage.has-meme .live-mark-time { font-size: 20px; }
+/* alien lives in the free space of the sidebar in meme mode, bubble opens to the left/below */
+.vc-stage.has-meme .px-alien { left: 1680px !important; top: 730px !important; }
+.vc-stage.has-meme .px-bubble { max-width: 300px; overflow: hidden; text-overflow: ellipsis; }
+.vc-stage.has-meme .px-alien.is-right .px-bubble { left: auto; right: -6px; }
+.vc-stage.has-meme .px-alien.is-right .px-bubble::before { left: auto; right: 40px; }

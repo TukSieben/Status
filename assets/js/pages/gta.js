@@ -233,12 +233,12 @@ const alien = startPixelAlien($("stage"), { left: 1330, top: 92, size: 96, accen
 function alienCommand(name, cmd) {
   if (!alien) return;
   const mine = cmd && cmd.slice(1).toLowerCase().startsWith(alias(GAME).toLowerCase());
-  alien.hop(mine ? ["Watch 1 hour a day", "→ every day unlocks the next chain"] : [`Good luck, ${name}!`, "happy hunting"]);
+  alien.hop(mine ? ["Watch 1h a day", "→ next chain each day"] : ["Good luck!", name]);
 }
 const echo = startChatEcho($("stage"), {
   position: { right: 76, bottom: 112 },
   getBadges: () => badges,
-  onFollow: (name) => { goalBox?.bump(); alien?.cheer([`Welcome, ${name}!`, "welcome to the hunt"]); },
+  onFollow: (name) => { goalBox?.bump(); alien?.cheer(["Welcome!", name]); },
   onCommand: (name, login, cmd) => { hunters?.add(name, login); alienCommand(name, cmd); },
 });
 goalBox = startFollowGoal($("vcGoal"), { onMilestone: (m) => echo?.celebrate(`${m.toLocaleString("en-US")} followers`) });
@@ -249,7 +249,7 @@ startLiveTag($("stage"));
 /* ?aliendemo=1 → follow + command reactions every few seconds (to try it out) */
 if (alien && params.get("aliendemo") === "1") {
   const demo = () => {
-    alien.cheer(["Welcome, NewViewer!", "welcome to the hunt"]);
+    alien.cheer(["Welcome!", "NewViewer"]);
     setTimeout(() => alienCommand("viewer", `!${alias(GAME)}`), 4200);
   };
   setTimeout(demo, 1500);
