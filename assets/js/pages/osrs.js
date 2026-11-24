@@ -1,7 +1,7 @@
 // Full-screen badge view for one game (default Old School RuneScape): free + sub badges side by side, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=5";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=6";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startMeme } from "../lib/meme.js?v=1";

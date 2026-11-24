@@ -125,3 +125,29 @@
 
 /* bottom strip "THIS IS LIVE · NOT A VOD" */
 .vc-stage.has-livemark { grid-template-rows: 170px 1fr 86px 52px; }
+
+/* ---------- meme mode: clip left (filled by ffmpeg), badges compact on the right ---------- */
+.vc-main { position: relative; }
+.vc-meme { display: none; }
+.has-meme .vc-meme { display: block; position: absolute; left: 0; top: 26px; width: 1312px; height: 738px; background: #000; border-radius: 0;
+  box-shadow: 0 0 0 1px rgba(255, 193, 220, .45), 0 24px 60px rgba(20, 6, 36, .5); }
+.vc-meme[hidden] { display: none !important; }
+.vc-meme video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.has-meme .vc-main { grid-template-columns: 1312px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: 18px 32px; }
+.has-meme .vc-free { grid-column: 2; grid-row: 1; padding: 16px 18px; }
+.has-meme .vc-side { grid-column: 2; grid-row: 2; gap: 18px; }
+.has-meme .vc-panel { padding: 16px 18px; border-radius: 16px; }
+.has-meme .vc-h2 { font-size: 24px; margin-bottom: 10px; }
+.has-meme .vc-panel-head { margin-bottom: 12px; flex-wrap: wrap; gap: 6px; }
+.has-meme .vc-pill { font-size: 13px; padding: 5px 11px; }
+.has-meme .vc-cards { gap: 8px; grid-auto-rows: auto; }
+.has-meme .vc-card { padding: 8px 4px; gap: 4px; border-radius: 12px; }
+.has-meme .vc-card img { width: 52px; height: 52px; }
+.has-meme .vc-card-name, .has-meme .vc-card-how { display: none; }
+.has-meme .vc-card-step { font-size: 11px; letter-spacing: .1em; }
+.has-meme .vc-steps { gap: 8px; }
+.has-meme .vc-steps li { grid-template-columns: 26px 1fr; gap: 10px; font-size: 15px; }
+.has-meme .vc-steps li::before { width: 24px; height: 24px; font-size: 14px; border-radius: 7px; }
+.has-meme .vc-paid-icons img { width: 34px; height: 34px; }
+.has-meme .vc-paid-text { font-size: 14px; }
+.has-meme .vc-paid-text b { font-size: 14px; }

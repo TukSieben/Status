@@ -36,7 +36,10 @@ const CSS = `
 .px-alien.is-left .px-bubble::before { display: none; }
 .px-alien.is-left::after { content: ""; position: absolute; right: calc(100% + 1px); top: 34px; border: 8px solid transparent; border-left: 10px solid var(--px-accent, #e8c26a); opacity: 0; transition: opacity .25s; }
 .px-alien.is-left.is-talking::after { opacity: 1; }
-.px-alien.is-left.is-talking .px-bubble { transform: none; }`;
+.px-alien.is-left.is-talking .px-bubble { transform: none; }
+/* bubble to the right, below (GTA: keeps clear of the meme video on the left) */
+.px-alien.is-right .px-bubble { right: auto; left: 52px; }
+.px-alien.is-right .px-bubble::before { right: auto; left: 10px; }`;
 
 /** box: { left, top, size } in stage pixels. Returns { cheer(lines), hop(lines) } */
 export function startPixelAlien(host, { left, top, size = 96, accent, bg, text, bubble: side = "below" } = {}) {
@@ -50,7 +53,7 @@ export function startPixelAlien(host, { left, top, size = 96, accent, bg, text, 
   for (const n of ["bored", "bored-blink", "happy", "acc-sunglasses", "acc-cape", "acc-crown", "acc-santa"]) new Image().src = `${IMG}${n}.png`; // preload
 
   const root = document.createElement("div");
-  root.className = side === "left" ? "px-alien is-left" : "px-alien";
+  root.className = side === "left" ? "px-alien is-left" : side === "right" ? "px-alien is-right" : "px-alien";
   Object.assign(root.style, { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` });
   if (accent) root.style.setProperty("--px-accent", accent);
   if (bg) root.style.setProperty("--px-bg", bg);

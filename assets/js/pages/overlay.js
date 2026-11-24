@@ -1,7 +1,7 @@
 // 1920×1080 stream overlay. No interaction — it just keeps itself up to date.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=5";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=6";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { $, el, badgeImg, splitBadges, loadBadges, watchBadges, onlyFree, reloadOnUpdate, URGENT_MS } from "../lib/utils.js";
