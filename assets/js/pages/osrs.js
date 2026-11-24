@@ -1,7 +1,7 @@
 // Full-screen badge view for one game (default Old School RuneScape): free + sub badges side by side, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=6";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=7";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
 import { startMeme } from "../lib/meme.js?v=1";
@@ -180,10 +180,10 @@ function moveSpot() {
   all[spot].classList.add("is-spot");
 }
 if (MOTION) {
-  setInterval(moveSpot, 5000); // spotlight walks over the badges
-  setInterval(() => replay($("rsTitle"), "is-shine"), 14000); // gold sweep over the title
-  setInterval(() => document.querySelectorAll(".rs-win").forEach((w) => replay(w, "is-flicker")), 9000); // castle windows flicker
-  setInterval(() => replay(document.querySelector(".rs-flag"), "is-wave"), 21000); // flag waves
+  setInterval(moveSpot, 15000); // spotlight walks over the badges (calm: every frame that changes costs server CPU)
+  setInterval(() => replay($("rsTitle"), "is-shine"), 40000); // gold sweep over the title
+  setInterval(() => document.querySelectorAll(".rs-win").forEach((w) => replay(w, "is-flicker")), 30000); // castle windows flicker
+  setInterval(() => replay(document.querySelector(".rs-flag"), "is-wave"), 60000); // flag waves
   setTimeout(() => replay($("rsTitle"), "is-shine"), 1800);
   setTimeout(moveSpot, 1200);
 }

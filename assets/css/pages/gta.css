@@ -165,7 +165,7 @@
 }
 .has-meme .vc-meme::after {
   content: ""; position: absolute; left: 3px; top: -31px; width: 10px; height: 10px; border-radius: 50%; background: #e0182e;
-  box-shadow: 0 0 0 2px #10061f; animation: vc-rec 1.6s steps(1) infinite;
+  box-shadow: 0 0 0 2px #10061f;
 }
 @keyframes vc-rec { 50% { opacity: .25; } }
 /* corner brackets */

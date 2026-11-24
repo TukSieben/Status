@@ -1,7 +1,7 @@
 // Full-screen badge view for one game (default DOOM: The Dark Ages) in a dark-iron and ember look.
 // Shows the game's badges big (one badge → a large hero card), how to get them, how rare they are and a countdown.
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=6";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=7";
 import { startMeme } from "../lib/meme.js?v=1";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
@@ -182,18 +182,19 @@ function replay(node, cls) {
 }
 // embers: a handful of sparks that rise during a short burst every few seconds
 const embers = $("dmEmbers");
-for (let i = 0; i < 18; i++) {
+for (let i = 0; i < 10; i++) {
   const e = el("i");
-  e.style.left = `${4 + ((i * 53) % 92)}%`;
+  e.style.left = `${6 + ((i * 89) % 88)}%`;
   e.style.setProperty("--d", `${(i % 6) * 0.35}s`);
   e.style.setProperty("--x", `${((i * 37) % 60) - 30}px`);
   e.style.setProperty("--s", `${3 + (i % 3)}px`);
   embers.append(e);
 }
 if (MOTION) {
-  setInterval(() => replay(embers, "is-burst"), 11000);
-  setInterval(() => replay($("dmTitle"), "is-shine"), 15000);
-  setInterval(() => document.querySelector(".dm-sigil") && replay(document.querySelector(".dm-sigil"), "is-pulse"), 7000);
+  // calm: every frame that changes costs server CPU, so moves are short and rare
+  setInterval(() => replay(embers, "is-burst"), 40000);
+  setInterval(() => replay($("dmTitle"), "is-shine"), 45000);
+  setInterval(() => document.querySelector(".dm-sigil") && replay(document.querySelector(".dm-sigil"), "is-pulse"), 25000);
   setTimeout(() => replay(embers, "is-burst"), 1200);
   setTimeout(() => replay($("dmTitle"), "is-shine"), 2200);
 }

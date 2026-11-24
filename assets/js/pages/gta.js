@@ -1,7 +1,7 @@
 // Full-screen badge view for one game (default GTA VI): free badges with how to get them, sub badges, countdown.
 import { startDaylight, setVars } from "../lib/daylight.js?v=1";
 import { startChatEcho, avatarOf } from "../lib/chat-echo.js?v=7";
-import { startPixelAlien } from "../lib/pixel-alien.js?v=6";
+import { startPixelAlien } from "../lib/pixel-alien.js?v=7";
 import { startMeme } from "../lib/meme.js?v=1";
 import { startHunters } from "../lib/hunters.js?v=1";
 import { startFollowGoal } from "../lib/follow-goal.js?v=1";
@@ -190,9 +190,9 @@ function replay(node, cls) {
   node.classList.add(cls);
 }
 if (MOTION) {
-  setInterval(moveSpot, 5000); // spotlight walks Day 1 → Day 6
-  setInterval(() => replay($("vcTitle"), "is-shine"), 14000); // light sweep over the title
-  setInterval(() => document.querySelectorAll(".vc-palm").forEach((p) => replay(p, "is-sway")), 21000); // palms move
+  setInterval(moveSpot, 15000); // spotlight walks Day 1 → Day 6 (calm: every frame that changes costs server CPU)
+  setInterval(() => replay($("vcTitle"), "is-shine"), 40000); // light sweep over the title
+  setInterval(() => document.querySelectorAll(".vc-palm").forEach((p) => replay(p, "is-sway")), 60000); // palms move
   setTimeout(() => replay($("vcTitle"), "is-shine"), 1800);
 }
 

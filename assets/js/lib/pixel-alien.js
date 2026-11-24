@@ -11,12 +11,11 @@ export const isWinter = (d = new Date()) => {
 };
 const CSS = `
 .px-alien { position: absolute; z-index: 6; pointer-events: none; }
-.px-alien-body { position: absolute; inset: 0; animation: px-bob 1s steps(1) infinite; }
+.px-alien-body { position: absolute; inset: 0; }
 .px-alien-body img { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
 .px-alien-body img[hidden] { display: none; }
 .px-acc-sunglasses { transition: transform .2s steps(2); }
 .px-alien.is-happy .px-acc-sunglasses { transform: translateY(-19%); } /* glasses up on the forehead while cheering */
-@keyframes px-bob { 0% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 .px-alien.is-cheer .px-alien-body { animation: px-jump .45s cubic-bezier(.3, .7, .4, 1) 3; }
 .px-alien.is-hop .px-alien-body { animation: px-jump .32s cubic-bezier(.3, .7, .4, 1) 2; }
 @keyframes px-jump { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-24px); } }
@@ -87,6 +86,7 @@ export function startPixelAlien(host, { left, top, size = 96, accent, bg, text, 
 
   let busy = false;
   const queue = [];
+  // no endless idle bob: each changed frame costs the stream server CPU — it blinks and hops instead
   // blink every few seconds while bored
   setInterval(() => {
     if (busy) return;
