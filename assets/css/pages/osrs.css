@@ -294,3 +294,15 @@
 .rs-stage.has-meme .px-alien.is-left .px-bubble::before { display: block; top: auto; bottom: -17px; right: 40px; border-bottom-color: transparent; border-top: 9px solid var(--px-accent, #e8c26a); }
 .rs-stage.has-meme .rs-foot { height: 46px; font-size: 17px; }
 .rs-stage.has-meme .rs-castle { transform: translateX(-60px); }
+
+/* meme mode: chat bubbles ("x checked !badges") live in the sidebar — the clip covers anything to the left of it */
+.rs-stage.has-meme .echo-stack { right: 40px !important; left: auto !important; bottom: 298px !important; width: 280px; align-items: stretch; }
+.rs-stage.has-meme .echo-bubble { font-size: 16px; gap: 9px; padding: 7px 14px 7px 7px; overflow: hidden; }
+.rs-stage.has-meme .echo-bubble:not(:last-child) { display: none; }
+.rs-stage.has-meme .echo-av { width: 30px; height: 30px; font-size: 14px; }
+.rs-stage.has-meme .echo-name { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.rs-stage.has-meme .echo-bubble.is-big { font-size: 18px; padding: 9px 16px 9px 9px; }
+.rs-stage.has-meme .echo-bubble.is-big .echo-av { width: 34px; height: 34px; }
+/* alien further right so its speech bubble never reaches under the clip (clip ends at x 1576) */
+.rs-stage.has-meme .px-alien { left: 1764px !important; }
+.rs-stage.has-meme .px-alien .px-bubble { max-width: 266px !important; right: -14px !important; }

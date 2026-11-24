@@ -302,3 +302,15 @@
 .vc-stage.has-meme .px-alien .px-bubble { top: auto !important; bottom: calc(100% + 14px); left: auto !important; right: -10px; max-width: 270px; }
 .vc-stage.has-meme .px-alien .px-bubble::before { top: auto; bottom: -17px; left: auto !important; right: 40px; border-bottom-color: transparent; border-top: 9px solid var(--px-accent, #e8c26a); }
 .vc-stage.has-meme .vc-foot { height: 46px; font-size: 17px; }
+
+/* meme mode: chat bubbles ("x checked !badges") live in the sidebar — the clip covers anything to the left of it */
+.vc-stage.has-meme .echo-stack { right: 40px !important; left: auto !important; bottom: 298px !important; width: 280px; align-items: stretch; }
+.vc-stage.has-meme .echo-bubble { font-size: 16px; gap: 9px; padding: 7px 14px 7px 7px; overflow: hidden; }
+.vc-stage.has-meme .echo-bubble:not(:last-child) { display: none; }
+.vc-stage.has-meme .echo-av { width: 30px; height: 30px; font-size: 14px; }
+.vc-stage.has-meme .echo-name { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.vc-stage.has-meme .echo-bubble.is-big { font-size: 18px; padding: 9px 16px 9px 9px; }
+.vc-stage.has-meme .echo-bubble.is-big .echo-av { width: 34px; height: 34px; }
+/* alien further right so its speech bubble never reaches under the clip (clip ends at x 1576) */
+.vc-stage.has-meme .px-alien { left: 1764px !important; }
+.vc-stage.has-meme .px-alien .px-bubble { max-width: 266px !important; right: -14px !important; }
