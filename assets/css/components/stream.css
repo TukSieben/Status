@@ -14,9 +14,15 @@
 .nav-stream:hover { border-color: var(--line-2); background: var(--panel-hover); }
 .nav-stream.is-live { color: var(--text); border-color: rgba(239, 68, 68, 0.32); }
 
-.footer-links { display: inline-flex; align-items: center; gap: 16px; }
+.footer-links { display: inline-flex; align-items: center; gap: 6px 16px; flex-wrap: wrap; }
 .footer-stream { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); transition: color .14s; }
 .footer-stream:hover { color: var(--text); }
+.footer-social svg { width: 13px; height: 13px; fill: currentColor; }
+
+/* Discord + X icons next to the Stream button */
+.nav-social { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 30px; padding: 0; color: var(--text-3); flex-shrink: 0; }
+.nav-social:hover { color: var(--text); }
+.nav-social svg { width: 16px; height: 16px; fill: currentColor; }
 
 /* "Get it right here" live box on badge + collection pages */
 .live-embed {
