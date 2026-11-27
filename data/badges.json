@@ -1,9 +1,9 @@
 {
-  "syncedAt": "2026-11-27T11:31:20Z",
+  "syncedAt": "2026-11-27T12:16:19Z",
   "totalBadges": 578,
   "uniqueSets": 458,
   "trackedOwners": 400,
-  "activeNow": 30,
+  "activeNow": 26,
   "upcoming": 0,
   "badges": [
     {
@@ -9952,7 +9952,7 @@
       "alwaysAvailable": true,
       "year": null,
       "userCount": 20839909,
-      "percentage": 13.1428,
+      "percentage": 13.1427,
       "startAt": null,
       "endAt": null,
       "eventName": null,
